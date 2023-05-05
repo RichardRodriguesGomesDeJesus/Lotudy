@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { colors } from './sharedstyles';
-import { link } from 'fs';
 const FlexContainer = styled.div`
   display: flex;
   align-items: center;
@@ -11,7 +10,6 @@ const FlexContainer = styled.div`
   margin: 1rem;
 
   @media (max-width: 768px) {
-    flex-flow: column;
     height: auto;
   }
 `;
@@ -21,7 +19,7 @@ const Card = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: ${colors.white};
   text-align: center;
   padding: 0;
   color: inherit;
@@ -31,14 +29,15 @@ const Card = styled.div`
   transition: color 0.15s ease, border-color 0.15s ease;
 
   p{
+    font-weight: 400;
     margin: 0;
   }
   &:hover,
   :focus,
   :active {
     cursor: pointer;
-    color: ${colors.principal};
-    border-color: ${colors.segundaria};
+    color: ${colors.principalColor};
+    border-color: ${colors.titleColor};
   }
   @media screen and (min-width: 0 ){
     height:150px;
@@ -47,6 +46,9 @@ const Card = styled.div`
       height: 75px;  
       width:  75px ;
     }
+    p{
+      font-size: .85rem;
+    }
   };
   @media screen and (min-width: 768px ){
     height:200px;
@@ -54,6 +56,9 @@ const Card = styled.div`
     img{
       height: 100px;  
       width: 100px ;
+    }
+    p{
+      font-size: 1rem;
     }
   };
   @media screen and (min-width: 1024px) {
@@ -74,11 +79,11 @@ export default function Cards() {
     },
     {
       img: 'cards/winners.svg',
-      text: 'Conquiste a nota maxima no vestibular ',
+      text: 'Conquiste a nota maxima no vestibular. ',
     },
     {
       img: 'cards/growth.svg',
-      text: 'Crie o habito de estudar de uma forma simples' ,
+      text: 'Crie o habito de estudar de uma forma simples.' ,
     }
   ];
   return (
