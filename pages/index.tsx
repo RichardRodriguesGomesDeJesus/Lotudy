@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <Container>
       <Head>
-        <title>Create Next App</title>
+        <title>VestibulaPro</title>
         <meta name="description" content="VestibulaPro" />
         <link rel="icon" href="/favicon.ico" />
         <style>
