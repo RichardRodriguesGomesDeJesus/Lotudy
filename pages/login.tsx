@@ -8,6 +8,7 @@ export default function Login (){
              <Header>
                 <nav>
                     <Link href={'/'}>Home</Link>
+                    <Link href={'/register'}>Cadastre-se</Link>
                 </nav>
             </Header>
             <Main>
@@ -16,6 +17,7 @@ export default function Login (){
             </Main>
             <Footer>
                 <Link href={'/login'}>Já tem conta?</Link>
+                <Link href={'/register'}>Crie sua conta</Link>
             </Footer>
         </Container>
     )

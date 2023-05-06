@@ -42,6 +42,7 @@ const Header = styled.header`
     align-items: center;
     color: #fff;
     display: flex;
+    gap: 1rem;
     margin: 0 1rem;
     font-weight: 400;
     width: 100%;
@@ -88,6 +89,7 @@ const Footer = styled.footer`
   justify-content: center;
   align-items: center;
   background: ${colors.sideColor};
+  gap: 1rem;
   font-weight: 400;
   display: flex;
   height: 80px;
