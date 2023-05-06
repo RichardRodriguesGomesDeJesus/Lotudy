@@ -6,7 +6,8 @@ export const colors = {
   titleColor: "#49cccc",
   backgrondColor: "#f0f0f0",
   white: "#fff",
-  textColor:"#767675"
+  textColor:"#767675",
+  error:"#F91364"
 }
 
 const Container = styled.div`
@@ -26,6 +27,7 @@ const Main = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
   width:100vw;
