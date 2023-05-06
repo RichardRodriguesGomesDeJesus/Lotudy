@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors } from './sharedstyles';
+import Link from 'next/link';
 const FlexContainer = styled.div`
   display: flex;
   align-items: center;
@@ -89,10 +90,12 @@ export default function Cards() {
   return (
     <FlexContainer>
       {cardList.map((element, index) => (
-        <Card key={index}>
-          <img src={element.img} alt={element.text} />
-          <p>{element.text}</p>
-        </Card>
+        <Link href={'/login'}>
+          <Card key={index}>
+            <img src={element.img} alt={element.text} />
+            <p>{element.text}</p>
+          </Card>
+        </Link>
       ))}
     </FlexContainer>
   );
