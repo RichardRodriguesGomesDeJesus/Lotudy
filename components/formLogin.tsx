@@ -29,6 +29,7 @@ const Form = styled.form`
         }
         span{
             color: ${colors.error};
+            display: none;
         }
         
     }
@@ -132,7 +133,7 @@ export function FormLogin (){
                 <div>
                     <label htmlFor="password">Senha</label>
                     <input type="password" name='password' placeholder='digite sua senha. ' value={password} onChange={(event)=> event.target.value}/>
-                    <span>Senha ou email incorreto</span>
+                    <span>Senha ou email incorreto.</span>
                 </div>
                 <button onClick={ event => event.preventDefault()}>Logar</button>
             </Form>
