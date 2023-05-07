@@ -29,6 +29,7 @@ div{
     }
     span{
         color: ${colors.error};
+        display: none;
     }
     
 }
@@ -133,7 +134,7 @@ export default function FormRegister() {
                 <div>
                     <label htmlFor="email">Email</label>
                     <input type="email" name='email' placeholder='fulano@gmail.com' value={email} onChange={(event)=> setEmail(event.target.value)}/>
-                    <span>Este email já foi cadastrado</span>
+                    <span>Este email já foi cadastrado.</span>
                 </div> 
                 <div>
                     <label htmlFor="password">Senha</label>
