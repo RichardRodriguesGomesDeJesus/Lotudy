@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container, Footer, Header, Main, Title } from "../components/sharedstyles";
+import FormRegister from "../components/formRegister";
 
 export default function Register (){
     return (
@@ -11,7 +12,8 @@ export default function Register (){
                 </nav>
             </Header>
             <Main>
-                <Title>Crie  sua conta</Title>
+                <Title>Crie  sua conta.</Title>
+                <FormRegister/>
             </Main>
             <Footer>
                 <Link href={'/login'}>Já tem conta?</Link>
