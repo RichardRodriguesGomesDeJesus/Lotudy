@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from './sharedstyles'
+import { useState } from 'react'
 
 const Form = styled.form`
     background: ${colors.white};
@@ -50,17 +51,45 @@ const Form = styled.form`
         }
     }
     @media screen and (min-width: 0 ){
+        gap:1rem;
+        height: 250px;
+        width: 300px;
         div{
-            input{
-                width: ;
+            gap: .5rem;
+            label{
+                color: ${colors.sideColor};
+                font-size:1rem;
+                font-weight: 400;
             }
+            input{
+                width: 250px;
+            }
+            span{
+                font-size: .9rem;
+            }
+        }
+        button{
+            width: 150px;
         }
       };
     @media screen and (min-width: 768px ){
+        height: 350px;
+        width: 600px;
         div{
-            input{
-                width: ;
+            label{
+                color: ${colors.sideColor};
+                font-size:1.2rem;
+                font-weight: 600;
             }
+            input{
+                width: 420px;
+            }
+            span{
+                font-size: 1rem;
+            }
+        }
+        button{
+            width: 175px;
         }
     };
     @media screen and (min-width: 1024px) {
@@ -76,6 +105,9 @@ const Form = styled.form`
             input{
                 width: 480px;
             }
+            span{
+                font-size: 1rem;
+            }
         }
         button{
             width: 200px;
@@ -84,8 +116,9 @@ const Form = styled.form`
 `
 
 export function FormLogin (){
-
-    function submit(event: MouseEvent) {
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+    function submit() {
         
     }
 
@@ -94,14 +127,14 @@ export function FormLogin (){
             <Form>
                 <div>
                     <label htmlFor="email">Email</label>
-                    <input type="email" name='email' placeholder='fulano@gmail.com'/>
+                    <input type="email" name='email' placeholder='fulano@gmail.com' value={email} onChange={(event)=> event.target.value}/>
                 </div>
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input type="password" name='password' placeholder='digite sua senha '/>
+                    <input type="password" name='password' placeholder='digite sua senha. ' value={password} onChange={(event)=> event.target.value}/>
                     <span>Senha ou email incorreto</span>
                 </div>
-                <button onClick={ event => event.preventDefault()}>Enviar</button>
+                <button onClick={ event => event.preventDefault()}>Logar</button>
             </Form>
         </>
     )
