@@ -12,11 +12,10 @@ export default function Login (){
                 </nav>
             </Header>
             <Main>
-                <Title>Faça login na sua conta</Title>
+                <Title>Faça login na sua conta.</Title>
                 <FormLogin/>
             </Main>
             <Footer>
-                <Link href={'/login'}>Já tem conta?</Link>
                 <Link href={'/register'}>Crie sua conta</Link>
             </Footer>
         </Container>
