@@ -1,39 +1,94 @@
 import styled from "styled-components";
 import { colors } from "./sharedstyles";
-import { useState } from "react";
+import { FormEvent, useRef, useState } from "react";
+import axios from "axios";
 
 const Form = styled.form`
-background: ${colors.white};
-box-shadow: 0 8px 8px ${colors.textColor};
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-margin: 1rem 0;
-padding: 1rem;
-text-align: center;
-border-radius: 1rem;
-div{
-    align-items: center;
+    background: ${colors.white};
+    box-shadow: 0 8px 8px ${colors.textColor};
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     justify-content: space-around;
-    label{
+    margin: 1rem 0;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+    div{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-around;
+        label{
+            
+        }
+        input{
+            border: 1px solid ${colors.textColor};
+            border-radius: .5rem;
+            box-shadow: 0 4px 4px ${colors.textColor};
+            padding: .5rem;
+        }
         
     }
-    input{
-        border: 1px solid ${colors.textColor};
-        border-radius: .5rem;
-        box-shadow: 0 4px 4px ${colors.textColor};
-        padding: .5rem;
-    }
-    span{
+    p{
         color: ${colors.error};
-        display: none;
     }
-    
-}
-button{
+    @media screen and (min-width: 0 ){
+        gap:.5rem;
+        height: 400px;
+        width: 300px;
+        div{
+            gap: .5rem;
+            label{
+                color: ${colors.sideColor};
+                font-size:1rem;
+                font-weight: 400;
+            }
+            input{
+                width: 250px;
+            }
+            span{
+                font-size: .9rem;
+            }
+        }
+    };
+    @media screen and (min-width: 768px ){
+        height: 400px;
+        width: 600px;
+        div{
+            label{
+                color: ${colors.sideColor};
+                font-size:1.2rem;
+                font-weight: 600;
+            }
+            input{
+                width: 420px;
+            }
+            span{
+                font-size: 1rem;
+            }
+        }
+    };
+    @media screen and (min-width: 1024px) {
+        height: 500px;
+        width: 800px;
+        div{
+            label{
+                color: ${colors.sideColor};
+                font-size:1.5rem;
+                font-weight: 600;
+
+            }
+            input{
+                width: 480px;
+            }
+            span{
+                font-size: 1rem;
+            }
+        }
+    }
+`
+const ButtonSubmit = styled.input`
     background: ${colors.sideColor};
     border: none;
     border-radius: .5rem;
@@ -50,101 +105,70 @@ button{
         border: 1px solid ${colors.sideColor};
         border-color: ${colors.sideColor};
     }
-}
-@media screen and (min-width: 0 ){
-    gap:.5rem;
-    height: 400px;
-    width: 300px;
-    div{
-        gap: .5rem;
-        label{
-            color: ${colors.sideColor};
-            font-size:1rem;
-            font-weight: 400;
-        }
-        input{
-            width: 250px;
-        }
-        span{
-            font-size: .9rem;
-        }
-    }
-    button{
+    @media screen and (min-width: 0 ){
         width: 150px;
     }
-  };
-@media screen and (min-width: 768px ){
-    height: 400px;
-    width: 600px;
-    div{
-        label{
-            color: ${colors.sideColor};
-            font-size:1.2rem;
-            font-weight: 600;
-        }
-        input{
-            width: 420px;
-        }
-        span{
-            font-size: 1rem;
-        }
-    }
-    button{
+    @media screen and (min-width: 768px ){
         width: 175px;
     }
-};
-@media screen and (min-width: 1024px) {
-    height: 500px;
-    width: 800px;
-    div{
-        label{
-            color: ${colors.sideColor};
-            font-size:1.5rem;
-            font-weight: 600;
-
-        }
-        input{
-            width: 480px;
-        }
-        span{
-            font-size: 1rem;
-        }
-    }
-    button{
+    @media screen and (min-width: 1024px){
         width: 200px;
     }
-}
+
 `
+
+
+
+
 
 export default function FormRegister() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+    const passwordInput = useRef()
+
     function submit() {
         
+        if (password === confirmPassword) {
+
+            axios.post('http://localhost:3000/api/auth/set_user',{
+            name: name,
+            email:email ,
+            password: password
+        })
+        .then((res)=> console.log(res.data))
+        .catch((err)=> setErrorMessage(err.response.data))
+        } else{
+            setErrorMessage('As senhas devem ser iguais!')
+        }
     }
     return(
         <>
-            <Form>
+            <Form onSubmit={ event => {
+                    event.preventDefault() 
+                    submit()
+                }}>
                 <div>
                     <label htmlFor="name">Nome</label>
-                    <input type="text" name='name' placeholder='digite seu nome.' value={name} onChange={(event)=> setName(event.target.value)}/>
+                    <input required type="text" name='name' placeholder='digite seu nome.' autoComplete="name" value={name} onChange={(event)=> setName(event.target.value)}/>
                 </div>
                 <div>
                     <label htmlFor="email">Email</label>
-                    <input type="email" name='email' placeholder='fulano@gmail.com' value={email} onChange={(event)=> setEmail(event.target.value)}/>
-                    <span>Este email já foi cadastrado.</span>
+                    <input required type="email"  name='email' placeholder='fulano@gmail.com' autoComplete="email" value={email} onChange={(event)=> setEmail(event.target.value)}/>
+
                 </div> 
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input type="password" name='password' placeholder='crie uma senha.' value={password} onChange={(event)=> setPassword(event.target.value)}/>
+                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='crie uma senha.' autoComplete="new-password" value={password} onChange={(event)=> setPassword(event.target.value)}/>
                 </div>
                 <div>
                     <label htmlFor="confirm_password">Confirmação de senha</label>
-                    <input type="password" name='confirm_password' placeholder='crie uma senha. ' value={confirmPassword} onChange={(event)=> setConfirmPassword(event.target.value)}/>
+                    <input required  ref={passwordInput} type="password" name='confirm_password' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='crie uma senha.' autoComplete="new-password" value={confirmPassword} onChange={(event)=> setConfirmPassword(event.target.value)}/>
                 </div>
-                <button onClick={ event => event.preventDefault()}>Criar conta</button>
+                {errorMessage && <p>{errorMessage}</p>}
+                <ButtonSubmit type="submit" name="submit" value={'Criar conta'} />
             </Form>
         </>
     )

@@ -22,7 +22,7 @@ const Container = styled.div`
   min-height: 100vh;
 `
 const Main = styled.main`
-  color: ${colors.textColor} ;
+  color: ${colors.textColor};
   padding: 0 1rem;
   flex: 1;
   display: flex;

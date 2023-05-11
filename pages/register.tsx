@@ -3,6 +3,9 @@ import { Container, Footer, Header, Main, Title } from "../components/sharedstyl
 import FormRegister from "../components/formRegister";
 
 export default function Register (){
+
+    
+
     return (
         <Container>
              <Header>

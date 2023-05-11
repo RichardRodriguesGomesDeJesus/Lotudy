@@ -117,9 +117,10 @@ const Form = styled.form`
 `
 
 export function FormLogin (){
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     function submit() {
+        
         
     }
 
@@ -128,11 +129,11 @@ export function FormLogin (){
             <Form>
                 <div>
                     <label htmlFor="email">Email</label>
-                    <input type="email" name='email' placeholder='fulano@gmail.com' value={email} onChange={(event)=> event.target.value}/>
+                    <input type="email" name='email' placeholder='fulano@gmail.com' value={email} onChange={(event)=> setEmail(event.target.value)}/>
                 </div>
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input type="password" name='password' placeholder='digite sua senha. ' value={password} onChange={(event)=> event.target.value}/>
+                    <input type="password" name='password' placeholder='digite sua senha.'value={password} onChange={(event) => setPassword(event.target.value) }/>
                     <span>Senha ou email incorreto.</span>
                 </div>
                 <button onClick={ event => event.preventDefault()}>Logar</button>
