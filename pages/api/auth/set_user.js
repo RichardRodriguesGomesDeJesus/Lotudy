@@ -1,5 +1,5 @@
 import { connectMongo } from '../../../lib/connectMongo.js';
-import { UserModel } from "../../../models/user.js"
+import { UserModel } from "../../../models/User.js"
 import bcrypt from 'bcryptjs';
 
 export default async function handler(req, res) {

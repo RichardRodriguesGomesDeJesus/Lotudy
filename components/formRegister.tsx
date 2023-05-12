@@ -4,15 +4,14 @@ import { FormEvent, useRef, useState } from "react";
 import axios from "axios";
 
 const Form = styled.form`
-    background: ${colors.white};
-    box-shadow: 0 8px 8px ${colors.textColor};
+    
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin: 1rem 0;
     padding: 1rem;
     text-align: center;
-    border-radius: 1rem;
+    
     div{
         align-items: center;
         display: flex;
@@ -32,6 +31,7 @@ const Form = styled.form`
     }
     p{
         color: ${colors.error};
+        margin: 0;
     }
     @media screen and (min-width: 0 ){
         gap:.5rem;
@@ -47,12 +47,12 @@ const Form = styled.form`
             input{
                 width: 250px;
             }
-            span{
-                font-size: .9rem;
-            }
         }
     };
     @media screen and (min-width: 768px ){
+        background: ${colors.white};
+        box-shadow: 0 8px 8px ${colors.textColor};
+        border-radius: 1rem;
         height: 400px;
         width: 600px;
         div{
@@ -63,9 +63,6 @@ const Form = styled.form`
             }
             input{
                 width: 420px;
-            }
-            span{
-                font-size: 1rem;
             }
         }
     };
@@ -81,9 +78,6 @@ const Form = styled.form`
             }
             input{
                 width: 480px;
-            }
-            span{
-                font-size: 1rem;
             }
         }
     }

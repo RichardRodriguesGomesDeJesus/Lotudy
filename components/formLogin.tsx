@@ -1,17 +1,15 @@
 import styled from 'styled-components'
 import { colors } from './sharedstyles'
 import { useState } from 'react'
+import axios from 'axios'
 
 const Form = styled.form`
-    background: ${colors.white};
-    box-shadow: 0 8px 8px ${colors.textColor};
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin: 1rem 0;
     padding: 1rem;
     text-align: center;
-    border-radius: 1rem;
     div{
         align-items: center;
         display: flex;
@@ -65,15 +63,16 @@ const Form = styled.form`
             input{
                 width: 250px;
             }
-            span{
-                font-size: .9rem;
-            }
         }
-        button{
-            width: 150px;
+        p{
+            color: ${colors.error};
+            margin: 0;
         }
       };
     @media screen and (min-width: 768px ){
+        background: ${colors.white};
+        box-shadow: 0 8px 8px ${colors.textColor};
+        border-radius: 1rem;
         height: 350px;
         width: 600px;
         div{
@@ -85,12 +84,6 @@ const Form = styled.form`
             input{
                 width: 420px;
             }
-            span{
-                font-size: 1rem;
-            }
-        }
-        button{
-            width: 175px;
         }
     };
     @media screen and (min-width: 1024px) {
@@ -106,37 +99,68 @@ const Form = styled.form`
             input{
                 width: 480px;
             }
-            span{
-                font-size: 1rem;
-            }
-        }
-        button{
-            width: 200px;
         }
     }
+`
+const ButtonSubmit = styled.input`
+    background: ${colors.sideColor};
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 0 4px 4px ${colors.textColor};
+    color: ${colors.white};
+    margin: 0 auto;
+    padding: .5em;
+    &:hover,
+    :focus,
+    :active {
+        cursor: pointer;
+        color: ${colors.sideColor};
+        background: ${colors.white};
+        border: 1px solid ${colors.sideColor};
+        border-color: ${colors.sideColor};
+    }
+    @media screen and (min-width: 0 ){
+        width: 150px;
+    }
+    @media screen and (min-width: 768px ){
+        width: 175px;
+    }
+    @media screen and (min-width: 1024px){
+        width: 200px;
+    }
+
 `
 
 export function FormLogin (){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
     function submit() {
-        
-        
+        axios.post('http://localhost:3000/api/auth/login_user', {
+            email:email ,
+            password: password
+        })
+        .then((res)=> console.log(res.data))
+        .catch((err)=> setErrorMessage(err.response.data))
     }
 
     return(
         <>
-            <Form>
+            <Form onSubmit={ event => {
+                    event.preventDefault() 
+                    submit()
+                }}>
                 <div>
                     <label htmlFor="email">Email</label>
-                    <input type="email" name='email' placeholder='fulano@gmail.com' value={email} onChange={(event)=> setEmail(event.target.value)}/>
+                    <input required type="email"  name='email' placeholder='fulano@gmail.com' autoComplete="email" value={email} onChange={(event)=> setEmail(event.target.value)}/>
                 </div>
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input type="password" name='password' placeholder='digite sua senha.'value={password} onChange={(event) => setPassword(event.target.value) }/>
+                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='crie uma senha.' autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)}/>
                     <span>Senha ou email incorreto.</span>
                 </div>
-                <button onClick={ event => event.preventDefault()}>Logar</button>
+                {errorMessage && <p>{errorMessage}</p>}
+                <ButtonSubmit type="submit" name="submit" value={'Logar'} />
             </Form>
         </>
     )
