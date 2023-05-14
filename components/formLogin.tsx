@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { colors } from './sharedstyles'
 import { useState } from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 const Form = styled.form`
     display: flex;
@@ -135,13 +136,19 @@ export function FormLogin (){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+    const router = useRouter();
     function submit() {
         axios.post('http://localhost:3000/api/auth/login_user', {
             email:email ,
             password: password
         })
-        .then((res)=> console.log(res.data))
-        .catch((err)=> setErrorMessage(err.response.data))
+        .then((res)=> {
+            localStorage.setItem('token', res.data.token)
+        })
+        .then(()=>{
+            router.push('/dashboard')
+        })
+        .catch((err)=> setErrorMessage(err))
     }
 
     return(
@@ -152,11 +159,11 @@ export function FormLogin (){
                 }}>
                 <div>
                     <label htmlFor="email">Email</label>
-                    <input required type="email"  name='email' placeholder='fulano@gmail.com' autoComplete="email" value={email} onChange={(event)=> setEmail(event.target.value)}/>
+                    <input required type="email"  name='email' placeholder='fulano@gmail.com' autoComplete="email" value={email} onChange={(event)=> setEmail(event.target.value)}  id='email'/>
                 </div>
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='crie uma senha.' autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)}/>
+                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='crie uma senha.' autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)} id='password'/>
                     <span>Senha ou email incorreto.</span>
                 </div>
                 {errorMessage && <p>{errorMessage}</p>}
