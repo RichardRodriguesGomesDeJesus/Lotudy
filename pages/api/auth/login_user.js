@@ -40,9 +40,8 @@ export default async function handler(req, res) {
           const passwordMatch = await bcrypt.compare(password, users[index].password);
           if (passwordMatch) {
             const token = jwt.sign({
-              userId: newUser._id,
-              name: newUser.name,
-              email: newUser.email
+              userId: users[index]._id,
+              exp: 3600
             }, process.env.SECRET)
             res.status(201).send({mse:'successful authentication', token});
           } else {
