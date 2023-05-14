@@ -54,9 +54,8 @@ export default async function handler(req, res) {
         await newUser.save();
         const secret = process.env.SECRET
         const token = jwt.sign({
-          name: name,
-          email: email,
-          password: hashPassword
+          userId: newUser._id,
+          exp: 3600
         },secret)
         res.status(201).send({mse: 'sucesso!',token});
       } catch {
