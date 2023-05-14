@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { colors } from "./sharedstyles";
-import { FormEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const Form = styled.form`
     
@@ -122,6 +123,7 @@ export default function FormRegister() {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const passwordInput = useRef()
+    const router = useRouter();
 
     function submit() {
         
@@ -132,7 +134,10 @@ export default function FormRegister() {
             email:email ,
             password: password
         })
-        .then((res)=> console.log(res.data))
+        .then((res)=> {
+            localStorage.setItem('token', res.data.token)
+            router.push('/dashboard')
+        })
         .catch((err)=> setErrorMessage(err.response.data))
         } else{
             setErrorMessage('As senhas devem ser iguais!')
