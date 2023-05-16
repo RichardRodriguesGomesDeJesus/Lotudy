@@ -41,9 +41,9 @@ export default async function handler(req, res) {
           if (passwordMatch) {
             const token = jwt.sign({
               userId: users[index]._id,
-              exp: 3600
+              email: email
             }, process.env.SECRET)
-            res.status(201).send({mse:'successful authentication', token});
+            res.status(201).send({mse:'successful authentication', token, id: users[index]._id });
           } else {
             res.status(401).send('Incorrect password or email')
           }
