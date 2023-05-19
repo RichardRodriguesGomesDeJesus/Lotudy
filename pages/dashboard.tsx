@@ -2,14 +2,15 @@ import Link from "next/link";
 import { Container, Footer, Header, Main, Title } from "../components/sharedstyles";
 import ValidatyToken from "../util/token_validaty";
 
+
 export default function Dashboard() {
     ValidatyToken()
     return(
-        <Container>
+    <Container>
         <Header>
            <nav>
-               <Link href={'/home'}>Home</Link>
-               <Link href={'/register'}>Cadastre-se</Link>
+               <Link href={'/exams'}>Simulados</Link>
+               <Link href={'/flexcards'}>Flesh Cards</Link>
            </nav>
        </Header>
        <Main>
