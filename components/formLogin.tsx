@@ -3,6 +3,7 @@ import { colors } from './sharedstyles'
 import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { setCookie } from 'nookies'
 
 const Form = styled.form`
     display: flex;
@@ -143,7 +144,9 @@ export function FormLogin (){
             password: password
         })
         .then((res)=> {
-            localStorage.setItem('token', res.data.token)
+            setCookie(undefined,'token',res.data.token,{
+                maxAge: 60 * 60 * 2
+            })
         })
         .then(()=>{
             router.push('/dashboard')
