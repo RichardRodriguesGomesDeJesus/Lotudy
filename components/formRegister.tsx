@@ -3,6 +3,7 @@ import { colors } from "./sharedstyles";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { setCookie } from "nookies";
 
 const Form = styled.form`
     
@@ -135,10 +136,14 @@ export default function FormRegister() {
             password: password
         })
         .then((res)=> {
-            localStorage.setItem('token', res.data.token)
+            setCookie(undefined,'token',res.data.token,{
+                maxAge: 60 * 60 * 2
+            })
+        })
+        .then(()=>{
             router.push('/dashboard')
         })
-        .catch((err)=> setErrorMessage(err.response.data))
+        .catch((err)=> setErrorMessage(err))
         } else{
             setErrorMessage('As senhas devem ser iguais!')
         }
