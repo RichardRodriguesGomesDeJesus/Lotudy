@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import mongoose from 'mongoose';
 import { connectMongo } from '../../../lib/connectMongo.js';
 import { UserModel } from "../../../models/user.js"
 
@@ -22,7 +21,7 @@ export default async function handler(req, res){
 
     
     if (!user) {
-      return res.status(404).json({ error: 'User not found',email: user,user: listIds[0]  });
+      return res.status(404).json({ error: 'User not found' });
     } else{
       res.status(200).send({msg:'success'})
     }
