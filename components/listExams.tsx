@@ -31,13 +31,13 @@ const List = styled.div`
 
 export default function ListExams({ formUpdate, setFormUpdate }) {
     const { 'token': token } = parseCookies();
-  
+    const urlAtual = window.location.href
     const [examList, setExamList] = useState([]);
   
    useEffect(() => {
   const fetchExams = async () => {
     try {
-      const response = await axios.post('/api/exams/getExams', {
+      const response = await axios.post(`${urlAtual}/api/exams/getExams`, {
         token,
       });
       setExamList(response.data.list);

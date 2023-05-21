@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { parseCookies } from 'nookies';
 
 export default async function ValidatyToken() {
+  const urlAtual = window.location.href
   const { 'token': token } = parseCookies();
   if (typeof window !== 'undefined') {
     const router = useRouter();
@@ -10,7 +11,7 @@ export default async function ValidatyToken() {
       router.replace("/login");
     } else {
       try {
-        await axios.post('/api/auth/verify_token', {
+        await axios.post(`${urlAtual}/api/auth/verify_token`, {
           token,
         });
       } catch (error) {

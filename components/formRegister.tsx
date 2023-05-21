@@ -118,6 +118,7 @@ const ButtonSubmit = styled.input`
 
 
 export default function FormRegister() {
+    const urlAtual = window.location.href
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -130,7 +131,7 @@ export default function FormRegister() {
         
         if (password === confirmPassword) {
 
-            axios.post('/api/auth/set_user',{
+            axios.post(`${urlAtual}/api/auth/set_user`,{
             name: name,
             email:email ,
             password: password
