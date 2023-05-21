@@ -3,7 +3,7 @@ import { colors } from './sharedstyles'
 import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { setCookie } from 'nookies'
+import { destroyCookie, parseCookies, setCookie } from 'nookies'
 
 const Form = styled.form`
     display: flex;
@@ -144,9 +144,16 @@ export function FormLogin (){
             password: password
         })
         .then((res)=> {
+            const { 'token': token } = parseCookies();
+            if (token) {
+                //remova o token dos cookies
+                destroyCookie(undefined, 'token')
+            }
             setCookie(undefined,'token',res.data.token,{
                 maxAge: 60 * 60 * 2
             })
+            
+            
         })
         .then(()=>{
             router.push('/dashboard')
