@@ -51,7 +51,6 @@ export default async function handler(req, res) {
           res.status(401).send('User not found');
         }
       } catch (error) {
-        console.error('Error connecting to database', error);
-        return res.status(500).send({ msg: 'An error occurred while processing the request' });
+        return res.status(500).send({ msg: 'An error occurred while processing the request',error});
       }
 }
