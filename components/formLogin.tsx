@@ -134,13 +134,12 @@ const ButtonSubmit = styled.input`
 `
 
 export function FormLogin (){
-    const urlAtual = window.location.href
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const router = useRouter();
     function submit() {
-        axios.post(`${urlAtual}/api/auth/login_user`, {
+        axios.post('/api/auth/login_user', {
             email:email ,
             password: password
         })
