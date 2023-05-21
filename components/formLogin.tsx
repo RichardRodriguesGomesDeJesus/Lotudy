@@ -139,7 +139,7 @@ export function FormLogin (){
     const [errorMessage, setErrorMessage] = useState('')
     const router = useRouter();
     function submit() {
-        axios.post('http://localhost:3000/api/auth/login_user', {
+        axios.post('/api/auth/login_user', {
             email:email ,
             password: password
         })

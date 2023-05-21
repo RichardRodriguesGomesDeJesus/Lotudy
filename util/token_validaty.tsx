@@ -10,7 +10,7 @@ export default async function ValidatyToken() {
       router.replace("/login");
     } else {
       try {
-        await axios.post('http://localhost:3000/api/auth/verify_token', {
+        await axios.post('/api/auth/verify_token', {
           token,
         });
       } catch (error) {

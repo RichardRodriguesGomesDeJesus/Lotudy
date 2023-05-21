@@ -37,7 +37,7 @@ export default function ListExams({ formUpdate, setFormUpdate }) {
    useEffect(() => {
   const fetchExams = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/exams/getExams', {
+      const response = await axios.post('/api/exams/getExams', {
         token,
       });
       setExamList(response.data.list);

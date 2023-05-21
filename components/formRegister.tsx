@@ -130,7 +130,7 @@ export default function FormRegister() {
         
         if (password === confirmPassword) {
 
-            axios.post('http://localhost:3000/api/auth/set_user',{
+            axios.post('/api/auth/set_user',{
             name: name,
             email:email ,
             password: password

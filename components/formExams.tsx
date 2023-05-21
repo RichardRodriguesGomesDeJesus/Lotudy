@@ -165,7 +165,7 @@ export default function FormExams( { formUpdate, setFormUpdate }) {
     const [nameExame, setNameExame] = useState('')
     function submit() {
         axios
-          .post('http://localhost:3000/api/exams', {
+          .post('/api/exams', {
             name: nameExame,
             token
           })
