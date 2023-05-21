@@ -159,18 +159,25 @@ const ButtonAddExame = styled.button`
     }
 `
 
-export default function FormExams() {
+export default function FormExams( { formUpdate, setFormUpdate }) {
     const  { 'token': token } = parseCookies()
     const [form,setForm] = useState(false)
     const [nameExame, setNameExame] = useState('')
-    function submit (){
-        axios.post('http://localhost:3000/api/exams',{
+    function submit() {
+        axios
+          .post('http://localhost:3000/api/exams', {
             name: nameExame,
             token
-        })
-        .then(()=>{alert('deu certo')})
-        .catch((err)=> console.log(err))
-    }
+          })
+          .then(() => {
+            setForm(false);
+           if (formUpdate === false) {
+                setFormUpdate(true)
+           } // Fetch the updated list of exams
+          })
+          .catch((err) => console.log(err));
+      }
+      
     return(
         <>
             {
@@ -195,3 +202,4 @@ export default function FormExams() {
         </>
     )
 }
+
