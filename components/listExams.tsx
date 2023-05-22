@@ -3,6 +3,7 @@ import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "./sharedstyles";
+import Link from "next/link";
 
 const List = styled.div`
     display: flex;
@@ -60,7 +61,9 @@ export default function ListExams({ formUpdate, setFormUpdate }) {
       <>
         <List>
           {examList.map((exam, index) => (
-            <p key={index}>{exam}</p>
+            <Link href={`/exams/${encodeURIComponent(exam)}`} key={index}>
+              <p>{exam}</p>
+            </Link>
           ))}
           {examList.length == 0 && (
             <p>Você ainda não possui nenhum  simulado</p>
