@@ -4,7 +4,7 @@ import { Container, Footer, Header, Main, Title } from "../components/sharedstyl
 import ValidatyToken from "../util/token_validaty";
 
 export default function Dashboard() {
-    //ValidatyToken();
+    ValidatyToken();
   return (
     <Container>
       <Header>
