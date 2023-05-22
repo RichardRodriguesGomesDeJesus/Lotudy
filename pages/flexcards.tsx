@@ -4,7 +4,7 @@ import ValidatyToken from "../util/token_validaty";
 
 
 export default function flexcards() {
-    ValidatyToken()
+    //ValidatyToken()
     return(
         <Container>
             <Header>
