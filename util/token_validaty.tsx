@@ -1,21 +1,28 @@
 import axios from "axios";
 import { useRouter } from 'next/router'
 import { parseCookies } from 'nookies';
+import { useEffect, useState } from "react";
 
 export default async function ValidatyToken() {
   const { 'token': token } = parseCookies();
-  if (typeof window !== 'undefined') {
-    const router = useRouter();
+  const [userAuth , setUserAuth] = useState(true)
+  const router = useRouter();
+  useEffect(()=>{
     if (!token) {
-      router.replace("/login");
+      setUserAuth(false)
     } else {
       try {
-        await axios.post('/api/auth/verify_token', {
+         axios.post('/api/auth/verify_token', {
           token,
-        });
+        })
+        .then(()=> { setUserAuth(true)})
+        .catch(()=>{setUserAuth(false)})
       } catch (error) {
-        router.replace("/login");
+        setUserAuth(false)
       }
     }
+  },[token])
+  if (userAuth === false) {
+    router.push("/login");
   }
 }
