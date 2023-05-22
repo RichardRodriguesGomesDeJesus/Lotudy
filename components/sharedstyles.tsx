@@ -51,6 +51,7 @@ const Header = styled.header`
 const Title = styled.h1`
   color: ${colors.titleColor};
   font-weight: 600;
+  text-transform: capitalize;
   text-align:center;
   @media screen and (min-width: 0 ){
     font-size: 1.25rem;
