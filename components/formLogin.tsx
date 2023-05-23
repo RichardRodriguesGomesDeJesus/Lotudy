@@ -139,26 +139,32 @@ export function FormLogin (){
     const [errorMessage, setErrorMessage] = useState('')
     const router = useRouter();
     function submit() {
-        axios.post('/api/auth/login_user', {
-            email:email ,
-            password: password
-        })
-        .then((res)=> {
-            const { 'token': token } = parseCookies();
-            if (token) {
-                //remova o token dos cookies
-                destroyCookie(undefined, 'token')
-            }
-            setCookie(undefined,'token',res.data.token,{
-                maxAge: 60 * 60 * 2
+
+        try {
+            axios.post('/api/auth/login_user', {
+                email:email ,
+                password: password
             })
-            
-            
-        })
-        .then(()=>{
-            router.push('/dashboard')
-        })
-        .catch((err)=> setErrorMessage(err))
+            .then((res)=> {
+                const { 'token': token } = parseCookies();
+                if (token) {
+                    //remova o token dos cookies
+                    destroyCookie(undefined, 'token')
+                }
+                setCookie(undefined,'token',res.data.token,{
+                    maxAge: 60 * 60 * 2
+                })
+                
+                
+            })
+            .then(()=>{
+                router.push('/dashboard')
+            })
+            .catch((err)=> {setErrorMessage(err.response.data)
+            console.log(err)})
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return(
