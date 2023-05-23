@@ -1,17 +1,18 @@
 import jwt from 'jsonwebtoken';
 import { connectMongo } from '../../../lib/connectMongo.js';
 import { UserModel } from "../../../models/user.js"
+import { redirect } from 'next/dist/server/api-utils/index.js';
 
 export default async function handler(req, res){
   try {
     if (req.method !== 'POST') {
-      return res.status(405).send({ mse: 'Method Not Allowed' })
+      return redirect(res, '/login');
     }
 
     const token =  req.body.token || req.query.token || req.headers["x-access-token"]
 
     if (!token) {
-        return res.status(403).send("A token is required for authentication");
+        return redirect(res, '/login');
     }
     const decoded = jwt.verify(token, process.env.SECRET); // Verifica se o token é válido
     await connectMongo()
@@ -21,14 +22,13 @@ export default async function handler(req, res){
 
     
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return redirect(res, '/login');
     } else{
       res.status(200).send({msg:'success'})
     }
     
     
   } catch (error) {
-    console.error(error);
-    res.status(401).json({ error: 'Token inválido'});
+    return redirect(res, '/login');
   }
 }
