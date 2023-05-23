@@ -160,8 +160,10 @@ export function FormLogin (){
             .then(()=>{
                 router.push('/dashboard')
             })
-            .catch((err)=> {setErrorMessage(err.response.data)
-            console.log(err.response.data)})
+            .catch((err)=> {
+                setErrorMessage(err.response.data.mse)
+                console.log(err.response.data.error)
+            })
         } catch (error) {
             console.log(error)
         }
