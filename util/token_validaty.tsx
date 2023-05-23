@@ -1,28 +1,23 @@
 import axios from "axios";
-import { useRouter } from 'next/router'
+import { redirect } from "next/dist/server/api-utils";
 import { parseCookies } from 'nookies';
 import { useEffect, useState } from "react";
 
 export default async function ValidatyToken() {
   const { 'token': token } = parseCookies();
-  const [userAuth , setUserAuth] = useState(true)
-  const router = useRouter();
   useEffect(()=>{
     if (!token) {
-      setUserAuth(false)
+      axios.post('/api/auth/verify_token', {
+        token: 'invalid',
+      })
     } else {
       try {
          axios.post('/api/auth/verify_token', {
           token,
         })
-        .then(()=> { setUserAuth(true)})
-        .catch(()=>{setUserAuth(false)})
       } catch (error) {
-        setUserAuth(false)
+        console.log(error)
       }
     }
-  },[token])
-  if (userAuth === false) {
-    router.push("/login");
-  }
+  })
 }
