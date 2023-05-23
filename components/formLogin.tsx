@@ -174,7 +174,7 @@ export function FormLogin (){
       
               // Calcular a diferença de tempo em milissegundos
               const elapsedTime = endTime - startTime;
-              const error = err.response.data || err.response.data.error.message
+              const error = err.response.data.error.message || err.response.data 
                 setErrorMessage(error);
                 console.log(error);
                 console.log(`O tempo de requisição foi de ${elapsedTime} milissegundos.`);
