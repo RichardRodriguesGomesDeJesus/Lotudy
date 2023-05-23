@@ -161,7 +161,7 @@ export function FormLogin (){
                 router.push('/dashboard')
             })
             .catch((err)=> {setErrorMessage(err.response.data)
-            console.log(err)})
+            console.log(err.response.data)})
         } catch (error) {
             console.log(error)
         }
