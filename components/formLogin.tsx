@@ -139,35 +139,53 @@ export function FormLogin (){
     const [errorMessage, setErrorMessage] = useState('')
     const router = useRouter();
     function submit() {
-
         try {
-            axios.post('/api/auth/login_user', {
-                email:email ,
-                password: password
+          // Registrar o momento inicial
+          const startTime = Date.now();
+      
+          axios
+            .post('/api/auth/login_user', {
+              email: email,
+              password: password
             })
-            .then((res)=> {
-                const { 'token': token } = parseCookies();
-                if (token) {
-                    //remova o token dos cookies
-                    destroyCookie(undefined, 'token')
-                }
-                setCookie(undefined,'token',res.data.token,{
-                    maxAge: 60 * 60 * 2
-                })
+            .then((res) => {
+              const { 'token': token } = parseCookies();
+              if (token) {
+                // Remover o token dos cookies
+                destroyCookie(undefined, 'token');
+              }
+              setCookie(undefined, 'token', res.data.token, {
+                maxAge: 60 * 60 * 2
+              });
+      
+              // Registrar o momento final
+              const endTime = Date.now();
+      
+              // Calcular a diferença de tempo em milissegundos
+              const elapsedTime = endTime - startTime;
+      
+              console.log(`O tempo de requisição foi de ${elapsedTime} milissegundos.`);
+      
+              router.push('/dashboard');
+            })
+            .catch((err) => {
+              // Registrar o momento final em caso de erro
+              const endTime = Date.now();
+      
+              // Calcular a diferença de tempo em milissegundos
+              const elapsedTime = endTime - startTime;
+              const error = err.response.data || err.response.data.error.message
+                setErrorMessage(error);
+                console.log(error);
+                console.log(`O tempo de requisição foi de ${elapsedTime} milissegundos.`);
                 
-                
-            })
-            .then(()=>{
-                router.push('/dashboard')
-            })
-            .catch((err)=> {
-                setErrorMessage(err.response.data.error.message)
-                console.log(err.response.data.error)
-            })
+            });
         } catch (error) {
-            console.log(error)
+          console.log(error);
         }
-    }
+      }
+      
+      
 
     return(
         <>
