@@ -120,6 +120,7 @@ const ButtonSubmit = styled.input`
         background: ${colors.white};
         border: 1px solid ${colors.sideColor};
         border-color: ${colors.sideColor};
+        padding: calc(.5em - 1px);
     }
     @media screen and (min-width: 0 ){
         width: 150px;
@@ -140,9 +141,6 @@ export function FormLogin (){
     const router = useRouter();
     function submit() {
         try {
-          // Registrar o momento inicial
-          const startTime = Date.now();
-      
           axios
             .post('/api/auth/login_user', {
               email: email,
@@ -158,27 +156,12 @@ export function FormLogin (){
                 maxAge: 60 * 60 * 2
               });
       
-              // Registrar o momento final
-              const endTime = Date.now();
-      
-              // Calcular a diferença de tempo em milissegundos
-              const elapsedTime = endTime - startTime;
-      
-              console.log(`O tempo de requisição foi de ${elapsedTime} milissegundos.`);
-      
               router.push('/dashboard');
             })
             .catch((err) => {
-              // Registrar o momento final em caso de erro
-              const endTime = Date.now();
-      
-              // Calcular a diferença de tempo em milissegundos
-              const elapsedTime = endTime - startTime;
               const error = err.response.data.error.message || err.response.data 
                 setErrorMessage(error);
                 console.log(error);
-                console.log(`O tempo de requisição foi de ${elapsedTime} milissegundos.`);
-                
             });
         } catch (error) {
           console.log(error);
