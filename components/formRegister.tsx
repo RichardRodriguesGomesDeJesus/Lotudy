@@ -100,6 +100,7 @@ const ButtonSubmit = styled.input`
         background: ${colors.white};
         border: 1px solid ${colors.sideColor};
         border-color: ${colors.sideColor};
+        padding: calc(.5em - 1px);
     }
     @media screen and (min-width: 0 ){
         width: 150px;
@@ -143,7 +144,14 @@ export default function FormRegister() {
         .then(()=>{
             router.push('/dashboard')
         })
-        .catch((err)=> setErrorMessage(err))
+        .catch((err) => {
+            // Registrar o momento final em caso de erro
+
+            const error = err.response.data.error.message || err.response.data 
+              setErrorMessage(error);
+              console.log(error);
+              
+          });
         } else{
             setErrorMessage('As senhas devem ser iguais!')
         }
