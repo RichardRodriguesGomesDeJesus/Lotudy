@@ -24,12 +24,14 @@ const Form = styled.form`
             border: 1px solid ${colors.textColor};
             border-radius: .5rem;
             box-shadow: 0 4px 4px ${colors.textColor};
+            color: ${colors.textColor} ;
             padding: .5rem;
         }
         textarea{
             border: 1px solid ${colors.textColor};
             border-radius: .5rem;
             box-shadow: 0 4px 4px ${colors.textColor};
+            color: ${colors.textColor} ;
             padding: .5rem;
         }
     }
