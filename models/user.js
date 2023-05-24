@@ -30,7 +30,7 @@ const examSchema = new mongoose.Schema({
     required: true,
   },
   questions: [{
-    type: mongoose.Schema.Types.ObjectId,
+    id: {type: mongoose.Schema.Types.ObjectId,},
     text: String,
     options: [String]
   }]
