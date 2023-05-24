@@ -4,6 +4,7 @@ import Link from "next/link";
 import axios from "axios";
 import { parseCookies } from "nookies";
 import { useState, useEffect } from "react";
+import QuestionForm from "../../components/questionForm";
 
 export default function ExamPage() {
 
@@ -42,7 +43,8 @@ export default function ExamPage() {
       </nav>
     </Header>
     <Main>
-      <Title>{examName}</Title>
+      <Title> Crie questões para o simulado {examName}</Title>
+      <QuestionForm/>
     </Main>
     <Footer>
       <Link href={'/register'}>Crie sua conta</Link>
