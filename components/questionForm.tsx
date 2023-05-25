@@ -16,9 +16,10 @@ const Form = styled.form`
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        justify-content: space-around;
+        justify-content: space-evenly;
         label{
-            
+            font-size: 1.2rem;
+            font-weight: 400;
         }
         input{
             border: 1px solid ${colors.textColor};
