@@ -83,12 +83,6 @@ const Form = styled.form`
         min-height: 500px;
         width: 800px;
         div{
-            label{
-                color: ${colors.sideColor};
-                font-size:1.5rem;
-                font-weight: 600;
-
-            }
             input{
                 width: 480px;
             }
@@ -159,24 +153,24 @@ const ButtonAddOption = styled.button`
 
 export default function QuestionForm() {
     const [text, setText] = useState('')
-    const [questions, setQuestions] = useState([]); // Estado para controlar as perguntas adicionadas
+    const [options, setOptions] = useState([]); // Estado para controlar as perguntas adicionadas
   
-    const addQuestion = () => {
-        setQuestions([...questions, ""])
+    const addOption = () => {
+        setOptions([...options, ""])
     };
   
-    const handleQuestionChange = (index, value) => {
-      const updatedQuestions = [...questions];
-      updatedQuestions[index] = value;
-      setQuestions(updatedQuestions); // Atualiza a pergunta alterada no estado
+    const handleOptionChange = (index, value) => {
+      const updatedOptions = [...options];
+      updatedOptions[index] = value;
+      setOptions(updatedOptions); // Atualiza a pergunta alterada no estado
     };
     
     function submit() {
-        const  question = { 
-            ...questions,
+        const  option = { 
+            ...options,
             text
         }
-        console.log(question)
+        console.log(option)
     }
     return (
       <>
@@ -188,24 +182,24 @@ export default function QuestionForm() {
                 <label htmlFor="text">Adicione um texto a pergunta.</label>
                 <textarea name="text" id="text" value={text} onChange={(e)=>{ setText(e.target.value)}} cols={30} rows={10}></textarea>
             </div>
-          {questions.map((question, index) => (
+          {options.map((option, index) => (
             <div key={index}>
-              <label htmlFor={`question-${index}`}>Opção {index + 1}:</label>
+              <label htmlFor={`option-${index}`}>Opção {index + 1}:</label>
               <input
                 type="text"
-                id={`question-${index}`}
-                value={question}
+                id={`option-${index}`}
+                value={option}
                 onChange={(e) => { 
-                    handleQuestionChange(index, e.target.value)
+                    handleOptionChange(index, e.target.value)
                 }}
               />
             </div>
           ))}
-          {questions.length <= 4 && <ButtonAddOption onClick={(e)=>{
+          {options.length <= 4 && <ButtonAddOption onClick={(e)=>{
             e.preventDefault() 
-            addQuestion()
+            addOption()
             }}>Adicionar uma Opção</ButtonAddOption>}
-             <ButtonSubmit type="submit" name="submit" value={'Logar'} />
+             <ButtonSubmit type="submit" name="submit" value={'Criar a pergunta'} />
         </Form>
       </>
     );
