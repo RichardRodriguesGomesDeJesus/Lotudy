@@ -97,4 +97,59 @@ const Footer = styled.footer`
   text-align: center;
   width: 100vw;
 `
-export { Container, Main, Header, Title, Description, Footer}
+const Button = styled.button`
+  background: ${colors.sideColor};
+  border: none;
+  border-radius: .5rem;
+  box-shadow: 0 4px 4px ${colors.textColor};
+  color: ${colors.white};
+  margin: 1rem auto;
+  padding: .5em;
+  &:hover,
+  :focus,
+  :active {
+      cursor: pointer;
+      color: ${colors.sideColor};
+      background: ${colors.white};
+      border: 1px solid ${colors.sideColor};
+      border-color: ${colors.sideColor};
+      padding: calc(.5em - 1px);
+  }
+  @media screen and (min-width: 0 ){
+      width: 150px;
+  }
+  @media screen and (min-width: 768px ){
+      width: 175px;
+  }
+  @media screen and (min-width: 1024px){
+      width: 200px;
+  }
+`
+const ButtonClose = styled.button`
+  border: none;
+  border-radius: .5rem;
+  color: ${colors.white};
+  height: 30px;
+  margin: 0 90% ;
+  padding: .125rem;
+  width: 30px;
+  &:hover,
+  :focus,
+  :active {
+      cursor: pointer;
+      color: ${colors.sideColor};
+      border-color: ${colors.sideColor};
+      padding: calc(.125rem -1px);
+  }
+  img{
+    height: 100%;
+    width: 100%;
+  }
+  @media screen and (min-width: 0 ){
+    background: ${colors.backgrondColor};
+  }
+  @media screen and (min-width: 768px ){
+    background: ${colors.white};
+  }
+`
+export { Container, Main, Header, Title, Description, Footer, Button, ButtonClose}
