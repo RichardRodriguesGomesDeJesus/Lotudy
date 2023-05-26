@@ -1,6 +1,7 @@
 import styled from "styled-components"
-import { colors } from "./sharedstyles"
+import { ButtonClose, colors } from "./sharedstyles"
 import { useState } from "react"
+import axios from "axios"
 
 const Form = styled.form`
     
@@ -151,7 +152,7 @@ const ButtonAddOption = styled.button`
 
 `
 
-export default function QuestionForm() {
+export default function QuestionForm({examName, token, setForm, setQuestion, question}) {
     const [text, setText] = useState('')
     const [options, setOptions] = useState([]); // Estado para controlar as perguntas adicionadas
   
@@ -166,11 +167,22 @@ export default function QuestionForm() {
     };
     
     function submit() {
-        const  option = { 
-            ...options,
-            text
-        }
-        console.log(option)
+        axios.put('/api/exams/setQuestion', {
+            options,
+            text,
+            title:examName,
+            token
+        })
+        .then(()=>{
+            if (question === true) {
+                setQuestion(false)
+            }
+            setForm(false)
+            alert('Questão adicionada com sucesso!')
+        })
+        .catch((error)=> {
+            console.log(error)
+        })
     }
     return (
       <>
@@ -178,9 +190,16 @@ export default function QuestionForm() {
                     event.preventDefault() 
                     submit()
                 }}>
+            <ButtonClose onClick={(e)=>{
+                e.preventDefault()
+                if (question === true) {
+                    setQuestion(false)
+                }
+                setForm(false)
+            }}><img src="/icons/close.png"/></ButtonClose>
             <div>
                 <label htmlFor="text">Adicione um texto a pergunta.</label>
-                <textarea name="text" id="text" value={text} onChange={(e)=>{ setText(e.target.value)}} cols={30} rows={10}></textarea>
+                <textarea name="text" id="text" value={text} onChange={(e)=>{ setText(e.target.value)}} cols={30} rows={10} required></textarea>
             </div>
           {options.map((option, index) => (
             <div key={index}>
@@ -192,6 +211,7 @@ export default function QuestionForm() {
                 onChange={(e) => { 
                     handleOptionChange(index, e.target.value)
                 }}
+                required
               />
             </div>
           ))}
