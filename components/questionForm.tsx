@@ -15,18 +15,21 @@ const Form = styled.form`
     div{
         align-items: center;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         flex-grow: 1;
+        flex-wrap: wrap;
         justify-content: space-evenly;
         label{
             font-size: 1.2rem;
             font-weight: 400;
+            width: 100%;
         }
         input{
             border: 1px solid ${colors.textColor};
             border-radius: .5rem;
             box-shadow: 0 4px 4px ${colors.textColor};
             color: ${colors.textColor} ;
+            font-family: 'Poppins',sans-serif;
             padding: .5rem;
         }
         textarea{
@@ -34,6 +37,7 @@ const Form = styled.form`
             border-radius: .5rem;
             box-shadow: 0 4px 4px ${colors.textColor};
             color: ${colors.textColor} ;
+            font-family: 'Poppins',sans-serif;
             padding: .5rem;
         }
     }
@@ -58,6 +62,17 @@ const Form = styled.form`
             textarea{
                 width: 250px;
             }
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                input{
+                    
+                    box-shadow: none;
+                    height: 20px;
+                    width: 20px;
+                }
+            }
         }
     };
     @media screen and (min-width: 768px ){
@@ -78,6 +93,16 @@ const Form = styled.form`
             textarea{
                 width: 420px;
             }
+            div {
+                display: flex;
+                width:100%;
+                input{
+                    margin: 0;
+                    box-shadow: none;
+                    height: 20px;
+                    width: 20px;
+                }
+            }
         }
     };
     @media screen and (min-width: 1024px) {
@@ -89,6 +114,13 @@ const Form = styled.form`
             }
             textarea{
                 width: 480px;
+            }
+            span {
+                input{
+                    box-shadow: none;
+                    height: 20px;
+                    width: 20px;
+                }
             }
         }
     }
@@ -122,6 +154,11 @@ const ButtonSubmit = styled.input`
     }
 
 `
+const RadioInput = styled.input`
+    box-shadow: none;
+    color: ${colors.textColor} ;
+    padding: .5rem;
+`
 const ButtonAddOption = styled.button`
     background: ${colors.sideColor};
     border: none;
@@ -154,21 +191,28 @@ const ButtonAddOption = styled.button`
 
 export default function QuestionForm({examName, token, setForm, setQuestion, question}) {
     const [text, setText] = useState('')
-    const [options, setOptions] = useState([]); // Estado para controlar as perguntas adicionadas
+    const [options, setOptions] = useState([])
+    const [correctAnswer, setCorrectAnswer] = useState('');
+
   
     const addOption = () => {
         setOptions([...options, ""])
     };
   
-    const handleOptionChange = (index, value) => {
-      const updatedOptions = [...options];
-      updatedOptions[index] = value;
-      setOptions(updatedOptions); // Atualiza a pergunta alterada no estado
-    };
+    const handleOptionChange = (index, value, isCorrect) => {
+        const updatedOptions = [...options];
+        updatedOptions[index] = value;
+        setOptions(updatedOptions);
+        if (isCorrect) {
+          setCorrectAnswer(value);
+        }
+      };
+      
     
     function submit() {
         axios.put('/api/exams/setQuestion', {
             options,
+            correctOption:correctAnswer,
             text,
             title:examName,
             token
@@ -199,27 +243,52 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
             }}><img src="/icons/close.png"/></ButtonClose>
             <div>
                 <label htmlFor="text">Adicione um texto a pergunta.</label>
-                <textarea name="text" id="text" value={text} onChange={(e)=>{ setText(e.target.value)}} cols={30} rows={10} required></textarea>
+                <textarea name="text" id="text" minLength={10} maxLength={600} value={text} onChange={(e)=>{ setText(e.target.value)}} cols={30} rows={10} required></textarea>
             </div>
-          {options.map((option, index) => (
-            <div key={index}>
-              <label htmlFor={`option-${index}`}>Opção {index + 1}:</label>
-              <input
-                type="text"
-                id={`option-${index}`}
-                value={option}
-                onChange={(e) => { 
-                    handleOptionChange(index, e.target.value)
-                }}
-                required
-              />
-            </div>
-          ))}
+            {options.map((option, index) => (
+                <div key={index}>
+                    <label htmlFor={`option-${index}`}>Opção {index + 1}:</label>
+                    <input
+                    type="text"
+                    minLength={1}
+                    maxLength={300}
+                    id={`option-${index}`}
+                    value={option}
+                    onChange={(e) => {
+                        handleOptionChange(index, e.target.value, false);
+                    }}
+                    required
+                    />
+                    <div>
+                        <span>Marcar como correta</span>
+                        <RadioInput
+                        type="radio"
+                        name="correctAnswer"
+                        checked={option === correctAnswer}
+                        id="radioInput"
+                        onChange={() => {
+                            handleOptionChange(index, option, true);
+                        }}
+                        required
+                        />
+                        
+                    </div>
+                    
+                </div>
+            ))}
+
           {options.length <= 4 && <ButtonAddOption onClick={(e)=>{
             e.preventDefault() 
             addOption()
             }}>Adicionar uma Opção</ButtonAddOption>}
-             <ButtonSubmit type="submit" name="submit" value={'Criar a pergunta'} />
+            {
+             options.length < 2 &&
+                <p>Adicione mais opções</p>   
+            }
+            {
+                options.length >= 2 && 
+                <ButtonSubmit type="submit" name="submit" value={'Criar a pergunta'} />
+             }
         </Form>
       </>
     );
