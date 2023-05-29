@@ -15,7 +15,9 @@ export default function ExamPage() {
 
   const examName = parts[parts.length - 1];
   const { 'token': token } = parseCookies();
+  const [request, setRequest] = useState(false);
   const [userAuth , setUserAuth] = useState(true)
+  const [questionList, setList] = useState([])
   const [question, setQuestion] = useState(false)
   useEffect(()=>{
     if (!token) {
@@ -35,6 +37,21 @@ export default function ExamPage() {
   if (userAuth === false) {
     router.push("/login");
   }
+
+  if (request === false) {
+    axios
+      .post("/api/exams/getQuestions", {
+        title: examName,
+        token,
+      })
+      .then((res) => {
+        setList(res.data.exam.questions)
+        setRequest(true);
+      })
+      .catch((err) => {
+        setRequest(true);
+      });
+  }
   const [form, setForm] = useState(false)
   return (
     <Container>
@@ -50,22 +67,22 @@ export default function ExamPage() {
         <QuestionForm examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} />
       }
       {
-        form === false &&
+        form === false && question === false &&
         <Button onClick={(e)=>{
           e.preventDefault()
           setForm(true)
         }}>Criar questões</Button>
       }
       {
-        question === false && form === false && 
+        question === false && form === false && questionList.length > 0 &&
         <Button onClick={(e)=>{
           e.preventDefault()
           setQuestion(true)
         }}>Começar simulado</Button>
       }
       {
-        question === true &&   form === false &&
-          <Question/>
+        question === true &&   form === false && 
+          <Question token={token} examName={examName} setQuestion={setQuestion}  />
       }
     </Main>
     <Footer>
