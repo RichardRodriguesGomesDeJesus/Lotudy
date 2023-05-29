@@ -26,6 +26,8 @@ export default function Home() {
         <nav>
           <Link href={'/login'}>Login</Link>
           <Link href={'/register'}>Cadastre-se</Link>
+          <Link href={'/dashboard'} > Dashboard</Link>
+          <Link href={'/exams'} > Simulados</Link>
         </nav>
       </Header>
       <Main>
