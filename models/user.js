@@ -26,15 +26,17 @@ const examSchema = new mongoose.Schema({
     required: true,
   },
   title: {
-    type:String,
+    type: String,
     required: true,
   },
   questions: [{
-    id: {type: mongoose.Schema.Types.ObjectId,},
+    id: { type: mongoose.Schema.Types.ObjectId },
     text: String,
-    options: [String]
-  }]
+    options: [String],
+    correctOption: { type: String, required: true }, 
+  }],
 });
+
 
 export const UserModel = mongoose.models.User || mongoose.model('User', userSchema);
 export const ExamModel = mongoose.models.Exam || mongoose.model('Exam', examSchema);
