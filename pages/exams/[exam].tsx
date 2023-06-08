@@ -54,15 +54,16 @@ export default function ExamPage() {
   }
   const [form, setForm] = useState(false)
   return (
-    <Container>
+    <>
     <Header>
       <nav>
+      <Link href={'/dashboard'} > Dashboard</Link>
         <Link href={'/exams'}>Simulados</Link>
-        <Link href={'/flexcards'}>Flesh Cards</Link>
+        <Link href={'/studyCycle'} >Ciclo de estudos</Link>
       </nav>
     </Header>
     <Main>
-      <Title> Crie questões para o simulado {examName} ou faça ele</Title>
+      <Title>Crie e pratique com questões personalizadas no simulado {examName}</Title>
       {form === true &&
         <QuestionForm examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} />
       }
@@ -88,6 +89,6 @@ export default function ExamPage() {
     <Footer>
       <Link href={'/register'}>Crie sua conta</Link>
     </Footer>
-  </Container>
+  </>
   )
 }

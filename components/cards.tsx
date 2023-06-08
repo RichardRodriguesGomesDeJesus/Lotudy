@@ -90,7 +90,7 @@ export default function Cards() {
   return (
     <FlexContainer>
       {cardList.map((element, index) => (
-        <Link href={'/login'} key={index}>
+        <Link href={'/dashboard'} key={index}>
           <Card >
             <img src={element.img} alt={element.text} />
             <p>{element.text}</p>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container, Footer, Header, Main, Title } from "../components/sharedstyles";
+import { Footer, Header, Main, Title } from "../components/sharedstyles";
 import FormRegister from "../components/formRegister";
 
 export default function Register (){
@@ -7,7 +7,7 @@ export default function Register (){
     
 
     return (
-        <Container>
+        <>
              <Header>
                 <nav>
                     <Link href={'/'}>Home</Link>
@@ -21,6 +21,6 @@ export default function Register (){
             <Footer>
                 <Link href={'/login'}>Já tem conta?</Link>
             </Footer>
-        </Container>
+        </>
     )
 } 

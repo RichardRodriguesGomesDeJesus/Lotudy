@@ -69,18 +69,7 @@ const Dashboard = styled.div`
 `
 
 export default function DashboardExams() {
-    const listExams = [{
-        title: 'Fatec',
-        link: '/'
-    },
-    {
-        title: 'Enem',
-        link: '/'
-    },
-    {
-        title: 'Fuvest',
-        link: '/'
-    },
+    const listExams = [
     {
         title: 'Questionarios Personalizados',
         link: '/exams/personalized'

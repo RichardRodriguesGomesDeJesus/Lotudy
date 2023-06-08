@@ -36,7 +36,8 @@ const Main = styled.main`
 const Header = styled.header`
   background: ${colors.principalColor} ;
   display: flex;
-  height: 5rem;
+  min-height: 5rem;
+  padding: 1rem 0;
   width: 100vw;
   nav{
     align-items: center;
@@ -47,6 +48,21 @@ const Header = styled.header`
     font-weight: 400;
     width: 100%;
   }
+  @media screen and (min-width: 0 ){
+    nav{
+      flex-direction: column;
+    }
+  };
+  @media screen and (min-width: 768px ){
+    nav{
+      flex-direction: column;
+    }
+  };
+  @media screen and (min-width: 1024px  ){
+    nav{
+      flex-direction: row;
+    }
+  };
 `
 const Title = styled.h1`
   color: ${colors.titleColor};
@@ -105,6 +121,7 @@ const Button = styled.button`
   color: ${colors.white};
   margin: 1rem auto;
   padding: .5em;
+  transition: .2s;
   &:hover,
   :focus,
   :active {
@@ -126,6 +143,7 @@ const Button = styled.button`
   }
 `
 const ButtonClose = styled.button`
+  background: transparent;
   border: none;
   border-radius: .5rem;
   color: ${colors.white};
@@ -144,12 +162,6 @@ const ButtonClose = styled.button`
   img{
     height: 100%;
     width: 100%;
-  }
-  @media screen and (min-width: 0 ){
-    background: ${colors.backgrondColor};
-  }
-  @media screen and (min-width: 768px ){
-    background: ${colors.white};
   }
 `
 export { Container, Main, Header, Title, Description, Footer, Button, ButtonClose}
