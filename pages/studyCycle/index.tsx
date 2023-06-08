@@ -1,12 +1,36 @@
 import Link from "next/link";
 import { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
 import FormStydyCycle from "../../components/formStudyCycle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserStudyCycle from "../../components/studyCycle";
+import { useRouter } from "next/router";
+import { parseCookies } from "nookies";
+import axios from "axios";
 
 export default function studyCyclePage() {
     const [form, setForm] = useState(false)
-    const [StudyCycle , setStudyCycle] = useState([]) 
+    const [StudyCycle , setStudyCycle] = useState([])
+    const { 'token': token } = parseCookies();
+  const [userAuth , setUserAuth] = useState(true)
+  const router = useRouter();
+  useEffect(()=>{
+    if (!token) {
+      setUserAuth(false)
+    } else {
+      try {
+         axios.post('/api/auth/verify_token', {
+          token,
+        })
+        .then(()=> { setUserAuth(true)})
+        .catch(()=>{setUserAuth(false)})
+      } catch (error) {
+        setUserAuth(false)
+      }
+    }
+  },[token])
+  if (userAuth === false) {
+    router.push("/login");
+  } 
     return(
         <>
         <Header>
