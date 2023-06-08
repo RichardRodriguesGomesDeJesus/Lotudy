@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { Header, Title, Main, Footer, Container } from "../components/sharedstyles";
+import { Header, Title, Main, Footer  } from "../components/sharedstyles";
 import { FormLogin } from "../components/formLogin";
 
 export default function Login (){
     return (
-        <Container>
+        <>
              <Header>
                 <nav>
                     <Link href={'/'}>Home</Link>
@@ -18,6 +18,6 @@ export default function Login (){
             <Footer>
                 <Link href={'/register'}>Crie sua conta</Link>
             </Footer>
-        </Container>
+        </>
     )
 }

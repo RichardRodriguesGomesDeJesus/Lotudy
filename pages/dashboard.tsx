@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Container, Footer, Header, Main, Title } from "../components/sharedstyles";
+import { Footer, Header, Main, Title } from "../components/sharedstyles";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -28,11 +28,12 @@ export default function Dashboard() {
     router.push("/login");
   }
   return (
-    <Container>
+    <>
       <Header>
         <nav>
+          <Link href={'/'} >Home</Link>
           <Link href={'/exams'}>Simulados</Link>
-          <Link href={'/flexcards'}>Flesh Cards</Link>
+          <Link href={'/studyCycle'} >Ciclo de estudos</Link>
         </nav>
       </Header>
       <Main>
@@ -41,6 +42,6 @@ export default function Dashboard() {
       <Footer>
         <Link href={'/register'}>Crie sua conta</Link>
       </Footer>
-    </Container>
+    </>
   );
 }

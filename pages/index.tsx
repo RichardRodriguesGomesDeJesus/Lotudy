@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import {
-  Container,
   Main,
   Header,
   Title,
@@ -13,7 +12,7 @@ import Link from 'next/link'
 export default function Home() {
      
   return (
-    <Container>
+    <>
       <Head>
         <title>VestibulaPro</title>
         <meta name="description" content="VestibulaPro" />
@@ -28,6 +27,7 @@ export default function Home() {
           <Link href={'/register'}>Cadastre-se</Link>
           <Link href={'/dashboard'} > Dashboard</Link>
           <Link href={'/exams'} > Simulados</Link>
+          <Link href={'/studyCycle'} >Ciclo de estudos</Link>
         </nav>
       </Header>
       <Main>
@@ -44,6 +44,6 @@ export default function Home() {
         <Link href={'/login'}>Já tem conta?</Link>
         <Link href={'/register'}>Crie sua conta</Link>
       </Footer>
-    </Container>
+    </>
   )
 }
