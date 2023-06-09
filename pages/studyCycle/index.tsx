@@ -8,9 +8,15 @@ import { parseCookies } from "nookies";
 import axios from "axios";
 
 export default function studyCyclePage() {
-    const [form, setForm] = useState(false)
-    const [StudyCycle , setStudyCycle] = useState([])
-    const { 'token': token } = parseCookies();
+  const [form, setForm] = useState(false)
+  interface studyCycle {
+    name: string,
+    difficultyLevel: string,
+    levelHours: number,
+    CompletedHours: number
+  }
+  const [StudyCycle , setStudyCycle] = useState<studyCycle[]>([])
+  const { 'token': token } = parseCookies();
   const [userAuth , setUserAuth] = useState(true)
   const router = useRouter();
   useEffect(()=>{

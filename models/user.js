@@ -16,7 +16,11 @@ const userSchema = new mongoose.Schema({
   Exams:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Exam'
-  }]
+  }],
+  StudyCycle:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'StudyCycle'
+  }
 });
 
 const examSchema = new mongoose.Schema({
@@ -37,6 +41,33 @@ const examSchema = new mongoose.Schema({
   }],
 });
 
+const studyCycleSchema = new mongoose.Schema({
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  subjects: [{
+    name: {
+      type: String,
+      require: true
+    },
+    difficultyLevel: {
+      type: Number,
+      require: true
+    },
+    levelHours: {
+      type: Number,
+      require: true
+    },
+    CompletedHours: {
+      type: Number,
+      require: true
+    }
+  }]
+})
+
 
 export const UserModel = mongoose.models.User || mongoose.model('User', userSchema);
 export const ExamModel = mongoose.models.Exam || mongoose.model('Exam', examSchema);
+export const StudyCycleModel = mongoose.models.StudyCycle || mongoose.model('StudyCycle', studyCycleSchema);
