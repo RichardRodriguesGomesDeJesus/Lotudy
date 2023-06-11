@@ -153,7 +153,7 @@ export function FormLogin (){
                 destroyCookie(undefined, 'token');
               }
               setCookie(undefined, 'token', res.data.token, {
-                maxAge: 60 * 60 * 2
+                maxAge: 60 * 60 * 24
               });
       
               router.push('/dashboard');
