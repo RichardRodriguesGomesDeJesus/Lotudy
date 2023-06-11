@@ -33,7 +33,7 @@ export default function Dashboard() {
         <nav>
           <Link href={'/'} >Home</Link>
           <Link href={'/exams'}>Simulados</Link>
-          <Link href={'/studyCycle'} >Ciclo de estudos</Link>
+          <Link href={'/study-cycle'} >Ciclo de estudos</Link>
         </nav>
       </Header>
       <Main>

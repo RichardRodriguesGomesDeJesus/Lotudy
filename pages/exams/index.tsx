@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Header, Title, Footer, Main } from "../../components/sharedstyles";
-import DashboardExams from "../../components/dashboardExams";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
@@ -38,7 +37,7 @@ export default function exams() {
                 <nav>
                     <Link href={'/dashboard'}>Dashboard</Link>
                     <Link href={'/exams'}>Simulados</Link>
-                    <Link href={'/studyCycle'} >Ciclo de estudos</Link>
+                    <Link href={'/study-cycle'} >Ciclo de estudos</Link>
                 </nav>
             </Header>
             <Main>

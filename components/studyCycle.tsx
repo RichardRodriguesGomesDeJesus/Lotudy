@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Button, ButtonClose, colors } from "./sharedstyles";
 import {  useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const Form = styled.form`
   display: flex;
@@ -27,7 +28,7 @@ const Form = styled.form`
       flex-wrap: wrap;
       flex-grow: 0;
       gap: 1rem;
-      height: 120px;
+      min-height: 120px;
       justify-content: space-evenly;
       padding: 1rem;
       transition: 0.5s;
@@ -50,6 +51,11 @@ const Form = styled.form`
         box-shadow: 0 4px 4px ${colors.textColor};
         color: ${colors.textColor};
         font-family: "Poppins", sans-serif;
+      }
+      div{
+        div{
+          width: 100%;
+        }
       }
     }
   }
@@ -89,7 +95,6 @@ const Form = styled.form`
           font-size: 1.2rem;
           font-weight: 600;
         }
-
         input {
           box-shadow: none;
           width: 100%;
@@ -179,7 +184,7 @@ padding: .5rem;
 }
 `
 
-export default function UserStudyCycle({ StudyCycle }) {
+export default function UserStudyCycle({ StudyCycle,token }) {
   const [clickIncrementHours, setClickIncrementHours] = useState(false);
   const [clickDincrementHours, setClickDincrementHours] = useState(false);
   const [clickIncrementLevelHours, setClickIncrementLevelHours] = useState(false);
@@ -194,7 +199,17 @@ export default function UserStudyCycle({ StudyCycle }) {
   useEffect(()=>{
     if (clickStudy === true) {
       StudyCycle[index].CompletedHours++
-      setClickStudy(false)
+      axios.put('/api/study-cycle/set-subjects',{
+        token,
+        StudyCycle
+      })
+      .then(()=>{
+        setClickStudy(false)
+      })
+      .catch(()=>{
+        setClickStudy(false)
+        throw new Error("Something went wrong");
+      })
     }
     if (clickDincrementHours === true) {
       StudyCycle[index].CompletedHours--
@@ -215,9 +230,18 @@ export default function UserStudyCycle({ StudyCycle }) {
     if (clickReset === true) {
       for (let i = 0; i < StudyCycle.length; i++) {
         StudyCycle[i].CompletedHours = 0;
-        
       }
-      setClickReset(false)
+      axios.put('/api/study-cycle/set-subjects',{
+        token,
+        StudyCycle
+      })
+      .then(()=>{
+        setClickReset(false)
+      })
+      .catch(()=>{
+        setClickReset(false)
+        throw new Error("Something went wrong")
+      })
     }
   },[clickStudy,clickDincrementHours, clickIncrementHours,clickDincrementLevelHours, clickIncrementLevelHours,clickReset])
   return (
@@ -256,7 +280,6 @@ export default function UserStudyCycle({ StudyCycle }) {
                             e.preventDefault();
                             setIndex(index)
                             setClickStudy(true)
-
                           }}>
                           Estudei 1h
                         </Button>
@@ -265,47 +288,49 @@ export default function UserStudyCycle({ StudyCycle }) {
                   )}
                   {edit === true && (
                     <>
-                      <ButtonInput
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (element.CompletedHours > 0) {
-                            setIndex(index)
-                            setClickDincrementHours(true)
-                          }
-                        }}
-                      >
-                        -
-                      </ButtonInput>
+                      <div>
+                        <ButtonInput
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (element.CompletedHours > 0) {
+                              setIndex(index)
+                              setClickDincrementHours(true)
+                            }
+                          }}
+                        >
+                          -
+                        </ButtonInput>
 
-                      <p>{element.CompletedHours}</p>
+                        <p>{element.CompletedHours}</p>
 
-                      <ButtonInput
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (element.levelHours > element.CompletedHours) {
-                            setIndex(index)
-                            setClickIncrementHours(true)
-                          }
-                        }}
-                      >
-                        +
-                      </ButtonInput>
-
+                        <ButtonInput
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (element.levelHours > element.CompletedHours) {
+                              setIndex(index)
+                              setClickIncrementHours(true)
+                            }
+                          }}
+                        >
+                          +
+                        </ButtonInput>
+                      </div>
                       <p>/</p>
-                      <ButtonInput
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (
-                            element.levelHours > 0 &&
-                            element.CompletedHours < element.levelHours
-                          ) {
-                            setIndex(index)
-                            setClickDincrementLevelHours(true)
-                          }
-                        }}
-                      >
-                        -
-                      </ButtonInput>
+                      <div>
+                        <ButtonInput
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (
+                              element.levelHours > 0 &&
+                              element.CompletedHours < element.levelHours
+                            ) {
+                              setIndex(index)
+                              setClickDincrementLevelHours(true)
+                            }
+                          }}
+                        >
+                          -
+                        </ButtonInput>
                       <p>{element.levelHours}</p>
                       <ButtonInput
                         onClick={(e) => {
@@ -316,6 +341,7 @@ export default function UserStudyCycle({ StudyCycle }) {
                       >
                         +
                       </ButtonInput>
+                      </div>
                     </>
                   )}
                 </div>
@@ -337,7 +363,17 @@ export default function UserStudyCycle({ StudyCycle }) {
           <Button
             onClick={(e) => {
               e.preventDefault();
-              setEdit(false);
+              axios.put('/api/study-cycle/set-subjects',{
+                token,
+                StudyCycle
+              })
+              .then(()=>{
+                setEdit(false);
+              })
+              .catch(()=>{
+                setEdit(false);
+                throw new Error("Something went wrong")
+              })
             }}
           >
             Terminar de Editar

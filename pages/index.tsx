@@ -27,7 +27,7 @@ export default function Home() {
           <Link href={'/register'}>Cadastre-se</Link>
           <Link href={'/dashboard'} > Dashboard</Link>
           <Link href={'/exams'} > Simulados</Link>
-          <Link href={'/studyCycle'} >Ciclo de estudos</Link>
+          <Link href={'/study-cycle'} >Ciclo de estudos</Link>
         </nav>
       </Header>
       <Main>

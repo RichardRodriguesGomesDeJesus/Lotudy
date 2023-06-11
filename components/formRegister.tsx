@@ -138,7 +138,7 @@ export default function FormRegister() {
         })
         .then((res)=> {
             setCookie(undefined,'token',res.data.token,{
-                maxAge: 60 * 60 * 2
+                maxAge: 60 * 60 * 24
             })
         })
         .then(()=>{

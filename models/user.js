@@ -53,7 +53,7 @@ const studyCycleSchema = new mongoose.Schema({
       require: true
     },
     difficultyLevel: {
-      type: Number,
+      type: String,
       require: true
     },
     levelHours: {

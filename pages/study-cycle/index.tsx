@@ -6,19 +6,40 @@ import UserStudyCycle from "../../components/studyCycle";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import axios from "axios";
-
+import studyCycle from "../../utils/interfaces";
 export default function studyCyclePage() {
   const [form, setForm] = useState(false)
-  interface studyCycle {
-    name: string,
-    difficultyLevel: string,
-    levelHours: number,
-    CompletedHours: number
-  }
   const [StudyCycle , setStudyCycle] = useState<studyCycle[]>([])
   const { 'token': token } = parseCookies();
   const [userAuth , setUserAuth] = useState(true)
   const router = useRouter();
+  
+  useEffect(() => {
+    const fetchStudyCycle = async () => {
+      try {
+        const response = await axios.post('/api/study-cycle/get-study-cycle',{
+          token,
+        })
+        if (response.data.StudyCycle.subjects === undefined ) {
+          setStudyCycle([])
+        } else {
+          setStudyCycle(response.data.StudyCycle.subjects)
+        }
+        
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    const fetchStudyCycleAndUpdateList = async () => {
+      if (token) {
+        await fetchStudyCycle();
+      }
+    };
+  
+    fetchStudyCycleAndUpdateList();
+    setForm(false)
+    }, [token]);
   useEffect(()=>{
     if (!token) {
       setUserAuth(false)
@@ -37,7 +58,7 @@ export default function studyCyclePage() {
   if (userAuth === false) {
     router.push("/login");
   } 
-    return(
+  return(
         <>
         <Header>
             <nav>
@@ -48,11 +69,11 @@ export default function studyCyclePage() {
         <Main>
             <Title>Crie um ciclo de estudos</Title>
             { form === false && StudyCycle.length > 0 &&
-                <UserStudyCycle StudyCycle={StudyCycle} />
+                <UserStudyCycle StudyCycle={StudyCycle} token={token} />
             }
             {
                 form === true && StudyCycle.length == 0 &&
-                <FormStydyCycle setStudyCycle={setStudyCycle} StudyCycle={StudyCycle} form={form} setForm={setForm}/>
+                <FormStydyCycle    setForm={setForm} token={token}/>
             }
             {
                 form === false && StudyCycle.length == 0 &&

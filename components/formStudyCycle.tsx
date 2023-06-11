@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { colors } from "./sharedstyles";
 import { useState } from "react";
+import studyCycle from "../utils/interfaces";
+import axios from "axios";
 
 const Form = styled.form`
   display: flex;
@@ -201,7 +203,7 @@ const ButtonAddOption = styled.button`
   }
 `;
 
-export default function FormStudyCycle( {setStudyCycle, StudyCycle, form, setForm }) {
+export default function FormStudyCycle( { token, setForm }) {
     const [subjects, setSubjects] = useState([]);
     const [days , setDays] = useState(Number)
     const [hours, setHours] = useState(Number)
@@ -281,8 +283,21 @@ export default function FormStudyCycle( {setStudyCycle, StudyCycle, form, setFor
                 ...element
               }
             })
-            setStudyCycle(studyCycle)
-            setForm(false)
+            if (studyCycle.length === 0 ) {
+              alert('array vazio')
+              console.log(subjects)
+            }
+            axios.post('/api/study-cycle/',{
+              token,
+              StudyCycle: studyCycle
+            })
+            .then(
+              setForm(false)
+            )
+            .catch((err)=>{
+              console.log(err.response.data)
+              throw new Error("something is wrong");
+            })
           }
           if (time > verify) {
             const studyCycle = newStudyCycle.map((element)=>{
@@ -294,13 +309,38 @@ export default function FormStudyCycle( {setStudyCycle, StudyCycle, form, setFor
                 ...element
               }
             })
-            setStudyCycle(studyCycle)
-            setForm(false)
+            if (studyCycle.length === 0 ) {
+              alert('array vazio')
+            }
+            axios.post('/api/study-cycle/',{
+              token,
+              StudyCycle: studyCycle
+            })
+            .then(
+              setForm(false)
+            )
+            .catch((err)=>{
+              console.log(err.response.data)
+              throw new Error("something is wrong");
+            })
           }
 
         } else {
-           setStudyCycle(newStudyCycle)
-          setForm(false)
+          if (newStudyCycle.length === 0 ) {
+            alert('array vazio')
+            console.log(newStudyCycle)
+          }
+          axios.post('/api/study-cycle/',{
+            token,
+            StudyCycle: newStudyCycle
+          })
+          .then(
+            setForm(false)
+          )
+          .catch((err)=>{
+            console.log(err.response.data)
+            throw new Error("something is wrong");
+          })
         }
       } else {
         throw new Error("something is wrong");

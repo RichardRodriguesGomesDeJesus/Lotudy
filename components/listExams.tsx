@@ -31,11 +31,11 @@ const List = styled.div`
 `;
 
 export default function ListExams({ formUpdate, setFormUpdate }) {
-    const { 'token': token } = parseCookies();
+  const { 'token': token } = parseCookies();
   
-    const [examList, setExamList] = useState([]);
+  const [examList, setExamList] = useState([]);
   
-   useEffect(() => {
+  useEffect(() => {
   const fetchExams = async () => {
     try {
       const response = await axios.post('/api/exams/getExams', {
@@ -55,7 +55,7 @@ export default function ListExams({ formUpdate, setFormUpdate }) {
 
   fetchExamsAndUpdateList();
   setFormUpdate(false)
-}, [token,formUpdate === true]);
+  }, [token,formUpdate === true]);
 
     return (
       <>
