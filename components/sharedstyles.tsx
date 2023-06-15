@@ -147,8 +147,10 @@ const ButtonClose = styled.button`
   border: none;
   border-radius: .5rem;
   color: ${colors.white};
+  display:flex;
+  justify-content: flex-end;
   height: 30px;
-  margin: 0 90% ;
+  margin: 0 0 0 90%;
   padding: .125rem;
   width: 30px;
   &:hover,
@@ -161,7 +163,7 @@ const ButtonClose = styled.button`
   }
   img{
     height: 100%;
-    width: 100%;
+    width: auto;
   }
 `
 export { Container, Main, Header, Title, Description, Footer, Button, ButtonClose}
