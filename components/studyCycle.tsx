@@ -3,14 +3,16 @@ import { Button, ButtonClose, colors } from "./sharedstyles";
 import {  useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import FormSubject from "./formSubject";
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   div {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 1rem 0;
     padding: 1rem;
     gap: 1rem;
@@ -49,8 +51,8 @@ const Form = styled.form`
         border: 1px solid ${colors.textColor};
         border-radius: 0.5rem;
         box-shadow: 0 4px 4px ${colors.textColor};
-        color: ${colors.textColor};
         font-family: "Poppins", sans-serif;
+        text-align: center;
       }
       div{
         div{
@@ -185,6 +187,7 @@ padding: .5rem;
 `
 
 export default function UserStudyCycle({ StudyCycle,token }) {
+  const [clickClose ,setClickClose] = useState(false)
   const [clickIncrementHours, setClickIncrementHours] = useState(false);
   const [clickDincrementHours, setClickDincrementHours] = useState(false);
   const [clickIncrementLevelHours, setClickIncrementLevelHours] = useState(false);
@@ -192,13 +195,18 @@ export default function UserStudyCycle({ StudyCycle,token }) {
   const [clickStudy, setClickStudy] = useState(false);
   const [clickReset, setClickReset] = useState(false);
   const[index, setIndex]= useState<number>()
+  const [newSubject , setNewSubject] = useState(false)
+  const [newSubjectName, setNewSubjectName] = useState('')
+  const [newSubjectNumber, setNewSubjectNumber] = useState(0)
+  const [newSubjectDifficultyLevel, setNewSubjectDifficultyLevel] = useState('Otimo')
+  const [ hoursForWeeks , setHoursForWeeks] = useState<number>()
 
   const router = useRouter()
   const [edit, setEdit] = useState(false);
-
   useEffect(()=>{
     if (clickStudy === true) {
       StudyCycle[index].CompletedHours++
+      
       axios.put('/api/study-cycle/set-subjects',{
         token,
         StudyCycle
@@ -243,7 +251,35 @@ export default function UserStudyCycle({ StudyCycle,token }) {
         throw new Error("Something went wrong")
       })
     }
-  },[clickStudy,clickDincrementHours, clickIncrementHours,clickDincrementLevelHours, clickIncrementLevelHours,clickReset])
+    if (clickClose === true) {
+      StudyCycle.splice(index,1)
+      axios.put('/api/study-cycle/set-subjects',{
+        token,
+        StudyCycle
+      })
+      .then(()=>{
+        setClickClose(false)
+      })
+    }
+    setHoursForWeeks(StudyCycle.reduce((total, objeto) => total + objeto.levelHours, 0) - StudyCycle.reduce((total,objeto) => total + objeto.CompletedHours, 0))
+    console.log(StudyCycle.reduce((total, objeto) => total + objeto.levelHours, 0) - StudyCycle.reduce((total,objeto) => total + objeto.CompletedHours, 0))
+    let somaLevelHours = 0
+    for (let i = 0; i < StudyCycle.length; i++) {
+      const element = StudyCycle[i].levelHours;
+      console.log(element)
+      somaLevelHours+= element
+      
+    }
+    let somaCompletedHours = 0
+    for (let i = 0; i < StudyCycle.length; i++) {
+      const element = StudyCycle[i].CompletedHours;
+      console.log(element)
+      somaCompletedHours += element
+    }
+    let soma = somaLevelHours - somaCompletedHours
+    console.log(soma)
+
+  },[clickStudy,clickDincrementHours, clickIncrementHours,clickDincrementLevelHours, clickIncrementLevelHours,clickReset, clickClose])
   return (
     <>
       <Form>
@@ -262,6 +298,13 @@ export default function UserStudyCycle({ StudyCycle,token }) {
               index
             ) => (
               <span key={index}>
+                {edit === true &&
+                <ButtonClose onClick={(e)=>{
+                  e.preventDefault()
+                  setIndex(index)
+                  setClickClose(true)
+                }}><img src="/icons/close.png"/></ButtonClose>
+                }
                 <label>{element.name}</label>
                 <div>
                   {edit === false && (
@@ -349,6 +392,40 @@ export default function UserStudyCycle({ StudyCycle,token }) {
             )
           )}
         </div>
+        <div>
+          { edit === true &&
+            <span>
+            {
+              newSubject === false &&
+              <>
+                <p>Criar nova materia?</p>
+                <Button onClick={(e)=>{
+                  e.preventDefault()
+                  setNewSubject(true)
+                }} >Nova matéria</Button>
+              </>
+            }
+            {
+              newSubject === true &&
+              <FormSubject newSubjectName={newSubjectName} setNewSubjectName={setNewSubjectName} newSubjectNumber={newSubjectNumber} setNewSubjectNumber={setNewSubjectNumber} newSubjectDifficultyLevel={newSubjectDifficultyLevel} setNewSubjectDifficultyLevel={setNewSubjectDifficultyLevel} StudyCycle={StudyCycle}/>
+            }
+          </span>
+          }
+          {hoursForWeeks != 0 && edit === false &&
+            <span>
+              <div>
+                Você precisa estudar {hoursForWeeks} horas essa semana.
+              </div>
+            </span>
+          }
+          {hoursForWeeks === 0 && edit === false &&
+              <span>
+                <div>
+                  Bom Trabalho!
+                </div>
+              </span>
+          }
+        </div>
         {edit === false && (
           <Button
             onClick={(e) => {
@@ -368,10 +445,11 @@ export default function UserStudyCycle({ StudyCycle,token }) {
                 StudyCycle
               })
               .then(()=>{
-                setEdit(false);
+                setEdit(false)
+                setHoursForWeeks(StudyCycle.reduce((total, objeto) => total + objeto.levelHours, 0) - StudyCycle.reduce((total,objeto) => total + objeto.CompletedHours, 0))
               })
               .catch(()=>{
-                setEdit(false);
+                setEdit(false)
                 throw new Error("Something went wrong")
               })
             }}
