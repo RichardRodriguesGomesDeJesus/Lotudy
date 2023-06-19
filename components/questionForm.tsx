@@ -222,7 +222,6 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
                 setQuestion(false)
             }
             setForm(false)
-            alert('Questão adicionada com sucesso!')
         })
         .catch((error)=> {
             console.log(error)

@@ -171,8 +171,7 @@ export default function Question({ token, examName, setQuestion }) {
   const [request, setRequest] = useState(false);
 
   if (request === false) {
-    axios
-      .post("/api/exams/getQuestions", {
+    axios.post("/api/exams/getQuestions", {
         title: examName,
         token,
       })
@@ -195,6 +194,8 @@ export default function Question({ token, examName, setQuestion }) {
       setEndForm(true)
   } else {
       setIndexQuestion( indexQuestion + 1)
+      setAnsweredCorrectly(false)
+      setError(false)
   }
   }
 
@@ -239,7 +240,7 @@ export default function Question({ token, examName, setQuestion }) {
               <Option
                 onClick={(e) => {
                   e.preventDefault();
-                  if (option == correctOption) {
+                  if (option == correctOption[indexQuestion]) {
                     setAnsweredCorrectly(true)
                   } else {
                     setError(true)

@@ -1,14 +1,13 @@
 import Link from "next/link";
-import { Header, Title, Footer, Main } from "../../components/sharedstyles";
-import axios from "axios";
-import { useRouter } from "next/router";
+import { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
+import FlashCardDecks from "../../components/flashcardDecks";
 import { parseCookies } from "nookies";
-import { useState, useEffect } from "react";
-import ListExams from "../../components/listExams";
-import FormExams from "../../components/formExams";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
+import FormDeck from "../../components/formDecks";
 
-
-export default function exams() {
+export default function flexCards() {
     const { 'token': token } = parseCookies();
     const [userAuth , setUserAuth] = useState(true)
     const router = useRouter();
@@ -20,7 +19,7 @@ export default function exams() {
             axios.post('/api/auth/verify_token', {
             token,
             })
-            .then(()=> {setUserAuth(true)})
+            .then(()=> { setUserAuth(true)})
             .catch(()=>{setUserAuth(false)})
         } catch (error) {
             setUserAuth(false)
@@ -35,15 +34,15 @@ export default function exams() {
         <>
             <Header>
                 <nav>
-                    <Link href={'/dashboard'}>Dashboard</Link>
+                    <Link href={'/dashboard'} > Dashboard</Link>
+                    <Link href={'/exams'}>Simulados</Link>
                     <Link href={'/study-cycle'} >Ciclo de estudos</Link>
-                    <Link href={'/flex-cards'}>Cards de revisão</Link>
                 </nav>
             </Header>
             <Main>
-                <Title>Crie Questionarios e ordene como quiser.</Title>
-                <ListExams formUpdate={formUpdate} setFormUpdate={setFormUpdate}/>
-                <FormExams formUpdate={formUpdate} setFormUpdate={setFormUpdate}/>
+                <Title>Crie  um baralho de cards de revisão</Title>
+                <FlashCardDecks token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} />
+                <FormDeck token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate}/>
             </Main>
             <Footer>
                 <Link href={'/register'}>Crie sua conta</Link>

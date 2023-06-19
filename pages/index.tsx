@@ -28,6 +28,7 @@ export default function Home() {
           <Link href={'/dashboard'} > Dashboard</Link>
           <Link href={'/exams'} > Simulados</Link>
           <Link href={'/study-cycle'} >Ciclo de estudos</Link>
+          <Link href={'/flex-cards'}>Cards de revisão</Link>
         </nav>
       </Header>
       <Main>

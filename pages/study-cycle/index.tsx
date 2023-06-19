@@ -64,6 +64,7 @@ export default function studyCyclePage() {
             <nav>
                 <Link href={'/dashboard'} > Dashboard</Link>
                 <Link href={'/exams'}>Simulados</Link>
+                <Link href={'/flex-cards'}>Cards de revisão</Link>
             </nav>
         </Header>
         <Main>

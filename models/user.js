@@ -20,7 +20,11 @@ const userSchema = new mongoose.Schema({
   StudyCycle:{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'StudyCycle'
-  }
+  },
+  Decks:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'Deck'
+  }]
 });
 
 const examSchema = new mongoose.Schema({
@@ -66,8 +70,33 @@ const studyCycleSchema = new mongoose.Schema({
     }
   }]
 })
+const deckSchema = new mongoose.Schema({
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  cards:[{
+    text:{
+      type: String,
+      require: true
+    },
+    correctAnswer:{
+      type: String,
+      require: true
+    },
+    time:{
+      type: String
+    }
+  }]
+})
 
 
 export const UserModel = mongoose.models.User || mongoose.model('User', userSchema);
 export const ExamModel = mongoose.models.Exam || mongoose.model('Exam', examSchema);
-export const StudyCycleModel = mongoose.models.StudyCycle || mongoose.model('StudyCycle', studyCycleSchema);
+export const StudyCycleModel = mongoose.models.StudyCycle || mongoose.model('StudyCycle',studyCycleSchema);
+export const DeckModel = mongoose.models.Deck || mongoose.model('Deck', deckSchema);

@@ -36,7 +36,7 @@ export default function ListExams({ formUpdate, setFormUpdate }) {
   const [examList, setExamList] = useState([]);
   
   useEffect(() => {
-  const fetchExams = async () => {
+    const fetchExams = async () => {
     try {
       const response = await axios.post('/api/exams/getExams', {
         token,

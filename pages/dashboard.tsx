@@ -34,6 +34,7 @@ export default function Dashboard() {
           <Link href={'/'} >Home</Link>
           <Link href={'/exams'}>Simulados</Link>
           <Link href={'/study-cycle'} >Ciclo de estudos</Link>
+          <Link href={'/flex-cards'}>Cards de revisão</Link>
         </nav>
       </Header>
       <Main>

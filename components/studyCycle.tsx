@@ -12,7 +12,7 @@ const Form = styled.form`
     align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 1rem 0;
     padding: 1rem;
     gap: 1rem;
@@ -262,23 +262,6 @@ export default function UserStudyCycle({ StudyCycle,token }) {
       })
     }
     setHoursForWeeks(StudyCycle.reduce((total, objeto) => total + objeto.levelHours, 0) - StudyCycle.reduce((total,objeto) => total + objeto.CompletedHours, 0))
-    console.log(StudyCycle.reduce((total, objeto) => total + objeto.levelHours, 0) - StudyCycle.reduce((total,objeto) => total + objeto.CompletedHours, 0))
-    let somaLevelHours = 0
-    for (let i = 0; i < StudyCycle.length; i++) {
-      const element = StudyCycle[i].levelHours;
-      console.log(element)
-      somaLevelHours+= element
-      
-    }
-    let somaCompletedHours = 0
-    for (let i = 0; i < StudyCycle.length; i++) {
-      const element = StudyCycle[i].CompletedHours;
-      console.log(element)
-      somaCompletedHours += element
-    }
-    let soma = somaLevelHours - somaCompletedHours
-    console.log(soma)
-
   },[clickStudy,clickDincrementHours, clickIncrementHours,clickDincrementLevelHours, clickIncrementLevelHours,clickReset, clickClose])
   return (
     <>

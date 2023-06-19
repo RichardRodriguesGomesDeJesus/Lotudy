@@ -1,8 +1,7 @@
-import styled from "styled-components";
-import { colors } from "./sharedstyles";
-import { useState } from "react";
-import axios from "axios";
-import { parseCookies } from "nookies";
+import { useState } from "react"
+import { Button, colors } from "./sharedstyles"
+import styled from "styled-components"
+import axios from "axios"
 
 const Form =styled.form`
 display: flex;
@@ -131,74 +130,45 @@ const ButtonSubmit = styled.input`
     }
 
 `
-const ButtonAddExame = styled.button`
-    background: ${colors.sideColor};
-    border: none;
-    border-radius: .5rem;
-    box-shadow: 0 4px 4px ${colors.textColor};
-    color: ${colors.white};
-    margin: 0 auto;
-    padding: .5em;
-    &:hover,
-    :focus,
-    :active {
-        cursor: pointer;
-        color: ${colors.sideColor};
-        background: ${colors.white};
-        border: 1px solid ${colors.sideColor};
-        border-color: ${colors.sideColor};
-    }
-    @media screen and (min-width: 0 ){
-        width: 150px;
-    }
-    @media screen and (min-width: 768px ){
-        width: 175px;
-    }
-    @media screen and (min-width: 1024px){
-        width: 200px;
-    }
-`
 
-export default function FormExams( { formUpdate, setFormUpdate }) {
-    const  { 'token': token } = parseCookies()
+export default function FormDeck({token,formUpdate, setFormUpdate}) {
+
     const [form,setForm] = useState(false)
-    const [nameExame, setNameExame] = useState('')
+    const [nameDeck, setNameDeck] = useState('')
     function submit() {
-        axios.post('/api/exams', {
-            name: nameExame,
+        axios.post('/api/decks', {
+            name: nameDeck,
             token
-          })
-          .then(() => {
+        })
+        .then((res) => {
             setForm(false);
-           if (formUpdate === false) {
+            if (formUpdate === false) {
                 setFormUpdate(true)
-           } // Fetch the updated list of exams
-          })
-          .catch((err) => console.log(err));
+           }
+        })
+        .catch((err) => console.log(err));
     }
-    
     return(
-        <>
-            {
-                form === true && (
-                    <Form onSubmit={(e)=>{
-                        e.preventDefault()
-                        submit()
-                    }}>
-                    <div>
-                        <label htmlFor="name_exame">Adicione um nome  para o questionario</label>
-                        <input type="text" id="name_exame" onChange={(event)=> setNameExame(event.target.value)} maxLength={30} required value={nameExame} />
-                    </div>
-                    <ButtonSubmit type="submit" name="submit" value={'submit'}/>
-                    </Form>
-                )
-            }
-            {
-                form == false && (
-                    <ButtonAddExame onClick={()=>{setForm(true)}}>add</ButtonAddExame>
-                )
-            }
-        </>
+    <>
+        {
+            form === true && (
+                <Form onSubmit={(e)=>{
+                    e.preventDefault()
+                    submit()
+                }}>
+                <div>
+                    <label htmlFor="name_deck">Adicione um nome  para o deck</label>
+                    <input type="text" id="name_deck" onChange={(event)=> setNameDeck(event.target.value)} maxLength={30} required value={nameDeck} />
+                </div>
+                <ButtonSubmit type="submit" name="submit" value={'submit'}/>
+            </Form>
+            )
+        }
+        {form === false &&
+            <Button onClick={()=>{
+                setForm(true)
+            }}>Add</Button>
+        }
+    </>
     )
 }
-

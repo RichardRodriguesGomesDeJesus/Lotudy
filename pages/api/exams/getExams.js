@@ -6,25 +6,25 @@ export default async function getExamsList(req, res) {
     try {
         if (req.method !== 'POST') {
             return res.status(405).send({ mse: 'Method Not Allowed' });
-          }
+        }
 
-          const { token } = req.body;
+        const { token } = req.body;
 
-          if (!token) {
-            return res.status(403).send('A token is required');
-          }
+        if (!token) {
+          return res.status(403).send('A token is required');
+        }
 
-          const decoded = jwt.verify(token, process.env.SECRET);
+        const decoded = jwt.verify(token, process.env.SECRET);
 
-          if (!decoded.userId) {
-            return res.status(401).send({ error: 'Invalid token'});
-          }
+        if (!decoded.userId) {
+          return res.status(401).send({ error: 'Invalid token'});
+        }
 
-          await connectMongo();
+        await connectMongo();
 
-          const exams = await ExamModel.find({ });
-          const examsTitles = exams.filter(exam => exam.author == decoded.userId).map(exam => exam.title)
-          res.status(200).send({list: examsTitles})
+        const exams = await ExamModel.find({ });
+        const examsTitles = exams.filter(exam => exam.author == decoded.userId).map(exam => exam.title)
+        res.status(200).send({list: examsTitles})
     } catch (error) {
         res.status(500).send({ mse: 'Something went wrong'});
     }
