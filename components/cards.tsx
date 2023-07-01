@@ -76,21 +76,24 @@ export default function Cards() {
   const cardList = [
     {
       img: 'cards/studying.svg',
-      text: 'Estude onde quiser. ',
+      text: 'Pratique usando simulados.',
+      href: '/exams'
     },
     {
       img: 'cards/winners.svg',
-      text: 'Conquiste a nota maxima no vestibular. ',
+      text: 'Revise o conteúdo com flashcards.',
+      href: '/study-cycle'
     },
     {
       img: 'cards/growth.svg',
-      text: 'Crie o habito de estudar de uma forma simples.' ,
+      text: 'Desenvolva o hábito de estudar usando o ciclo de estudos.',
+      href: '/study-cycle'
     }
   ];
   return (
     <FlexContainer>
       {cardList.map((element, index) => (
-        <Link href={'/dashboard'} key={index}>
+        <Link href={element.href} key={index}>
           <Card >
             <img src={element.img} alt={element.text} />
             <p>{element.text}</p>
