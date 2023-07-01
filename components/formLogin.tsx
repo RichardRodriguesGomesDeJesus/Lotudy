@@ -159,9 +159,8 @@ export function FormLogin (){
               router.push('/dashboard');
             })
             .catch((err) => {
-              const error = err.response.data.error.message || err.response.data 
+              const error = err?.response?.data?.error?.message  
                 setErrorMessage(error);
-                console.log(error);
             });
         } catch (error) {
           console.log(error);
@@ -181,9 +180,9 @@ export function FormLogin (){
                     <input required type="email"  name='email' placeholder='fulano@gmail.com' autoComplete="email" value={email} onChange={(event)=> setEmail(event.target.value)}  id='email'/>
                 </div>
                 <div>
-                    <label htmlFor="password">Senha</label>
-                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='crie uma senha.' autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)} id='password'/>
-                    <span>Senha ou email incorreto.</span>
+                    <label htmlFor="password">Password</label>
+                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Write your password.' autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)} id='password'/>
+                    <span>Incorrect password or email.</span>
                 </div>
                 {errorMessage && <p>{errorMessage}</p>}
                 <ButtonSubmit type="submit" name="submit" value={'Logar'} />
