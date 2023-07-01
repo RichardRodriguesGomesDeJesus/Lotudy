@@ -19,6 +19,7 @@ const FlexContainer = styled.div`
 `;
 
 const Decks = styled.div`
+  box-shadow: 0 4px 20px ${colors.textColor};
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -29,7 +30,6 @@ const Decks = styled.div`
   padding: 0;
   color: inherit;
   text-decoration: none;
-  border: 1px solid black;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
 
@@ -111,7 +111,7 @@ export default function FlashCardDecks ({token,setFormUpdate,formUpdate}){
         </Link>
       ))}
       {cardList.length <= 0 && 
-        <p>Você não tem um baralho.</p>
+        <p>You don't have a deck.</p>
       }
     </FlexContainer>
   );
