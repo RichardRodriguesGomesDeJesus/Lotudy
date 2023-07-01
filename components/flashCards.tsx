@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Button, colors } from "./sharedstyles";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { parseCookies } from "nookies";
 
 const FlexContainer = styled.div`
   text-align: center;
@@ -29,6 +31,7 @@ const FlexContainer = styled.div`
 `;
 
 const Card = styled.div`
+  box-shadow: 0 4px 20px ${colors.textColor};
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -39,7 +42,6 @@ const Card = styled.div`
   padding: 0;
   color: inherit;
   text-decoration: none;
-  border: 1px solid black;
   border-radius: 10px;
   transition: transform 1000ms;
   transform-style: preserve-3d;
@@ -104,76 +106,126 @@ const CardFront = styled.div`
   width:100%;
 `
 
-export default function FlashCards ({cards}){
-      const router = useRouter() 
-      const [cardsEnd, setCardsEnd] = useState(false)
-      const [index, setIndex] = useState(0)
-      const [flip, setFlip] = useState(false)
-      function nextCard() {
-        if (index + 1 >= cards.length) {
-            setFlip(false)
-            setCardsEnd(true)
-        } else {
-          setFlip(false)
-          setIndex(index + 1)
-        }
-      }
-      return (
-        <FlexContainer>
-          {cards.length > 0 && cardsEnd === true &&
-            <>
-              <h2>Você terminou</h2>
-              <Button onClick={()=>{
-                router.push('/flex-cards')
-              }}>Voltar</Button>
-            </>
-          }
-          {cards.length > 0 && cardsEnd === false &&
-            <Card  className={flip===true && 'rotate'} onClick={()=>{
-              if (flip===false) {
-                setFlip(true)
-              }
-            }} >
-              <CardFront>
-                <p>{cards[index].text}</p>
-              </CardFront>
-              <CardBack>{cards[index].correctAnswer}</CardBack>
-            </Card>
-          }
-          {flip === true &&(
-            <>
-              <h2>Qual foi a sua dificuldade?</h2>
-            <div>
-              <Button onClick={()=>{
-                cards[index].time = '4d'
-                nextCard()
-              }}>Muito Fácil</Button>
-              <Button onClick={()=>{
-                cards[index].time = '10m'
-                nextCard()
-              }}>Fácil</Button>
-              <Button onClick={()=>{
-                cards[index].time = '5m'
-                nextCard()
-              }}>Médio</Button>
-              <Button onClick={()=>{
-                cards[index].time = '2m'
-                nextCard()
-              }}>Difícil</Button>
-              <Button onClick={()=>{
-                cards[index].time = '1m'
-                nextCard()
-              }}>Muito Difícil</Button>
-            </div>
-            </>
-          )}
-          {cards.length <= 0 &&(
-            <>
-              <h2>Você não tem nenhum card.</h2>
-            </>
-          )
+export default function FlashCards({ cards }) {
+  const router = useRouter();
+  const [cardsEnd, setCardsEnd] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [flip, setFlip] = useState(false);
+  const { 'token': token } = parseCookies();
 
-          }
-        </FlexContainer>
-      );
+  function nextCard() {
+    console.log(cards);
+    if (index + 1 >= cards.length) {
+      setFlip(false);
+      setCardsEnd(true);
+    } else {
+      setFlip(false);
+      setIndex(index + 1);
+    }
+  }
+
+  function save(cards, token) {
+    axios
+      .put('/api/decks/put-cards', {
+        token,
+        cards,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  return (
+    <FlexContainer>
+      {cards.length > 0 && cardsEnd === true && (
+        <>
+          <p>You have completed all the cards.</p>
+          <Button
+            onClick={() => {
+              router.push('/flex-cards');
+            }}
+          >
+            Go Back
+          </Button>
+        </>
+      )}
+      {cards.length > 0 && cardsEnd === false && (
+        <>
+          <Card
+            className={flip === true && 'rotate'}
+            onClick={() => {
+              if (flip === false) {
+                setFlip(true);
+              }
+            }}
+          >
+            <CardFront>{cards[index].text}</CardFront>
+            <CardBack>{cards[index].correctAnswer}</CardBack>
+          </Card>
+          {cards[index]?.time !== '' && flip === false &&(
+            <p>
+              Time taken to respond to card previously: {cards[index]?.time}.
+            </p>
+          )}
+        </>
+      )}
+      {flip === true && (
+        <>
+          <h2>How much time did it take you to answer the card?</h2>
+          <div>
+            <Button
+              onClick={() => {
+                cards[index].time = 'Very short';
+                save(cards, token);
+                nextCard();
+              }}
+            >
+              Very Short
+            </Button>
+            <Button
+              onClick={() => {
+                cards[index].time = 'Short';
+                save(cards, token);
+                nextCard();
+              }}
+            >
+              Short
+            </Button>
+            <Button
+              onClick={() => {
+                cards[index].time = 'Medium';
+                save(cards, token);
+                nextCard();
+              }}
+            >
+              Medium
+            </Button>
+            <Button
+              onClick={() => {
+                cards[index].time = 'Long';
+                save(cards, token);
+                nextCard();
+              }}
+            >
+              Long
+            </Button>
+            <Button
+              onClick={() => {
+                cards[index].time = 'Very long';
+                save(cards, token);
+                nextCard();
+              }}
+            >
+              Very Long
+            </Button>
+          </div>
+        </>
+      )}
+      {cards.length === 0 && <p>You don't have any cards.</p>}
+    </FlexContainer>
+  );
 }
+
