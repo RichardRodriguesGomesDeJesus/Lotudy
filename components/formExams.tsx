@@ -186,7 +186,7 @@ export default function FormExams( { formUpdate, setFormUpdate }) {
                         submit()
                     }}>
                     <div>
-                        <label htmlFor="name_exame">Adicione um nome  para o questionario</label>
+                        <label htmlFor="name_exame">Add an exam name.</label>
                         <input type="text" id="name_exame" onChange={(event)=> setNameExame(event.target.value)} maxLength={30} required value={nameExame} />
                     </div>
                     <ButtonSubmit type="submit" name="submit" value={'submit'}/>
