@@ -5,7 +5,7 @@ interface Card {
   time?: string;
 }
 
-interface Deck extends Document {
+ export interface Deck extends Document {
   author: mongoose.Schema.Types.ObjectId;
   title: string;
   cards: Card[];
