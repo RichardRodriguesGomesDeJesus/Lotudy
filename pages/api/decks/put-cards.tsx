@@ -1,7 +1,9 @@
 
 import jwt from 'jsonwebtoken';
 import { connectMongo } from '../../../lib/connectMongo.js';
-import { DeckModel } from '../../../models/user.js';
+import { DeckModel } from '../../../models/user.jsx';
+import type { Deck } from '../../../models/user.jsx';
+
 
 export default async function putCards(req,res) {
   try{
@@ -27,13 +29,14 @@ export default async function putCards(req,res) {
 
     await connectMongo();
 
-    const Deck =  await DeckModel.find({author:decoded.userId});
+    const deck = await DeckModel.find({ author: decoded.userId }) as Deck[];
 
-    if (!Deck) {
+
+    if (!deck) {
       return res.status(400).send({ mse: 'Deck not found' });
     }
 
-    const userDeck = Deck[0]
+    const userDeck = deck[0]
 
     userDeck.cards = cards 
 
