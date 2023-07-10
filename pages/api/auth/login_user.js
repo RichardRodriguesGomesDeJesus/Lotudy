@@ -32,23 +32,20 @@ export default async function handler(req, res) {
       }
       try{
         await connectMongo();
-        const users = await UserModel.find({ });
-        const emails = users.map(user => user.email)
-        const existEmail = emails.includes(email)
-        if (existEmail === true) {
-          const index = emails.indexOf(email)
-          const passwordMatch = await bcrypt.compare(password, users[index].password);
+        const users = await UserModel.find({email: email });
+        if (!users) {
+          res.status(401).send('User not found');
+        } else {
+          const passwordMatch = await bcrypt.compare(password, users[0].password);
           if (passwordMatch) {
             const token = jwt.sign({
-              userId: users[index]._id,
+              userId: users[0]._id,
               email: email
             }, process.env.SECRET)
             res.status(201).send({mse:'successful authentication', token});
           } else {
             res.status(401).send('Incorrect password or email')
           }
-        } else {
-          res.status(401).send('User not found');
         }
       } catch (error) {
         return res.status(500).send({ msg: 'An error occurred while processing the request',error:JSON.stringify(error)});
