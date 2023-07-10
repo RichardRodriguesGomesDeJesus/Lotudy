@@ -1,15 +1,4 @@
 import mongoose from 'mongoose';
-interface Card {
-  text: string;
-  correctAnswer: string;
-  time?: string;
-}
-
- export interface Deck extends Document {
-  author: mongoose.Schema.Types.ObjectId;
-  title: string;
-  cards: Card[];
-}
 const userSchema = new mongoose.Schema({
   name: {
     type: String,

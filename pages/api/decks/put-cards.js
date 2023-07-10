@@ -2,7 +2,6 @@
 import jwt from 'jsonwebtoken';
 import { connectMongo } from '../../../lib/connectMongo.js';
 import { DeckModel } from '../../../models/user.js';
-import type { Deck } from '../../../models/user.js';
 
 
 export default async function putCards(req,res) {
@@ -29,7 +28,8 @@ export default async function putCards(req,res) {
 
     await connectMongo();
 
-    const deck = await DeckModel.find({ author: decoded.userId }) as Deck[];
+    const deck = await DeckModel.find({ author: decoded.userId })
+
 
 
     if (!deck) {

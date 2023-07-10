@@ -16,6 +16,6 @@
     "jsx": "preserve",
     "downlevelIteration": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "models/user.tsx", "lib/connectMongo.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "models/user.js", "lib/connectMongo.js", "pages/api/decks/put-cards.js", "pages/api/decks/set-cards.js"],
   "exclude": ["node_modules"]
 }
