@@ -153,13 +153,13 @@ export function FormLogin (){
                 destroyCookie(undefined, 'token');
               }
               setCookie(undefined, 'token', res.data.token, {
-                maxAge: 60 * 60 * 24
+                maxAge: 172800
               });
       
               router.push('/dashboard');
             })
             .catch((err) => {
-              const error = err?.response?.data?.error?.message  
+              const error = err.response.data || err.response.data.error.message
                 setErrorMessage(error);
             });
         } catch (error) {
