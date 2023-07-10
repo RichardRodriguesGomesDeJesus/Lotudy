@@ -36,17 +36,18 @@ export default function exams() {
             <Header>
                 <nav>
                     <Link href={'/dashboard'}>Dashboard</Link>
-                    <Link href={'/study-cycle'} >Ciclo de estudos</Link>
-                    <Link href={'/flex-cards'}>Cards de revisão</Link>
+                    <Link href={'/exams'}>Exams</Link>
+                    <Link href={'/study-cycle'}>Study Cycle</Link>
+                    <Link href={'/flex-cards'}>Flash Cards</Link>
                 </nav>
             </Header>
             <Main>
-                <Title>Crie Questionarios e ordene como quiser.</Title>
+                <Title>Create exams and study however you want.</Title>
                 <ListExams formUpdate={formUpdate} setFormUpdate={setFormUpdate}/>
                 <FormExams formUpdate={formUpdate} setFormUpdate={setFormUpdate}/>
             </Main>
             <Footer>
-                <Link href={'/register'}>Crie sua conta</Link>
+                <Link href={'/register'}>Create your account</Link>
             </Footer>
         </>
     )

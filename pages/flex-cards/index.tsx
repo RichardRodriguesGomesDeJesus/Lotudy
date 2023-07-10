@@ -9,44 +9,54 @@ import FormDeck from "../../components/formDecks";
 
 export default function flexCards() {
     const { 'token': token } = parseCookies();
-    const [userAuth , setUserAuth] = useState(true)
+    const [userAuth, setUserAuth] = useState(true);
     const router = useRouter();
-    useEffect(()=>{
-        if (!token) {
-        setUserAuth(false)
-        } else {
+  
+    useEffect(() => {
+      if (!token) {
+        setUserAuth(false);
+      } else {
         try {
-            axios.post('/api/auth/verify_token', {
-            token,
+          axios
+            .post('/api/auth/verify_token', {
+              token,
             })
-            .then(()=> { setUserAuth(true)})
-            .catch(()=>{setUserAuth(false)})
+            .then(() => {
+              setUserAuth(true);
+            })
+            .catch(() => {
+              setUserAuth(false);
+            });
         } catch (error) {
-            setUserAuth(false)
+          setUserAuth(false);
         }
-        }
-    },[token])
+      }
+    }, [token]);
+  
     if (userAuth === false) {
-        router.push("/login");
+      router.push("/login");
     }
-    const [ formUpdate, setFormUpdate ] = useState(false)
-    return(
-        <>
-            <Header>
-                <nav>
-                    <Link href={'/dashboard'} > Dashboard</Link>
-                    <Link href={'/exams'}>Simulados</Link>
-                    <Link href={'/study-cycle'} >Ciclo de estudos</Link>
-                </nav>
-            </Header>
-            <Main>
-                <Title>Crie  um baralho de cards de revisão</Title>
-                <FlashCardDecks token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} />
-                <FormDeck token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate}/>
-            </Main>
-            <Footer>
-                <Link href={'/register'}>Crie sua conta</Link>
-            </Footer>
-        </>
+  
+    const [formUpdate, setFormUpdate] = useState(false);
+  
+    return (
+      <>
+        <Header>
+          <nav>
+            <Link href={'/dashboard'}>Dashboard</Link>
+            <Link href={'/exams'}>Exams</Link>
+            <Link href={'/study-cycle'}>Study Cycle</Link>
+          </nav>
+        </Header>
+        <Main>
+          <Title>Create a deck of review cards</Title>
+          <FlashCardDecks token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} />
+          <FormDeck token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} />
+        </Main>
+        <Footer>
+          <Link href={'/register'}>Create an Account</Link>
+        </Footer>
+      </>
     )
-}
+  }
+  

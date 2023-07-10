@@ -1,20 +1,19 @@
 import jwt from 'jsonwebtoken';
 import { connectMongo } from '../../../lib/connectMongo.js';
 import { ExamModel } from "../../../models/user.js"
-
-export default async function createExam(req, res) {
-  try {
-    if (req.method !== 'POST') {
+export default async function deleteExams(req, res) {
+  try{
+    if (req.method !== 'PUT') {
       return res.status(405).send({ mse: 'Method Not Allowed' });
     }
 
-    const { name, token } = req.body;
+    const { token, title } = req.body;
 
-    if (!name) {
-      return res.status(422).send('name is required');
-    }
     if (!token) {
       return res.status(403).send('A token is required');
+    }
+    if (!title) {
+      return res.status(403).send('Title is required');
     }
 
     const decoded = jwt.verify(token, process.env.SECRET);
@@ -25,18 +24,9 @@ export default async function createExam(req, res) {
 
     await connectMongo();
 
-    const exam = {
-      author: decoded.userId,
-      title: name,
-      time: '0',
-      correctAnswers: 0,
-      mistakes: 0
-    };
+    await ExamModel.deleteOne({ author:decoded.userId, title: title});
 
-    const newExam = new ExamModel(exam);
-    await newExam.save();
-
-    res.status(201).send({ mse: 'success!' });
+   res.status(200).send({mse: 'Success'})
   } catch (error) {
     res.status(500).send({ mse: 'Something went wrong'});
   }

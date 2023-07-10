@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import { connectMongo } from '../../../lib/connectMongo.js';
 import { StudyCycleModel } from '../../../models/user.js';
@@ -8,7 +7,9 @@ export default async function setSubjects(req, res) {
         if (req.method !== 'PUT') {
             return res.status(405).send({ mse: 'Method Not Allowed' });
         }
+        
         const { token  , StudyCycle} = req.body;
+
         if (!token) {
             return res.status(403).send('A token is required');
         }

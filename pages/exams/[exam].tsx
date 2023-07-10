@@ -18,6 +18,7 @@ export default function ExamPage() {
   const [request, setRequest] = useState(false);
   const [userAuth , setUserAuth] = useState(true)
   const [questionList, setList] = useState([])
+  const[updateList, setUpdateList] = useState(false)
   const [question, setQuestion] = useState(false)
   useEffect(()=>{
     if (!token) {
@@ -52,34 +53,51 @@ export default function ExamPage() {
         setRequest(true);
       });
   }
+  useEffect(()=>{
+        
+    if (updateList === false) {
+      axios
+        .post("/api/exams/getQuestions", {
+          title: examName,
+          token,
+        })
+        .then((res) => {
+          setList(res.data.exam.questions)
+          setUpdateList(true);
+        })
+        .catch((err) => {
+          setUpdateList(true);
+        });
+    }
+  },[updateList])
   const [form, setForm] = useState(false)
   return (
     <>
     <Header>
       <nav>
-      <Link href={'/dashboard'} > Dashboard</Link>
-        <Link href={'/exams'}>Simulados</Link>
-        <Link href={'/study-cycle'} >Ciclo de estudos</Link>
+        <Link href={'/dashboard'} > Dashboard</Link>
+        <Link href={'/exams'}>Exams</Link>
+        <Link href={'/study-cycle'}>Study Cycle</Link>
       </nav>
     </Header>
     <Main>
-      <Title>Crie e pratique com questões personalizadas no simulado {examName}</Title>
+      <Title>Create and practice with custom exam questions: {examName}.</Title>
       {form === true &&
-        <QuestionForm examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} />
+        <QuestionForm examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} updateList={updateList} setUpdateList={setUpdateList} />
       }
       {
         form === false && question === false &&
         <Button onClick={(e)=>{
           e.preventDefault()
           setForm(true)
-        }}>Criar questões</Button>
+        }}>Create questions</Button>
       }
       {
         question === false && form === false && questionList.length > 0 &&
         <Button onClick={(e)=>{
           e.preventDefault()
           setQuestion(true)
-        }}>Começar simulado</Button>
+        }}>Start exam</Button>
       }
       {
         question === true &&   form === false && 
@@ -87,7 +105,7 @@ export default function ExamPage() {
       }
     </Main>
     <Footer>
-      <Link href={'/register'}>Crie sua conta</Link>
+      <Link href={'/register'}>Create your account</Link>
     </Footer>
   </>
   )

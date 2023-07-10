@@ -8,15 +8,15 @@ export default function Login (){
              <Header>
                 <nav>
                     <Link href={'/'}>Home</Link>
-                    <Link href={'/register'}>Cadastre-se</Link>
+                    <Link href={'/register'}>Register</Link>
                 </nav>
             </Header>
             <Main>
-                <Title>Faça login na sua conta.</Title>
+                <Title>Sign in to your account.</Title>
                 <FormLogin/>
             </Main>
             <Footer>
-                <Link href={'/register'}>Crie sua conta</Link>
+                <Link href={'/register'}>Create your account</Link>
             </Footer>
         </>
     )

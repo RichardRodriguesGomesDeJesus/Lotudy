@@ -1,4 +1,4 @@
-export default interface studyCycle {
+export default interface subjects {
     name: string,
     difficultyLevel: string,
     levelHours: number,

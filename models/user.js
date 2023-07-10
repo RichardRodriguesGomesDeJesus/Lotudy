@@ -37,9 +37,22 @@ const examSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  time:{
+    type: String,
+    required: true
+  },
+  correctAnswers:{
+    type: Number,
+    required: true
+  },
+  mistakes:{
+    type: Number,
+    required: true
+  },
   questions: [{
     id: { type: mongoose.Schema.Types.ObjectId },
     text: String,
+    img: String,
     options: [String],
     correctOption: { type: String, required: true }, 
   }],
@@ -94,7 +107,6 @@ const deckSchema = new mongoose.Schema({
     }
   }]
 })
-
 
 export const UserModel = mongoose.models.User || mongoose.model('User', userSchema);
 export const ExamModel = mongoose.models.Exam || mongoose.model('Exam', examSchema);

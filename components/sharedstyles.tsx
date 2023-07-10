@@ -30,6 +30,7 @@ const Main = styled.main`
   flex-grow: 1;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
   width:100vw;
 `
 

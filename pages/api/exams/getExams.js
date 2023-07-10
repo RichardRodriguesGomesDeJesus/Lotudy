@@ -22,8 +22,8 @@ export default async function getExamsList(req, res) {
 
         await connectMongo();
 
-        const exams = await ExamModel.find({ });
-        const examsTitles = exams.filter(exam => exam.author == decoded.userId).map(exam => exam.title)
+        const exams = await ExamModel.find({ author:decoded.userId});
+        const examsTitles = exams.map(exam => exam.title)
         res.status(200).send({list: examsTitles})
     } catch (error) {
         res.status(500).send({ mse: 'Something went wrong'});
