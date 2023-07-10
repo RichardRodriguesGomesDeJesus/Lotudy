@@ -350,11 +350,11 @@ export default function FormStudyCycle( { token, setForm }) {
     return (
       <Form onSubmit={submitForm}>
         <div>
-          <label htmlFor="days">Quantos dias por semana você ira estudar?</label>
+          <label htmlFor="days">How many days a week will you study?</label>
           <input type="number" id="days" name="days" min={1} max={7} value={days} onChange={(e)=> setDays(parseInt(e.target.value))} required />
         </div>
         <div>
-          <label htmlFor="hours">Quantas horas você estudara por dia?</label>
+          <label htmlFor="hours">How many hours will you study a day?</label>
           <input type="number" id="hours" name="hours" value={hours} min={1} max={8} onChange={(e)=> setHours(parseInt(e.target.value))} required />
         </div>
         {subjects.map((subject, index) => (
