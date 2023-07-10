@@ -1,5 +1,15 @@
 import mongoose from 'mongoose';
+interface Card {
+  text: string;
+  correctAnswer: string;
+  time?: string;
+}
 
+interface Deck extends Document {
+  author: mongoose.Schema.Types.ObjectId;
+  title: string;
+  cards: Card[];
+}
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -111,4 +121,5 @@ const deckSchema = new mongoose.Schema({
 export const UserModel = mongoose.models.User || mongoose.model('User', userSchema);
 export const ExamModel = mongoose.models.Exam || mongoose.model('Exam', examSchema);
 export const StudyCycleModel = mongoose.models.StudyCycle || mongoose.model('StudyCycle',studyCycleSchema);
-export const DeckModel = mongoose.models.Deck || mongoose.model('Deck', deckSchema);
+export const DeckModel =
+  mongoose.models.Deck || mongoose.model<Deck>('Deck', deckSchema);
