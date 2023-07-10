@@ -145,8 +145,6 @@ export default function FormRegister() {
             router.push('/dashboard')
         })
         .catch((err) => {
-            // Registrar o momento final em caso de erro
-
             const error = err.response.data.error.message || err.response.data 
               setErrorMessage(error);
               console.log(error);
@@ -163,8 +161,8 @@ export default function FormRegister() {
                     submit()
                 }}>
                 <div>
-                    <label htmlFor="name">Nome</label>
-                    <input required type="text" name='name' placeholder='digite seu nome.' autoComplete="name" value={name} onChange={(event)=> setName(event.target.value)}/>
+                    <label htmlFor="name">Name</label>
+                    <input required type="text" name='name' placeholder='write your name.' autoComplete="name" value={name} onChange={(event)=> setName(event.target.value)}/>
                 </div>
                 <div>
                     <label htmlFor="email">Email</label>
@@ -172,12 +170,12 @@ export default function FormRegister() {
 
                 </div> 
                 <div>
-                    <label htmlFor="password">Senha</label>
-                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='crie uma senha.' autoComplete="new-password" value={password} onChange={(event)=> setPassword(event.target.value)}/>
+                    <label htmlFor="password">Password</label>
+                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Create a password.' autoComplete="new-password" value={password} onChange={(event)=> setPassword(event.target.value)}/>
                 </div>
                 <div>
-                    <label htmlFor="confirm_password">Confirmação de senha</label>
-                    <input required  ref={passwordInput} type="password" name='confirm_password' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='crie uma senha.' autoComplete="new-password" value={confirmPassword} onChange={(event)=> setConfirmPassword(event.target.value)}/>
+                    <label htmlFor="confirm_password">Password confirmation</label>
+                    <input required  ref={passwordInput} type="password" name='confirm_password' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Confirm the new password' autoComplete="new-password" value={confirmPassword} onChange={(event)=> setConfirmPassword(event.target.value)}/>
                 </div>
                 {errorMessage && <p>{errorMessage}</p>}
                 <ButtonSubmit type="submit" name="submit" value={'Criar conta'} />
