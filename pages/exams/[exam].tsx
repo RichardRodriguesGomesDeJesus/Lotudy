@@ -78,6 +78,7 @@ export default function ExamPage() {
         <Link href={'/dashboard'} > Dashboard</Link>
         <Link href={'/exams'}>Exams</Link>
         <Link href={'/study-cycle'}>Study Cycle</Link>
+        <Link href={'/flex-cards'}>Flash Cards</Link>
       </nav>
     </Header>
     <Main>
