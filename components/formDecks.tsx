@@ -160,7 +160,7 @@ export default function FormDeck({token,formUpdate, setFormUpdate}) {
                     <label htmlFor="name_deck">Add a name for the deck</label>
                     <input type="text" id="name_deck" onChange={(event)=> setNameDeck(event.target.value)} maxLength={30} required value={nameDeck} />
                 </div>
-                <ButtonSubmit type="submit" name="submit" value={'submit'}/>
+                <ButtonSubmit type="submit" name="submit" value={'create deck'}/>
             </Form>
             )
         }
