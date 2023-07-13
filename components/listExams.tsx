@@ -69,7 +69,12 @@ export default function ListExams({ formUpdate, setFormUpdate }) {
       token,
       title: exam
     })
-    .then((res)=>setFormUpdate(true))
+    .then((res)=>{
+      setFormUpdate(true)
+      if (examList.length == 1) {
+        setEdit(false)
+      }
+    })
     .catch((err)=>console.log(err))
     
   }
@@ -79,7 +84,7 @@ export default function ListExams({ formUpdate, setFormUpdate }) {
           {edit === false&&(
             examList.map((exam, index) => (
               <Link href={`/exams/${encodeURIComponent(exam)}`} key={index}>
-                <p>{exam}</p>
+                <h3>{exam}</h3>
               </Link>
             ))
           )}
@@ -87,11 +92,10 @@ export default function ListExams({ formUpdate, setFormUpdate }) {
             examList.map((exam,index)=>(
               <span key={index}>
                 <ButtonClose onClick={()=>{
-                  setEdit(false)
                   Delete(exam)
                 }}><img src="/icons/close.png" alt="delete" /></ButtonClose>
                 <div>
-                  <p>{exam}</p>
+                  <h3>{exam}</h3>
                 </div>
               </span>
             ))
