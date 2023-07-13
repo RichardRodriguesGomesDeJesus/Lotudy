@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, colors } from "./sharedstyles";
+import { Button, ButtonClose, colors } from "./sharedstyles";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -32,8 +32,11 @@ const Decks = styled.div`
   text-decoration: none;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
+  height:200px;
+  width: 200px;
 
   p{
+    font-size: 1rem;
     font-weight: 400;
     margin: 0;
   }
@@ -44,40 +47,13 @@ const Decks = styled.div`
     color: ${colors.principalColor};
     border-color: ${colors.titleColor};
   }
-  @media screen and (min-width: 0 ){
-    height:150px;
-    width: 150px;
-    img{
-      height: 75px;  
-      width:  75px ;
-    }
-    p{
-      font-size: .85rem;
-    }
-  };
-  @media screen and (min-width: 768px ){
-    height:200px;
-    width: 200px;
-    img{
-      height: 100px;  
-      width: 100px ;
-    }
-    p{
-      font-size: 1rem;
-    }
-  };
-  @media screen and (min-width: 1024px) {
-    height:250px;
-    width: 250px;
-    img{
-      height: 150px;  
-      width: 150px;
-    }
-  };
+  img{
+    height: 100px;  
+    width: 100px ;
+  }
 `;
 
-export default function FlashCardDecks ({token,setFormUpdate,formUpdate}){
-  const [cardList, setCardList] = useState([]) 
+export default function FlashCardDecks ({token,setFormUpdate,formUpdate, cardList, setCardList, edit,setEdit}){
 
   useEffect(() => {
     const fetchExams = async () => {
@@ -100,9 +76,36 @@ export default function FlashCardDecks ({token,setFormUpdate,formUpdate}){
   fetchExamsAndUpdateList();
   setFormUpdate(false)
   }, [token,formUpdate === true]);
+  function Delete(card) {
+    axios.put('api/decks/putCard',{
+      token,
+      title: card
+    })
+    .then((res)=>{
+      setFormUpdate(true)
+      if (cardList.length == 1) {
+        setEdit(false)
+      }
+    })
+    .catch((err)=>console.log(err))
+    
+  }
   return (
     <FlexContainer>
-      {cardList.length > 0 &&
+      {edit==true&&
+        cardList.map((element, index) => (
+          <span key={index}>
+            <ButtonClose onClick={()=>{
+              setEdit(false)
+              Delete(element)
+            }}><img src="/icons/close.png" alt="delete" /></ButtonClose>
+            <Decks>
+              <h3>{element}</h3>
+            </Decks>
+          </span>
+        ))
+      }
+      {edit== false &&
       cardList.map((element, index) => (
         <Link href={`/flex-cards/${element}`} key={index}>
           <Decks>
