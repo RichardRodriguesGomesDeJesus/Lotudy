@@ -38,6 +38,9 @@ export default function flexCards() {
     }
   
     const [formUpdate, setFormUpdate] = useState(false);
+    const [cardList, setCardList] = useState([]) 
+    const [edit, setEdit] = useState(false)
+
   
     return (
       <>
@@ -50,7 +53,17 @@ export default function flexCards() {
         </Header>
         <Main>
           <Title>Create a deck of review cards</Title>
-          <FlashCardDecks token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} />
+          <FlashCardDecks token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} cardList={cardList} setCardList={setCardList} edit={edit} setEdit={setEdit} />
+          {cardList.length > 0 && edit === false &&(
+            <Button onClick={()=>{
+              setEdit(true)
+            }} >edit</Button>
+          )}
+          {cardList.length > 0 && edit === true &&(
+            <Button onClick={()=>{
+              setEdit(false)
+            }} >finish editing</Button>
+          )}
           <FormDeck token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} />
         </Main>
         <Footer>
