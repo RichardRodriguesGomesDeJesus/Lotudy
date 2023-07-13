@@ -8,7 +8,7 @@ import Link from "next/link";
 const List = styled.div`
     align-items: center;
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
     gap: 1rem;
     padding: 1rem;
     div,a{
@@ -28,11 +28,9 @@ const List = styled.div`
       &:hover,
       :focus,
       :active {
-          cursor: pointer;
-          color: ${colors.sideColor};
-          padding: calc(1rem - 1px);
-          border: 1px solid ${colors.sideColor};
-          border-color: ${colors.sideColor};
+        cursor: pointer;
+        color: ${colors.principalColor};
+        border-color: ${colors.titleColor};
       }
     }
 `;
@@ -103,17 +101,17 @@ export default function ListExams({ formUpdate, setFormUpdate }) {
           {examList.length == 0 && (
             <p>You don't have any exams yet</p>
           )}
-          {examList.length > 0 && edit === false &&(
-            <Button onClick={()=>{
-              setEdit(true)
-            }} >edit</Button>
-          )}
-          {examList.length > 0 && edit === true &&(
-            <Button onClick={()=>{
-              setEdit(false)
-            }} >finish editing</Button>
-          )}
         </List>
+        {examList.length > 0 && edit === false &&(
+          <Button onClick={()=>{
+            setEdit(true)
+          }} >edit</Button>
+        )}
+        {examList.length > 0 && edit === true &&(
+          <Button onClick={()=>{
+            setEdit(false)
+          }} >finish editing</Button>
+        )}
       </>
     );
   }
