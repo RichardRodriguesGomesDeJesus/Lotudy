@@ -10,6 +10,7 @@ import FormExams from "../../components/formExams";
 
 export default function exams() {
     const { 'token': token } = parseCookies();
+    const [examList, setExamList] = useState([]);
     const [userAuth , setUserAuth] = useState(true)
     const router = useRouter();
     useEffect(()=>{
@@ -30,7 +31,30 @@ export default function exams() {
     if (userAuth === false) {
         router.push("/login");
     }
+    
     const [ formUpdate, setFormUpdate ] = useState(false)
+
+    useEffect(() => {
+        const fetchExams = async () => {
+        try {
+          const response = await axios.post('/api/exams/getExams', {
+            token,
+          });
+          setExamList(response.data.list);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    
+      const fetchExamsAndUpdateList = async () => {
+        if (token) {
+          await fetchExams();
+        }
+      };
+    
+      fetchExamsAndUpdateList();
+      setFormUpdate(false)
+      }, [token,formUpdate === true]);
     return(
         <>
             <Header>
@@ -42,8 +66,8 @@ export default function exams() {
             </Header>
             <Main>
                 <Title>Create exams and study however you want.</Title>
-                <ListExams formUpdate={formUpdate} setFormUpdate={setFormUpdate}/>
-                <FormExams formUpdate={formUpdate} setFormUpdate={setFormUpdate}/>
+                <ListExams formUpdate={formUpdate} setFormUpdate={setFormUpdate} examList={examList} setExamList={setExamList}/>
+                <FormExams formUpdate={formUpdate} setFormUpdate={setFormUpdate} examList={examList}/>
             </Main>
             <Footer>
                 <Link href={'/register'}>Create your account</Link>
