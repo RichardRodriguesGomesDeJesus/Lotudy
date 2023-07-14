@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "./sharedstyles";
+import { Button, colors } from "./sharedstyles";
 import { useState } from "react";
 import axios from "axios";
 import { parseCookies } from "nookies";
@@ -131,50 +131,29 @@ const ButtonSubmit = styled.input`
     }
 
 `
-const ButtonAddExame = styled.button`
-    background: ${colors.sideColor};
-    border: none;
-    border-radius: .5rem;
-    box-shadow: 0 4px 4px ${colors.textColor};
-    color: ${colors.white};
-    margin: 0 auto;
-    padding: .5em;
-    &:hover,
-    :focus,
-    :active {
-        cursor: pointer;
-        color: ${colors.sideColor};
-        background: ${colors.white};
-        border: 1px solid ${colors.sideColor};
-        border-color: ${colors.sideColor};
-    }
-    @media screen and (min-width: 0 ){
-        width: 150px;
-    }
-    @media screen and (min-width: 768px ){
-        width: 175px;
-    }
-    @media screen and (min-width: 1024px){
-        width: 200px;
-    }
-`
 
-export default function FormExams( { formUpdate, setFormUpdate }) {
+export default function FormExams( { formUpdate, setFormUpdate, examList }) {
     const  { 'token': token } = parseCookies()
     const [form,setForm] = useState(false)
     const [nameExame, setNameExame] = useState('')
+    const [mseError, setMseError] = useState('')
     function submit() {
-        axios.post('/api/exams', {
-            name: nameExame,
-            token
-          })
-          .then(() => {
-            setForm(false);
-           if (formUpdate === false) {
-                setFormUpdate(true)
-           } // Fetch the updated list of exams
-          })
-          .catch((err) => console.log(err));
+        const exist = examList.includes(nameExame)
+        if (exist == false) {
+            axios.post('/api/exams', {
+                name: nameExame,
+                token
+              })
+              .then(() => {
+                setForm(false);
+               if (formUpdate === false) {
+                    setFormUpdate(true)
+               } // Fetch the updated list of exams
+              })
+              .catch((err) => console.log(err));
+        } else {
+            setMseError('An exam with that name already exists.')
+        }
     }
     
     return(
@@ -188,6 +167,9 @@ export default function FormExams( { formUpdate, setFormUpdate }) {
                     <div>
                         <label htmlFor="name_exame">Add an exam name.</label>
                         <input type="text" id="name_exame" onChange={(event)=> setNameExame(event.target.value)} maxLength={30} required value={nameExame} />
+                        {mseError !== '' &&(
+                            <p>{mseError}</p>
+                        )}
                     </div>
                     <ButtonSubmit type="submit" name="submit" value={'add'}/>
                     </Form>
@@ -195,7 +177,7 @@ export default function FormExams( { formUpdate, setFormUpdate }) {
             }
             {
                 form == false && (
-                    <ButtonAddExame onClick={()=>{setForm(true)}}>add</ButtonAddExame>
+                    <Button onClick={()=>{setForm(true)}}>add</Button>
                 )
             }
         </>
