@@ -64,7 +64,7 @@ export default function flexCards() {
               setEdit(false)
             }} >finish editing</Button>
           )}
-          <FormDeck token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} />
+          <FormDeck token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} cardList={cardList} />
         </Main>
         <Footer>
           <Link href={'/register'}>Create an Account</Link>
