@@ -131,22 +131,28 @@ const ButtonSubmit = styled.input`
 
 `
 
-export default function FormDeck({token,formUpdate, setFormUpdate}) {
-
+export default function FormDeck({token,formUpdate, setFormUpdate, cardList}) {
     const [form,setForm] = useState(false)
     const [nameDeck, setNameDeck] = useState('')
+    const [mseError, setMseError] = useState('')
+    
     function submit() {
-        axios.post('/api/decks', {
-            name: nameDeck,
-            token
-        })
-        .then((res) => {
-            setForm(false);
-            if (formUpdate === false) {
-                setFormUpdate(true)
-           }
-        })
-        .catch((err) => console.log(err));
+        const exist = cardList.includes(nameDeck)
+        if (exist == false) {
+            axios.post('/api/decks', {
+                name: nameDeck,
+                token
+            })
+            .then((res) => {
+                setForm(false);
+                if (formUpdate === false) {
+                    setFormUpdate(true)
+               }
+            })
+            .catch((err) => console.log(err));
+        } else {
+            setMseError('A deck with that name already exists.')
+        }
     }
     return(
     <>
@@ -159,8 +165,11 @@ export default function FormDeck({token,formUpdate, setFormUpdate}) {
                 <div>
                     <label htmlFor="name_deck">Add a name for the deck</label>
                     <input type="text" id="name_deck" onChange={(event)=> setNameDeck(event.target.value)} maxLength={30} required value={nameDeck} />
+                    {mseError !== '' &&(
+                        <p>{mseError}</p>
+                    )}
                 </div>
-                <ButtonSubmit type="submit" name="submit" value={'create deck'}/>
+                <ButtonSubmit type="submit" name="submit" value={'Create deck'}/>
             </Form>
             )
         }
