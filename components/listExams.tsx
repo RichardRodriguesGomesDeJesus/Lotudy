@@ -35,33 +35,10 @@ const List = styled.div`
     }
 `;
 
-export default function ListExams({ formUpdate, setFormUpdate }) {
+export default function ListExams({ formUpdate, setFormUpdate, examList, setExamList}) {
   const { 'token': token } = parseCookies();
-  
-  const [examList, setExamList] = useState([]);
   const [edit, setEdit] = useState(false)
   
-  useEffect(() => {
-    const fetchExams = async () => {
-    try {
-      const response = await axios.post('/api/exams/getExams', {
-        token,
-      });
-      setExamList(response.data.list);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchExamsAndUpdateList = async () => {
-    if (token) {
-      await fetchExams();
-    }
-  };
-
-  fetchExamsAndUpdateList();
-  setFormUpdate(false)
-  }, [token,formUpdate === true]);
   function Delete(exam) {
     axios.put('api/exams/putExam',{
       token,
