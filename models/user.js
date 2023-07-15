@@ -53,7 +53,8 @@ const examSchema = new mongoose.Schema({
     text: String,
     img: String,
     options: [String],
-    correctOption: { type: String, required: true }, 
+    subject: { type: String } ,
+    correctOption: { type: String, required: true }
   }],
 });
 
