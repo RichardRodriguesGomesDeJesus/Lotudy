@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Button, ButtonClose, colors } from "./sharedstyles"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import CustomSelect from "./select"
 
 const Form = styled.form`
     
@@ -214,12 +215,14 @@ const ButtonAddOption = styled.button`
     }
 
 `
-export default function QuestionForm({examName, token, setForm, setQuestion, question, updateList, setUpdateList}) {  
+export default function QuestionForm({examName, token, setForm, setQuestion, question, updateList, setUpdateList, questionList}) {  
     const [text, setText] = useState('')
     const [options, setOptions] = useState([])
     const [correctAnswer, setCorrectAnswer] = useState('');
     const [url,setUrl] = useState('')
     const [load, setLoad] = useState<Boolean>()
+    const [isOpen, setIsOpen] = useState(false)
+    const [selectedOption, setSelectedOption] = useState('')
     const addOption = () => {
         setOptions([...options, ""])
     };
@@ -233,44 +236,25 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
         }
       };
     function submit() {
-        if (load === true) {
-            axios.put('/api/exams/setQuestion', {
-                options,
-                correctOption:correctAnswer,
-                text,
-                img:url ,
-                title:examName,
-                token
-            })
-            .then(()=>{
-                if (question === true) {
-                    setQuestion(false)
-                }
-                setUpdateList(false)
-                setForm(false)
-            })
-            .catch((error)=> {
-                console.log(error)
-            })
-        }  else {
-            axios.put('/api/exams/setQuestion', {
-                options,
-                correctOption:correctAnswer,
-                text,
-                title:examName,
-                token
-            })
-            .then(()=>{
-                if (question === true) {
-                    setQuestion(false)
-                }
-                setUpdateList(false)
-                setForm(false)
-            })
-            .catch((error)=> {
-                console.log(error)
-            })
-        }
+        axios.put('/api/exams/setQuestion', {
+            options,
+            correctOption:correctAnswer,
+            text,
+            ...(load === true && { img: url}),
+            title:examName,
+            ...(selectedOption && { subject: selectedOption}),
+            token
+        })
+        .then(()=>{
+            if (question === true) {
+                setQuestion(false)
+            }
+            setUpdateList(false)
+            setForm(false)
+        })
+        .catch((error)=> {
+            console.log(error)
+        })
     }
     return (
       <>
@@ -299,6 +283,7 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
                     <p>failed to render the image</p>
                 )}
             </div>
+            <CustomSelect options={questionList} selectedOption={selectedOption} setSelectedOption={setSelectedOption} isOpen={isOpen} setIsOpen={setIsOpen}/>
             {options.map((option, index) => (
                 <div key={index}>
                     <label htmlFor={`option-${index}`}>Option {index + 1}:</label>
