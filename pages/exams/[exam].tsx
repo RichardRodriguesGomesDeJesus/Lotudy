@@ -84,7 +84,7 @@ export default function ExamPage() {
     <Main>
       <Title>Create and practice with custom exam questions: {examName}.</Title>
       {form === true &&
-        <QuestionForm examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} updateList={updateList} setUpdateList={setUpdateList} />
+        <QuestionForm questionList={questionList} examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} updateList={updateList} setUpdateList={setUpdateList} />
       }
       {
         form === false && question === false &&
