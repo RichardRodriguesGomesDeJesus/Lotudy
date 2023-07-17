@@ -6,6 +6,7 @@ import { parseCookies } from "nookies";
 import { useState, useEffect } from "react";
 import QuestionForm from "../../components/questionForm";
 import Question from "../../components/question";
+import SubjectCards from "../../components/subjectsCards";
 
 export default function ExamPage() {
 
@@ -18,6 +19,8 @@ export default function ExamPage() {
   const [request, setRequest] = useState(false);
   const [userAuth , setUserAuth] = useState(true)
   const [questionList, setList] = useState([])
+  const [clickCard, setClickCard] = useState(false)
+  const [questionSubjectList, setQuestionSubjectList] = useState([])
   const[updateList, setUpdateList] = useState(false)
   const [question, setQuestion] = useState(false)
   useEffect(()=>{
@@ -87,6 +90,10 @@ export default function ExamPage() {
         <QuestionForm questionList={questionList} examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} updateList={updateList} setUpdateList={setUpdateList} />
       }
       {
+        question === false && form === false && questionList.length > 0 &&
+        <SubjectCards subjects={questionList} setQuestion={setQuestion} setClickCard={setClickCard} setQuestionSubjectList={setQuestionSubjectList}  />
+      }
+      {
         form === false && question === false &&
         <Button onClick={(e)=>{
           e.preventDefault()
@@ -102,7 +109,7 @@ export default function ExamPage() {
       }
       {
         question === true &&   form === false && 
-          <Question token={token} examName={examName} setQuestion={setQuestion}  />
+          <Question token={token} examName={examName} setQuestion={setQuestion} questionList={(clickCard === true ? questionSubjectList : questionList)} clickCard={clickCard} setClickCard={setClickCard}  />
       }
     </Main>
     <Footer>
