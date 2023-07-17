@@ -82,9 +82,9 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
           <OptionsList isOpen={isOpen}>
             {options.map((option,index) => (
               <OptionItem key={index} onClick={() => {
-                handleOptionClick(option)
+                handleOptionClick(option.subject)
               }}>
-                {option}
+                {option.subject}
               </OptionItem>
             ))}
             <Button onClick={(e)=>{
@@ -103,7 +103,7 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
           <Button onClick={(e)=>{
             e.preventDefault()
             if (newCategory !== '') {
-              options.push(newCategory)
+              options.push({subject: newCategory})
               setNewAddCategory(false)
             }
           }} >Create Category</Button>
