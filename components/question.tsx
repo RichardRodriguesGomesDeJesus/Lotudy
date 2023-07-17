@@ -187,7 +187,7 @@ const MessageForm = styled.div`
     width: auto;
   }
 `
-export default function Question({ token, examName, setQuestion }) {
+export default function Question({ token, examName, setQuestion, questionList, clickCard, setClickCard}) {
   const [questionsText, setQuestionsText] = useState([]);
   const [questionsOptions, setQuestionsOptions] = useState([]);
   const [ correctOption, setCorrectOption ] = useState('')
@@ -203,25 +203,15 @@ export default function Question({ token, examName, setQuestion }) {
   const [ questionsUrlImg , setQuestionsUrlImg] = useState([])
 
   if (request === false) {
-    axios.post("/api/exams/getQuestions", {
-        title: examName,
-        token,
-      })
-      .then((res) => {
-        const listText = res.data.exam.questions.map((question) => question.text);
-        setQuestionsText(listText);
-        const listOptions = res.data.exam.questions.map((question) => question.options);
-        setQuestionsOptions(listOptions);
-        const correct = res.data.exam.questions.map((questions)=> questions.correctOption)
-        setCorrectOption(correct)
-        setRequest(true);
-        const url = res.data.exam.questions.map((questions)=> questions.img)
-        setQuestionsUrlImg(url)
-      })
-      .catch((err) => {
-        console.log(err);
-        setRequest(true);
-      });
+    const listText = questionList.map((question) => question.text);
+    setQuestionsText(listText);
+    const listOptions = questionList.map((question) => question.options);
+    setQuestionsOptions(listOptions);
+    const correct = questionList.map((questions)=> questions.correctOption)
+    setCorrectOption(correct)
+    const url = questionList.map((questions)=> questions.img)
+    setQuestionsUrlImg(url)
+    setRequest(true)
   }
   function NextQuestion() {
     if (indexQuestion + 1 >= questionsText.length){
@@ -291,7 +281,13 @@ export default function Question({ token, examName, setQuestion }) {
               </p>
               <ButtonNext onClick={(e)=>{
                 e.preventDefault()
-                setQuestion(false)
+                if (clickCard == true) {
+                  setClickCard(false)
+                  setQuestion(false)
+                } else {
+                  setClickCard(false)
+                  setQuestion(false)
+                }
               }}>Voltar</ButtonNext>
             </MessageForm>
         }
