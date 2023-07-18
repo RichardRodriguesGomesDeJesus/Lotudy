@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
 import FormStydyCycle from "../../components/formStudyCycle";
 import { useEffect, useState } from "react";
 import UserStudyCycle from "../../components/studyCycle";
@@ -13,6 +13,7 @@ export default function studyCyclePage() {
   const { 'token': token } = parseCookies();
   const [userAuth , setUserAuth] = useState(true)
   const router = useRouter();
+  const [translateX, setTranslateX] = useState('100%');
   
   useEffect(() => {
     const fetchStudyCycle = async () => {
@@ -60,12 +61,19 @@ export default function studyCyclePage() {
   } 
   return(
         <>
-        <Header>
+        <Header translateX={translateX} >
             <nav>
-                <Link href={'/dashboard'} > Dashboard</Link>
-                <Link href={'/exams'}>Exams</Link>
-                <Link href={'/flex-cards'}>Flash Cards</Link>
+                <div>
+                  <Link href={'/dashboard'} > Dashboard</Link>
+                </div>
+                <div>
+                  <Link href={'/exams'}>Exams</Link>
+                </div>
+                <div>
+                  <Link href={'/flex-cards'}>Flash Cards</Link>
+                </div>
             </nav>
+            <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
         </Header>
         <Main>
           <Title>Create a study cycle</Title>

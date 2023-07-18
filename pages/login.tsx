@@ -1,15 +1,22 @@
 import Link from "next/link";
-import { Header, Title, Main, Footer  } from "../components/sharedstyles";
+import ResponsiveMenu, { Header, Title, Main, Footer  } from "../components/sharedstyles";
 import { FormLogin } from "../components/formLogin";
+import { useState } from "react";
 
 export default function Login (){
+    const [translateX, setTranslateX] = useState('100%');
     return (
         <>
-             <Header>
+             <Header translateX={translateX} >
                 <nav>
-                    <Link href={'/'}>Home</Link>
-                    <Link href={'/register'}>Register</Link>
+                    <div>
+                        <Link href={'/'}>Home</Link>
+                    </div>
+                    <div>
+                        <Link href={'/register'}>Register</Link>
+                    </div>
                 </nav>
+                <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
             </Header>
             <Main>
                 <Title>Sign in to your account.</Title>

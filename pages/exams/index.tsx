@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Header, Title, Footer, Main } from "../../components/sharedstyles";
+import ResponsiveMenu, { Header, Title, Footer, Main } from "../../components/sharedstyles";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
@@ -13,6 +13,7 @@ export default function exams() {
     const [examList, setExamList] = useState([]);
     const [userAuth , setUserAuth] = useState(true)
     const router = useRouter();
+    const [translateX, setTranslateX] = useState('100%');
     useEffect(()=>{
         if (!token) {
         setUserAuth(false)
@@ -57,12 +58,19 @@ export default function exams() {
       }, [token,formUpdate === true]);
     return(
         <>
-            <Header>
-                <nav>
+            <Header translateX={translateX} >
+              <nav>
+                  <div>
                     <Link href={'/dashboard'}>Dashboard</Link>
+                  </div>
+                  <div>
                     <Link href={'/study-cycle'}>Study Cycle</Link>
+                  </div>
+                  <div>
                     <Link href={'/flex-cards'}>Flash Cards</Link>
-                </nav>
+                  </div>
+              </nav>
+              <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
             </Header>
             <Main>
                 <Title>Create exams and study however you want.</Title>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
 import FlashCardDecks from "../../components/flashcardDecks";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ export default function flexCards() {
     const { 'token': token } = parseCookies();
     const [userAuth, setUserAuth] = useState(true);
     const router = useRouter();
+    const [translateX, setTranslateX] = useState('100%');
   
     useEffect(() => {
       if (!token) {
@@ -44,12 +45,13 @@ export default function flexCards() {
   
     return (
       <>
-        <Header>
+        <Header translateX={translateX}>
           <nav>
             <Link href={'/dashboard'}>Dashboard</Link>
             <Link href={'/exams'}>Exams</Link>
             <Link href={'/study-cycle'}>Study Cycle</Link>
           </nav>
+          <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
         </Header>
         <Main>
           <Title>Create a deck of review cards</Title>

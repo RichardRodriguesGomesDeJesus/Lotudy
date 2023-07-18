@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Footer, Header, Main, Title } from "../components/sharedstyles";
+import ResponsiveMenu, { Footer, Header, Main, Title } from "../components/sharedstyles";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -14,6 +14,7 @@ export default function Dashboard() {
   const [userAuth , setUserAuth] = useState(true)
   const [StudyCycle , setStudyCycle] = useState<studyCycle[]>([])
   const router = useRouter();
+  const [translateX, setTranslateX] = useState('100%');
   useEffect(()=>{
     if (!token) {
       setUserAuth(false)
@@ -59,13 +60,22 @@ export default function Dashboard() {
     }, [token]);
   return (
     <>
-      <Header>
+      <Header translateX={translateX} >
         <nav>
-          <Link href={'/'} >Home</Link>
-          <Link href={'/exams'} >Exams</Link>
-          <Link href={'/study-cycle'} >Study cycle</Link>
-          <Link href={'/flex-cards'}>Flash Cards</Link>
+          <div>
+            <Link href={'/'} >Home</Link>
+          </div>
+          <div>
+            <Link href={'/exams'} >Exams</Link>
+          </div>
+          <div>
+            <Link href={'/study-cycle'} >Study cycle</Link>
+          </div>
+          <div>
+            <Link href={'/flex-cards'}>Flash Cards</Link>
+          </div>
         </nav>
+        <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
       </Header>
       <Main>
         <Title>Dashboard</Title>

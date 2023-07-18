@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {
+import ResponsiveMenu, {
   Main,
   Header,
   Title,
@@ -8,8 +8,10 @@ import {
 } from '../components/sharedstyles'
 import Cards from '../components/cards'
 import Link from 'next/link'
+import { useState } from 'react';
 
 export default function Home() {
+  const [translateX, setTranslateX] = useState('100%');
      
   return (
     <>
@@ -21,15 +23,28 @@ export default function Home() {
           @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
         </style>
       </Head>
-      <Header>
+      <Header translateX={translateX} >
         <nav>
-          <Link href={'/login'}>Login</Link>
-          <Link href={'/register'}>Cadastre-se</Link>
-          <Link href={'/dashboard'} > Dashboard</Link>
-          <Link href={'/exams'} >Exams</Link>
-          <Link href={'/study-cycle'} >Study cycle</Link>
-          <Link href={'/flex-cards'}>Flash Cards</Link>
+          <div>
+            <Link href={'/login'}>Login</Link>
+          </div>
+          <div>
+            <Link href={'/register'}>Cadastre-se</Link>
+          </div>
+          <div>
+            <Link href={'/dashboard'} > Dashboard</Link>
+          </div>
+          <div>
+            <Link href={'/exams'} >Exams</Link>
+          </div>
+          <div>
+            <Link href={'/study-cycle'} >Study cycle</Link>
+          </div>
+          <div>
+            <Link href={'/flex-cards'}>Flash Cards</Link>
+          </div>
         </nav>
+        <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
       </Header>
       <Main>
         <Title>Venha para o VestibulaPro</Title>

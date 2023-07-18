@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Button, Container, Footer, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Container, Footer, Header, Main, Title } from "../../components/sharedstyles";
 import Link from "next/link";
 import axios from "axios";
 import { parseCookies } from "nookies";
@@ -23,6 +23,7 @@ export default function ExamPage() {
   const [questionSubjectList, setQuestionSubjectList] = useState([])
   const[updateList, setUpdateList] = useState(false)
   const [question, setQuestion] = useState(false)
+  const [translateX, setTranslateX] = useState('100%');
   useEffect(()=>{
     if (!token) {
       setUserAuth(false)
@@ -76,13 +77,22 @@ export default function ExamPage() {
   const [form, setForm] = useState(false)
   return (
     <>
-    <Header>
+    <Header translateX={translateX} >
       <nav>
-        <Link href={'/dashboard'} > Dashboard</Link>
-        <Link href={'/exams'}>Exams</Link>
-        <Link href={'/study-cycle'}>Study Cycle</Link>
-        <Link href={'/flex-cards'}>Flash Cards</Link>
+        <div>
+          <Link href={'/dashboard'} > Dashboard</Link>
+        </div>
+        <div>
+          <Link href={'/exams'}>Exams</Link>
+        </div>
+        <div>
+          <Link href={'/study-cycle'}>Study Cycle</Link>
+        </div>
+        <div>
+          <Link href={'/flex-cards'}>Flash Cards</Link>
+        </div>
       </nav>
+      <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
     </Header>
     <Main>
       <Title>Create and practice with custom exam questions: {examName}.</Title>

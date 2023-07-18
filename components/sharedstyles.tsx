@@ -33,11 +33,61 @@ const Main = styled.main`
   padding: 1rem;
   width:100vw;
 `
+const Menu = styled.div<Props>`
+  cursor: pointer;
+  div {
+    width: 32px;
+    height: 2px;
+    background: #fff;
+    margin: 8px;
+    transition: 0.3s;
+  }
 
-const Header = styled.header`
+  @media screen and (max-width: 768px ){
+    display: block;
+  };
+  @media screen and (min-width: 769px ){
+    display: none;
+  };
+  .line1 {
+    ${(props => props.translateX == '0' ? 'transform: rotate(-45deg) translate(-8px, 8px);': '')}
+  }
+  
+  .line2 {
+    ${(props => props.translateX == '0' ? 'opacity: 0;': '')}
+
+  }
+  
+  .line3 {
+    ${(props => props.translateX == '0' ? 'transform: rotate(45deg) translate(-5px, -7px);': '')}
+    
+  }
+
+`
+export default function ResponsiveMenu({translateX, setTranslateX}){
+  return(
+    <Menu translateX={translateX} onClick={()=>{
+      if (translateX == '0') {
+        setTranslateX('100%')
+      } else {
+        setTranslateX('0')
+      }
+    }}>
+      <div className='line1'></div>
+      <div className='line2'></div>
+      <div className='line3'></div>
+    </Menu>
+  )
+}
+interface Props {
+  translateX: string | number;
+}
+
+const Header = styled.header<Props>`
   background: ${colors.principalColor} ;
   display: flex;
   min-height: 5rem;
+  justify-content: flex-end;
   padding: 1rem 0;
   width: 100vw;
   nav{
@@ -45,23 +95,40 @@ const Header = styled.header`
     color: #fff;
     display: flex;
     gap: 1rem;
-    margin: 0 1rem;
     font-weight: 400;
     width: 100%;
-  }
-  @media screen and (min-width: 0 ){
-    nav{
-      flex-direction: column;
+    div{
+      display:flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
     }
-  };
-  @media screen and (min-width: 768px ){
+  }
+  @media screen and (max-width: 768px ){
     nav{
+      position: absolute;
+      top: 8vh;
+      right: 0;
+      width: 50vw;
+      height: 92vh;
+      background: ${colors.principalColor};
       flex-direction: column;
+      align-items: center;
+      text-align:center;
+      justify-content: space-around;
+      transform: translateX(${props => props.translateX || '100%'});
+      transition: transform 0.3s ease-in;
+      margin: 0 ;
+      div{
+        width:100%;
+      }
     }
   };
   @media screen and (min-width: 1024px  ){
     nav{
+      display: flex;
       flex-direction: row;
+      margin: 0 1rem;
     }
   };
 `
@@ -82,25 +149,25 @@ const Title = styled.h1`
   };
 ` 
 const Description = styled.p`
-display: flex;
-flex-grow: 1;
-align-items: center;
-text-align: center;
-margin:0;
-background: ${colors.white};
-font-weight: 400;
-width:100vw;
-@media screen and (min-width: 0 ){
-  font-size: 1rem;
-  padding: 1rem;
-};
-@media screen and (min-width: 768px ){
-  font-size: 1.25rem;
-  padding: 2rem;
-};
-@media screen and (min-width: 1024px) {
-  padding: 3rem;
-};
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  text-align: center;
+  margin:0;
+  background: ${colors.white};
+  font-weight: 400;
+  width:100vw;
+  @media screen and (min-width: 0 ){
+    font-size: 1rem;
+    padding: 1rem;
+  };
+  @media screen and (min-width: 768px ){
+    font-size: 1.25rem;
+    padding: 2rem;
+  };
+  @media screen and (min-width: 1024px) {
+    padding: 3rem;
+  };
 `
 const Footer = styled.footer`
   color: ${colors.white};

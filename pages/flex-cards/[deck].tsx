@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
-import { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
 import Link from "next/link";
 import FlashCards from "../../components/flashCards";
 import FormCards from "../../components/formCards";
@@ -17,6 +17,7 @@ export default function deck() {
     const [userAuth, setUserAuth] = useState(true);
     const [cardList, setCardList] = useState([]);
     const [updateCards, setUpdateCards] = useState(false);
+    const [translateX, setTranslateX] = useState('100%');
   
     useEffect(() => {
       if (!token) {
@@ -64,12 +65,19 @@ export default function deck() {
   
     return (
       <>
-        <Header>
+        <Header translateX={translateX} >
           <nav>
-            <Link href={'/dashboard'}>Dashboard</Link>
-            <Link href={'/exams'}>Exams</Link>
-            <Link href={'/study-cycle'}>Study Cycle</Link>
+            <div>
+              <Link href={'/dashboard'}>Dashboard</Link>
+            </div>
+            <div>
+              <Link href={'/exams'}>Exams</Link>
+            </div>
+            <div>
+              <Link href={'/study-cycle'}>Study Cycle</Link>
+            </div>
           </nav>
+          <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
         </Header>
         <Main>
           <Title>Deck - {deckName}</Title>
