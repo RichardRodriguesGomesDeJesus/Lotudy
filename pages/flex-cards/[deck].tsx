@@ -17,7 +17,7 @@ export default function deck() {
     const [userAuth, setUserAuth] = useState(true);
     const [cardList, setCardList] = useState([]);
     const [updateCards, setUpdateCards] = useState(false);
-    const [translateX, setTranslateX] = useState('100%');
+    const [display, setDisplay] = useState('none');
   
     useEffect(() => {
       if (!token) {
@@ -65,7 +65,7 @@ export default function deck() {
   
     return (
       <>
-        <Header translateX={translateX} >
+        <Header display={display} >
           <nav>
             <div>
               <Link href={'/dashboard'}>Dashboard</Link>
@@ -77,7 +77,7 @@ export default function deck() {
               <Link href={'/study-cycle'}>Study Cycle</Link>
             </div>
           </nav>
-          <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
+          <ResponsiveMenu display={display} setDisplay={setDisplay}/>
         </Header>
         <Main>
           <Title>Deck - {deckName}</Title>

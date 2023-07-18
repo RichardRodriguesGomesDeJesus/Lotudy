@@ -11,7 +11,7 @@ export default function flexCards() {
     const { 'token': token } = parseCookies();
     const [userAuth, setUserAuth] = useState(true);
     const router = useRouter();
-    const [translateX, setTranslateX] = useState('100%');
+    const [display, setDisplay] = useState('none');
   
     useEffect(() => {
       if (!token) {
@@ -45,13 +45,13 @@ export default function flexCards() {
   
     return (
       <>
-        <Header translateX={translateX}>
+        <Header display={display}>
           <nav>
             <Link href={'/dashboard'}>Dashboard</Link>
             <Link href={'/exams'}>Exams</Link>
             <Link href={'/study-cycle'}>Study Cycle</Link>
           </nav>
-          <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
+          <ResponsiveMenu display={display} setDisplay={setDisplay}/>
         </Header>
         <Main>
           <Title>Create a deck of review cards</Title>

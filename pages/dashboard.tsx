@@ -14,7 +14,7 @@ export default function Dashboard() {
   const [userAuth , setUserAuth] = useState(true)
   const [StudyCycle , setStudyCycle] = useState<studyCycle[]>([])
   const router = useRouter();
-  const [translateX, setTranslateX] = useState('100%');
+  const [display, setDisplay] = useState('none');
   useEffect(()=>{
     if (!token) {
       setUserAuth(false)
@@ -60,7 +60,7 @@ export default function Dashboard() {
     }, [token]);
   return (
     <>
-      <Header translateX={translateX} >
+      <Header display={display} >
         <nav>
           <div>
             <Link href={'/'} >Home</Link>
@@ -75,7 +75,7 @@ export default function Dashboard() {
             <Link href={'/flex-cards'}>Flash Cards</Link>
           </div>
         </nav>
-        <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
+        <ResponsiveMenu display={display} setDisplay={setDisplay}/>
       </Header>
       <Main>
         <Title>Dashboard</Title>

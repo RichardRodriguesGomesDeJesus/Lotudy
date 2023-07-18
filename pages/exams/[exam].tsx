@@ -23,7 +23,7 @@ export default function ExamPage() {
   const [questionSubjectList, setQuestionSubjectList] = useState([])
   const[updateList, setUpdateList] = useState(false)
   const [question, setQuestion] = useState(false)
-  const [translateX, setTranslateX] = useState('100%');
+  const [display, setDisplay] = useState('none');
   useEffect(()=>{
     if (!token) {
       setUserAuth(false)
@@ -77,7 +77,7 @@ export default function ExamPage() {
   const [form, setForm] = useState(false)
   return (
     <>
-    <Header translateX={translateX} >
+    <Header display={display} >
       <nav>
         <div>
           <Link href={'/dashboard'} > Dashboard</Link>
@@ -92,7 +92,7 @@ export default function ExamPage() {
           <Link href={'/flex-cards'}>Flash Cards</Link>
         </div>
       </nav>
-      <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
+      <ResponsiveMenu display={display} setDisplay={setDisplay}/>
     </Header>
     <Main>
       <Title>Create and practice with custom exam questions: {examName}.</Title>

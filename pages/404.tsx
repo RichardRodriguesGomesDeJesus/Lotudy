@@ -3,10 +3,10 @@ import ResponsiveMenu, { Footer, Header, Main } from "../components/sharedstyles
 import { useState } from "react";
 
 export default function Custom404() {
-    const [translateX, setTranslateX] = useState('100%');
+  const [display, setDisplay] = useState('none');
     return (
     <>
-      <Header translateX={translateX} >
+      <Header display={display} >
             <nav>
                 <div>
                   <Link href={'/dashboard'} > Dashboard</Link>
@@ -18,7 +18,7 @@ export default function Custom404() {
                   <Link href={'/flex-cards'}>Cards de revisão</Link>
                 </div>
             </nav>
-            <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
+            <ResponsiveMenu display={display} setDisplay={setDisplay}/>
       </Header>
       <Main>
         <h1>404 - Page Not Found</h1>

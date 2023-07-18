@@ -13,7 +13,7 @@ export default function exams() {
     const [examList, setExamList] = useState([]);
     const [userAuth , setUserAuth] = useState(true)
     const router = useRouter();
-    const [translateX, setTranslateX] = useState('100%');
+    const [display, setDisplay] = useState('none');
     useEffect(()=>{
         if (!token) {
         setUserAuth(false)
@@ -58,7 +58,7 @@ export default function exams() {
       }, [token,formUpdate === true]);
     return(
         <>
-            <Header translateX={translateX} >
+            <Header display={display} >
               <nav>
                   <div>
                     <Link href={'/dashboard'}>Dashboard</Link>
@@ -70,7 +70,7 @@ export default function exams() {
                     <Link href={'/flex-cards'}>Flash Cards</Link>
                   </div>
               </nav>
-              <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
+              <ResponsiveMenu display={display} setDisplay={display}/>
             </Header>
             <Main>
                 <Title>Create exams and study however you want.</Title>

@@ -13,7 +13,7 @@ export default function studyCyclePage() {
   const { 'token': token } = parseCookies();
   const [userAuth , setUserAuth] = useState(true)
   const router = useRouter();
-  const [translateX, setTranslateX] = useState('100%');
+  const [display, setDisplay] = useState('none');
   
   useEffect(() => {
     const fetchStudyCycle = async () => {
@@ -61,7 +61,7 @@ export default function studyCyclePage() {
   } 
   return(
         <>
-        <Header translateX={translateX} >
+        <Header display={display} >
             <nav>
                 <div>
                   <Link href={'/dashboard'} > Dashboard</Link>
@@ -73,7 +73,7 @@ export default function studyCyclePage() {
                   <Link href={'/flex-cards'}>Flash Cards</Link>
                 </div>
             </nav>
-            <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
+            <ResponsiveMenu display={display} setDisplay={setDisplay}/>
         </Header>
         <Main>
           <Title>Create a study cycle</Title>

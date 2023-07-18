@@ -4,10 +4,10 @@ import { FormLogin } from "../components/formLogin";
 import { useState } from "react";
 
 export default function Login (){
-    const [translateX, setTranslateX] = useState('100%');
+    const [display, setDisplay] = useState('none');
     return (
         <>
-             <Header translateX={translateX} >
+             <Header display={display} >
                 <nav>
                     <div>
                         <Link href={'/'}>Home</Link>
@@ -16,7 +16,7 @@ export default function Login (){
                         <Link href={'/register'}>Register</Link>
                     </div>
                 </nav>
-                <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
+                <ResponsiveMenu display={display} setDisplay={setDisplay} />
             </Header>
             <Main>
                 <Title>Sign in to your account.</Title>

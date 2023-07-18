@@ -50,27 +50,27 @@ const Menu = styled.div<Props>`
     display: none;
   };
   .line1 {
-    ${(props => props.translateX == '0' ? 'transform: rotate(-45deg) translate(-8px, 8px);': '')}
+    ${(props => props.display == 'flex' ? 'transform: rotate(-45deg) translate(-8px, 8px);': '')}
   }
   
   .line2 {
-    ${(props => props.translateX == '0' ? 'opacity: 0;': '')}
+    ${(props => props.display == 'flex' ? 'opacity: 0;': '')}
 
   }
   
   .line3 {
-    ${(props => props.translateX == '0' ? 'transform: rotate(45deg) translate(-5px, -7px);': '')}
+    ${(props => props.display == 'flex' ? 'transform: rotate(45deg) translate(-5px, -7px);': '')}
     
   }
 
 `
-export default function ResponsiveMenu({translateX, setTranslateX}){
+export default function ResponsiveMenu({display, setDisplay}){
   return(
-    <Menu translateX={translateX} onClick={()=>{
-      if (translateX == '0') {
-        setTranslateX('100%')
+    <Menu display={display} onClick={()=>{
+      if(display == 'none'){
+        setDisplay('flex')
       } else {
-        setTranslateX('0')
+        setDisplay('none')
       }
     }}>
       <div className='line1'></div>
@@ -80,7 +80,7 @@ export default function ResponsiveMenu({translateX, setTranslateX}){
   )
 }
 interface Props {
-  translateX: string | number;
+  display: string
 }
 
 const Header = styled.header<Props>`
@@ -106,6 +106,7 @@ const Header = styled.header<Props>`
   }
   @media screen and (max-width: 768px ){
     nav{
+      display : ${(Props => Props.display || 'none' )};
       position: absolute;
       top: 8vh;
       right: 0;
@@ -116,7 +117,6 @@ const Header = styled.header<Props>`
       align-items: center;
       text-align:center;
       justify-content: space-around;
-      transform: translateX(${props => props.translateX || '100%'});
       transition: transform 0.3s ease-in;
       margin: 0 ;
       div{

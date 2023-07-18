@@ -11,7 +11,7 @@ import Link from 'next/link'
 import { useState } from 'react';
 
 export default function Home() {
-  const [translateX, setTranslateX] = useState('100%');
+  const [display, setDisplay] = useState('none');
      
   return (
     <>
@@ -23,7 +23,7 @@ export default function Home() {
           @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
         </style>
       </Head>
-      <Header translateX={translateX} >
+      <Header display={display} >
         <nav>
           <div>
             <Link href={'/login'}>Login</Link>
@@ -44,7 +44,7 @@ export default function Home() {
             <Link href={'/flex-cards'}>Flash Cards</Link>
           </div>
         </nav>
-        <ResponsiveMenu translateX={translateX} setTranslateX={setTranslateX}/>
+        <ResponsiveMenu display={display} setDisplay={setDisplay}  />
       </Header>
       <Main>
         <Title>Venha para o VestibulaPro</Title>
