@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "./sharedstyles";
+import { colorSegundary } from "./sharedstyles";
 import Link from "next/link";
 
 const Dashboard = styled.div`
@@ -19,7 +19,7 @@ const Dashboard = styled.div`
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        background: ${colors.white};
+        background: ${colorSegundary.white};
         text-align: center;
         padding: 1rem;
         color: inherit;
@@ -31,8 +31,8 @@ const Dashboard = styled.div`
         :focus,
         :active {
             cursor: pointer;
-            color: ${colors.principalColor};
-            border-color: ${colors.titleColor};
+            color: ${colorSegundary.principalColor};
+            border-color: ${colorSegundary.titleColor};
         }
         @media screen and (min-width: 0 ){
             height:150px;

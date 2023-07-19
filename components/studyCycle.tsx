@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, ButtonClose, colors } from "./sharedstyles";
+import { Button, ButtonClose, colorSegundary } from "./sharedstyles";
 import {  useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -22,8 +22,8 @@ const Form = styled.form`
     span {
       align-content: center;
       align-items: center;
-      background: ${colors.white};
-      box-shadow: 0 8px 8px ${colors.textColor};
+      background: ${colorSegundary.white};
+      box-shadow: 0 8px 8px ${colorSegundary.textColor};
       border-radius: 1rem;
       display: flex;
       flex-direction: row;
@@ -37,7 +37,7 @@ const Form = styled.form`
       transition: 0.5s;
       width: 300px;
       label {
-        color: ${colors.textColor};
+        color: ${colorSegundary.textColor};
         font-size: 1.2rem;
         font-weight: 400;
       }
@@ -49,9 +49,9 @@ const Form = styled.form`
       }
       input,
       textarea {
-        border: 1px solid ${colors.textColor};
+        border: 1px solid ${colorSegundary.textColor};
         border-radius: 0.5rem;
-        box-shadow: 0 4px 4px ${colors.textColor};
+        box-shadow: 0 4px 4px ${colorSegundary.textColor};
         font-family: "Poppins", sans-serif;
         text-align: center;
       }
@@ -126,11 +126,11 @@ const Form = styled.form`
 `;
 const ButtonInput = styled.button`
   align-items: center;
-  background: ${colors.sideColor};
+  background: ${colorSegundary.sideColor};
   border: none;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 4px ${colors.textColor};
-  color: ${colors.white};
+  box-shadow: 0 4px 4px ${colorSegundary.textColor};
+  color: ${colorSegundary.white};
   display: flex;
   justify-content: center;
   margin: 1rem auto;
@@ -139,10 +139,10 @@ const ButtonInput = styled.button`
   :focus,
   :active {
     cursor: pointer;
-    color: ${colors.sideColor};
-    background: ${colors.white};
-    border: 1px solid ${colors.sideColor};
-    border-color: ${colors.sideColor};
+    color: ${colorSegundary.sideColor};
+    background: ${colorSegundary.white};
+    border: 1px solid ${colorSegundary.sideColor};
+    border-color: ${colorSegundary.sideColor};
     padding: calc(0.5em - 1px);
   }
   @media screen and (min-width: 0) {
@@ -159,21 +159,21 @@ const ButtonInput = styled.button`
   }
 `;
 const CompletedDiv = styled.p`
-background: ${colors.principalColor};
+background: ${colorSegundary.principalColor};
 border: none;
 border-radius: .5rem;
-box-shadow: 0 4px 4px ${colors.textColor};
-color: ${colors.white};
+box-shadow: 0 4px 4px ${colorSegundary.textColor};
+color: ${colorSegundary.white};
 margin: 1rem auto;
 padding: .5rem;
 &:hover,
 :focus,
 :active {
     cursor: pointer;
-    color: ${colors.principalColor};
-    background: ${colors.white};
-    border: 1px solid ${colors.principalColor};
-    border-color: ${colors.principalColor};
+    color: ${colorSegundary.principalColor};
+    background: ${colorSegundary.white};
+    border: 1px solid ${colorSegundary.principalColor};
+    border-color: ${colorSegundary.principalColor};
     padding: calc(.5rem - 1px);
 }
 @media screen and (min-width: 0 ){

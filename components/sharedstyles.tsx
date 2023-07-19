@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const colors = {
+export const colorSegundary = {
   principalColor: "#16c1c8",
   sideColor: "#665df5",
   titleColor: "#49cccc",
@@ -22,7 +22,7 @@ const Container = styled.div`
   min-height: 100vh;
 `
 const Main = styled.main`
-  color: ${colors.textColor};
+  color: ${colorSegundary.textColor};
   padding: 0 1rem;
   flex: 1;
   display: flex;
@@ -84,7 +84,7 @@ interface Props {
 }
 
 const Header = styled.header<Props>`
-  background: ${colors.principalColor} ;
+  background: ${colorSegundary.principalColor} ;
   display: flex;
   min-height: 5rem;
   justify-content: flex-end;
@@ -112,7 +112,7 @@ const Header = styled.header<Props>`
       right: 0;
       width: 50vw;
       height: 92vh;
-      background: ${colors.principalColor};
+      background: ${colorSegundary.principalColor};
       flex-direction: column;
       align-items: center;
       text-align:center;
@@ -133,7 +133,7 @@ const Header = styled.header<Props>`
   };
 `
 const Title = styled.h1`
-  color: ${colors.titleColor};
+  color: ${colorSegundary.titleColor};
   font-weight: 600;
   text-transform: capitalize;
   text-align:center;
@@ -154,7 +154,7 @@ const Description = styled.p`
   align-items: center;
   text-align: center;
   margin:0;
-  background: ${colors.white};
+  background: ${colorSegundary.white};
   font-weight: 400;
   width:100vw;
   @media screen and (min-width: 0 ){
@@ -170,10 +170,10 @@ const Description = styled.p`
   };
 `
 const Footer = styled.footer`
-  color: ${colors.white};
+  color: ${colorSegundary.white};
   justify-content: center;
   align-items: center;
-  background: ${colors.sideColor};
+  background: ${colorSegundary.sideColor};
   gap: 1rem;
   font-weight: 400;
   display: flex;
@@ -182,11 +182,11 @@ const Footer = styled.footer`
   width: 100vw;
 `
 const Button = styled.button`
-  background: ${colors.sideColor};
+  background: ${colorSegundary.sideColor};
   border: none;
   border-radius: .5rem;
-  box-shadow: 0 4px 4px ${colors.textColor};
-  color: ${colors.white};
+  box-shadow: 0 4px 4px ${colorSegundary.textColor};
+  color: ${colorSegundary.white};
   margin: 1rem auto;
   padding: .5em;
   transition: .2s;
@@ -194,10 +194,10 @@ const Button = styled.button`
   :focus,
   :active {
       cursor: pointer;
-      color: ${colors.sideColor};
-      background: ${colors.white};
-      border: 1px solid ${colors.sideColor};
-      border-color: ${colors.sideColor};
+      color: ${colorSegundary.sideColor};
+      background: ${colorSegundary.white};
+      border: 1px solid ${colorSegundary.sideColor};
+      border-color: ${colorSegundary.sideColor};
       padding: calc(.5em - 1px);
   }
   @media screen and (min-width: 0 ){
@@ -214,7 +214,7 @@ const ButtonClose = styled.button`
   background: transparent;
   border: none;
   border-radius: .5rem;
-  color: ${colors.white};
+  color: ${colorSegundary.white};
   display:flex;
   justify-content: flex-end;
   height: 30px;
@@ -225,8 +225,8 @@ const ButtonClose = styled.button`
   :focus,
   :active {
       cursor: pointer;
-      color: ${colors.sideColor};
-      border-color: ${colors.sideColor};
+      color: ${colorSegundary.sideColor};
+      border-color: ${colorSegundary.sideColor};
       padding: calc(.125rem -1px);
   }
   img{

@@ -2,7 +2,7 @@ import axios from "axios";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Button, ButtonClose, colors } from "./sharedstyles";
+import { Button, ButtonClose, colorSegundary } from "./sharedstyles";
 import Link from "next/link";
 
 const List = styled.div`
@@ -12,12 +12,12 @@ const List = styled.div`
     gap: 1rem;
     padding: 1rem;
     div,a{
-      box-shadow: 0 4px 20px ${colors.textColor};
+      box-shadow: 0 4px 20px ${colorSegundary.textColor};
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: ${colors.white};
+      background: ${colorSegundary.white};
       text-align: center;
       padding: 1rem;
       color: inherit;
@@ -29,8 +29,8 @@ const List = styled.div`
       :focus,
       :active {
         cursor: pointer;
-        color: ${colors.principalColor};
-        border-color: ${colors.titleColor};
+        color: ${colorSegundary.principalColor};
+        border-color: ${colorSegundary.titleColor};
       }
     }
 `;

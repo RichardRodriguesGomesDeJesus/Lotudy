@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from './sharedstyles'
+import { colorSegundary } from './sharedstyles'
 import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
@@ -22,33 +22,33 @@ const Form = styled.form`
             
         }
         input{
-            border: 1px solid ${colors.textColor};
+            border: 1px solid ${colorSegundary.textColor};
             border-radius: .5rem;
-            box-shadow: 0 4px 4px ${colors.textColor};
+            box-shadow: 0 4px 4px ${colorSegundary.textColor};
             padding: .5rem;
         }
         span{
-            color: ${colors.error};
+            color: ${colorSegundary.error};
             display: none;
         }
         
     }
     button{
-        background: ${colors.sideColor};
+        background: ${colorSegundary.sideColor};
         border: none;
         border-radius: .5rem;
-        box-shadow: 0 4px 4px ${colors.textColor};
-        color: ${colors.white};
+        box-shadow: 0 4px 4px ${colorSegundary.textColor};
+        color: ${colorSegundary.white};
         margin: 0 auto;
         padding: .5em;
         &:hover,
         :focus,
         :active {
             cursor: pointer;
-            color: ${colors.sideColor};
-            background: ${colors.white};
-            border: 1px solid ${colors.sideColor};
-            border-color: ${colors.sideColor};
+            color: ${colorSegundary.sideColor};
+            background: ${colorSegundary.white};
+            border: 1px solid ${colorSegundary.sideColor};
+            border-color: ${colorSegundary.sideColor};
         }
     }
     @media screen and (min-width: 0 ){
@@ -58,7 +58,7 @@ const Form = styled.form`
         div{
             gap: .5rem;
             label{
-                color: ${colors.sideColor};
+                color: ${colorSegundary.sideColor};
                 font-size:1rem;
                 font-weight: 400;
             }
@@ -67,19 +67,19 @@ const Form = styled.form`
             }
         }
         p{
-            color: ${colors.error};
+            color: ${colorSegundary.error};
             margin: 0;
         }
       };
     @media screen and (min-width: 768px ){
-        background: ${colors.white};
-        box-shadow: 0 8px 8px ${colors.textColor};
+        background: ${colorSegundary.white};
+        box-shadow: 0 8px 8px ${colorSegundary.textColor};
         border-radius: 1rem;
         height: 350px;
         width: 600px;
         div{
             label{
-                color: ${colors.sideColor};
+                color: ${colorSegundary.sideColor};
                 font-size:1.2rem;
                 font-weight: 600;
             }
@@ -93,7 +93,7 @@ const Form = styled.form`
         width: 800px;
         div{
             label{
-                color: ${colors.sideColor};
+                color: ${colorSegundary.sideColor};
                 font-size:1.5rem;
                 font-weight: 600;
 
@@ -105,21 +105,21 @@ const Form = styled.form`
     }
 `
 const ButtonSubmit = styled.input`
-    background: ${colors.sideColor};
+    background: ${colorSegundary.sideColor};
     border: none;
     border-radius: .5rem;
-    box-shadow: 0 4px 4px ${colors.textColor};
-    color: ${colors.white};
+    box-shadow: 0 4px 4px ${colorSegundary.textColor};
+    color: ${colorSegundary.white};
     margin: 0 auto;
     padding: .5em;
     &:hover,
     :focus,
     :active {
         cursor: pointer;
-        color: ${colors.sideColor};
-        background: ${colors.white};
-        border: 1px solid ${colors.sideColor};
-        border-color: ${colors.sideColor};
+        color: ${colorSegundary.sideColor};
+        background: ${colorSegundary.white};
+        border: 1px solid ${colorSegundary.sideColor};
+        border-color: ${colorSegundary.sideColor};
         padding: calc(.5em - 1px);
     }
     @media screen and (min-width: 0 ){

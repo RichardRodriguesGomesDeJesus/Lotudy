@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Button, colors } from './sharedstyles';
+import { Button, colorSegundary } from './sharedstyles';
 
 const CustomSelectWrapper = styled.div`
   position: relative;
@@ -8,7 +8,7 @@ const CustomSelectWrapper = styled.div`
   flex-direction: column;
   @media screen and (min-width: 0 ){
     label{
-        color: ${colors.sideColor};
+        color: ${colorSegundary.sideColor};
         font-size:1rem;
         font-weight: 400;
     }
@@ -18,7 +18,7 @@ const CustomSelectWrapper = styled.div`
 };
 @media screen and (min-width: 768px ){
     label{
-        color: ${colors.sideColor};
+        color: ${colorSegundary.sideColor};
         font-size:1.2rem;
         font-weight: 600;
     }

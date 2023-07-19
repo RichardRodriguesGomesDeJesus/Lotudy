@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from './sharedstyles';
+import { colorSegundary } from './sharedstyles';
 import Link from 'next/link';
 const FlexContainer = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ const Card = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background: ${colors.white};
+  background: ${colorSegundary.white};
   text-align: center;
   padding: 0;
   color: inherit;
@@ -37,8 +37,8 @@ const Card = styled.div`
   :focus,
   :active {
     cursor: pointer;
-    color: ${colors.principalColor};
-    border-color: ${colors.titleColor};
+    color: ${colorSegundary.principalColor};
+    border-color: ${colorSegundary.titleColor};
   }
   @media screen and (min-width: 0 ){
     height:150px;

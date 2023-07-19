@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "./sharedstyles";
+import { colorSegundary } from "./sharedstyles";
 import { useState } from "react";
 import studyCycle from "../utils/interfaces";
 import axios from "axios";
@@ -28,10 +28,10 @@ const Form = styled.form`
 
     input,
     textarea {
-      border: 1px solid ${colors.textColor};
+      border: 1px solid ${colorSegundary.textColor};
       border-radius: 0.5rem;
-      box-shadow: 0 4px 4px ${colors.textColor};
-      color: ${colors.textColor};
+      box-shadow: 0 4px 4px ${colorSegundary.textColor};
+      color: ${colorSegundary.textColor};
       font-family: 'Poppins', sans-serif;
       padding: 0.5rem;
       width: 100%;
@@ -39,7 +39,7 @@ const Form = styled.form`
   }
 
   p {
-    color: ${colors.error};
+    color: ${colorSegundary.error};
     margin: 0;
   }
 
@@ -52,7 +52,7 @@ const Form = styled.form`
       gap: 1rem;
 
       label {
-        color: ${colors.sideColor};
+        color: ${colorSegundary.sideColor};
         font-size: 1rem;
         font-weight: 400;
       }
@@ -77,15 +77,15 @@ const Form = styled.form`
   }
 
   @media screen and (min-width: 768px) {
-    background: ${colors.white};
-    box-shadow: 0 8px 8px ${colors.textColor};
+    background: ${colorSegundary.white};
+    box-shadow: 0 8px 8px ${colorSegundary.textColor};
     border-radius: 1rem;
     min-height: 400px;
     width: 600px;
 
     div {
       label {
-        color: ${colors.sideColor};
+        color: ${colorSegundary.sideColor};
         font-size: 1.2rem;
         font-weight: 600;
       }
@@ -132,11 +132,11 @@ const Form = styled.form`
 `;
 
 const ButtonSubmit = styled.input`
-  background: ${colors.sideColor};
+  background: ${colorSegundary.sideColor};
   border: none;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 4px ${colors.textColor};
-  color: ${colors.white};
+  box-shadow: 0 4px 4px ${colorSegundary.textColor};
+  color: ${colorSegundary.white};
   margin: 0 auto;
   padding: 0.5em;
 
@@ -144,10 +144,10 @@ const ButtonSubmit = styled.input`
   &:focus,
   &:active {
     cursor: pointer;
-    color: ${colors.sideColor};
-    background: ${colors.white};
-    border: 1px solid ${colors.sideColor};
-    border-color: ${colors.sideColor};
+    color: ${colorSegundary.sideColor};
+    background: ${colorSegundary.white};
+    border: 1px solid ${colorSegundary.sideColor};
+    border-color: ${colorSegundary.sideColor};
     padding: calc(0.5em - 1px);
   }
 
@@ -166,16 +166,16 @@ const ButtonSubmit = styled.input`
 
 const RadioInput = styled.input`
   box-shadow: none;
-  color: ${colors.textColor};
+  color: ${colorSegundary.textColor};
   padding: 0.5rem;
 `;
 
 const ButtonAddOption = styled.button`
-  background: ${colors.sideColor};
+  background: ${colorSegundary.sideColor};
   border: none;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 4px ${colors.textColor};
-  color: ${colors.white};
+  box-shadow: 0 4px 4px ${colorSegundary.textColor};
+  color: ${colorSegundary.white};
   margin: 0 auto;
   padding: 0.5em;
 
@@ -183,10 +183,10 @@ const ButtonAddOption = styled.button`
   &:focus,
   &:active {
     cursor: pointer;
-    color: ${colors.sideColor};
-    background: ${colors.white};
-    border: 1px solid ${colors.sideColor};
-    border-color: ${colors.sideColor};
+    color: ${colorSegundary.sideColor};
+    background: ${colorSegundary.white};
+    border: 1px solid ${colorSegundary.sideColor};
+    border-color: ${colorSegundary.sideColor};
     padding: calc(0.5em - 1px);
   }
 

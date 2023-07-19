@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, colors } from "./sharedstyles";
+import { Button, colorSegundary } from "./sharedstyles";
 import { useEffect, useState } from "react";
 
 const Div = styled.div`
@@ -26,9 +26,9 @@ const Div = styled.div`
 
     input,
     textarea,select {
-      border: 1px solid ${colors.textColor};
+      border: 1px solid ${colorSegundary.textColor};
       border-radius: 0.5rem;
-      box-shadow: 0 4px 4px ${colors.textColor};
+      box-shadow: 0 4px 4px ${colorSegundary.textColor};
       font-family: 'Poppins', sans-serif;
       padding: 0.5rem;
       text-align: center;
@@ -45,7 +45,7 @@ const Div = styled.div`
   }
 
   p {
-    color: ${colors.error};
+    color: ${colorSegundary.error};
     margin: 0;
   }
 
@@ -56,7 +56,7 @@ const Div = styled.div`
       gap: 1rem;
 
       label {
-        color: ${colors.sideColor};
+        color: ${colorSegundary.sideColor};
         font-size: 1rem;
         font-weight: 400;
       }
@@ -78,7 +78,7 @@ const Div = styled.div`
   @media screen and (min-width: 768px) {
     div {
       label {
-        color: ${colors.sideColor};
+        color: ${colorSegundary.sideColor};
         font-size: 1.2rem;
         font-weight: 600;
       }

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import PieChart from "./pieChart";
-import { Button, colors } from "./sharedstyles";
+import { Button, colorSegundary } from "./sharedstyles";
 import { useRouter } from "next/router";
 
 const StatisticsContainer = styled.div`
-  background: ${colors.white} ;
+  background: ${colorSegundary.white} ;
   display: flex;
   flex-direction: column;
   align-items: center;

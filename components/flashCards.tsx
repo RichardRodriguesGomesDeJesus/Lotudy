@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, colors } from "./sharedstyles";
+import { Button, colorSegundary } from "./sharedstyles";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -31,13 +31,13 @@ const FlexContainer = styled.div`
 `;
 
 const Card = styled.div`
-  box-shadow: 0 4px 20px ${colors.textColor};
+  box-shadow: 0 4px 20px ${colorSegundary.textColor};
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background: ${colors.white};
+  background: ${colorSegundary.white};
   text-align: center;
   padding: 0;
   color: inherit;

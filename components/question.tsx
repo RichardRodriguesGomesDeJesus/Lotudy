@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { colors } from "./sharedstyles";
+import { colorSegundary } from "./sharedstyles";
 
 const Timer = styled.div`
   align-items: center;
-  background: ${colors.white};
-  box-shadow: 0 8px 8px ${colors.textColor};
+  background: ${colorSegundary.white};
+  box-shadow: 0 8px 8px ${colorSegundary.textColor};
   border-radius: 1rem;
   display: flex;
   flex-direction: row;
@@ -17,7 +17,7 @@ const Timer = styled.div`
   height: 40px;
   width: 300px;
   p {
-    color: ${colors.textColor};
+    color: ${colorSegundary.textColor};
     margin: 1rem;
     font-weight: 400;
   }
@@ -25,8 +25,8 @@ const Timer = styled.div`
 
 const Form = styled.form`
   align-items: center;
-  background: ${colors.white};
-  box-shadow: 0 8px 8px ${colors.textColor};
+  background: ${colorSegundary.white};
+  box-shadow: 0 8px 8px ${colorSegundary.textColor};
   border-radius: 1rem;
   display: flex;
   flex-direction: column; 
@@ -36,7 +36,7 @@ const Form = styled.form`
   text-align: center;
 
   p {
-    color: ${colors.textColor};
+    color: ${colorSegundary.textColor};
     margin: 1rem;
     font-weight: 400;
   }
@@ -70,20 +70,20 @@ const Form = styled.form`
 
 const Option = styled.button`
   align-items: flex-start;
-  background: ${colors.white};
-  border: 1px solid ${colors.sideColor};
+  background: ${colorSegundary.white};
+  border: 1px solid ${colorSegundary.sideColor};
   border-radius: 0.5rem;
-  box-shadow: 0 4px 4px ${colors.textColor};
-  color: ${colors.textColor};
+  box-shadow: 0 4px 4px ${colorSegundary.textColor};
+  color: ${colorSegundary.textColor};
   display: flex;
   margin: 0 auto;
   text-align: center;
   padding: 0;
 
   div {
-    background: ${colors.sideColor};
+    background: ${colorSegundary.sideColor};
     border-radius: 0.25rem;
-    color: ${colors.white};
+    color: ${colorSegundary.white};
     padding: 5px;
     margin: 0;
   }
@@ -114,21 +114,21 @@ const Option = styled.button`
 `;
 
 const ButtonNext = styled.button`
-    background: ${colors.sideColor};
+    background: ${colorSegundary.sideColor};
     border: none;
     border-radius: .5rem;
-    box-shadow: 0 4px 4px ${colors.textColor};
-    color: ${colors.white};
+    box-shadow: 0 4px 4px ${colorSegundary.textColor};
+    color: ${colorSegundary.white};
     margin: 0 auto;
     padding: .5em;
     &:hover,
     :focus,
     :active {
         cursor: pointer;
-        color: ${colors.sideColor};
-        background: ${colors.white};
-        border: 1px solid ${colors.sideColor};
-        border-color: ${colors.sideColor};
+        color: ${colorSegundary.sideColor};
+        background: ${colorSegundary.white};
+        border: 1px solid ${colorSegundary.sideColor};
+        border-color: ${colorSegundary.sideColor};
         padding: calc(.5em - 1px);
     }
     @media screen and (min-width: 0 ){
@@ -144,10 +144,10 @@ const ButtonNext = styled.button`
 `
 
 const MessageForm = styled.div`
-  background: ${colors.white};
-  border: 1px solid ${colors.sideColor};
+  background: ${colorSegundary.white};
+  border: 1px solid ${colorSegundary.sideColor};
   border-radius: 0.5rem;
-  box-shadow: 0 4px 4px ${colors.textColor};
+  box-shadow: 0 4px 4px ${colorSegundary.textColor};
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -156,7 +156,7 @@ const MessageForm = styled.div`
   text-align: center;
 
   p {
-    color: ${colors.textColor};
+    color: ${colorSegundary.textColor};
     margin: 1rem;
     font-weight: 400;
   }
@@ -171,8 +171,8 @@ const MessageForm = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    background: ${colors.white};
-    box-shadow: 0 8px 8px ${colors.textColor};
+    background: ${colorSegundary.white};
+    box-shadow: 0 8px 8px ${colorSegundary.textColor};
     border-radius: 1rem;
     min-height: 200px;
     width: auto;

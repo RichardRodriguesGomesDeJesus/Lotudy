@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, ButtonClose, colors } from "./sharedstyles";
+import { Button, ButtonClose, colorSegundary } from "./sharedstyles";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -19,13 +19,13 @@ const FlexContainer = styled.div`
 `;
 
 const Decks = styled.div`
-  box-shadow: 0 4px 20px ${colors.textColor};
+  box-shadow: 0 4px 20px ${colorSegundary.textColor};
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background: ${colors.white};
+  background: ${colorSegundary.white};
   text-align: center;
   padding: 0;
   color: inherit;
@@ -44,8 +44,8 @@ const Decks = styled.div`
   :focus,
   :active {
     cursor: pointer;
-    color: ${colors.principalColor};
-    border-color: ${colors.titleColor};
+    color: ${colorSegundary.principalColor};
+    border-color: ${colorSegundary.titleColor};
   }
   img{
     height: 100px;  

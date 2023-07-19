@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Button, ButtonClose, colors } from "./sharedstyles"
+import { Button, ButtonClose, colorSegundary} from "./sharedstyles"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import CustomSelect from "./select"
@@ -24,30 +24,30 @@ const Form = styled.form`
             width: 100%;
         }
         input, select{
-            border: 1px solid ${colors.textColor};
+            border: 1px solid ${colorSegundary.textColor};
             border-radius: .5rem;
-            box-shadow: 0 4px 4px ${colors.textColor};
-            color: ${colors.textColor} ;
+            box-shadow: 0 4px 4px ${colorSegundary.textColor};
+            color: ${colorSegundary.textColor} ;
             font-family: 'Poppins',sans-serif;
             padding: .5rem;
         }
         textarea{
-            border: 1px solid ${colors.textColor};
+            border: 1px solid ${colorSegundary.textColor};
             border-radius: .5rem;
-            box-shadow: 0 4px 4px ${colors.textColor};
-            color: ${colors.textColor} ;
+            box-shadow: 0 4px 4px ${colorSegundary.textColor};
+            color: ${colorSegundary.textColor} ;
             font-family: 'Poppins',sans-serif;
             padding: .5rem;
         }
     }
     p{
-        color: ${colors.error};
+        color: ${colorSegundary.error};
         margin: 0;
     }
 
     @media screen and (min-width: 0 ){
-        background: ${colors.white};
-        box-shadow: 0 8px 8px ${colors.textColor};
+        background: ${colorSegundary.white};
+        box-shadow: 0 8px 8px ${colorSegundary.textColor};
         border-radius: 1rem;
         gap: 1rem;
         min-height: 400px;
@@ -58,7 +58,7 @@ const Form = styled.form`
         div{
             gap: 1rem;
             label{
-                color: ${colors.sideColor};
+                color: ${colorSegundary.sideColor};
                 font-size:1rem;
                 font-weight: 400;
             }
@@ -87,8 +87,8 @@ const Form = styled.form`
         }
     };
     @media screen and (min-width: 768px ){
-        background: ${colors.white};
-        box-shadow: 0 8px 8px ${colors.textColor};
+        background: ${colorSegundary.white};
+        box-shadow: 0 8px 8px ${colorSegundary.textColor};
         border-radius: 1rem;
         min-height: 400px;
         width: 600px;
@@ -97,7 +97,7 @@ const Form = styled.form`
         }
         div{
             label{
-                color: ${colors.sideColor};
+                color: ${colorSegundary.sideColor};
                 font-size:1.2rem;
                 font-weight: 600;
             }
@@ -125,8 +125,8 @@ const Form = styled.form`
         }
     };
     @media screen and (min-width: 1024px) {
-        background: ${colors.white};
-        box-shadow: 0 8px 8px ${colors.textColor};
+        background: ${colorSegundary.white};
+        box-shadow: 0 8px 8px ${colorSegundary.textColor};
         border-radius: 1rem;
         min-height: 500px;
         width: 800px;
@@ -153,21 +153,21 @@ const Form = styled.form`
     }
 `
 const ButtonSubmit = styled.input`
-    background: ${colors.sideColor};
+    background: ${colorSegundary.sideColor};
     border: none;
     border-radius: .5rem;
-    box-shadow: 0 4px 4px ${colors.textColor};
-    color: ${colors.white};
+    box-shadow: 0 4px 4px ${colorSegundary.textColor};
+    color: ${colorSegundary.white};
     margin: 0 auto;
     padding: .5em;
     &:hover,
     :focus,
     :active {
         cursor: pointer;
-        color: ${colors.sideColor};
-        background: ${colors.white};
-        border: 1px solid ${colors.sideColor};
-        border-color: ${colors.sideColor};
+        color: ${colorSegundary.sideColor};
+        background: ${colorSegundary.white};
+        border: 1px solid ${colorSegundary.sideColor};
+        border-color: ${colorSegundary.sideColor};
         padding: calc(.5em - 1px);
     }
     @media screen and (min-width: 0 ){
@@ -183,25 +183,25 @@ const ButtonSubmit = styled.input`
 `
 const RadioInput = styled.input`
     box-shadow: none;
-    color: ${colors.textColor} ;
+    color: ${colorSegundary.textColor} ;
     padding: .5rem;
 `
 const ButtonAddOption = styled.button`
-    background: ${colors.sideColor};
+    background: ${colorSegundary.sideColor};
     border: none;
     border-radius: .5rem;
-    box-shadow: 0 4px 4px ${colors.textColor};
-    color: ${colors.white};
+    box-shadow: 0 4px 4px ${colorSegundary.textColor};
+    color: ${colorSegundary.white};
     margin: 0 auto;
     padding: .5em;
     &:hover,
     :focus,
     :active {
         cursor: pointer;
-        color: ${colors.sideColor};
-        background: ${colors.white};
-        border: 1px solid ${colors.sideColor};
-        border-color: ${colors.sideColor};
+        color: ${colorSegundary.sideColor};
+        background: ${colorSegundary.white};
+        border: 1px solid ${colorSegundary.sideColor};
+        border-color: ${colorSegundary.sideColor};
         padding: calc(.5em - 1px);
     }
     @media screen and (min-width: 0 ){
