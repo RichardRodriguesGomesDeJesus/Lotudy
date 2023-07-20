@@ -15,14 +15,6 @@ export default function Home() {
      
   return (
     <>
-      <Head>
-        <title>VestibulaPro</title>
-        <meta name="description" content="VestibulaPro" />
-        <link rel="icon" href="/favicon.ico" />
-        <style>
-          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-        </style>
-      </Head>
       <Header display={display} >
         <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
         <nav>
