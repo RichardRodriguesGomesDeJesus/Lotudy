@@ -71,7 +71,7 @@ export default function exams() {
                     <Link href={'/flex-cards'}>Flash Cards</Link>
                   </div>
               </nav>
-              <ResponsiveMenu display={display} setDisplay={display}/>
+              <ResponsiveMenu display={display} setDisplay={setDisplay}/>
             </Header>
             <Main>
                 <Title>Create exams and study however you want.</Title>
