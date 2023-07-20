@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ResponsiveMenu, { Header, Title, Footer, Main } from "../../components/sharedstyles";
+import ResponsiveMenu, { Header, Title, Main } from "../../components/sharedstyles";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
@@ -78,9 +78,6 @@ export default function exams() {
                 <ListExams formUpdate={formUpdate} setFormUpdate={setFormUpdate} examList={examList} setExamList={setExamList}/>
                 <FormExams formUpdate={formUpdate} setFormUpdate={setFormUpdate} examList={examList}/>
             </Main>
-            <Footer>
-                <Link href={'/register'}>Create your account</Link>
-            </Footer>
         </>
     )
 }

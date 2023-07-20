@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ResponsiveMenu, { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles";
 import FlashCardDecks from "../../components/flashcardDecks";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
@@ -75,9 +75,6 @@ export default function flexCards() {
           )}
           <FormDeck token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} cardList={cardList} />
         </Main>
-        <Footer>
-          <Link href={'/register'}>Create an Account</Link>
-        </Footer>
       </>
     )
   }

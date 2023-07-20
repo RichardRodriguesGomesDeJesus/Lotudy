@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import ResponsiveMenu, { Button, Container, Footer, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles";
 import Link from "next/link";
 import axios from "axios";
 import { parseCookies } from "nookies";
@@ -123,9 +123,6 @@ export default function ExamPage() {
           <Question token={token} examName={examName} setQuestion={setQuestion} questionList={(clickCard === true ? questionSubjectList : questionList)} clickCard={clickCard} setClickCard={setClickCard}  />
       }
     </Main>
-    <Footer>
-      <Link href={'/register'}>Create your account</Link>
-    </Footer>
   </>
   )
 }

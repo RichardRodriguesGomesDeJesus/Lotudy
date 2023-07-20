@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
-import ResponsiveMenu, { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles";
 import Link from "next/link";
 import FlashCards from "../../components/flashCards";
 import FormCards from "../../components/formCards";
@@ -86,9 +86,6 @@ export default function deck() {
           {form === false && <Button onClick={() => { setForm(true) }}>Create Cards</Button>}
           {form === true && <FormCards setForm={setForm} setUpdateCards={setUpdateCards} />}
         </Main>
-        <Footer>
-          <Link href={'/register'}>Create an Account</Link>
-        </Footer>
       </>
     )
   }

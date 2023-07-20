@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ResponsiveMenu, { Button, Description, Footer, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Description, Header, Main, Title } from "../../components/sharedstyles";
 import FormStydyCycle from "../../components/formStudyCycle";
 import { useEffect, useState } from "react";
 import UserStudyCycle from "../../components/studyCycle";
@@ -108,9 +108,6 @@ export default function studyCyclePage() {
           }
           
         </Main>
-        <Footer>
-          <Link href={'/register'}>Create an Account</Link>
-        </Footer>
         </>
     )
 }
