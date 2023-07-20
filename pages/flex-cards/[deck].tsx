@@ -66,7 +66,7 @@ export default function deck() {
     return (
       <>
         <Header display={display} >
-          <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
+          <img src="../logo-lotudy-removebg.png" alt="logo da lotudy" />
           <nav>
             <div>
               <Link href={'/dashboard'}>Dashboard</Link>
