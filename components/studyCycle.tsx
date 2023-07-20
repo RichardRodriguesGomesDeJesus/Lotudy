@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, ButtonClose, colorSegundary } from "./sharedstyles";
+import { Button, ButtonClose, Description, colorSegundary } from "./sharedstyles";
 import {  useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -446,15 +446,15 @@ export default function UserStudyCycle({ StudyCycle,token }) {
           setClickReset(true)
         }} >Reset</Button>
       </Form>
-      <div>
+      <Description>
         <p>O ciclo de estudos é uma técnica de estudo para melhoria da aprendizagem e gestão do tempo. É muito utilizada por aprovados em concursos difíceis e pode ser utilizado para qualquer tipo de prova ou estudo, sendo quase obrigatório para quem pretenda estudar com alto desempenho.</p>
 
         <PieChart StudyCycle={StudyCycle}/>
 
         <p>O método de ciclo de estudos considera a sequência de disciplinas que devem ser estudadas em uma ordem determinada anteriormente, independentemente do dia ou horário que você vá estudar. Nesse caso, caso você não consiga terminar uma matéria por algum motivo, será possível recomeçar os estudos a partir de onde parou no ciclo.</p>
 
-        <p>Um dos benefícios do ciclo de estudos é que ele permite uma maior flexibilidade no seu plano de estudo e adapta-se a imprevistos e a sua rotina. Além disso, ele ajuda a ter uma visão real do tempo disponível de estudo, dá a importância correta de tempo para cada matéria e leva em consideração apenas o tempo líquido de estudo. Isso pode tornar suas horas dedicadas ao aprendizado muito mais produtivas.</p>    
-      </div>              
+        <p>Um dos benefícios do ciclo de estudos é que ele permite uma maior flexibilidade no seu plano de estudo e adapta-se a imprevistos e a sua rotina. Além disso, ele ajuda a ter uma visão real do tempo disponível de estudo, dá a importância correta de tempo para cada matéria e leva em consideração apenas o tempo líquido de estudo. Isso pode tornar suas horas dedicadas ao aprendizado muito mais produtivas.</p>
+      </Description>              
     </>
   );
 }
