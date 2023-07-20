@@ -82,7 +82,7 @@ export default function Cards() {
     {
       img: 'cards/winners.svg',
       text: 'Revise o conteúdo com flashcards.',
-      href: '/study-cycle'
+      href: '/flex-cards'
     },
     {
       img: 'cards/growth.svg',
