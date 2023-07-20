@@ -14,6 +14,7 @@ export default function studyCyclePage() {
   const [userAuth , setUserAuth] = useState(true)
   const router = useRouter();
   const [display, setDisplay] = useState('none');
+  const [ formUpdate, setFormUpdate ] = useState(false)
   
   useEffect(() => {
     const fetchStudyCycle = async () => {
@@ -40,7 +41,8 @@ export default function studyCyclePage() {
   
     fetchStudyCycleAndUpdateList();
     setForm(false)
-    }, [token]);
+    setFormUpdate(false)
+    }, [token, formUpdate === true]);
   useEffect(()=>{
     if (!token) {
       setUserAuth(false)
@@ -84,7 +86,7 @@ export default function studyCyclePage() {
           {
               form === true && StudyCycle.length == 0 &&
               <>
-                <FormStydyCycle    setForm={setForm} token={token}/>
+                <FormStydyCycle setForm={setForm} token={token} setFormUpdate={setFormUpdate}/>
                 <Description>
                   <p>O ciclo de estudos é uma técnica de estudo para melhoria da aprendizagem e gestão do tempo. É muito utilizada por aprovados em concursos difíceis e pode ser utilizado para qualquer tipo de prova ou estudo, sendo quase obrigatório para quem pretenda estudar com alto desempenho.</p>
                   <br />
@@ -102,7 +104,6 @@ export default function studyCyclePage() {
                   setForm(true)
 
               }}>Create Study Cycle </Button>
-              
               </div>
           }
           

@@ -43,10 +43,8 @@ export default function Home() {
         <Title>Venha para o VestibulaPro</Title>
         <Cards />
         <Description>
-          O VestibulaPro é a plataforma de estudos perfeita para quem quer conquistar a nota máxima no vestibular.
-          <br/>
-          <br/>
-          Com tecnologia de aprendizado adaptativo, simulados, flex cards, perguntas e criador de ciclo e rotina de estudos, estudar nunca foi tão fácil e eficiente. Comece sua jornada rumo ao sucesso acadêmico com o VestibulaPro.
+          <p>O VestibulaPro é a plataforma de estudos perfeita para quem quer conquistar a nota máxima no vestibular.</p>
+          <p>Com tecnologia de aprendizado adaptativo, simulados, flex cards, perguntas e criador de ciclo e rotina de estudos, estudar nunca foi tão fácil e eficiente. Comece sua jornada rumo ao sucesso acadêmico com o VestibulaPro.</p>
         </Description>
       </Main>
       <Footer>

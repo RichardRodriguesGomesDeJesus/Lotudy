@@ -203,7 +203,7 @@ const ButtonAddOption = styled.button`
   }
 `;
 
-export default function FormStudyCycle( { token, setForm }) {
+export default function FormStudyCycle( { token, setForm, setFormUpdate}) {
     const [subjects, setSubjects] = useState([]);
     const [days , setDays] = useState(Number)
     const [hours, setHours] = useState(Number)
@@ -334,9 +334,10 @@ export default function FormStudyCycle( { token, setForm }) {
             token,
             StudyCycle: newStudyCycle
           })
-          .then(
+          .then(()=>{
+            setFormUpdate(true)
             setForm(false)
-          )
+          })
           .catch((err)=>{
             console.log(err.response.data)
             throw new Error("something is wrong");
