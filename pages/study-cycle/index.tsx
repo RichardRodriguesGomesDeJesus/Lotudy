@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ResponsiveMenu, { Button, Footer, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Description, Footer, Header, Main, Title } from "../../components/sharedstyles";
 import FormStydyCycle from "../../components/formStudyCycle";
 import { useEffect, useState } from "react";
 import UserStudyCycle from "../../components/studyCycle";
@@ -62,18 +62,19 @@ export default function studyCyclePage() {
   return(
         <>
         <Header display={display} >
-            <nav>
-                <div>
-                  <Link href={'/dashboard'} > Dashboard</Link>
-                </div>
-                <div>
-                  <Link href={'/exams'}>Exams</Link>
-                </div>
-                <div>
-                  <Link href={'/flex-cards'}>Flash Cards</Link>
-                </div>
-            </nav>
-            <ResponsiveMenu display={display} setDisplay={setDisplay}/>
+          <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
+          <nav>
+              <div>
+                <Link href={'/dashboard'} > Dashboard</Link>
+              </div>
+              <div>
+                <Link href={'/exams'}>Exams</Link>
+              </div>
+              <div>
+                <Link href={'/flex-cards'}>Flash Cards</Link>
+              </div>
+          </nav>
+          <ResponsiveMenu display={display} setDisplay={setDisplay}/>
         </Header>
         <Main>
           <Title>Create a study cycle</Title>
@@ -84,13 +85,13 @@ export default function studyCyclePage() {
               form === true && StudyCycle.length == 0 &&
               <>
                 <FormStydyCycle    setForm={setForm} token={token}/>
-                <div>
+                <Description>
                   <p>O ciclo de estudos é uma técnica de estudo para melhoria da aprendizagem e gestão do tempo. É muito utilizada por aprovados em concursos difíceis e pode ser utilizado para qualquer tipo de prova ou estudo, sendo quase obrigatório para quem pretenda estudar com alto desempenho.</p>
-                  
+                  <br />
                   <p>O método de ciclo de estudos considera a sequência de disciplinas que devem ser estudadas em uma ordem determinada anteriormente, independentemente do dia ou horário que você vá estudar. Nesse caso, caso você não consiga terminar uma matéria por algum motivo, será possível recomeçar os estudos a partir de onde parou no ciclo.</p>
-
-                  <p>Um dos benefícios do ciclo de estudos é que ele permite uma maior flexibilidade no seu plano de estudo e adapta-se a imprevistos e a sua rotina. Além disso, ele ajuda a ter uma visão real do tempo disponível de estudo, dá a importância correta de tempo para cada matéria e leva em consideração apenas o tempo líquido de estudo. Isso pode tornar suas horas dedicadas ao aprendizado muito mais produtivas.</p>    
-                </div>
+                  <br />
+                  <p>Um dos benefícios do ciclo de estudos é que ele permite uma maior flexibilidade no seu plano de estudo e adapta-se a imprevistos e a sua rotina. Além disso, ele ajuda a ter uma visão real do tempo disponível de estudo, dá a importância correta de tempo para cada matéria e leva em consideração apenas o tempo líquido de estudo. Isso pode tornar suas horas dedicadas ao aprendizado muito mais produtivas.</p>  
+                </Description>
               </>
           }
           {

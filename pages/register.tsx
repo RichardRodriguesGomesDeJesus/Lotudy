@@ -9,7 +9,8 @@ export default function Register (){
 
     return (
         <>
-             <Header display={display} >
+            <Header display={display} >
+             <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
                 <nav>
                     <div>
                         <Link href={'/'}>Home</Link>

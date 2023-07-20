@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 export const colorSegundary = {
-  principalColor: "#16c1c8",
-  sideColor: "#665df5",
-  titleColor: "#49cccc",
-  backgrondColor: "#f0f0f0",
+  principalColor: "#B83388",
+  sideColor: "#431861",
+  titleColor: "#EB5A7D",
+  backgrondColor: "#F5F7F7",
   white: "#fff",
   textColor:"#767675",
   error:"#F91364"
@@ -30,7 +30,6 @@ const Main = styled.main`
   flex-grow: 1;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   width:100vw;
 `
 const Menu = styled.div<Props>`
@@ -87,9 +86,13 @@ const Header = styled.header<Props>`
   background: ${colorSegundary.principalColor} ;
   display: flex;
   min-height: 5rem;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 1rem 0;
   width: 100vw;
+  img{
+    width: 48px;
+    margin: 0 8px;
+  }
   nav{
     align-items: center;
     color: #fff;
@@ -153,6 +156,7 @@ const Description = styled.p`
   flex-grow: 1;
   align-items: center;
   text-align: center;
+  flex-direction: column;
   margin:0;
   background: ${colorSegundary.white};
   font-weight: 400;

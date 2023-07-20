@@ -7,18 +7,19 @@ export default function Custom404() {
     return (
     <>
       <Header display={display} >
-            <nav>
-                <div>
-                  <Link href={'/dashboard'} > Dashboard</Link>
-                </div>
-                <div>
-                  <Link href={'/exams'}>Simulados</Link>
-                </div>
-                <div>
-                  <Link href={'/flex-cards'}>Cards de revisão</Link>
-                </div>
-            </nav>
-            <ResponsiveMenu display={display} setDisplay={setDisplay}/>
+        <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
+        <nav>
+            <div>
+              <Link href={'/dashboard'} > Dashboard</Link>
+            </div>
+            <div>
+              <Link href={'/exams'}>Simulados</Link>
+            </div>
+            <div>
+              <Link href={'/flex-cards'}>Cards de revisão</Link>
+            </div>
+        </nav>
+        <ResponsiveMenu display={display} setDisplay={setDisplay}/>
       </Header>
       <Main>
         <h1>404 - Page Not Found</h1>

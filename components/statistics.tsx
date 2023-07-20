@@ -11,7 +11,7 @@ const StatisticsContainer = styled.div`
   justify-content: center;
   padding: 1rem;
   flex-grow: 1;
-  width: 100%;
+  width: 100vw;
   div{
     display: flex;
     flex-direction: row;

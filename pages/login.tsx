@@ -7,7 +7,8 @@ export default function Login (){
     const [display, setDisplay] = useState('none');
     return (
         <>
-             <Header display={display} >
+            <Header display={display} >
+                <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
                 <nav>
                     <div>
                         <Link href={'/'}>Home</Link>
