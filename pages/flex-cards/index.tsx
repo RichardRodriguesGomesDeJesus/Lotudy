@@ -48,9 +48,15 @@ export default function flexCards() {
         <Header display={display}>
           <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
           <nav>
-            <Link href={'/dashboard'}>Dashboard</Link>
-            <Link href={'/exams'}>Exams</Link>
-            <Link href={'/study-cycle'}>Study Cycle</Link>
+            <div>
+              <Link href={'/dashboard'}>Dashboard</Link>
+            </div>
+            <div>
+              <Link href={'/exams'}>Exams</Link>
+            </div>
+            <div>
+              <Link href={'/study-cycle'}>Study Cycle</Link>
+            </div>
           </nav>
           <ResponsiveMenu display={display} setDisplay={setDisplay}/>
         </Header>
