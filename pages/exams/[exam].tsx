@@ -54,6 +54,7 @@ export default function ExamPage() {
         setRequest(true);
       })
       .catch((err) => {
+        router.push("/login");
         setRequest(true);
       });
   }
