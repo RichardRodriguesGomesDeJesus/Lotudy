@@ -43,21 +43,23 @@ export default function ExamPage() {
     router.push("/login");
   }
 
-  if (request === false) {
-    axios
-      .post("/api/exams/getQuestions", {
-        title: examName,
-        token,
-      })
-      .then((res) => {
-        setList(res.data.exam.questions)
-        setRequest(true);
-      })
-      .catch((err) => {
-        router.push("/exams");
-        setRequest(true);
-      });
-  }
+  useEffect(()=>{
+    if (request === false) {
+      axios
+        .post("/api/exams/getQuestions", {
+          title: examName,
+          token,
+        })
+        .then((res) => {
+          setList(res.data.exam.questions)
+          setRequest(true);
+        })
+        .catch((err) => {
+          router.push("/exams");
+          setRequest(true);
+        });
+    }
+  },[request])
   useEffect(()=>{
         
     if (updateList === false) {

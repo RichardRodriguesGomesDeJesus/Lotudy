@@ -44,24 +44,26 @@ export default function deck() {
       router.push("/login");
     }
   
-    if (request === false && deckName !== '[deck]' || updateCards === true) {
-      axios
-        .post("/api/decks/get-cards", {
-          title: deckName,
-          token,
-        })
-        .then((res) => {
-          setCardList(res.data.deck.cards);
-          setRequest(true);
-          setUpdateCards(false);
-        })
-        .catch((err) => {
-          console.log(err.response);
-          router.push("/flex-cards");
-          setRequest(true);
-          setUpdateCards(false);
-        });
-    }
+    useEffect(()=>{
+      if (request === false && deckName !== '[deck]' || updateCards === true) {
+        axios
+          .post("/api/decks/get-cards", {
+            title: deckName,
+            token,
+          })
+          .then((res) => {
+            setCardList(res.data.deck.cards);
+            setRequest(true);
+            setUpdateCards(false);
+          })
+          .catch((err) => {
+            console.log(err.response);
+            router.push("/flex-cards");
+            setRequest(true);
+            setUpdateCards(false);
+          });
+      }
+    },[request,deckName,updateCards])
     const [form, setForm] = useState(false);
   
     return (
