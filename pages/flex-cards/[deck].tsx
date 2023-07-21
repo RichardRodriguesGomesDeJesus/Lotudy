@@ -57,6 +57,7 @@ export default function deck() {
         })
         .catch((err) => {
           console.log(err.response);
+          router.push("/flex-cards");
           setRequest(true);
           setUpdateCards(false);
         });

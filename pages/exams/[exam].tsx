@@ -54,7 +54,7 @@ export default function ExamPage() {
         setRequest(true);
       })
       .catch((err) => {
-        router.push("/login");
+        router.push("/exams");
         setRequest(true);
       });
   }
