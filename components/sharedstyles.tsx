@@ -105,6 +105,13 @@ const Header = styled.header<Props>`
       flex-grow: 1;
       align-items: center;
       justify-content: center;
+      height: 100%;
+      &:hover,
+      :focus,
+      :active {
+          cursor: pointer;
+          border-bottom: 1px solid ${colorSegundary.white};
+      }
     }
   }
   @media screen and (max-width: 768px ){
