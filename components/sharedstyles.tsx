@@ -110,7 +110,7 @@ const Header = styled.header<Props>`
       :focus,
       :active {
           cursor: pointer;
-          border-bottom: 3px  ${colorSegundary.white} double;
+          border-bottom: 3px  ${colorSegundary.white} solid;
       }
     }
   }
