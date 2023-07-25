@@ -51,7 +51,7 @@ export default async function setCards(req, res)  {
 
     await userDeck.save();
 
-    return res.status(200).send({mse:'card added to deck successfully', userDeck ,deck})
+    return res.status(200).send({mse:'card added to deck successfully'})
 
   } catch (error) {
         console.error(error); 

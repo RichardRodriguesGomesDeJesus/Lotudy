@@ -145,7 +145,7 @@ export default function FormRegister() {
             router.push('/dashboard')
         })
         .catch((err) => {
-            const error = err.response.data.error.message || err.response.data 
+            const error = err.response.data?.error?.message || err.response.data 
               setErrorMessage(error);
               console.log(error);
               

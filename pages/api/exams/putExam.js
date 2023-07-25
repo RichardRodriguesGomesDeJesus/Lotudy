@@ -26,7 +26,7 @@ export default async function deleteExams(req, res) {
 
     await ExamModel.deleteOne({ author:decoded.userId, title: title});
 
-   res.status(200).send({mse: 'Success'})
+    res.status(200).send({mse: 'Success'})
   } catch (error) {
     res.status(500).send({ mse: 'Something went wrong'});
   }

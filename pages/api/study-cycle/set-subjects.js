@@ -24,10 +24,9 @@ export default async function setSubjects(req, res) {
         }
 
         await connectMongo();
-        const studyCycle = await StudyCycleModel.find({ });
-        const userStudyCycle = studyCycle.filter(cycle => cycle.author == decoded.userId)
-        userStudyCycle[0].subjects  = StudyCycle
-        await userStudyCycle[0].save()
+        const studyCycle = await StudyCycleModel.find({ author: decoded.userId});
+        studyCycle[0].subjects  = StudyCycle
+        await studyCycle[0].save()
         return res.status(200).send({ mse: 'success' });
     } catch (error) {
         console.error(error); 

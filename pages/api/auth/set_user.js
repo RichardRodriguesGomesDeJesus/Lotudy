@@ -45,10 +45,8 @@ export default async function handler(req, res) {
       password: hashPassword
     }
     await connectMongo();
-    const users = await UserModel.find({ });
-    const emails = users.map(user => user.email)
-    const existEmail = emails.includes(email)
-    if (existEmail === false) {
+    const user = await UserModel.find({email: email });
+    if (user.length = 0) {
       const newUser = new UserModel(userObject);
       try {
         await newUser.save();

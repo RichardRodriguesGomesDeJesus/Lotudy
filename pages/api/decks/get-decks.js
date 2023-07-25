@@ -21,9 +21,9 @@ export default async function getDecksList(req, res) {
 
     await connectMongo();
 
-    const decks = await DeckModel.find({})
+    const decks = await DeckModel.find({author: decoded.userId })
 
-    const decksTitles = decks.filter(deck => deck.author == decoded.userId).map(deck => deck.title)
+    const decksTitles = decks.map(deck => deck.title)
     res.status(200).send({list: decksTitles})
   }
   catch (error) {

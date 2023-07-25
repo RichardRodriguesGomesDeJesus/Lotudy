@@ -16,18 +16,13 @@ export default async function handler(req, res){
     }
     const decoded = jwt.verify(token, process.env.SECRET); // Verifica se o token é válido
     await connectMongo()
-    const users = await UserModel.find({})
-    const listIds = users.map(user =>  user.email)
-    const user = listIds.includes( decoded.email);
-
+    const user = await UserModel.find({email: decoded.email})
     
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
-    } else{
-      res.status(200).send({msg:'success'})
-    }
+    } 
     
-    
+    res.status(200).send({msg:'success'})
   } catch (error) {
     console.error(error);
     res.status(401).json({ error: 'Token is invalid'});

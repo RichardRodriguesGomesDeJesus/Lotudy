@@ -25,13 +25,11 @@ export default async function getQuestions(req,res) {
         }
         await connectMongo();
 
-        const exams = await ExamModel.find({ });
-        const examsTitles = exams.filter(exam => exam.author == decoded.userId)
-        const exam = examsTitles.find((exam) => exam.title === title);
+        const exam = await ExamModel.find({ author: decoded.userId, title: title });
         if (!exam) {
           return res.status(400).send({ mse: 'exame not found' });
         }
-        res.status(200).send({exam})
+        res.status(200).send({exam: exam[0]})
     }catch (error) {
         console.error(error); 
         return res.status(400).send({ mse: 'Something went wrong' });

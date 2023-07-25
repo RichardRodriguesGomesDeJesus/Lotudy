@@ -40,6 +40,7 @@ export default async function putQuestions(req,res) {
     userExam.questions = questions
 
     userExam.save()
+    
     return res.status(200).send({mse:'questions added to exam successfully'})
   } catch (error) {
     console.error(error); 

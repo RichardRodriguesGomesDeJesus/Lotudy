@@ -20,9 +20,8 @@ export default async function getstudycycle (req, res) {
           }
           await connectMongo();
 
-          const studyCycle = await StudyCycleModel.find({ });
-          const userStudyCycle = studyCycle.filter(cycle => cycle.author == decoded.userId)
-          res.status(200).send({StudyCycle: userStudyCycle[0]})
+          const studyCycle = await StudyCycleModel.find({author: decoded.userId });
+          res.status(200).send({StudyCycle: studyCycle[0]})
     }catch (error) {
         console.log(error)
         res.status(500).send({ mse: 'Something went wrong'});
