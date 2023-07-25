@@ -33,7 +33,7 @@ const Form = styled.form`
   justify-content: space-around;
   margin: 1rem 0;
   padding: 1rem;
-  text-align: center;
+  text-align: justify;
 
   p {
     color: ${colorSegundary.textColor};
@@ -317,7 +317,7 @@ export default function Question({ token, examName, setQuestion, questionList, c
           <Form>
             <p>{questionsText[indexQuestion]}</p>
             {questionsUrlImg[indexQuestion] !== undefined && (
-              <img src={questionsUrlImg[indexQuestion]} alt="" />
+              <img src={questionsUrlImg[indexQuestion]} />
             )}
             {questionsOptions[indexQuestion].map((option, index) => (
               <Option

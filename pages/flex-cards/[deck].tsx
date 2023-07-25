@@ -11,7 +11,7 @@ export default function deck() {
     const router = useRouter();
     const { asPath } = router;
     const parts = asPath.split('/');
-    const deckName = parts[parts.length - 1];
+    const deckName = decodeURIComponent(parts[parts.length - 1]);
     const [request, setRequest] = useState(false);
     const { 'token': token } = parseCookies();
     const [userAuth, setUserAuth] = useState(true);
@@ -52,12 +52,14 @@ export default function deck() {
             token,
           })
           .then((res) => {
+            console.log(res)
             setCardList(res.data.deck.cards);
             setRequest(true);
             setUpdateCards(false);
           })
           .catch((err) => {
             router.push("/flex-cards");
+            console.log(err)
             setRequest(true);
             setUpdateCards(false);
           });
@@ -86,7 +88,7 @@ export default function deck() {
           <Title>Deck - {deckName}</Title>
           {form === false && <FlashCards cards={cardList} />}
           {form === false && <Button onClick={() => { setForm(true) }}>Create Cards</Button>}
-          {form === true && <FormCards setForm={setForm} setUpdateCards={setUpdateCards} />}
+          {form === true && <FormCards setForm={setForm} setUpdateCards={setUpdateCards} deckName={deckName}  />}
         </Main>
       </>
     )

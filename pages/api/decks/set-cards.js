@@ -9,7 +9,7 @@ export default async function setCards(req, res)  {
       return res.status(405).send({ mse: 'Method Not Allowed' });
     }
 
-    const { token  ,  text, correctAnswer, time } = req.body;
+    const { token  ,  text, correctAnswer, time, title } = req.body;
 
     if (!token) {
       return res.status(403).send('A token is required');
@@ -17,6 +17,10 @@ export default async function setCards(req, res)  {
 
     if (!text) {
       return res.status(403).send('Text is required');
+    }
+
+    if (!title) {
+      return res.status(403).send('Title is required');
     }
 
     if (!correctAnswer) {
@@ -30,22 +34,24 @@ export default async function setCards(req, res)  {
     }
 
     await connectMongo();
-    const deck =  await DeckModel.find({author:decoded.userId});
+
+    const deck =  await DeckModel.find({author:decoded.userId , title: title});
 
     if (!deck) {
       return res.status(400).send({ mse: 'Deck not found' });
     }
 
-    const newDeck = {
+    const newCard = {
       text,
       correctAnswer
     }
     const userDeck = deck[0]
-    userDeck.cards.push(newDeck)
+
+    userDeck.cards.push(newCard)
 
     await userDeck.save();
 
-    return res.status(200).send({mse:'card added to deck successfully'})
+    return res.status(200).send({mse:'card added to deck successfully', userDeck ,deck})
 
   } catch (error) {
         console.error(error); 

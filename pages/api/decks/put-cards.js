@@ -30,8 +30,6 @@ export default async function putCards(req,res) {
 
     const deck = await DeckModel.find({ author: decoded.userId })
 
-
-
     if (!deck) {
       return res.status(400).send({ mse: 'Deck not found' });
     }
@@ -44,7 +42,7 @@ export default async function putCards(req,res) {
 
     return res.status(200).send({mse:'card added to deck successfully'})
   }catch (error) {
-        console.error(error); 
-        return res.status(400).send({ mse: 'Something went wrong' });
+    console.error(error); 
+    return res.status(400).send({ mse: 'Something went wrong' });
   }
 }

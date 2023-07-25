@@ -58,10 +58,16 @@ export default function FlashCardDecks ({token,setFormUpdate,formUpdate, cardLis
   useEffect(() => {
     const fetchExams = async () => {
     try {
-      const response = await axios.post('/api/decks/get-decks', {
+      axios.post('/api/decks/get-decks', {
         token,
-      });
-      setCardList(response.data.list);
+      })
+      .then((res)=>{
+        setCardList(res.data.list);
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+      
     } catch (error) {
       console.log(error);
     }

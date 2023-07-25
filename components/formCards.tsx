@@ -138,7 +138,7 @@ const ButtonSubmit = styled.input`
 
 `
 
-export default function FormCards({setForm,  setUpdateCards}) {
+export default function FormCards({setForm,  setUpdateCards, deckName}) {
   const [textFront, setTextFront] = useState('')
   const [textBack, setTextBack] = useState('')
   const { 'token': token } = parseCookies();
@@ -148,6 +148,7 @@ export default function FormCards({setForm,  setUpdateCards}) {
         token,
         text:textFront,
         correctAnswer:textBack,
+        title: deckName ,
         time: ''
     }
     axios.put('/api/decks/set-cards', card)

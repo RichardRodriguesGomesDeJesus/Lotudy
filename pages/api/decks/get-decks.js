@@ -27,6 +27,7 @@ export default async function getDecksList(req, res) {
     res.status(200).send({list: decksTitles})
   }
   catch (error) {
-        res.status(500).send({ mse: 'Something went wrong'});
+    console.log(error)
+    res.status(500).send({ mse: 'Something went wrong'});
   }
 }

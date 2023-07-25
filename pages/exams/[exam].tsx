@@ -7,9 +7,9 @@ import { useState, useEffect } from "react";
 import QuestionForm from "../../components/questionForm";
 import Question from "../../components/question";
 import SubjectCards from "../../components/subjectsCards";
+import Questions from "../../components/questions";
 
 export default function ExamPage() {
-
   const router = useRouter();
   const { asPath } = router;
   const parts = asPath.split('/'); 
@@ -23,6 +23,7 @@ export default function ExamPage() {
   const [questionSubjectList, setQuestionSubjectList] = useState([])
   const[updateList, setUpdateList] = useState(false)
   const [question, setQuestion] = useState(false)
+  const [edit, setEdit] = useState(false)
   const [display, setDisplay] = useState('none');
   useEffect(()=>{
     if (!token) {
@@ -100,29 +101,39 @@ export default function ExamPage() {
     </Header>
     <Main>
       <Title>Create and practice with custom exam questions: {examName}.</Title>
-      {form === true &&
+      {form === true &&  edit === false && question === false &&
         <QuestionForm questionList={questionList} examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} updateList={updateList} setUpdateList={setUpdateList} />
       }
       {
-        question === false && form === false && questionList.length > 0 &&
+        question === false && form === false && questionList.length > 0 &&  edit === false &&
         <SubjectCards subjects={questionList} setQuestion={setQuestion} setClickCard={setClickCard} setQuestionSubjectList={setQuestionSubjectList}  />
       }
       {
-        form === false && question === false &&
+        form === false && question === false && edit === false &&
         <Button onClick={(e)=>{
           e.preventDefault()
           setForm(true)
         }}>Create questions</Button>
       }
       {
-        question === false && form === false && questionList.length > 0 &&
-        <Button onClick={(e)=>{
-          e.preventDefault()
-          setQuestion(true)
-        }}>Start exam</Button>
+        question === false && form === false && questionList.length > 0 && edit === false &&
+        <>
+          <Button onClick={(e)=>{
+            e.preventDefault()
+            setQuestion(true)
+          }}>Start exam</Button>
+          <Button onClick={(e)=>{
+            e.preventDefault()
+            setEdit(true)
+          }}
+          >Edit</Button>
+        </>
+      }
+      {form === false && question === false && edit === true &&
+        <Questions questionList={questionList} setEdit={setEdit} token={token} examName={examName}  />
       }
       {
-        question === true &&   form === false && 
+        question === true &&   form === false &&  edit === false &&
           <Question token={token} examName={examName} setQuestion={setQuestion} questionList={(clickCard === true ? questionSubjectList : questionList)} clickCard={clickCard} setClickCard={setClickCard}  />
       }
     </Main>

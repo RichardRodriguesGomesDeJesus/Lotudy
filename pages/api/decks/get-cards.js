@@ -26,14 +26,16 @@ export default async function getCards(req,res) {
 
     await connectMongo();
 
-    const decks = await DeckModel.find({})
-    const decksTitles = decks.filter(deck => deck.author == decoded.userId)
-    const deck = decksTitles.find((deck) => deck.title === title);
+    const deck = await DeckModel.find({ author: decoded.userId ,title: title })
 
     if (!deck) {
       return res.status(400).send({ mse: 'deck not found'});
     }
-    res.status(200).send({deck})
+
+    const userDeck = deck[0] 
+
+    res.status(200).send({deck:userDeck })
+
   } catch (error) {
         console.error(error); 
         return res.status(400).send({ mse: 'Something went wrong' });
