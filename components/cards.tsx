@@ -24,12 +24,12 @@ export default function Cards() {
   return (
     <FlexContainer>
       {cardList.map((element, index) => (
-        <Link href={element.href} key={index}>
+        <NavLink href={element.href} key={index}>
           <Card >
             <img src={element.img} alt={element.text} />
             <p>{element.text}</p>
           </Card>
-        </Link>
+        </NavLink>
       ))}
     </FlexContainer>
   );

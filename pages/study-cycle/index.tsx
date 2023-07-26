@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ResponsiveMenu, { Button, Description, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Description, Header, Main, NavLink, Title } from "../../components/sharedstyles";
 import FormStydyCycle from "../../components/formStudyCycle";
 import { useEffect, useState } from "react";
 import UserStudyCycle from "../../components/studyCycle";
@@ -67,13 +67,13 @@ export default function studyCyclePage() {
           <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
           <nav>
               <div>
-                <Link href={'/dashboard'} > Dashboard</Link>
+                <NavLink href={'/dashboard'} > Dashboard</NavLink>
               </div>
               <div>
-                <Link href={'/exams'}>Exams</Link>
+                <NavLink href={'/exams'}>Exams</NavLink>
               </div>
               <div>
-                <Link href={'/flex-cards'}>Flash Cards</Link>
+                <NavLink href={'/flex-cards'}>Flash Cards</NavLink>
               </div>
           </nav>
           <ResponsiveMenu display={display} setDisplay={setDisplay}/>

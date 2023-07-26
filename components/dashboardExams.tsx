@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { colorSegundary } from "./sharedstyles";
-import Link from "next/link";
+import { NavLink, colorSegundary } from "./sharedstyles";
 
 const Dashboard = styled.div`
     display: flex;
@@ -79,11 +78,11 @@ export default function DashboardExams() {
         <>
             <Dashboard>
                 {listExams.map( (element , index)=> (
-                    <Link href={element.link}  key={index}>
+                    <NavLink href={element.link}  key={index}>
                         <div >
                             <p>{element.title}</p>
                         </div>
-                    </Link>
+                    </NavLink>
                 ))}
             </Dashboard>
         </>

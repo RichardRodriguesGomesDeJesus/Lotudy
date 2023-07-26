@@ -10,13 +10,13 @@ export default function Custom404() {
         <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
         <nav>
             <div>
-              <Link href={'/dashboard'} > Dashboard</Link>
+              <NavLink href={'/dashboard'} > Dashboard</NavLink>
             </div>
             <div>
-              <Link href={'/exams'}>Simulados</Link>
+              <NavLink href={'/exams'}>Simulados</NavLink>
             </div>
             <div>
-              <Link href={'/flex-cards'}>Cards de revisão</Link>
+              <NavLink href={'/flex-cards'}>Cards de revisão</NavLink>
             </div>
         </nav>
         <ResponsiveMenu display={display} setDisplay={setDisplay}/>
@@ -25,7 +25,7 @@ export default function Custom404() {
         <h1>404 - Page Not Found</h1>
       </Main>
       <Footer>
-            <Link href={'/register'}>Crie sua conta</Link>
+            <NavLink href={'/register'}>Crie sua conta</NavLink>
       </Footer>
     </>
     );

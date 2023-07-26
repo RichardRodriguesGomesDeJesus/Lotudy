@@ -12,10 +12,10 @@ export default function Login (){
                 <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
                 <nav>
                     <div>
-                        <Link href={'/'}>Home</Link>
+                        <NavLink href={'/'}>Home</NavLink>
                     </div>
                     <div>
-                        <Link href={'/register'}>Register</Link>
+                        <NavLink href={'/register'}>Register</NavLink>
                     </div>
                 </nav>
                 <ResponsiveMenu display={display} setDisplay={setDisplay} />
@@ -25,7 +25,7 @@ export default function Login (){
                 <FormLogin/>
             </Main>
             <Footer>
-                <Link href={'/register'}>Create your account</Link>
+                <NavLink href={'/register'}>Create your account</NavLink>
             </Footer>
         </>
     )

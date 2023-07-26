@@ -13,10 +13,10 @@ export default function Register (){
              <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
                 <nav>
                     <div>
-                        <Link href={'/'}>Home</Link>
+                        <NavLink href={'/'}>Home</NavLink>
                     </div>
                     <div>
-                        <Link href={'/login'}>Login</Link>
+                        <NavLink href={'/login'}>Login</NavLink>
                     </div>
                 </nav>
                 <ResponsiveMenu display={display} setDisplay={setDisplay}/>
@@ -26,7 +26,7 @@ export default function Register (){
                 <FormRegister/>
             </Main>
             <Footer>
-                <Link href={'/register'}>Create your account</Link>
+                <NavLink href={'/register'}>Create your account</NavLink>
             </Footer>
         </>
     )

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Header, Main, NavLink, Title } from "../../components/sharedstyles";
 import FlashCardDecks from "../../components/flashcardDecks";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
@@ -49,13 +49,13 @@ export default function flexCards() {
           <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
           <nav>
             <div>
-              <Link href={'/dashboard'}>Dashboard</Link>
+              <NavLink href={'/dashboard'}>Dashboard</NavLink>
             </div>
             <div>
-              <Link href={'/exams'}>Exams</Link>
+              <NavLink href={'/exams'}>Exams</NavLink>
             </div>
             <div>
-              <Link href={'/study-cycle'}>Study Cycle</Link>
+              <NavLink href={'/study-cycle'}>Study Cycle</NavLink>
             </div>
           </nav>
           <ResponsiveMenu display={display} setDisplay={setDisplay}/>

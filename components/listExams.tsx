@@ -2,7 +2,7 @@ import axios from "axios";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Button, ButtonClose, colorSegundary } from "./sharedstyles";
+import { Button, ButtonClose, NavLink, colorSegundary } from "./sharedstyles";
 import Link from "next/link";
 
 const List = styled.div`
@@ -58,9 +58,9 @@ export default function ListExams({ formUpdate, setFormUpdate, examList, setExam
         <List>
           {edit === false&&(
             examList.map((exam, index) => (
-              <Link href={`/exams/${encodeURIComponent(exam)}`} key={index}>
+              <NavLink href={`/exams/${encodeURIComponent(exam)}`} key={index}>
                 <h3>{exam}</h3>
-              </Link>
+              </NavLink>
             ))
           )}
           {edit === true&&(

@@ -19,22 +19,22 @@ export default function Home() {
         <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
         <nav>
           <div>
-            <Link href={'/login'}>Login</Link>
+            <NavLink href={'/login'}>Login</NavLink>
           </div>
           <div>
-            <Link href={'/register'}>Cadastre-se</Link>
+            <NavLink href={'/register'}>Cadastre-se</NavLink>
           </div>
           <div>
-            <Link href={'/dashboard'} > Dashboard</Link>
+            <NavLink href={'/dashboard'} > Dashboard</NavLink>
           </div>
           <div>
-            <Link href={'/exams'} >Exams</Link>
+            <NavLink href={'/exams'} >Exams</NavLink>
           </div>
           <div>
-            <Link href={'/study-cycle'} >Study cycle</Link>
+            <NavLink href={'/study-cycle'} >Study cycle</NavLink>
           </div>
           <div>
-            <Link href={'/flex-cards'}>Flash Cards</Link>
+            <NavLink href={'/flex-cards'}>Flash Cards</NavLink>
           </div>
         </nav>
         <ResponsiveMenu display={display} setDisplay={setDisplay}  />
@@ -48,8 +48,8 @@ export default function Home() {
         </Description>
       </Main>
       <Footer>
-        <Link href={'/login'}>Já tem conta?</Link>
-        <Link href={'/register'}>Crie sua conta</Link>
+        <NavLink href={'/login'}>Já tem conta?</NavLink>
+        <NavLink href={'/register'}>Crie sua conta</NavLink>
       </Footer>
     </>
   )

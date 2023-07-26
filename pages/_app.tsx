@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Head>
               <title>Lotudy</title>
               <meta name="description" content="Lotudy" />
-              <link rel="icon" href="/favicon.ico" />
+              <NavLink rel="icon" href="/favicon.ico" />
               <style>
               @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
               </style>
