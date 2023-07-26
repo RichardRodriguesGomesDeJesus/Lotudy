@@ -106,8 +106,7 @@ const CardFront = styled.div`
   width:100%;
 `
 
-export default function FlashCards({ cards }) {
-  const router = useRouter();
+export default function FlashCards({ cards, setCard, deckName }) {
   const [cardsEnd, setCardsEnd] = useState(false);
   const [index, setIndex] = useState(0);
   const [flip, setFlip] = useState(false);
@@ -124,11 +123,12 @@ export default function FlashCards({ cards }) {
     }
   }
 
-  function save(cards, token) {
+  function save(cards, token, title) {
     axios
       .put('/api/decks/put-cards', {
         token,
         cards,
+        title
       })
       .then((res) => {
         console.log(res);
@@ -145,7 +145,7 @@ export default function FlashCards({ cards }) {
           <p>You have completed all the cards.</p>
           <Button
             onClick={() => {
-              router.push('/flex-cards');
+              setCard(false)
             }}
           >
             Go Back
@@ -179,7 +179,7 @@ export default function FlashCards({ cards }) {
             <Button
               onClick={() => {
                 cards[index].time = 'Very short';
-                save(cards, token);
+                save(cards, token, deckName);
                 nextCard();
               }}
             >
@@ -188,7 +188,7 @@ export default function FlashCards({ cards }) {
             <Button
               onClick={() => {
                 cards[index].time = 'Short';
-                save(cards, token);
+                save(cards, token, deckName);
                 nextCard();
               }}
             >
@@ -197,7 +197,7 @@ export default function FlashCards({ cards }) {
             <Button
               onClick={() => {
                 cards[index].time = 'Medium';
-                save(cards, token);
+                save(cards, token, deckName);
                 nextCard();
               }}
             >
@@ -206,7 +206,7 @@ export default function FlashCards({ cards }) {
             <Button
               onClick={() => {
                 cards[index].time = 'Long';
-                save(cards, token);
+                save(cards, token, deckName);
                 nextCard();
               }}
             >
@@ -215,7 +215,7 @@ export default function FlashCards({ cards }) {
             <Button
               onClick={() => {
                 cards[index].time = 'Very long';
-                save(cards, token);
+                save(cards, token, deckName);
                 nextCard();
               }}
             >

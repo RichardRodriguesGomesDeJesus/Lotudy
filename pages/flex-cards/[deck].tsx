@@ -18,6 +18,8 @@ export default function deck() {
     const [cardList, setCardList] = useState([]);
     const [updateCards, setUpdateCards] = useState(false);
     const [display, setDisplay] = useState('none');
+    const [ card, setCard] = useState(false);
+    const [] = useState(false)
   
     useEffect(() => {
       if (!token) {
@@ -76,6 +78,9 @@ export default function deck() {
               <Link href={'/dashboard'}>Dashboard</Link>
             </div>
             <div>
+              <Link href={'/flex-cards'}>Flash Cards</Link>
+            </div>
+            <div>
               <Link href={'/exams'}>Exams</Link>
             </div>
             <div>
@@ -86,9 +91,14 @@ export default function deck() {
         </Header>
         <Main>
           <Title>Deck - {deckName}</Title>
-          {form === false && <FlashCards cards={cardList} />}
-          {form === false && <Button onClick={() => { setForm(true) }}>Create Cards</Button>}
-          {form === true && <FormCards setForm={setForm} setUpdateCards={setUpdateCards} deckName={deckName}  />}
+          {form === false && card === true && <FlashCards cards={cardList} setCard={setCard} deckName={deckName} />}
+          {form === false && card === false &&(
+            <>
+              <Button onClick={() => { setForm(true) }}>Create Cards</Button>
+              <Button onClick={()=>{ setCard(true)}}>Start Deck</Button>
+            </>
+          )}
+          {form === true && card === false && <FormCards setForm={setForm} setUpdateCards={setUpdateCards} deckName={deckName}  />}
         </Main>
       </>
     )

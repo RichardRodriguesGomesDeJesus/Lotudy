@@ -10,7 +10,7 @@ export default async function putCards(req,res) {
       return res.status(405).send({ mse: 'Method Not Allowed' });
     }
 
-    const { token  , cards} = req.body;
+    const { token  , cards, title} = req.body;
 
     if (!token) {
       return res.status(403).send('A token is required');
@@ -20,6 +20,11 @@ export default async function putCards(req,res) {
       return res.status(403).send('Cards is required');
     }
 
+    if (!title) {
+      return res.status(403).send('Title is required');
+    }
+
+
     const decoded = jwt.verify(token, process.env.SECRET);
 
     if (!decoded.userId) {
@@ -28,7 +33,7 @@ export default async function putCards(req,res) {
 
     await connectMongo();
 
-    const deck = await DeckModel.find({ author: decoded.userId })
+    const deck = await DeckModel.find({ author: decoded.userId, title: title })
 
     if (!deck) {
       return res.status(400).send({ mse: 'Deck not found' });
