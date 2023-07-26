@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider, DefaultTheme } from 'styled-components'
 import GlobalStyle from '../components/globalstyles'
-import { Container } from '../components/sharedstyles'
+import { Container, NavLink } from '../components/sharedstyles'
 import Head from 'next/head'
 const theme: DefaultTheme = {
   colors: {

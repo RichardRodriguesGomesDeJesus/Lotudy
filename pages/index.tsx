@@ -4,7 +4,8 @@ import ResponsiveMenu, {
   Header,
   Title,
   Description,
-  Footer
+  Footer,
+  NavLink
 } from '../components/sharedstyles'
 import Cards from '../components/cards'
 import Link from 'next/link'

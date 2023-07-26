@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ResponsiveMenu, { Footer, Header, Main } from "../components/sharedstyles";
+import ResponsiveMenu, { Footer, Header, Main, NavLink } from "../components/sharedstyles";
 import { useState } from "react";
 
 export default function Custom404() {

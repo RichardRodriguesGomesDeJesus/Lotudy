@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import ResponsiveMenu, { Header, Main, Title } from "../components/sharedstyles";
+import ResponsiveMenu, { Header, Main, NavLink, Title } from "../components/sharedstyles";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import axios from "axios";

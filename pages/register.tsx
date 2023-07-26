@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ResponsiveMenu, { Footer, Header, Main, Title } from "../components/sharedstyles";
+import ResponsiveMenu, { Footer, Header, Main, NavLink, Title } from "../components/sharedstyles";
 import FormRegister from "../components/formRegister";
 import { useState } from "react";
 
