@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card, FlexContainer, colorSegundary } from './sharedstyles';
+import { Card, FlexContainer, NavLink, colorSegundary } from './sharedstyles';
 import Link from 'next/link';
 
 
