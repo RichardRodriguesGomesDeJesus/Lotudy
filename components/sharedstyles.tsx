@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import styled from 'styled-components'
 
 export const colorSegundary = {
@@ -107,6 +106,14 @@ const Header = styled.header<Props>`
       align-items: center;
       justify-content: center;
       height: 100%;
+      &:hover,
+      :focus,
+      :active {
+          a{
+            cursor: pointer;
+            border-bottom: 3px  ${colorSegundary.white} solid;
+          }
+      }
     }
   }
   @media screen and (max-width: 768px ){
@@ -152,20 +159,6 @@ const Title = styled.h1`
   @media screen and (min-width: 1024px) {
     font-size: 2rem;
   };
-` 
-const NavLink = styled(Link)`
-  &:hover,
-  :focus,
-  :active {
-      ${Header}{
-        nav{
-          div{
-            cursor: pointer;
-            border-bottom: 3px  ${colorSegundary.white} solid;
-          }
-        }
-      }
-  }
 ` 
 const Description = styled.div`
   display: flex;
@@ -326,4 +319,4 @@ const Card = styled.div`
   };
 `;
 
-export { Container, Main, Header, Title, Description, Footer, Button, ButtonClose, FlexContainer, Card, NavLink}
+export { Container, Main, Header, Title, Description, Footer, Button, ButtonClose, FlexContainer, Card}

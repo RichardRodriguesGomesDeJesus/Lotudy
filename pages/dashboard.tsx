@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import ResponsiveMenu, { Header, Main, NavLink, Title } from "../components/sharedstyles";
+import ResponsiveMenu, { Header, Main, Title } from "../components/sharedstyles";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -64,16 +64,16 @@ export default function Dashboard() {
         <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
         <nav>
           <div>
-            <NavLink href={'/'} >Home</NavLink>
+            <Link href={'/'} >Home</Link>
           </div>
           <div>
-            <NavLink href={'/exams'} >Exams</NavLink>
+            <Link href={'/exams'} >Exams</Link>
           </div>
           <div>
-            <NavLink href={'/study-cycle'} >Study cycle</NavLink>
+            <Link href={'/study-cycle'} >Study cycle</Link>
           </div>
           <div>
-            <NavLink href={'/flex-cards'}>Flash Cards</NavLink>
+            <Link href={'/flex-cards'}>Flash Cards</Link>
           </div>
         </nav>
         <ResponsiveMenu display={display} setDisplay={setDisplay}/>

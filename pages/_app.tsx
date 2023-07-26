@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider, DefaultTheme } from 'styled-components'
 import GlobalStyle from '../components/globalstyles'
-import { Container, NavLink } from '../components/sharedstyles'
+import { Container } from '../components/sharedstyles'
 import Head from 'next/head'
 const theme: DefaultTheme = {
   colors: {
@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Head>
               <title>Lotudy</title>
               <meta name="description" content="Lotudy" />
-              <NavLink rel="icon" href="/favicon.ico" />
+              <link rel="icon" href="/favicon.ico" />
               <style>
               @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
               </style>

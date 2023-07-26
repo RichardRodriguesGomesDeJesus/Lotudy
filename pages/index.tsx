@@ -4,8 +4,7 @@ import ResponsiveMenu, {
   Header,
   Title,
   Description,
-  Footer,
-  NavLink
+  Footer
 } from '../components/sharedstyles'
 import Cards from '../components/cards'
 import Link from 'next/link'
@@ -20,22 +19,22 @@ export default function Home() {
         <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
         <nav>
           <div>
-            <NavLink href={'/login'}>Login</NavLink>
+            <Link href={'/login'}>Login</Link>
           </div>
           <div>
-            <NavLink href={'/register'}>Cadastre-se</NavLink>
+            <Link href={'/register'}>Cadastre-se</Link>
           </div>
           <div>
-            <NavLink href={'/dashboard'} > Dashboard</NavLink>
+            <Link href={'/dashboard'} > Dashboard</Link>
           </div>
           <div>
-            <NavLink href={'/exams'} >Exams</NavLink>
+            <Link href={'/exams'} >Exams</Link>
           </div>
           <div>
-            <NavLink href={'/study-cycle'} >Study cycle</NavLink>
+            <Link href={'/study-cycle'} >Study cycle</Link>
           </div>
           <div>
-            <NavLink href={'/flex-cards'}>Flash Cards</NavLink>
+            <Link href={'/flex-cards'}>Flash Cards</Link>
           </div>
         </nav>
         <ResponsiveMenu display={display} setDisplay={setDisplay}  />
@@ -49,8 +48,8 @@ export default function Home() {
         </Description>
       </Main>
       <Footer>
-        <NavLink href={'/login'}>Já tem conta?</NavLink>
-        <NavLink href={'/register'}>Crie sua conta</NavLink>
+        <Link href={'/login'}>Já tem conta?</Link>
+        <Link href={'/register'}>Crie sua conta</Link>
       </Footer>
     </>
   )

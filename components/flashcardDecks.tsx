@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, ButtonClose, NavLink, colorSegundary } from "./sharedstyles";
+import { Button, ButtonClose, colorSegundary } from "./sharedstyles";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -113,11 +113,11 @@ export default function FlashCardDecks ({token,setFormUpdate,formUpdate, cardLis
       }
       {edit== false &&
       cardList.map((element, index) => (
-        <NavLink href={`/flex-cards/${element}`} key={index}>
+        <Link href={`/flex-cards/${element}`} key={index}>
           <Decks>
             <h3>{element}</h3>
           </Decks>
-        </NavLink>
+        </Link>
       ))}
       {cardList.length <= 0 && 
         <p>You don't have a deck.</p>

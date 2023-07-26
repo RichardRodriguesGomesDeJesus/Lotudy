@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ResponsiveMenu, { Footer, Header, Main, NavLink, Title } from "../components/sharedstyles";
+import ResponsiveMenu, { Footer, Header, Main, Title } from "../components/sharedstyles";
 import FormRegister from "../components/formRegister";
 import { useState } from "react";
 
@@ -13,10 +13,10 @@ export default function Register (){
              <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
                 <nav>
                     <div>
-                        <NavLink href={'/'}>Home</NavLink>
+                        <Link href={'/'}>Home</Link>
                     </div>
                     <div>
-                        <NavLink href={'/login'}>Login</NavLink>
+                        <Link href={'/login'}>Login</Link>
                     </div>
                 </nav>
                 <ResponsiveMenu display={display} setDisplay={setDisplay}/>
@@ -26,7 +26,7 @@ export default function Register (){
                 <FormRegister/>
             </Main>
             <Footer>
-                <NavLink href={'/register'}>Create your account</NavLink>
+                <Link href={'/register'}>Create your account</Link>
             </Footer>
         </>
     )

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import ResponsiveMenu, { Button, Header, Main, NavLink, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles";
 import Link from "next/link";
 import axios from "axios";
 import { parseCookies } from "nookies";
@@ -85,16 +85,16 @@ export default function ExamPage() {
       <img src="../logo-lotudy-removebg.png" alt="logo da lotudy" />
       <nav>
         <div>
-          <NavLink href={'/dashboard'} > Dashboard</NavLink>
+          <Link href={'/dashboard'} > Dashboard</Link>
         </div>
         <div>
-          <NavLink href={'/exams'}>Exams</NavLink>
+          <Link href={'/exams'}>Exams</Link>
         </div>
         <div>
-          <NavLink href={'/study-cycle'}>Study Cycle</NavLink>
+          <Link href={'/study-cycle'}>Study Cycle</Link>
         </div>
         <div>
-          <NavLink href={'/flex-cards'}>Flash Cards</NavLink>
+          <Link href={'/flex-cards'}>Flash Cards</Link>
         </div>
       </nav>
       <ResponsiveMenu display={display} setDisplay={setDisplay}/>

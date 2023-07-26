@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card, FlexContainer, NavLink, colorSegundary } from './sharedstyles';
+import { Card, FlexContainer, colorSegundary } from './sharedstyles';
 import Link from 'next/link';
 
 
@@ -24,12 +24,12 @@ export default function Cards() {
   return (
     <FlexContainer>
       {cardList.map((element, index) => (
-        <NavLink href={element.href} key={index}>
+        <Link href={element.href} key={index}>
           <Card >
             <img src={element.img} alt={element.text} />
             <p>{element.text}</p>
           </Card>
-        </NavLink>
+        </Link>
       ))}
     </FlexContainer>
   );
