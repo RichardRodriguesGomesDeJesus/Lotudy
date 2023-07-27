@@ -54,7 +54,7 @@ export default async function handler(req, res) {
         const token = jwt.sign({
           userId: newUser._id,
           email: email
-        },secret)
+        },secret, { expiresIn: '1h' })
         res.status(201).send({mse: 'sucesso!',token});
       } catch {
         res.status(500).send({ mse: 'Something went wrong' })

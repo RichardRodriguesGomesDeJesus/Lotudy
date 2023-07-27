@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import mongoose from 'mongoose';
 import { connectMongo } from '../../../lib/connectMongo.js';
 import { UserModel } from "../../../models/user.js"
 
@@ -14,7 +13,10 @@ export default async function handler(req, res){
     if (!token) {
         return res.status(403).send("A token is required for authentication");
     }
-    const decoded = jwt.verify(token, process.env.SECRET); // Verifica se o token é válido
+    const decoded = jwt.verify(token, process.env.SECRET);
+    if (decoded.exp === undefined) {
+      res.status(401).json({ error: 'Token is expired'})
+    }
     await connectMongo()
     const user = await UserModel.find({email: decoded.email})
     
@@ -24,7 +26,10 @@ export default async function handler(req, res){
     
     res.status(200).send({msg:'success'})
   } catch (error) {
-    console.error(error);
-    res.status(401).json({ error: 'Token is invalid'});
+    if (error instanceof jwt.TokenExpiredError) {
+      res.status(401).json({ error: 'Token is expired' });
+  } else {
+      res.status(401).json({ error: 'Token is invalid' });
+  }
   }
 }
