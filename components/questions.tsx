@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Button, colorSegundary } from "./sharedstyles";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const Form = styled.div`
   align-items: center;
@@ -94,6 +95,7 @@ const Option = styled.button`
 `;
 
 export default function Questions({questionList, setEdit, token , examName}) {
+  const router = useRouter()
   const [questionSelect, setQuestionSelect] = useState(0)
   const [update, setUpdate] = useState(false)
   function save(questions, token) {
@@ -103,10 +105,10 @@ export default function Questions({questionList, setEdit, token , examName}) {
         title: examName
       })
       .then((res) => {
-        console.log(res.data);
+        setEdit(false)
       })
       .catch((err) => {
-        console.log(err);
+        router.push('/login')
       });
   }
   return(
@@ -148,8 +150,7 @@ export default function Questions({questionList, setEdit, token , examName}) {
       )}
     </Form>
     <Button onClick={()=>{
-      save(questionList,token)
-      setEdit(false)}} >Terminar de editar</Button>
+      save(questionList,token)}} >Terminar de editar</Button>
    </>
   )
 }

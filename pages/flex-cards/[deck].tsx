@@ -6,6 +6,7 @@ import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sh
 import Link from "next/link";
 import FlashCards from "../../components/flashCards";
 import FormCards from "../../components/formCards";
+import EditCard from "../../components/editCards";
 
 export default function deck() {
     const router = useRouter();
@@ -19,7 +20,7 @@ export default function deck() {
     const [updateCards, setUpdateCards] = useState(false);
     const [display, setDisplay] = useState('none');
     const [ card, setCard] = useState(false);
-    const [] = useState(false)
+    const [edit, setEdit] = useState(false)
   
     useEffect(() => {
       if (!token) {
@@ -54,14 +55,12 @@ export default function deck() {
             token,
           })
           .then((res) => {
-            console.log(res)
             setCardList(res.data.deck.cards);
             setRequest(true);
             setUpdateCards(false);
           })
           .catch((err) => {
             router.push("/flex-cards");
-            console.log(err)
             setRequest(true);
             setUpdateCards(false);
           });
@@ -91,14 +90,23 @@ export default function deck() {
         </Header>
         <Main>
           <Title>Deck - {deckName}</Title>
-          {form === false && card === true && <FlashCards cards={cardList} setCard={setCard} deckName={deckName} />}
-          {form === false && card === false &&(
+          {form === false && card === true && edit === false && <FlashCards cards={cardList} setCard={setCard} deckName={deckName} />}
+          {form === false && card === false && edit === false &&(
             <>
               <Button onClick={() => { setForm(true) }}>Create Cards</Button>
-              <Button onClick={()=>{ setCard(true)}}>Start Deck</Button>
+              
+              {cardList.length >0 &&(
+                <>
+                  <Button onClick={()=>{ setCard(true)}}>Start Deck</Button>
+                  <Button onClick={()=>{ setEdit(true)}} >Edit</Button>
+                </>
+              )}
             </>
           )}
-          {form === true && card === false && <FormCards setForm={setForm} setUpdateCards={setUpdateCards} deckName={deckName}  />}
+          {form === true && card === false && edit === false && <FormCards setForm={setForm} setUpdateCards={setUpdateCards} deckName={deckName}  />}
+          {form === false && card === false && edit === true &&(
+            <EditCard cardList={cardList} setEdit={setEdit} token={token} deckName={deckName} />
+          )}
         </Main>
       </>
     )
