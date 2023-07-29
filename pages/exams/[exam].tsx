@@ -88,19 +88,19 @@ export default function ExamPage() {
           <Link href={'/dashboard'} > Dashboard</Link>
         </div>
         <div>
-          <Link href={'/exams'}>Exams</Link>
+          <Link href={'/exams'}>Simulados</Link>
         </div>
         <div>
-          <Link href={'/study-cycle'}>Study Cycle</Link>
+          <Link href={'/study-cycle'}>Ciclo de  estudos</Link>
         </div>
         <div>
-          <Link href={'/flex-cards'}>Flash Cards</Link>
+          <Link href={'/flex-cards'}>Cards de revisão</Link>
         </div>
       </nav>
       <ResponsiveMenu display={display} setDisplay={setDisplay}/>
     </Header>
     <Main>
-      <Title>Create and practice with custom exam questions: {examName}.</Title>
+      <Title>Crie e pratique com perguntas de exame personalizadas: {examName}.</Title>
       {form === true &&  edit === false && question === false &&
         <QuestionForm questionList={questionList} examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} updateList={updateList} setUpdateList={setUpdateList} />
       }
@@ -113,7 +113,7 @@ export default function ExamPage() {
         <Button onClick={(e)=>{
           e.preventDefault()
           setForm(true)
-        }}>Create questions</Button>
+        }}>Crie questões</Button>
       }
       {
         question === false && form === false && questionList.length > 0 && edit === false &&
@@ -121,12 +121,12 @@ export default function ExamPage() {
           <Button onClick={(e)=>{
             e.preventDefault()
             setQuestion(true)
-          }}>Start exam</Button>
+          }}>Comece a revisão</Button>
           <Button onClick={(e)=>{
             e.preventDefault()
             setEdit(true)
           }}
-          >Edit</Button>
+          >Edite</Button>
         </>
       }
       {form === false && question === false && edit === true &&

@@ -76,18 +76,18 @@ export default function ListExams({ formUpdate, setFormUpdate, examList, setExam
             ))
           )}
           {examList.length == 0 && (
-            <p>You don't have any exams yet</p>
+            <p>Você ainda não tem nenhum simulado</p>
           )}
         </List>
         {examList.length > 0 && edit === false &&(
           <Button onClick={()=>{
             setEdit(true)
-          }} >edit</Button>
+          }} >edite</Button>
         )}
         {examList.length > 0 && edit === true &&(
           <Button onClick={()=>{
             setEdit(false)
-          }} >finish editing</Button>
+          }} >terminar de editar</Button>
         )}
       </>
     );

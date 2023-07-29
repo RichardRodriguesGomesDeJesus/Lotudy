@@ -270,23 +270,23 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
                 setForm(false)
             }}><img src="/icons/close.png"/></ButtonClose>
             <div>
-                <label htmlFor="text">Add text to the question.</label>
+                <label htmlFor="text">Adicione texto à pergunta.</label>
                 <textarea name="text" id="text" minLength={10} maxLength={1000} value={text} onChange={(e)=>{ setText(e.target.value)}} cols={30} rows={10} required></textarea>
             </div>
             <div>
-                <label htmlFor="url">Image</label>
+                <label htmlFor="url">Imagem</label>
                 <input type="url" id="url" value={url} onChange={(e)=>{setUrl(e.target.value)}}/>
                 {url !== '' && (
                     <img src={url} onLoad={()=>{ setLoad(true)}} onError={()=>{setLoad(false)}} />
                 )}
                 {load == false && (
-                    <p>failed to render the image</p>
+                    <p>falha ao renderizar a imagem, use outra url.</p>
                 )}
             </div>
             <CustomSelect options={questionList} selectedOption={selectedOption} setSelectedOption={setSelectedOption} isOpen={isOpen} setIsOpen={setIsOpen}/>
             {options.map((option, index) => (
                 <div key={index}>
-                    <label htmlFor={`option-${index}`}>Option {index + 1}:</label>
+                    <label htmlFor={`option-${index}`}>Opção {index + 1}:</label>
                     <input
                     type="text"
                     minLength={1}
@@ -299,7 +299,7 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
                     required
                     />
                     <div>
-                        <span>Mark as correct</span>
+                        <span>Marcar como correto</span>
                         <RadioInput
                         type="radio"
                         name="correctAnswer"
@@ -318,14 +318,14 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
           {options.length <= 4 && <ButtonAddOption onClick={(e)=>{
             e.preventDefault() 
             addOption()
-            }}>Add an Option.</ButtonAddOption>}
+            }}>Adicione uma opção.</ButtonAddOption>}
             {
              options.length < 2 &&
-                <p>add more options</p>   
+                <p>adicionar mais opções</p>   
             }
             {
                 options.length >= 2 && 
-                <ButtonSubmit type="submit" name="submit" value={'Create the question'} />
+                <ButtonSubmit type="submit" name="submit" value={'Crie uma questão'} />
              }
         </Form>
       </>

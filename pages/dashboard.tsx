@@ -67,13 +67,13 @@ export default function Dashboard() {
             <Link href={'/'} >Home</Link>
           </div>
           <div>
-            <Link href={'/exams'} >Exams</Link>
+            <Link href={'/exams'} >Simulados</Link>
           </div>
           <div>
-            <Link href={'/study-cycle'} >Study cycle</Link>
+            <Link href={'/study-cycle'} >Ciclo de estudos</Link>
           </div>
           <div>
-            <Link href={'/flex-cards'}>Flash Cards</Link>
+            <Link href={'/flex-cards'}>Cards de Revisão</Link>
           </div>
         </nav>
         <ResponsiveMenu display={display} setDisplay={setDisplay}/>

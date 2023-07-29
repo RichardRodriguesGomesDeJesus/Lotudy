@@ -52,26 +52,26 @@ export default function flexCards() {
               <Link href={'/dashboard'}>Dashboard</Link>
             </div>
             <div>
-              <Link href={'/exams'}>Exams</Link>
+              <Link href={'/exams'}>Simulados</Link>
             </div>
             <div>
-              <Link href={'/study-cycle'}>Study Cycle</Link>
+              <Link href={'/study-cycle'}>Ciclo de estudos</Link>
             </div>
           </nav>
           <ResponsiveMenu display={display} setDisplay={setDisplay}/>
         </Header>
         <Main>
-          <Title>Create a deck of review cards</Title>
+          <Title>Crie um baralho de cartas de revisão.</Title>
           <FlashCardDecks token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} cardList={cardList} setCardList={setCardList} edit={edit} setEdit={setEdit} />
           {cardList.length > 0 && edit === false &&(
             <Button onClick={()=>{
               setEdit(true)
-            }} >edit</Button>
+            }} >edite</Button>
           )}
           {cardList.length > 0 && edit === true &&(
             <Button onClick={()=>{
               setEdit(false)
-            }} >finish editing</Button>
+            }} >terminar de editar</Button>
           )}
           <FormDeck token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} cardList={cardList} />
         </Main>

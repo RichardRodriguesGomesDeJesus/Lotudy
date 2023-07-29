@@ -148,11 +148,11 @@ export default function FormExams( { formUpdate, setFormUpdate, examList }) {
                 setForm(false);
                if (formUpdate === false) {
                     setFormUpdate(true)
-               } // Fetch the updated list of exams
+               }
               })
               .catch((err) => console.log(err));
         } else {
-            setMseError('An exam with that name already exists.')
+            setMseError('Já existe um exame com esse nome.')
         }
     }
     
@@ -165,19 +165,19 @@ export default function FormExams( { formUpdate, setFormUpdate, examList }) {
                         submit()
                     }}>
                     <div>
-                        <label htmlFor="name_exame">Add an exam name.</label>
+                        <label htmlFor="name_exame">Adicione um nome de exame.</label>
                         <input type="text" id="name_exame" onChange={(event)=> setNameExame(event.target.value)} maxLength={30} required value={nameExame} />
                         {mseError !== '' &&(
                             <p>{mseError}</p>
                         )}
                     </div>
-                    <ButtonSubmit type="submit" name="submit" value={'add'}/>
+                    <ButtonSubmit type="submit" name="submit" value={'adicione'}/>
                     </Form>
                 )
             }
             {
                 form == false && (
-                    <Button onClick={()=>{setForm(true)}}>add</Button>
+                    <Button onClick={()=>{setForm(true)}}>adicione</Button>
                 )
             }
         </>

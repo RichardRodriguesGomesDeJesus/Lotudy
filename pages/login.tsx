@@ -2,7 +2,6 @@ import Link from "next/link";
 import ResponsiveMenu, { Header, Title, Main, Footer  } from "../components/sharedstyles";
 import { FormLogin } from "../components/formLogin";
 import { useState } from "react";
-import { Head } from "next/document";
 
 export default function Login (){
     const [display, setDisplay] = useState('none');
@@ -15,17 +14,17 @@ export default function Login (){
                         <Link href={'/'}>Home</Link>
                     </div>
                     <div>
-                        <Link href={'/register'}>Register</Link>
+                        <Link href={'/register'}>Cadastre-se</Link>
                     </div>
                 </nav>
                 <ResponsiveMenu display={display} setDisplay={setDisplay} />
             </Header>
             <Main>
-                <Title>Sign in to your account.</Title>
+                <Title>Faça login em sua conta.</Title>
                 <FormLogin/>
             </Main>
             <Footer>
-                <Link href={'/register'}>Create your account</Link>
+                <Link href={'/register'}>Crie sua conta</Link>
             </Footer>
         </>
     )

@@ -120,7 +120,7 @@ export default function FlashCardDecks ({token,setFormUpdate,formUpdate, cardLis
         </Link>
       ))}
       {cardList.length <= 0 && 
-        <p>You don't have a deck.</p>
+        <p>Você não tem um baralho.</p>
       }
     </FlexContainer>
   );

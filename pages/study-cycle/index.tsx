@@ -70,16 +70,16 @@ export default function studyCyclePage() {
                 <Link href={'/dashboard'} > Dashboard</Link>
               </div>
               <div>
-                <Link href={'/exams'}>Exams</Link>
+                <Link href={'/exams'}>Simulados</Link>
               </div>
               <div>
-                <Link href={'/flex-cards'}>Flash Cards</Link>
+                <Link href={'/flex-cards'}>Cards de Revisão</Link>
               </div>
           </nav>
           <ResponsiveMenu display={display} setDisplay={setDisplay}/>
         </Header>
         <Main>
-          <Title>Create a study cycle</Title>
+          <Title>Crie um ciclo de estudos</Title>
           { form === false && StudyCycle.length > 0 &&
             <UserStudyCycle StudyCycle={StudyCycle} token={token} />
           }
@@ -103,7 +103,7 @@ export default function studyCyclePage() {
                   e.preventDefault()
                   setForm(true)
 
-              }}>Create Study Cycle </Button>
+              }}>Criar Ciclo de Estudos </Button>
               </div>
           }
           

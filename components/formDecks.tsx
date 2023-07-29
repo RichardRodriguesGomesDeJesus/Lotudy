@@ -151,7 +151,7 @@ export default function FormDeck({token,formUpdate, setFormUpdate, cardList}) {
             })
             .catch((err) => console.log(err));
         } else {
-            setMseError('A deck with that name already exists.')
+            setMseError('Já existe um baralho com esse nome.')
         }
     }
     return(
@@ -163,20 +163,20 @@ export default function FormDeck({token,formUpdate, setFormUpdate, cardList}) {
                     submit()
                 }}>
                 <div>
-                    <label htmlFor="name_deck">Add a name for the deck</label>
+                    <label htmlFor="name_deck">Adicione um nome para o baralho</label>
                     <input type="text" id="name_deck" onChange={(event)=> setNameDeck(event.target.value)} maxLength={30} required value={nameDeck} />
                     {mseError !== '' &&(
                         <p>{mseError}</p>
                     )}
                 </div>
-                <ButtonSubmit type="submit" name="submit" value={'Create deck'}/>
+                <ButtonSubmit type="submit" name="submit" value={'Criar baralho'}/>
             </Form>
             )
         }
         {form === false &&
             <Button onClick={()=>{
                 setForm(true)
-            }}>Add</Button>
+            }}>Adicione</Button>
         }
     </>
     )

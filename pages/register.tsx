@@ -26,7 +26,7 @@ export default function Register (){
                 <FormRegister/>
             </Main>
             <Footer>
-                <Link href={'/register'}>Create your account</Link>
+                <Link href={'/login'}>Faça Login se já possui conta</Link>
             </Footer>
         </>
     )

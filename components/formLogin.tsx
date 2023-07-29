@@ -181,8 +181,8 @@ export function FormLogin (){
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Write your password.' autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)} id='password'/>
-                    <span>Incorrect password or email.</span>
+                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Escreva sua senha.' autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)} id='password'/>
+                    <span>Senha ou e-mail incorreto.</span>
                 </div>
                 {errorMessage && <p>{errorMessage}</p>}
                 <ButtonSubmit type="submit" name="submit" value={'Logar'} />

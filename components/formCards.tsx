@@ -165,13 +165,13 @@ export default function FormCards({setForm,  setUpdateCards, deckName}) {
         submit()
       }}>
         <div>
-          <label htmlFor="front">Front</label>
+          <label htmlFor="front">Frente</label>
           <input type="text" name="front"  maxLength={70} onChange={(e)=>{
             setTextFront(e.target.value)
           }} value={textFront} required/>
         </div>
         <div>
-          <label htmlFor="back">Back</label>
+          <label htmlFor="back">Verso</label>
           <input type="text" name="back" maxLength={70} onChange={(e)=>{
             setTextBack(e.target.value)
           }} value={textBack} required/>

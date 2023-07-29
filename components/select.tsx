@@ -74,9 +74,9 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
     <CustomSelectWrapper>
       {newAddCategory === false &&(
         <>
-          <label htmlFor="category">Add a category from the list to the question.</label>
+          <label htmlFor="category">Adicione uma categoria da lista à pergunta.</label>
           <SelectedOption onClick={() => setIsOpen(!isOpen)}>
-            {selectedOption ? selectedOption : 'Select an option'}
+            {selectedOption ? selectedOption : 'Selecione uma opção'}
           </SelectedOption>
           
           <OptionsList isOpen={isOpen}>
@@ -90,13 +90,13 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
             <Button onClick={(e)=>{
               e.preventDefault() 
               setNewAddCategory(true)
-            }} >new category</Button>
+            }} >nova categoria</Button>
           </OptionsList>
         </>
       )}
       {newAddCategory === true&&(
         <>
-          <label htmlFor="newCategory">new category</label>
+          <label htmlFor="newCategory">nova categoria</label>
           <input type="text" value={newCategory} onChange={(e)=>{
             setNewCategory(e.target.value)
           }}  />
@@ -106,7 +106,7 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
               options.push({subject: newCategory})
               setNewAddCategory(false)
             }
-          }} >Create Category</Button>
+          }} >Crie Categoria</Button>
         </>
       )}
     </CustomSelectWrapper>

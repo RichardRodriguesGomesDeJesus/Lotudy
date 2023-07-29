@@ -142,13 +142,13 @@ export default function FlashCards({ cards, setCard, deckName }) {
     <FlexContainer>
       {cards.length > 0 && cardsEnd === true && (
         <>
-          <p>You have completed all the cards.</p>
+          <p>Você completou a revisão.</p>
           <Button
             onClick={() => {
               setCard(false)
             }}
           >
-            Go Back
+            Voltar
           </Button>
         </>
       )}
@@ -166,65 +166,63 @@ export default function FlashCards({ cards, setCard, deckName }) {
             <CardBack>{cards[index].correctAnswer}</CardBack>
           </Card>
           {cards[index]?.time !== '' && flip === false &&(
-            <p>
-              Time taken to respond to card previously: {cards[index]?.time}.
-            </p>
+            <h3>Tempo gasto para responder ao card anteriormente: {cards[index]?.time}.</h3>
           )}
         </>
       )}
       {flip === true && (
         <>
-          <h2>How much time did it take you to answer the card?</h2>
+          <h3>Quanto tempo você levou para responder o cartão?</h3>
           <div>
             <Button
               onClick={() => {
-                cards[index].time = 'Very short';
+                cards[index].time = 'Muito Pouco';
                 save(cards, token, deckName);
                 nextCard();
               }}
             >
-              Very Short
+              Muito Pouco
             </Button>
             <Button
               onClick={() => {
-                cards[index].time = 'Short';
+                cards[index].time = 'Pouco';
                 save(cards, token, deckName);
                 nextCard();
               }}
             >
-              Short
+              Pouco
             </Button>
             <Button
               onClick={() => {
-                cards[index].time = 'Medium';
+                cards[index].time = 'Médio';
                 save(cards, token, deckName);
                 nextCard();
               }}
             >
-              Medium
+              Médio
             </Button>
             <Button
               onClick={() => {
-                cards[index].time = 'Long';
+                cards[index].time = 'Grande';
                 save(cards, token, deckName);
                 nextCard();
               }}
             >
-              Long
+              Grande
             </Button>
             <Button
               onClick={() => {
-                cards[index].time = 'Very long';
+                cards[index].time = 'Muito Grande';
                 save(cards, token, deckName);
                 nextCard();
               }}
             >
-              Very Long
+              Muito Grande
             </Button>
           </div>
         </>
       )}
-      {cards.length === 0 && <p>You don't have any cards.</p>}
+      {cards.length === 0 && <p>Você não tem nenhum card.</p>}
     </FlexContainer>
   );
 }

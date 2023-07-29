@@ -77,28 +77,28 @@ export default function deck() {
               <Link href={'/dashboard'}>Dashboard</Link>
             </div>
             <div>
-              <Link href={'/flex-cards'}>Flash Cards</Link>
+              <Link href={'/flex-cards'}>Cards de Revisão</Link>
             </div>
             <div>
-              <Link href={'/exams'}>Exams</Link>
+              <Link href={'/exams'}>Simulados</Link>
             </div>
             <div>
-              <Link href={'/study-cycle'}>Study Cycle</Link>
+              <Link href={'/study-cycle'}>Ciclo de estudos</Link>
             </div>
           </nav>
           <ResponsiveMenu display={display} setDisplay={setDisplay}/>
         </Header>
         <Main>
-          <Title>Deck - {deckName}</Title>
+          <Title>Baralho - {deckName}</Title>
           {form === false && card === true && edit === false && <FlashCards cards={cardList} setCard={setCard} deckName={deckName} />}
           {form === false && card === false && edit === false &&(
             <>
-              <Button onClick={() => { setForm(true) }}>Create Cards</Button>
+              <Button onClick={() => { setForm(true) }}>Crie Cards</Button>
               
               {cardList.length >0 &&(
                 <>
-                  <Button onClick={()=>{ setCard(true)}}>Start Deck</Button>
-                  <Button onClick={()=>{ setEdit(true)}} >Edit</Button>
+                  <Button onClick={()=>{ setCard(true)}}>Comece a revisão</Button>
+                  <Button onClick={()=>{ setEdit(true)}} >Edite</Button>
                 </>
               )}
             </>
