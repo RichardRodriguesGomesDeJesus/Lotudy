@@ -13,10 +13,13 @@ export default async function handler(req, res) {
   
   const { name, email, password } = req.body;
   if (!validator.isLength(name, { min: 2 })) {
-    return res.status(422).send({ mse: 'The name must be at least 2 characters long' });
+    return res.status(422).send({ mse: 'O nome deve ter pelo menos 2 caracteres' });
+  }
+  if(!validator.isAlphanumeric(name)){
+    return res.status(422).send({ mse: 'O nome deve conter apenas letras e números' });
   }
   if (!validator.isEmail(email)) {
-    return res.status(422).send({ mse: 'The email provided is invalid' });
+    return res.status(422).send({ mse: 'O e-mail fornecido é inválido' });
   }
   if (!validator.isStrongPassword(password, {
     minLength: 8,
@@ -26,7 +29,7 @@ export default async function handler(req, res) {
     minNumbers: 1,
     minSymbols: 1
   })) {
-    return res.status(422).send({ mse: 'Password must be at least 8 characters long, including uppercase and lowercase letters, numbers and symbols' });
+    return res.status(422).send({ mse: 'A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas e minúsculas, números e símbolos' });
   }
   if (!name) {
     return res.status(422).send({ mse: 'name is required' });
@@ -46,7 +49,7 @@ export default async function handler(req, res) {
     }
     await connectMongo();
     const user = await UserModel.find({email: email });
-    if (user.length = 0) {
+    if (user.length == 0) {
       const newUser = new UserModel(userObject);
       try {
         await newUser.save();
@@ -54,7 +57,7 @@ export default async function handler(req, res) {
         const token = jwt.sign({
           userId: newUser._id,
           email: email
-        },secret, { expiresIn: '1h' })
+        },secret, { expiresIn: '12h' })
         res.status(201).send({mse: 'sucesso!',token});
       } catch {
         res.status(500).send({ mse: 'Something went wrong' })
@@ -62,11 +65,7 @@ export default async function handler(req, res) {
     } else {
       res.status(409).send('Esse email já foi cadastrado');
     }
-  } catch (error) {
-    console.error(error); // log the error for debugging purposes
+  } catch (error) { 
     return res.status(400).send({ mse: 'Something went wrong' });
-  }
-  finally {
-    await mongoose.connection.close();
   }
 }

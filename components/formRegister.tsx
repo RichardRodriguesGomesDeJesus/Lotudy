@@ -6,7 +6,9 @@ import { useRouter } from "next/router";
 import { setCookie } from "nookies";
 
 const Form = styled.form`
-    
+    background: ${colorSegundary.white};
+    box-shadow: 0 8px 8px ${colorSegundary.textColor};
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -37,8 +39,8 @@ const Form = styled.form`
     }
     @media screen and (min-width: 0 ){
         gap:.5rem;
-        height: 400px;
-        width: 300px;
+        min-height: 400px;
+        width: 100%;
         div{
             gap: .5rem;
             label{
@@ -52,10 +54,7 @@ const Form = styled.form`
         }
     };
     @media screen and (min-width: 768px ){
-        background: ${colorSegundary.white};
-        box-shadow: 0 8px 8px ${colorSegundary.textColor};
-        border-radius: 1rem;
-        height: 400px;
+        min-height: 400px;
         width: 600px;
         div{
             label{
@@ -69,7 +68,7 @@ const Form = styled.form`
         }
     };
     @media screen and (min-width: 1024px) {
-        height: 500px;
+        min-height: 500px;
         width: 800px;
         div{
             label{
@@ -114,10 +113,6 @@ const ButtonSubmit = styled.input`
 
 `
 
-
-
-
-
 export default function FormRegister() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -127,10 +122,11 @@ export default function FormRegister() {
     const passwordInput = useRef()
     const router = useRouter();
 
-    function submit() {
-        
-        if (password === confirmPassword) {
+    const namePattern = /^[a-zA-Z0-9]+$/
+    const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/)
 
+    function submit() {
+        if (password === confirmPassword && namePattern.test(name) == true && passwordPattern.test(password) == true) {
             axios.post('/api/auth/set_user',{
             name: name,
             email:email ,
@@ -145,13 +141,23 @@ export default function FormRegister() {
             router.push('/dashboard')
         })
         .catch((err) => {
-            const error = err.response.data?.error?.message || err.response.data 
-              setErrorMessage(error);
-              console.log(error);
-              
-          });
+            let error =''
+            if (err && err.response && err.response.data && err.response.data) {
+                error = err.response.data.mse || err.response.data.message || err.response.data;
+                setErrorMessage(error); 
+            } 
+            
+        });        
         } else{
-            setErrorMessage('As senhas devem ser iguais!')
+            if (namePattern.test(name) == false) {
+                setErrorMessage('O nome deve conter apenas letras e números sem espaços.')
+            }
+            if (passwordPattern.test(password) == false) {
+                setErrorMessage('A senha deve ter entre 8 e 20 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.')
+            }
+            if (password !== confirmPassword) {
+                setErrorMessage('As senhas devem ser iguais!')
+            }
         }
     }
     return(
@@ -162,7 +168,17 @@ export default function FormRegister() {
                 }}>
                 <div>
                     <label htmlFor="name">Name</label>
-                    <input required type="text" name='name' placeholder='Escreva seu nome.' autoComplete="name" value={name} onChange={(event)=> setName(event.target.value)}/>
+                    <input required type="text" name='name' placeholder='Escreva seu nome.' autoComplete="name" value={name} minLength={2} onChange={(event)=>{
+                        setName(event.target.value)
+                    }}
+                    onBlur={()=>{
+                        if (namePattern.test(name) == false) {
+                            setErrorMessage('O nome deve conter apenas letras e números sem espaços.')
+                        } else {
+                            setErrorMessage('')
+                        }
+                    }}
+                    />
                 </div>
                 <div>
                     <label htmlFor="email">Email</label>
@@ -171,16 +187,35 @@ export default function FormRegister() {
                 </div> 
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Crie uma senha.' autoComplete="new-password" value={password} onChange={(event)=> setPassword(event.target.value)}/>
+                    <input required type="password" name='password' placeholder='Crie uma senha.' autoComplete="new-password" value={password} onChange={(event)=>{ 
+                        setPassword(event.target.value)
+                    }}
+                    onBlur={()=>{
+                        if (passwordPattern.test(password) == false) {
+                            setErrorMessage('A senha deve ter entre 8 e 20 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.')
+                        } else {
+                            setErrorMessage('')
+                        }
+                    }}
+                    />
                 </div>
                 <div>
                     <label htmlFor="confirm_password">Confirme sua senha</label>
-                    <input required  ref={passwordInput} type="password" name='confirm_password' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Confirme sua nova senha.' autoComplete="new-password" value={confirmPassword} onChange={(event)=> setConfirmPassword(event.target.value)}/>
+                    <input required  ref={passwordInput} type="password" name='confirm_password'  placeholder='Confirme sua nova senha.' autoComplete="new-password" value={confirmPassword} onChange={(event)=>{
+                        setConfirmPassword(event.target.value)
+                    }}
+                    onBlur={()=>{
+                        if (password !== confirmPassword) {
+                            setErrorMessage('As senhas devem ser iguais!')
+                        } else {
+                            setErrorMessage('')
+                        }
+                    }}
+                    />
                 </div>
                 {errorMessage && <p>{errorMessage}</p>}
                 <ButtonSubmit type="submit" name="submit" value={'Criar conta'} />
             </Form>
         </>
     )
-    
 }

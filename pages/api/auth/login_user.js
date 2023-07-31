@@ -41,7 +41,7 @@ export default async function handler(req, res) {
             const token = jwt.sign({
               userId: users[0]._id,
               email: email
-            }, process.env.SECRET, { expiresIn: '1h' })
+            }, process.env.SECRET, { expiresIn: '12h' })
             res.status(201).send({mse:'successful authentication', token});
           } else {
             res.status(401).send('Incorrect password or email')
