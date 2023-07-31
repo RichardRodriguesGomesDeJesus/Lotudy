@@ -138,10 +138,10 @@ export function FormLogin (){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+    const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/)
     const router = useRouter();
     function submit() {
-        try {
-          axios
+        axios
             .post('/api/auth/login_user', {
               email: email,
               password: password
@@ -149,7 +149,6 @@ export function FormLogin (){
             .then((res) => {
               const { 'token': token } = parseCookies();
               if (token) {
-                // Remover o token dos cookies
                 destroyCookie(undefined, 'token');
               }
               setCookie(undefined, 'token', res.data.token, {
@@ -159,16 +158,10 @@ export function FormLogin (){
               router.push('/dashboard');
             })
             .catch((err) => {
-              const error = err.response.data || err.response.data.error.message
+                const error = err.response.data.mse || err.response.data || err.response.data.message 
                 setErrorMessage(error);
             });
-        } catch (error) {
-          console.log(error);
-        }
       }
-      
-      
-
     return(
         <>
             <Form onSubmit={ event => {
@@ -181,7 +174,13 @@ export function FormLogin (){
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Escreva sua senha.' autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)} id='password'/>
+                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Escreva sua senha.' autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)} onBlur={()=>{
+                        if (passwordPattern.test(password) == false) {
+                            setErrorMessage('A senha deve ter entre 8 e 20 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.')
+                        } else {
+                            setErrorMessage('')
+                        }
+                    }} id='password'/>
                     <span>Senha ou e-mail incorreto.</span>
                 </div>
                 {errorMessage && <p>{errorMessage}</p>}

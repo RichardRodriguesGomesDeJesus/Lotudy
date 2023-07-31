@@ -187,7 +187,7 @@ export default function FormRegister() {
                 </div> 
                 <div>
                     <label htmlFor="password">Senha</label>
-                    <input required type="password" name='password' placeholder='Crie uma senha.' autoComplete="new-password" value={password} onChange={(event)=>{ 
+                    <input required type="password" name='password' placeholder='Crie uma senha.' autoComplete="new-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" value={password} onChange={(event)=>{ 
                         setPassword(event.target.value)
                     }}
                     onBlur={()=>{

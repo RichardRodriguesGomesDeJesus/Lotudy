@@ -20,7 +20,7 @@ export default async function handler(req, res){
     await connectMongo()
     const user = await UserModel.find({email: decoded.email})
     
-    if (!user) {
+    if (user.length == 0) {
       return res.status(404).json({ error: 'User not found' });
     } 
     

@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         minNumbers: 1,
         minSymbols: 1
       })) {
-        return res.status(422).send({ mse: 'Password must be at least 8 characters long, including uppercase and lowercase letters, numbers and symbols' });
+        return res.status(422).send({ mse: 'A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas e minúsculas, números e símbolos' });
       }
       if (!email) {
         return res.status(422).send({ mse: 'email is required' });
@@ -32,22 +32,22 @@ export default async function handler(req, res) {
       }
       try{
         await connectMongo();
-        const users = await UserModel.find({email: email });
-        if (!users) {
-          res.status(401).send('User not found');
+        const user = await UserModel.find({email: email });
+        if (user.length == 0) {
+          res.status(401).send('Senha ou e-mail incorreto');
         } else {
-          const passwordMatch = await bcrypt.compare(password, users[0].password);
+          const passwordMatch = await bcrypt.compare(password, user[0].password);
           if (passwordMatch) {
             const token = jwt.sign({
-              userId: users[0]._id,
+              userId: user[0]._id,
               email: email
             }, process.env.SECRET, { expiresIn: '12h' })
             res.status(201).send({mse:'successful authentication', token});
           } else {
-            res.status(401).send('Incorrect password or email')
+            res.status(401).send('Senha ou e-mail incorreto')
           }
         }
       } catch (error) {
-        return res.status(500).send({ msg: 'An error occurred while processing the request',error:JSON.stringify(error)});
+        return res.status(500).send({ mse: 'Ocorreu um erro ao processar a solicitação'});
       }
 }
