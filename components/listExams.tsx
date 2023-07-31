@@ -11,6 +11,7 @@ const List = styled.div`
     flex-flow: row wrap;
     gap: 1rem;
     padding: 1rem;
+    justify-content: center;
     div,a{
       box-shadow: 0 4px 20px ${colorSegundary.textColor};
       display: flex;

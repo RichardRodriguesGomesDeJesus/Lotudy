@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { connectMongo } from '../../../lib/connectMongo.js';
 import { ExamModel } from "../../../models/user.js"
+import validator from 'validator';
 
 export default async function createExam(req, res) {
   try {
@@ -12,6 +13,9 @@ export default async function createExam(req, res) {
 
     if (!name) {
       return res.status(422).send('name is required');
+    }
+    if (validator.isAlpha(name)== false) {
+      return res.status(422).send('name is invalid')
     }
     if (!token) {
       return res.status(403).send('A token is required');
@@ -33,11 +37,20 @@ export default async function createExam(req, res) {
       mistakes: 0
     };
 
+    const exams = (await ExamModel.find({ author:decoded.userId})).map((exam)=> exam.title);
+    
+    if (exams.includes(name) == true) {
+      return res.status(409).send({mse: 'Já existe um exame com esse nome.' })
+    }
+
     const newExam = new ExamModel(exam);
+
     await newExam.save();
 
     res.status(201).send({ mse: 'success!' });
+    
   } catch (error) {
+    console.log(error)
     res.status(500).send({ mse: 'Something went wrong'});
   }
 }

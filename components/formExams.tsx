@@ -3,6 +3,7 @@ import { Button, colorSegundary } from "./sharedstyles";
 import { useState } from "react";
 import axios from "axios";
 import { parseCookies } from "nookies";
+import validator from 'validator';
 
 const Form =styled.form`
 display: flex;
@@ -139,7 +140,7 @@ export default function FormExams( { formUpdate, setFormUpdate, examList }) {
     const [mseError, setMseError] = useState('')
     function submit() {
         const exist = examList.includes(nameExame)
-        if (exist == false) {
+        if (exist == false && validator.isAlpha(nameExame) == true) {
             axios.post('/api/exams', {
                 name: nameExame,
                 token
@@ -152,7 +153,12 @@ export default function FormExams( { formUpdate, setFormUpdate, examList }) {
               })
               .catch((err) => console.log(err));
         } else {
-            setMseError('Já existe um exame com esse nome.')
+            if (validator.isAlpha(nameExame) == false) {
+                setMseError('O nome deve ser conter por apenas letras sem espaços')
+            }
+            if (exist == true) {
+                setMseError('Já existe um exame com esse nome.')
+            }
         }
     }
     
@@ -165,8 +171,14 @@ export default function FormExams( { formUpdate, setFormUpdate, examList }) {
                         submit()
                     }}>
                     <div>
-                        <label htmlFor="name_exame">Adicione um nome de exame.</label>
-                        <input type="text" id="name_exame" onChange={(event)=> setNameExame(event.target.value)} maxLength={30} required value={nameExame} />
+                        <label htmlFor="name_exame">Adicione um nome ao simulado.</label>
+                        <input type="text" id="name_exame" onChange={(event)=> setNameExame(event.target.value)} onBlur={()=>{
+                            if (validator.isAlpha(nameExame) == false) {
+                                setMseError('O nome deve ser conter por apenas letras sem espaços')
+                            } else {
+                                setMseError('')
+                            }
+                        }} maxLength={30} required value={nameExame} />
                         {mseError !== '' &&(
                             <p>{mseError}</p>
                         )}
