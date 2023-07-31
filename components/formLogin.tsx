@@ -6,6 +6,9 @@ import { useRouter } from 'next/router'
 import { destroyCookie, parseCookies, setCookie } from 'nookies'
 
 const Form = styled.form`
+    background: ${colorSegundary.white};
+    box-shadow: 0 8px 8px ${colorSegundary.textColor};
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -72,9 +75,6 @@ const Form = styled.form`
         }
       };
     @media screen and (min-width: 768px ){
-        background: ${colorSegundary.white};
-        box-shadow: 0 8px 8px ${colorSegundary.textColor};
-        border-radius: 1rem;
         height: 350px;
         width: 600px;
         div{
