@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, colorSegundary } from './sharedstyles';
+import validator from 'validator';
 
 const CustomSelectWrapper = styled.div`
   position: relative;
@@ -60,7 +61,7 @@ const OptionItem = styled.li`
   label: string;
 }
 
-function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setIsOpen}) {
+function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setIsOpen, setMseError}) {
 
   const [newAddCategory, setNewAddCategory] = useState(false)
   const [newCategory,setNewCategory] = useState('')
@@ -97,9 +98,15 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
       {newAddCategory === true&&(
         <>
           <label htmlFor="newCategory">nova categoria</label>
-          <input type="text" value={newCategory} onChange={(e)=>{
+          <input type="text" value={newCategory} minLength={1} maxLength={30} onChange={(e)=>{
             setNewCategory(e.target.value)
-          }}  />
+          }} onBlur={()=>{
+            if (validator.isAlpha(newCategory) == false) {
+              setMseError('a categoria deve ter apenas letras!')
+            } else{
+              setMseError('')
+            }
+          }} />
           <Button onClick={(e)=>{
             e.preventDefault()
             if (newCategory !== '') {

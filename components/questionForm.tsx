@@ -39,6 +39,9 @@ const Form = styled.form`
             font-family: 'Poppins',sans-serif;
             padding: .5rem;
         }
+        p{
+            width:100%;
+        }
     }
     p{
         color: ${colorSegundary.error};
@@ -223,6 +226,7 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
     const [load, setLoad] = useState<Boolean>()
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOption, setSelectedOption] = useState('')
+    const [mseError, setMseError] = useState('')
     const addOption = () => {
         setOptions([...options, ""])
     };
@@ -283,7 +287,7 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
                     <p>falha ao renderizar a imagem, use outra url.</p>
                 )}
             </div>
-            <CustomSelect options={questionList} selectedOption={selectedOption} setSelectedOption={setSelectedOption} isOpen={isOpen} setIsOpen={setIsOpen}/>
+            <CustomSelect options={questionList} selectedOption={selectedOption} setSelectedOption={setSelectedOption} isOpen={isOpen} setIsOpen={setIsOpen} setMseError={setMseError}/>
             {options.map((option, index) => (
                 <div key={index}>
                     <label htmlFor={`option-${index}`}>Opção {index + 1}:</label>
@@ -322,6 +326,9 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
             {
              options.length < 2 &&
                 <p>adicionar mais opções</p>   
+            }
+            {mseError !== ''&&
+                <p>{mseError}</p>
             }
             {
                 options.length >= 2 && 

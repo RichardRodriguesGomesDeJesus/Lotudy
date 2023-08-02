@@ -50,7 +50,6 @@ export default async function createExam(req, res) {
     res.status(201).send({ mse: 'success!' });
     
   } catch (error) {
-    console.log(error)
     res.status(500).send({ mse: 'Something went wrong'});
   }
 }
