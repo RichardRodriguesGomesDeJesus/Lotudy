@@ -38,7 +38,7 @@ export default async function setQuestion(req, res) {
         return res.status(401).send({ error: 'Invalid token'});
       }
 
-      if (validator.isAlpha(title)== false) {
+      if (validator.isAlpha(title,  'pt-PT')== false) {
         return res.status(422).send('title is invalid')
       }
 
@@ -58,7 +58,7 @@ export default async function setQuestion(req, res) {
         return res.status(422).send('img is not a valid URL');
       }
 
-      if (subject && (!validator.isAlpha(subject) || subject.length > 30)) {
+      if (subject && (!validator.isAlpha(subject, 'pt-PT') || subject.length > 30)) {
         return res.status(422).send('subject is invalid');
       }
             

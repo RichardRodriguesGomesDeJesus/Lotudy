@@ -79,6 +79,7 @@ const Option = styled.button`
   margin: 0 auto;
   text-align: center;
   padding: 0;
+  width: 100%;
 
   div {
     background: ${colorSegundary.sideColor};
@@ -98,18 +99,6 @@ const Option = styled.button`
   :focus,
   :active {
     cursor: pointer;
-  }
-
-  @media screen and (min-width: 0) {
-    min-width: 100%;
-  }
-
-  @media screen and (min-width: 768px) {
-    min-width: 175px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    min-width: 200px;
   }
 `;
 
@@ -160,31 +149,17 @@ const MessageForm = styled.div`
     margin: 1rem;
     font-weight: 400;
   }
-  @media screen and (min-width: 0) {
-    gap: 1rem;
-    min-height: 200px;
-    width: auto;
-
-    p {
-      font-size: 1rem;
-    }
-  }
-
   @media screen and (min-width: 768px) {
-    background: ${colorSegundary.white};
-    box-shadow: 0 8px 8px ${colorSegundary.textColor};
-    border-radius: 1rem;
-    min-height: 200px;
-    width: auto;
-
+    min-height: 400px;
+    width: 600px;
     p {
       font-size: 1.2rem;
     }
   }
 
   @media screen and (min-width: 1024px) {
-    min-height: 250px;
-    width: auto;
+    min-height: 500px;
+    width: 800px;
   }
 `
 export default function Question({ token, examName, setQuestion, questionList, clickCard, setClickCard}) {

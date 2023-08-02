@@ -3,6 +3,7 @@ import { Button, ButtonClose, colorSegundary} from "./sharedstyles"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import CustomSelect from "./select"
+import validator from 'validator';
 
 const Form = styled.form`
     
@@ -240,25 +241,29 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
         }
       };
     function submit() {
-        axios.put('/api/exams/setQuestion', {
-            options,
-            correctOption:correctAnswer,
-            text,
-            ...(load === true && { img: url}),
-            title:examName,
-            ...(selectedOption && { subject: selectedOption}),
-            token
-        })
-        .then(()=>{
-            if (question === true) {
-                setQuestion(false)
-            }
-            setUpdateList(false)
-            setForm(false)
-        })
-        .catch((error)=> {
-            console.log(error)
-        })
+        if (selectedOption && validator.isAlpha(selectedOption,  'pt-PT') == false) {
+            setMseError('a categoria deve ter apenas letras!')
+        } else {
+            axios.put('/api/exams/setQuestion', {
+                options,
+                correctOption:correctAnswer,
+                text,
+                ...(load === true && { img: url}),
+                title:examName,
+                ...(selectedOption && { subject: selectedOption}),
+                token
+            })
+            .then(()=>{
+                if (question === true) {
+                    setQuestion(false)
+                }
+                setUpdateList(false)
+                setForm(false)
+            })
+            .catch((error)=> {
+                console.log(error)
+            })
+        }
     }
     return (
       <>
@@ -287,7 +292,7 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
                     <p>falha ao renderizar a imagem, use outra url.</p>
                 )}
             </div>
-            <CustomSelect options={questionList} selectedOption={selectedOption} setSelectedOption={setSelectedOption} isOpen={isOpen} setIsOpen={setIsOpen} setMseError={setMseError}/>
+            <CustomSelect options={questionList} selectedOption={selectedOption} setSelectedOption={setSelectedOption} isOpen={isOpen} setIsOpen={setIsOpen} setMseError={setMseError} mseError={mseError}/>
             {options.map((option, index) => (
                 <div key={index}>
                     <label htmlFor={`option-${index}`}>Opção {index + 1}:</label>
@@ -326,9 +331,6 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
             {
              options.length < 2 &&
                 <p>adicionar mais opções</p>   
-            }
-            {mseError !== ''&&
-                <p>{mseError}</p>
             }
             {
                 options.length >= 2 && 

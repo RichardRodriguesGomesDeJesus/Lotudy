@@ -61,7 +61,7 @@ const OptionItem = styled.li`
   label: string;
 }
 
-function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setIsOpen, setMseError}) {
+function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setIsOpen, setMseError, mseError}) {
 
   const [newAddCategory, setNewAddCategory] = useState(false)
   const [newCategory,setNewCategory] = useState('')
@@ -101,12 +101,15 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
           <input type="text" value={newCategory} minLength={1} maxLength={30} onChange={(e)=>{
             setNewCategory(e.target.value)
           }} onBlur={()=>{
-            if (validator.isAlpha(newCategory) == false) {
+            if (validator.isAlpha(newCategory,  'pt-PT') == false) {
               setMseError('a categoria deve ter apenas letras!')
             } else{
               setMseError('')
             }
           }} />
+          {mseError !== ''&&
+                <p>{mseError}</p>
+            }
           <Button onClick={(e)=>{
             e.preventDefault()
             if (newCategory !== '') {
