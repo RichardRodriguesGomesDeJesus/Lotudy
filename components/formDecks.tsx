@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Button, colorSegundary } from "./sharedstyles"
 import styled from "styled-components"
 import axios from "axios"
+import validator from 'validator'
 
 const Form =styled.form`
 display: flex;
@@ -138,7 +139,7 @@ export default function FormDeck({token,formUpdate, setFormUpdate, cardList}) {
     
     function submit() {
         const exist = cardList.includes(nameDeck)
-        if (exist == false) {
+        if (exist == false && validator.isAlpha(nameDeck,  'pt-PT') == true ) {
             axios.post('/api/decks', {
                 name: nameDeck,
                 token
@@ -151,7 +152,12 @@ export default function FormDeck({token,formUpdate, setFormUpdate, cardList}) {
             })
             .catch((err) => console.log(err));
         } else {
-            setMseError('Já existe um baralho com esse nome.')
+            if (validator.isAlpha(nameDeck,  'pt-PT') == false) {
+                setMseError('Nome do baralho deve conter apenas letras!')
+            }
+            if (exist == true) {
+                setMseError('Já existe um baralho com esse nome.')
+            }
         }
     }
     return(
@@ -164,7 +170,13 @@ export default function FormDeck({token,formUpdate, setFormUpdate, cardList}) {
                 }}>
                 <div>
                     <label htmlFor="name_deck">Adicione um nome para o baralho</label>
-                    <input type="text" id="name_deck" onChange={(event)=> setNameDeck(event.target.value)} maxLength={30} required value={nameDeck} />
+                    <input type="text" id="name_deck" onChange={(event)=> setNameDeck(event.target.value)} onBlur={()=>{
+                    if (validator.isAlpha(nameDeck,  'pt-PT') == false) {
+                        setMseError('Nome do baralho deve conter apenas letras!')
+                    } else{
+                        setMseError('')
+                    }
+                    }} maxLength={30} required value={nameDeck} />
                     {mseError !== '' &&(
                         <p>{mseError}</p>
                     )}

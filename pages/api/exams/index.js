@@ -37,7 +37,7 @@ export default async function createExam(req, res) {
       mistakes: 0
     };
 
-    const exams = (await ExamModel.find({ author:decoded.userId})).map((exam)=> exam.title);
+    const exams = (await ExamModel.find({ author:decoded.userId})).map((exam)=> exam.title)
     
     if (exams.includes(name) == true) {
       return res.status(409).send({mse: 'Já existe um exame com esse nome.' })
