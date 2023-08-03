@@ -14,7 +14,7 @@ export default async function createExam(req, res) {
     if (!name) {
       return res.status(422).send('name is required');
     }
-    if (validator.isAlpha(name)== false) {
+    if (validator.isAlpha(name)== false || name.length > 30) {
       return res.status(422).send('name is invalid')
     }
     if (!token) {

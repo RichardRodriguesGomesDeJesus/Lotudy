@@ -25,7 +25,7 @@ export default async function createDeck(req, res) {
             return res.status(401).send({ error: 'Invalid token'});
         }
 
-        if (validator.isAlpha(name,  'pt-PT') == false) {
+        if (validator.isAlpha(name,  'pt-PT') == false || name.length > 30) {
             return res.status(422).send('Nome do baralho deve conter apenas letras!')
         }
 

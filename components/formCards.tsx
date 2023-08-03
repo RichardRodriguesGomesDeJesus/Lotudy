@@ -148,8 +148,7 @@ export default function FormCards({setForm,  setUpdateCards, deckName}) {
         token,
         text:textFront,
         correctAnswer:textBack,
-        title: deckName ,
-        time: ''
+        title: deckName 
     }
     axios.put('/api/decks/set-cards', card)
     .then((res)=>{
