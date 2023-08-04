@@ -26,7 +26,14 @@ export default async function createStudyCycle(req, res) {
             return res.status(401).send({ error: 'Invalid token'});
         }
 
+        const existStudyCycle = await StudyCycleModel.findOne({author:decoded.userId})
+
+        if (existStudyCycle !== null) {
+            return res.status(409).json({mse: "You already have a study cycle and you cannot create another one."});
+        }
+
         await connectMongo();
+
         const Cycle = {
             author: decoded.userId,
             subjects: [...StudyCycle]
