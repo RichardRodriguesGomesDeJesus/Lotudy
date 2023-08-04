@@ -2,6 +2,7 @@
 import jwt from 'jsonwebtoken';
 import { connectMongo } from '../../../lib/connectMongo.js';
 import { DeckModel } from '../../../models/user.js';
+import validator from 'validator'
 
 export default async function setCards(req, res)  {
   try {
@@ -9,7 +10,7 @@ export default async function setCards(req, res)  {
       return res.status(405).send({ mse: 'Method Not Allowed' });
     }
 
-    const { token  ,  text, correctAnswer, time, title } = req.body;
+    const { token  ,  text, correctAnswer, title } = req.body;
 
     if (!token) {
       return res.status(403).send('A token is required');
@@ -33,6 +34,17 @@ export default async function setCards(req, res)  {
       return res.status(401).send({ error: 'Invalid token'});
     }
 
+    if (validator.isAlpha(title,  'pt-PT') == false || title.length > 30) {
+      return res.status(422).send({mse:'Title is invalid'})
+    }
+
+    if (text.length > 70) {
+      return res.status(422).send({mse:'Text is invalid'})
+    }
+
+    if (correctAnswer.length > 70) {
+      return res.status(422).send({mse:'correctAnswer is invalid'})
+    }
     await connectMongo();
 
     const deck =  await DeckModel.find({author:decoded.userId , title: title});
@@ -43,7 +55,8 @@ export default async function setCards(req, res)  {
 
     const newCard = {
       text,
-      correctAnswer
+      correctAnswer,
+      time:''
     }
     const userDeck = deck[0]
 

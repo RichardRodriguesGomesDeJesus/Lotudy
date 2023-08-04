@@ -17,7 +17,7 @@ const PieContainer = styled.div`
 export  default function PieChart({StudyCycle}: PieChartProps) { 
   
   const data = {
-    labels: ['Hours Studied', 'Total Hours'],
+    labels: ['Horas Estudadas', 'Total de Horas'],
     datasets: [
       {
         label: '# of hours',

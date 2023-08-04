@@ -14,7 +14,7 @@ export default async function createExam(req, res) {
     if (!name) {
       return res.status(422).send('name is required');
     }
-    if (validator.isAlpha(name)== false) {
+    if (validator.isAlpha(name)== false || name.length > 30) {
       return res.status(422).send('name is invalid')
     }
     if (!token) {
@@ -37,7 +37,7 @@ export default async function createExam(req, res) {
       mistakes: 0
     };
 
-    const exams = (await ExamModel.find({ author:decoded.userId})).map((exam)=> exam.title);
+    const exams = (await ExamModel.find({ author:decoded.userId})).map((exam)=> exam.title)
     
     if (exams.includes(name) == true) {
       return res.status(409).send({mse: 'Já existe um exame com esse nome.' })
@@ -50,7 +50,6 @@ export default async function createExam(req, res) {
     res.status(201).send({ mse: 'success!' });
     
   } catch (error) {
-    console.log(error)
     res.status(500).send({ mse: 'Something went wrong'});
   }
 }
