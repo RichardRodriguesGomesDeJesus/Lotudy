@@ -22,6 +22,10 @@ export default async function deleteDecks(req, res) {
       return res.status(401).send({ error: 'Invalid token'});
     }
 
+    if (validator.isAlpha(title)== false || title.length > 30) {
+      return res.status(422).send('title is invalid')
+    }
+    
     await connectMongo();
 
     await DeckModel.deleteOne({ author:decoded.userId, title: title});

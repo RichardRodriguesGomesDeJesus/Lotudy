@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colorSegundary } from "./sharedstyles";
+import { time } from "console";
 
 const Timer = styled.div`
   align-items: center;
@@ -192,7 +193,10 @@ export default function Question({ token, examName, setQuestion, questionList, c
     if (indexQuestion + 1 >= questionsText.length){
       setEndForm(true)
       axios.put('/api/exams/put-exam',{
+        correctAnswers: correctAnswers,
+        mistakes: mistakes,
         time: cont,
+        title: examName,
         token
       })
       .then()

@@ -4,17 +4,17 @@ import ResponsiveMenu, { Header, Main, Title } from "../components/sharedstyles"
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import axios from "axios";
-import PieChart from "../components/pieChart";
 import studyCycle from "../utils/interfaces";
 import Cards from "../components/cards";
 import Statistics from "../components/statistics";
 
 export default function Dashboard() {
-  const { 'token': token } = parseCookies();
+  const { 'token': token } = parseCookies()
   const [userAuth , setUserAuth] = useState(true)
   const [StudyCycle , setStudyCycle] = useState<studyCycle[]>([])
-  const router = useRouter();
-  const [display, setDisplay] = useState('none');
+  const [examList, setExamList] = useState([]); 
+  const router = useRouter()
+  const [display, setDisplay] = useState('none')
   useEffect(()=>{
     if (!token) {
       setUserAuth(false)
@@ -39,6 +39,10 @@ export default function Dashboard() {
         const response = await axios.post('/api/study-cycle/get-study-cycle',{
           token,
         })
+        const responseQuestions = await axios.post('/api/exams/getExams', {
+          token,
+        });
+        setExamList(responseQuestions.data.listQuestions);
         if (response?.data?.StudyCycle?.subjects === undefined ) {
           setStudyCycle([])
         } else {
@@ -49,13 +53,11 @@ export default function Dashboard() {
         console.log(error);
       }
     };
-  
     const fetchStudyCycleAndUpdateList = async () => {
       if (token) {
         await fetchStudyCycle();
       }
     };
-  
     fetchStudyCycleAndUpdateList();
     }, [token]);
   return (
@@ -81,7 +83,7 @@ export default function Dashboard() {
       <Main>
         <Title>Dashboard</Title>
         <Cards/>
-        <Statistics StudyCycle={StudyCycle}/>
+        <Statistics StudyCycle={StudyCycle} examList={examList}/>
       </Main>
     </>
   );

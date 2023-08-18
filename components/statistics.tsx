@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import PieChart from "./pieChart";
+import StudyPieChart from "./StudyPieChart";
 import { Button, colorSegundary } from "./sharedstyles";
 import { useRouter } from "next/router";
+import ExamsBarChart from "./examsBarChat";
 
 const StatisticsContainer = styled.div`
   background: ${colorSegundary.white} ;
@@ -9,12 +10,13 @@ const StatisticsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0 1rem;
   flex-grow: 1;
-  width: 100vw;
+  width: 100vw ;
   div{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     div{
       display: flex;
       flex-direction: column;
@@ -36,11 +38,21 @@ const StatisticsContainer = styled.div`
     }
   };
 `
-export default function Statistics({ StudyCycle }) {
+export default function Statistics({ StudyCycle, examList}) {
   const router = useRouter()
 
   return (
     <StatisticsContainer>
+      {examList.length > 0&&(
+        <div>
+          <div>
+            <p>Este gráfico mostra as suas horas estudadas durante o seu ciclo de estudos.</p>
+
+            <p>Um ciclo de estudos é uma estratégia eficaz para organizar e otimizar o tempo dedicado ao aprendizado. Ele oferece uma série de benefícios e vantagens.</p>
+          </div>
+          <ExamsBarChart examList={examList} />
+        </div>
+      )}
       {StudyCycle.length > 0 &&
         <div>
           <div>
@@ -49,9 +61,19 @@ export default function Statistics({ StudyCycle }) {
             <p>Um ciclo de estudos é uma estratégia eficaz para organizar e otimizar o tempo dedicado ao aprendizado. Ele oferece uma série de benefícios e vantagens.</p>
             
           </div>
-          <PieChart StudyCycle={StudyCycle} />
+          <StudyPieChart StudyCycle={StudyCycle} />
        </div>
       }
+      {examList.length <= 0 &&(
+        <div>
+          <div>
+            <p>crie um simulado para ter acesso a mais informações.</p>
+            <Button onClick={()=>{
+              router.push('/exams')
+            }} > Criar simulado</Button>
+          </div>
+        </div>
+      )}
       {StudyCycle.length <= 0 &&(
         <div>
           <div>

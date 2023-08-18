@@ -6,15 +6,15 @@ import { colorSegundary } from './sharedstyles';
 import styled from 'styled-components';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-interface PieChartProps {
+interface StudyPieChartProps {
   StudyCycle: subjects[];
 }
 
 const PieContainer = styled.div`
-  width: 320px;
+  width: 300px;
   margin: auto;
 `
-export  default function PieChart({StudyCycle}: PieChartProps) { 
+export  default function StudyPieChart({StudyCycle}: StudyPieChartProps) { 
   
   const data = {
     labels: ['Horas Estudadas', 'Total de Horas'],
