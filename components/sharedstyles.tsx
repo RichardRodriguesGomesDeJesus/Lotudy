@@ -195,7 +195,7 @@ const Footer = styled.footer`
   width: 100vw;
 `
 const Button = styled.button`
-  background: ${colorSegundary.sideColor};
+  background: linear-gradient( 135deg,  ${colorSegundary.sideColor} , ${colorSegundary.titleColor});
   border: none;
   border-radius: .5rem;
   box-shadow: 0 4px 4px ${colorSegundary.textColor};

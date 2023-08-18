@@ -4,7 +4,7 @@ import {  useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import FormSubject from "./formSubject";
-import PieChart from "./pieChart";
+import StudyPieChart from "./StudyPieChart";
 
 const Form = styled.form`
   display: flex;
@@ -449,7 +449,7 @@ export default function UserStudyCycle({ StudyCycle,token }) {
       <Description>
         <p>O ciclo de estudos é uma técnica de estudo para melhoria da aprendizagem e gestão do tempo. É muito utilizada por aprovados em concursos difíceis e pode ser utilizado para qualquer tipo de prova ou estudo, sendo quase obrigatório para quem pretenda estudar com alto desempenho.</p>
 
-        <PieChart StudyCycle={StudyCycle}/>
+        <StudyPieChart StudyCycle={StudyCycle}/>
 
         <p>O método de ciclo de estudos considera a sequência de disciplinas que devem ser estudadas em uma ordem determinada anteriormente, independentemente do dia ou horário que você vá estudar. Nesse caso, caso você não consiga terminar uma matéria por algum motivo, será possível recomeçar os estudos a partir de onde parou no ciclo.</p>
 
