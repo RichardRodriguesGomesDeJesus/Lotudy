@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { colorSegundary } from "./sharedstyles";
+import { Button, IconPremium, colorSegundary } from "./sharedstyles";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const PlansContainer = styled.section`
   display:grid;
@@ -35,7 +37,6 @@ const Plan = styled.div`
   border-radius: 16px;
   border: 1px solid ${colorSegundary.textColor} ;
   background: ${colorSegundary.white};
-  cursor: pointer;
   padding: 1rem;
   text-align: justify;
   flex-direction: column;
@@ -58,6 +59,11 @@ const Plan = styled.div`
     display: flex;
     margin: 0.2rem 0;
   }
+  span{
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+  }
 
   @media screen and (min-width: 0 ){
     min-height: 500px;
@@ -66,9 +72,6 @@ const Plan = styled.div`
   }
   @media screen and (min-width: 1024px ){
     min-height: 600px;
-  }
-  &:active{
-    border: 2px solid ${colorSegundary.titleColor} ;
   }
 `
 
@@ -91,42 +94,92 @@ const CloseIcon = styled.span`
   margin: 0 1rem 0 0;
   width: 30px;
 `
-export default function PlanCards() {
+
+const CheckPlan = styled.button`
+  background: ${colorSegundary.white};
+  border: none;
+  border-radius: .5rem;
+  box-shadow: 0 4px 4px ${colorSegundary.textColor};
+  color: ${colorSegundary.sideColor};
+  margin: 1rem auto;
+  padding: calc(.5rem - 1px);
+  height: 34px;
+  @media screen and (min-width: 0 ){
+      width: 150px;
+  }
+  @media screen and (min-width: 768px ){
+      width: 175px;
+  }
+  @media screen and (min-width: 1024px){
+      width: 200px;
+  }
+`
+export default function PlanCards({token, listPrices, access}) {
+  function formatNumber(number, locale = 'pt-BR', minimumFractionDigits = 2, maximumFractionDigits = 2){
+    return number.toLocaleString(locale, { style: 'decimal', minimumFractionDigits, maximumFractionDigits });
+  }
+
+   const createExpression = async (priceId) => {
+    if (access == 'Gratuito') {
+      const {data: response} = await axios.post('http://localhost:3000/api/session',{
+        priceId,
+        token
+      })
+      window.location.href = response.url
+    }
+   }
+   console.log(listPrices)
   return(
     <PlansContainer>
-      <Plan>
-        <h3>Plano Gratuito</h3>
-        <p>O plano basico para quem quer começar a avançar nos estudos sem custos.</p>
-        <h2>R$00.00 por mês</h2>
-        <p><CheckIcon/>Cards de revisão.</p>
-        <p><CheckIcon/>Simulados.</p>
-        <p><CheckIcon/>Ciclo de estudos.</p>
-        <p><CloseIcon/>Gráficos de desempenho.</p>
-        <p><CloseIcon/>Dividir simulados por materias.</p>
-      </Plan>
-      <Plan>
-        <h3>Plano <strong>Premium</strong></h3>
-        <p>Dá acesso a todos os recursos.</p>
-        <h2>R$15.00 por mês</h2>
-        <p><CheckIcon/>Cards de revisão.</p>
-        <p><CheckIcon/>Simulados.</p>
-        <p><CheckIcon/>Ciclo de estudos.</p>
-        <p><CheckIcon/>Gráficos de desempenho.</p>
-        <p><CheckIcon/>Dividir simulados por materias.</p>
-        <p><CloseIcon/>Desconto.</p>
-      </Plan>
-      <Plan>
-        <h3>Plano <strong>Anual</strong></h3>
-        <p>Dá acesso a todos os recursos com um desconto pela assinatura anual.</p>
-        <h2>R$99.00 por ano</h2>
-        <Strikethrough>R$180.00 por ano</Strikethrough>
-        <p><CheckIcon/>Cards de revisão.</p>
-        <p><CheckIcon/>Simulados.</p>
-        <p><CheckIcon/>Ciclo de estudos.</p>
-        <p><CheckIcon/>Gráficos de desempenho.</p>
-        <p><CheckIcon/>Dividir simulados por materias.</p>
-        <p><CheckIcon/>Desconto.</p>
-      </Plan>
+      {listPrices.length !== 0&&(
+        <>
+          <Plan>
+            <h3>Plano Gratuito</h3>
+            <p>O plano basico para quem quer começar a avançar nos estudos sem custos.</p>
+            <h2>R$0,00 por mês</h2>
+            <p><CheckIcon/>Cards de revisão.</p>
+            <p><CheckIcon/>Simulados.</p>
+            <p><CheckIcon/>Ciclo de estudos.</p>
+            <p><CloseIcon/>Gráficos de desempenho.</p>
+            <p><CloseIcon/>Dividir simulados por materias.</p>
+          </Plan>
+          <Plan>
+            <span><h3>Plano   <strong>{listPrices[1].nickname}</strong></h3><IconPremium/></span>
+            <p>Dá acesso a todos os recursos.</p>
+            <h2>R${formatNumber(listPrices[1].unit_amount / 100)} por mês</h2>
+            <p><CheckIcon/>Cards de revisão.</p>
+            <p><CheckIcon/>Simulados.</p>
+            <p><CheckIcon/>Ciclo de estudos.</p>
+            <p><CheckIcon/>Gráficos de desempenho.</p>
+            <p><CheckIcon/>Dividir simulados por materias.</p>
+            <p><CloseIcon/>Desconto de 45%.</p>
+            {access !== 'Premium' &&(
+              <Button onClick={()=>{createExpression(listPrices[1].id)}}>Assinar Plano</Button>
+            )}
+            {access === 'Premium' &&(
+              <CheckPlan> Já assinou esse plano</CheckPlan>
+            )}
+          </Plan>
+          <Plan>
+            <span><h3>Plano   <strong>{listPrices[0].nickname}</strong></h3><IconPremium/></span>
+            <p>Dá acesso a todos os recursos com um desconto pela assinatura anual.</p>
+            <h2>R${formatNumber(listPrices[0].unit_amount / 100)} por ano</h2>
+            <Strikethrough>R${formatNumber((listPrices[1].unit_amount * 12)/ 100)} por ano</Strikethrough>
+            <p><CheckIcon/>Cards de revisão.</p>
+            <p><CheckIcon/>Simulados.</p>
+            <p><CheckIcon/>Ciclo de estudos.</p>
+            <p><CheckIcon/>Gráficos de desempenho.</p>
+            <p><CheckIcon/>Dividir simulados por materias.</p>
+            <p><CheckIcon/>Desconto de 45%.</p>
+            {access !== 'Anual'&&(
+              <Button onClick={()=>{createExpression(listPrices[0].id)}}>Assinar Plano</Button>
+            )}
+            {access === 'Anual' &&(
+              <CheckPlan>Já assinou esse plano</CheckPlan>
+            )}
+          </Plan>
+        </>
+      )}
     </PlansContainer>
   )
 }

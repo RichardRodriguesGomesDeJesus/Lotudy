@@ -15,6 +15,7 @@ export default function studyCyclePage() {
   const router = useRouter();
   const [display, setDisplay] = useState('none');
   const [ formUpdate, setFormUpdate ] = useState(false)
+  const [access, setAccess] = useState('Gratuito'||'Premium'||'Anual')
   
   useEffect(() => {
     const fetchStudyCycle = async () => {
@@ -27,7 +28,15 @@ export default function studyCyclePage() {
         } else {
           setStudyCycle(response.data.StudyCycle.subjects)
         }
-        
+      } catch (error) {
+        console.log(error);
+      }
+      try {
+        const response = await axios.post('http://localhost:3000/api/subscriptionCheck',{
+         token:token
+       })
+       const list = response.data
+       setAccess(list)
       } catch (error) {
         console.log(error);
       }
@@ -80,11 +89,11 @@ export default function studyCyclePage() {
         </Header>
         <Main>
           <Title>Crie um ciclo de estudos</Title>
-          { form === false && StudyCycle.length > 0 &&
+          { form === false && StudyCycle.length > 0 && (access === 'Premium' || access === 'Anual') &&
             <UserStudyCycle StudyCycle={StudyCycle} token={token} />
           }
           {
-              form === true && StudyCycle.length == 0 &&
+              form === true && StudyCycle.length == 0 && (access === 'Premium' || access === 'Anual') &&
               <>
                 <FormStydyCycle setForm={setForm} token={token} setFormUpdate={setFormUpdate}/>
                 <Description>
@@ -97,7 +106,7 @@ export default function studyCyclePage() {
               </>
           }
           {
-              form === false && StudyCycle.length == 0 &&
+              form === false && StudyCycle.length == 0 && (access === 'Premium' || access === 'Anual') &&
               <div>
                 <Button onClick={(e)=>{
                   e.preventDefault()
@@ -106,7 +115,15 @@ export default function studyCyclePage() {
               }}>Criar Ciclo de Estudos </Button>
               </div>
           }
-          
+          {access == 'Gratuito' &&(
+            <>
+              <p>Seu plano atual não permite acesso a este conteúdo exclusivo.</p>
+              <p>Atualize para um plano Premium ou Anual para desbloquear todos os recursos e aproveitar ao máximo sua experiência de aprendizado.</p>
+              <Button onClick={()=>{
+                router.push('/plans')
+              }}>Ver planos </Button>
+            </>
+          )}
         </Main>
         </>
     )

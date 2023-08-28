@@ -25,6 +25,7 @@ export default function ExamPage() {
   const [question, setQuestion] = useState(false)
   const [edit, setEdit] = useState(false)
   const [display, setDisplay] = useState('none');
+  const [access, setAccess] = useState('Gratuito'||'Premium'||'Anual')
   useEffect(()=>{
     if (!token) {
       setUserAuth(false)
@@ -59,6 +60,16 @@ export default function ExamPage() {
           router.push("/exams");
           setRequest(true);
         });
+        axios.post('http://localhost:3000/api/subscriptionCheck',{
+          token:token
+        })
+        .then((response)=>{
+          const list = response.data
+          setAccess(list)
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
     }
   },[request])
   useEffect(()=>{
@@ -102,7 +113,7 @@ export default function ExamPage() {
     <Main>
       <Title>Crie e pratique com perguntas de exame personalizadas: {examName}.</Title>
       {form === true &&  edit === false && question === false &&
-        <QuestionForm questionList={questionList} examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} updateList={updateList} setUpdateList={setUpdateList} />
+        <QuestionForm questionList={questionList} examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} setUpdateList={setUpdateList} access={access} />
       }
       {
         question === false && form === false && questionList.length > 0 &&  edit === false &&

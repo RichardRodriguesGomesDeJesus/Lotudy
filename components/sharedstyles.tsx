@@ -201,8 +201,7 @@ const Button = styled.button`
   box-shadow: 0 4px 4px ${colorSegundary.textColor};
   color: ${colorSegundary.white};
   margin: 1rem auto;
-  padding: .5em;
-  transition: .2s;
+  padding: .5rem;
   &:hover,
   :focus,
   :active {
@@ -211,7 +210,7 @@ const Button = styled.button`
       background: ${colorSegundary.white};
       border: 1px solid ${colorSegundary.sideColor};
       border-color: ${colorSegundary.sideColor};
-      padding: calc(.5em - 1px);
+      padding: calc(.5rem - 1px) 0;
   }
   @media screen and (min-width: 0 ){
       width: 150px;
@@ -318,5 +317,20 @@ const Card = styled.div`
     }
   };
 `;
+const IconPremiumContainer = styled.span`
+  display: flex;
+  height:40px;
+  width:40px;
+  img{
+    width:100%;
+  }
+`
+function IconPremium() {
+  return(
+    <IconPremiumContainer>
+      <img src="premium-icon-removebg.png" />
+    </IconPremiumContainer>
+  )
+}
 
-export { Container, Main, Header, Title, Description, Footer, Button, ButtonClose, FlexContainer, Card}
+export { Container, Main, Header, Title, Description, Footer, Button, ButtonClose, FlexContainer, Card, IconPremium}

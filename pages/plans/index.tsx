@@ -7,10 +7,34 @@ import PlanCards from "../../components/planCards";
 import { useRouter } from "next/router";
 
 export default function PlansPage() {
+
   const router = useRouter()
   const [display, setDisplay] = useState('none')
   const { 'token': token } = parseCookies()
   const [userAuth , setUserAuth] = useState(true)
+  const [listPrices, setListPrices] = useState([])
+  const [access, setAccess] = useState('Gratuito'||'Premium'||'Anual')
+  
+  const FetchPrices = async () =>{
+    try {
+      const response = await axios.post('http://localhost:3000/api/subscriptionCheck',{
+       token:token
+     })
+     const list = response.data
+     setAccess(list)
+    } catch (error) {
+      console.log(error);
+    }
+    try {
+     const response = await axios.post('http://localhost:3000/api/prices',{
+       token:token
+     })
+     const list = response.data.data
+     setListPrices(list)
+    }  catch (error) {
+     console.log(error);
+   }
+   }
 
   useEffect(()=>{
     if (!token) {
@@ -20,7 +44,10 @@ export default function PlansPage() {
          axios.post('/api/auth/verify_token', {
           token,
         })
-        .then(()=> { setUserAuth(true)})
+        .then(()=> {
+          FetchPrices()
+          setUserAuth(true)
+        })
         .catch(()=>{setUserAuth(false)})
       } catch (error) {
         setUserAuth(false)
@@ -54,9 +81,8 @@ export default function PlansPage() {
       </Header>
       <Main>
         <Title>Planos</Title>
-        <PlanCards/>
+        <PlanCards token={token} listPrices={listPrices} access={access} />
       </Main>
-
     </>
   )
 }
