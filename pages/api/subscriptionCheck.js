@@ -23,7 +23,7 @@ export default async function subscriptionCheck(req,res) {
       status: "active",
       expand: ["data.default_payment_method"]
     },{
-      apiKey: process.env.STRIPE_TEST_SECRET
+      apiKey: process.env.STRIPE_SECRET
     })
     if (!subscriptions.data.length === 0) return res.json([]);
     const plan = subscriptions.data[0]?.plan?.nickname || 'Gratuito'

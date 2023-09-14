@@ -49,7 +49,7 @@ export default async function handler(req, res) {
         email: email
       },
       {
-        apiKey: process.env.STRIPE_TEST_SECRET
+        apiKey: process.env.STRIPE_SECRET
       })
       const userObject ={
         name: name, 

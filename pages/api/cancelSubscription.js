@@ -34,7 +34,7 @@ export default async function CancelSubscription(req, res) {
       status: "active",
       expand: ["data.default_payment_method"]
     },{
-      apiKey: process.env.STRIPE_TEST_SECRET
+      apiKey: process.env.STRIPE_SECRET
     })
 
     const id = subscriptions.data[0].id

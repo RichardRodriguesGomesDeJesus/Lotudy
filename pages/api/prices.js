@@ -19,7 +19,7 @@ export default async function getPrices (req,res) {
     }
 
     const prices =  await stripe.prices.list({
-      apiKey: process.env.STRIPE_TEST_SECRET
+      apiKey: process.env.STRIPE_SECRET
     })
     res.status(200).json(prices)
   } catch (error) {

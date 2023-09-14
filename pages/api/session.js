@@ -37,7 +37,7 @@ export default async function session (req,res) {
       customer: user.userStripeId
     },
     {
-      apiKey: process.env.STRIPE_TEST_SECRET
+      apiKey: process.env.STRIPE_SECRET
     })
     return res.status(200).json(session)
   } catch (error) {
