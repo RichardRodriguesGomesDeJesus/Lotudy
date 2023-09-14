@@ -41,7 +41,6 @@ export default async function session (req,res) {
     })
     return res.status(200).json(session)
   } catch (error) {
-    console.log(error)
     res.status(500).send({ mse: 'Something went wrong'});
   }
 }

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Button, IconPremium, colorSegundary } from "./sharedstyles";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const PlansContainer = styled.section`
   display:grid;
@@ -115,12 +117,15 @@ const CheckPlan = styled.button`
   }
 `
 export default function PlanCards({token, listPrices, access}) {
+
+  const router = useRouter()
+
   function formatNumber(number, locale = 'pt-BR', minimumFractionDigits = 2, maximumFractionDigits = 2){
     return number.toLocaleString(locale, { style: 'decimal', minimumFractionDigits, maximumFractionDigits });
   }
 
    const createExpression = async (priceId) => {
-    if (access == 'Gratuito') {
+    if (access === 'Gratuito') {
       const {data: response} = await axios.post('http://localhost:3000/api/session',{
         priceId,
         token
@@ -128,7 +133,6 @@ export default function PlanCards({token, listPrices, access}) {
       window.location.href = response.url
     }
    }
-   console.log(listPrices)
   return(
     <PlansContainer>
       {listPrices.length !== 0&&(
@@ -153,10 +157,10 @@ export default function PlanCards({token, listPrices, access}) {
             <p><CheckIcon/>Gráficos de desempenho.</p>
             <p><CheckIcon/>Dividir simulados por materias.</p>
             <p><CloseIcon/>Desconto de 45%.</p>
-            {access !== 'Premium' &&(
+            {access !== 'Premium' && access === 'Gratuito' &&(
               <Button onClick={()=>{createExpression(listPrices[1].id)}}>Assinar Plano</Button>
             )}
-            {access === 'Premium' &&(
+            {access === 'Premium' && (
               <CheckPlan> Já assinou esse plano</CheckPlan>
             )}
           </Plan>
@@ -171,11 +175,17 @@ export default function PlanCards({token, listPrices, access}) {
             <p><CheckIcon/>Gráficos de desempenho.</p>
             <p><CheckIcon/>Dividir simulados por materias.</p>
             <p><CheckIcon/>Desconto de 45%.</p>
-            {access !== 'Anual'&&(
+            {access !== 'Anual'&& access === 'Gratuito'&& (
               <Button onClick={()=>{createExpression(listPrices[0].id)}}>Assinar Plano</Button>
             )}
-            {access === 'Anual' &&(
+            {access === 'Anual' && (
               <CheckPlan>Já assinou esse plano</CheckPlan>
+            )}
+            {access !== 'Anual'&& access !== 'Gratuito'&& (
+              <>
+                <p>É preciso cancelar o seu plano atual primeiro.</p>
+                <Button type="button" onClick={()=>router.push("/plans/cancel")} >Cancelar plano atual</Button>
+              </>
             )}
           </Plan>
         </>

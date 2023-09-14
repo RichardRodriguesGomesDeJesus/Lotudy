@@ -111,7 +111,7 @@ export default function ExamPage() {
       <ResponsiveMenu display={display} setDisplay={setDisplay}/>
     </Header>
     <Main>
-      <Title>Crie e pratique com perguntas de exame personalizadas: {examName}.</Title>
+      <Title>Crie e pratique com perguntas de exame personalizadas: {examName}</Title>
       {form === true &&  edit === false && question === false &&
         <QuestionForm questionList={questionList} examName={examName} token={token} setForm={setForm} setQuestion={setQuestion} question={question} setUpdateList={setUpdateList} access={access} />
       }

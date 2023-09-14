@@ -91,6 +91,9 @@ export default function Dashboard() {
           <div>
             <Link href={'/flex-cards'}>Cards de Revisão</Link>
           </div>
+          <div>
+            <Link href={'settings'}>Configurações</Link>
+          </div>
         </nav>
         <ResponsiveMenu display={display} setDisplay={setDisplay}/>
       </Header>

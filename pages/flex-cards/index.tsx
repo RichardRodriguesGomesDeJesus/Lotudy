@@ -61,7 +61,7 @@ export default function flexCards() {
           <ResponsiveMenu display={display} setDisplay={setDisplay}/>
         </Header>
         <Main>
-          <Title>Crie um baralho de cartas de revisão.</Title>
+          <Title>Crie um baralho de cartas de revisão</Title>
           <FlashCardDecks token={token} setFormUpdate={setFormUpdate} formUpdate={formUpdate} cardList={cardList} setCardList={setCardList} edit={edit} setEdit={setEdit} />
           {cardList.length > 0 && edit === false &&(
             <Button onClick={()=>{

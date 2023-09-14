@@ -141,8 +141,7 @@ export function FormLogin (){
     const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/)
     const router = useRouter();
     function submit() {
-        axios
-            .post('/api/auth/login_user', {
+        axios.post('/api/auth/login_user', {
               email: email,
               password: password
             })

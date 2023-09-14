@@ -147,7 +147,6 @@ const Header = styled.header<Props>`
 const Title = styled.h1`
   color: ${colorSegundary.titleColor};
   font-weight: 600;
-  text-transform: capitalize;
   text-align:center;
   @media screen and (min-width: 0 ){
     font-size: 1.25rem;
@@ -211,6 +210,33 @@ const Button = styled.button`
       border: 1px solid ${colorSegundary.sideColor};
       border-color: ${colorSegundary.sideColor};
       padding: calc(.5rem - 1px) 0;
+  }
+  @media screen and (min-width: 0 ){
+      width: 150px;
+  }
+  @media screen and (min-width: 768px ){
+      width: 175px;
+  }
+  @media screen and (min-width: 1024px){
+      width: 200px;
+  }
+`
+
+const ButtonInvalid = styled.div`
+  background: ${colorSegundary.white};
+  border: 1px solid ${colorSegundary.principalColor};
+  border-radius: .5rem;
+  box-shadow: 0 4px 4px ${colorSegundary.textColor};
+  color: ${colorSegundary.principalColor};
+  display: flex;
+  font-size: 12.5px;
+  justify-content: center;
+  margin: 1rem auto;
+  padding: .5rem;
+  &:hover,
+  :focus,
+  :active {
+      cursor: not-allowed;
   }
   @media screen and (min-width: 0 ){
       width: 150px;
@@ -333,4 +359,4 @@ function IconPremium() {
   )
 }
 
-export { Container, Main, Header, Title, Description, Footer, Button, ButtonClose, FlexContainer, Card, IconPremium}
+export { Container, Main, Header, Title, Description, Footer, Button, ButtonClose, FlexContainer, Card, IconPremium, ButtonInvalid}
