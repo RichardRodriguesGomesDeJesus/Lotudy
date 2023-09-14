@@ -41,7 +41,6 @@ const BarContainer = styled.div`
 `
 
 export default function ExamsBarChart({examList}) {
-  console.log(examList)
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [],

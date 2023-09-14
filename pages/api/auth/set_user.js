@@ -4,7 +4,7 @@ import { connectMongo } from '../../../lib/connectMongo.js';
 import { UserModel } from "../../../models/user.js"
 import bcrypt from 'bcryptjs';
 import validator from 'validator';
-
+import { stripe } from '../../../utils/stripe';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -42,14 +42,21 @@ export default async function handler(req, res) {
   }
   try {
     const hashPassword = await bcrypt.hash(password, 10);
-    const userObject ={
-      name: name, 
-      email: email,
-      password: hashPassword
-    }
     await connectMongo();
     const user = await UserModel.find({email: email });
     if (user.length == 0) {
+      const costumer = await stripe.customers.create({
+        email: email
+      },
+      {
+        apiKey: process.env.STRIPE_TEST_SECRET
+      })
+      const userObject ={
+        name: name, 
+        email: email,
+        password: hashPassword,
+        userStripeId: costumer.id
+      }
       const newUser = new UserModel(userObject);
       try {
         await newUser.save();
@@ -58,6 +65,9 @@ export default async function handler(req, res) {
           userId: newUser._id,
           email: email
         },secret, { expiresIn: '12h' })
+
+        
+
         res.status(201).send({mse: 'sucesso!',token});
       } catch {
         res.status(500).send({ mse: 'Something went wrong' })

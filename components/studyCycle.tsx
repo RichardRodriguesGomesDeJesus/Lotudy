@@ -159,32 +159,32 @@ const ButtonInput = styled.button`
   }
 `;
 const CompletedDiv = styled.p`
-background: ${colorSegundary.principalColor};
-border: none;
-border-radius: .5rem;
-box-shadow: 0 4px 4px ${colorSegundary.textColor};
-color: ${colorSegundary.white};
-margin: 1rem auto;
-padding: .5rem;
-&:hover,
-:focus,
-:active {
-    cursor: pointer;
-    color: ${colorSegundary.principalColor};
-    background: ${colorSegundary.white};
-    border: 1px solid ${colorSegundary.principalColor};
-    border-color: ${colorSegundary.principalColor};
-    padding: calc(.5rem - 1px);
-}
-@media screen and (min-width: 0 ){
-    width: 150px;
-}
-@media screen and (min-width: 768px ){
-    width: 175px;
-}
-@media screen and (min-width: 1024px){
-    width: 200px;
-}
+  background: ${colorSegundary.principalColor};
+  border: none;
+  border-radius: .5rem;
+  box-shadow: 0 4px 4px ${colorSegundary.textColor};
+  color: ${colorSegundary.white};
+  margin: 1rem auto;
+  padding: .5rem;
+  &:hover,
+  :focus,
+  :active {
+      cursor: pointer;
+      color: ${colorSegundary.principalColor};
+      background: ${colorSegundary.white};
+      border: 1px solid ${colorSegundary.principalColor};
+      border-color: ${colorSegundary.principalColor};
+      padding: calc(.5rem - 1px);
+  }
+  @media screen and (min-width: 0 ){
+      width: 150px;
+  }
+  @media screen and (min-width: 768px ){
+      width: 175px;
+  }
+  @media screen and (min-width: 1024px){
+      width: 200px;
+  }
 `
 
 export default function UserStudyCycle({ StudyCycle,token }) {

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import ResponsiveMenu, { Header, Main, Title } from "../../components/sharedstyles";
+import ResponsiveMenu, { Header, Main, Title } from "../components/sharedstyles";
 import Link from "next/link";
 import { parseCookies } from "nookies";
-import axios from "axios";
-import PlanCards from "../../components/planCards";
 import { useRouter } from "next/router";
+import axios from "axios";
+import SettingsBoard from "../components/settingsBoard";
 
-export default function PlansPage() {
+
+export default function settings() {
 
   const router = useRouter()
   const [display, setDisplay] = useState('none')
@@ -14,10 +15,11 @@ export default function PlansPage() {
   const [userAuth , setUserAuth] = useState(true)
   const [listPrices, setListPrices] = useState([])
   const [access, setAccess] = useState('Gratuito'||'Premium'||'Anual')
-  
-  const FetchPrices = async () =>{
+  const [userEmail, setUserEmail] = useState('')
+
+  const FetchData = async () =>{
     try {
-      const response = await axios.post('http://localhost:3000/api/subscriptionCheck',{
+      const response = await axios.post('/api/subscriptionCheck',{
        token:token
      })
      const list = response.data
@@ -26,7 +28,15 @@ export default function PlansPage() {
       console.log(error);
     }
     try {
-     const response = await axios.post('http://localhost:3000/api/prices',{
+      const response = await axios.post('/api/auth/email_user',{
+        token:token
+      })
+      setUserEmail(response.data.email)
+    } catch (error) {
+      console.log(error)
+    }
+    try {
+     const response = await axios.post('/api/prices',{
        token:token
      })
      const list = response.data.data
@@ -35,7 +45,6 @@ export default function PlansPage() {
      console.log(error);
    }
   }
-
   useEffect(()=>{
     if (!token) {
       setUserAuth(false)
@@ -45,7 +54,7 @@ export default function PlansPage() {
           token,
         })
         .then(()=> {
-          FetchPrices()
+          FetchData()
           setUserAuth(true)
         })
         .catch(()=>{setUserAuth(false)})
@@ -58,11 +67,10 @@ export default function PlansPage() {
   if (userAuth === false) {
     router.push("/login");
   }
-
   return(
     <>
       <Header display={display} >
-        <img src="logo-lotudy-removebg.png" alt="logo da lotudy" />
+        <img src="../logo-lotudy-removebg.png" alt="logo da lotudy" />
         <nav>
           <div>
             <Link href={'/'} >Home</Link>
@@ -80,8 +88,8 @@ export default function PlansPage() {
         <ResponsiveMenu display={display} setDisplay={setDisplay}/>
       </Header>
       <Main>
-        <Title>Planos</Title>
-        <PlanCards token={token} listPrices={listPrices} access={access} />
+        <Title>Painel de cofigurações</Title>
+        <SettingsBoard plan={access} setPlan={setAccess} userEmail={userEmail} token={token} prices={listPrices}/>
       </Main>
     </>
   )

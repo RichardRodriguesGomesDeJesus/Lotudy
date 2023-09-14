@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, colorSegundary } from './sharedstyles';
 import validator from 'validator';
+import { useRouter } from 'next/router';
 
 const CustomSelectWrapper = styled.div`
   position: relative;
@@ -61,11 +62,11 @@ const OptionItem = styled.li`
   label: string;
 }
 
-function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setIsOpen, setMseError, mseError}) {
+function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setIsOpen, setMseError, mseError, access}) {
 
   const [newAddCategory, setNewAddCategory] = useState(false)
   const [newCategory,setNewCategory] = useState('')
-
+  const router = useRouter()
 
   const handleOptionClick = (option: Option) => {
     setSelectedOption(option);
@@ -73,7 +74,15 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
   };
   return (
     <CustomSelectWrapper>
-      {newAddCategory === false &&(
+      {access === 'Gratuito'&&
+        <>
+          <label htmlFor="category">Veja outros planos para adicionar uma categoria à pergunta.</label>
+          <Button  onClick={()=>{
+            router.push('/plans')
+          }} >Ver Planos</Button>
+        </>
+      }
+      {newAddCategory === false && (access === 'Premium'|| access === 'Anual')&&(
         <>
           <label htmlFor="category">Adicione uma categoria da lista à pergunta.</label>
           <SelectedOption onClick={() => setIsOpen(!isOpen)}>
@@ -95,7 +104,7 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
           </OptionsList>
         </>
       )}
-      {newAddCategory === true&&(
+      {newAddCategory === true && (access === 'Premium'|| access === 'Anual')&&(
         <>
           <label htmlFor="newCategory">nova categoria</label>
           <input type="text" value={newCategory} minLength={1} maxLength={30} onChange={(e)=>{

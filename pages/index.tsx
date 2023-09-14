@@ -40,11 +40,11 @@ export default function Home() {
         <ResponsiveMenu display={display} setDisplay={setDisplay}  />
       </Header>
       <Main>
-        <Title>Venha para o VestibulaPro</Title>
+        <Title>Venha para o Lotudy</Title>
         <Cards />
         <Description>
-          <p>O VestibulaPro é a plataforma de estudos perfeita para quem quer conquistar a nota máxima no vestibular.</p>
-          <p>Com tecnologia de aprendizado adaptativo, simulados, flex cards, perguntas e criador de ciclo e rotina de estudos, estudar nunca foi tão fácil e eficiente. Comece sua jornada rumo ao sucesso acadêmico com o VestibulaPro.</p>
+          <p>O Lotudy é a plataforma de estudos perfeita para quem quer conquistar a nota máxima.</p>
+          <p>Com tecnologia de aprendizado, simulados, flex cards, perguntas e criador de ciclo e rotina de estudos, estudar nunca foi tão fácil e eficiente. Comece sua jornada rumo ao sucesso acadêmico com o Lotudy.</p>
         </Description>
       </Main>
       <Footer>

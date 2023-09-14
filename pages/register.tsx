@@ -22,7 +22,7 @@ export default function Register (){
                 <ResponsiveMenu display={display} setDisplay={setDisplay}/>
             </Header>
             <Main>
-                <Title>Crie  sua conta.</Title>
+                <Title>Crie  sua conta</Title>
                 <FormRegister/>
             </Main>
             <Footer>

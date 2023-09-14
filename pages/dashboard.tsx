@@ -13,6 +13,7 @@ export default function Dashboard() {
   const [userAuth , setUserAuth] = useState(true)
   const [StudyCycle , setStudyCycle] = useState<studyCycle[]>([])
   const [examList, setExamList] = useState([]); 
+  const [access, setAccess] = useState('Gratuito'||'Premium'||'Anual')
   const router = useRouter()
   const [display, setDisplay] = useState('none')
   useEffect(()=>{
@@ -34,15 +35,11 @@ export default function Dashboard() {
     router.push("/login");
   }
   useEffect(() => {
-    const fetchStudyCycle = async () => {
+    const fetchData = async () => {
       try {
         const response = await axios.post('/api/study-cycle/get-study-cycle',{
           token,
         })
-        const responseQuestions = await axios.post('/api/exams/getExams', {
-          token,
-        });
-        setExamList(responseQuestions.data.listQuestions);
         if (response?.data?.StudyCycle?.subjects === undefined ) {
           setStudyCycle([])
         } else {
@@ -52,13 +49,30 @@ export default function Dashboard() {
       } catch (error) {
         console.log(error);
       }
-    };
-    const fetchStudyCycleAndUpdateList = async () => {
-      if (token) {
-        await fetchStudyCycle();
+      try {
+        const response = await axios.post('/api/exams/getExams', {
+          token,
+        });
+        setExamList(response.data.listQuestions);
+      } catch (error) {
+        console.log(error);
+      }
+      try {
+        const response = await axios.post('http://localhost:3000/api/subscriptionCheck',{
+          token:token
+        })
+        const list = response.data
+        setAccess(list)
+      } catch (error) {
+        console.log(error);
       }
     };
-    fetchStudyCycleAndUpdateList();
+    const fetchDataAndUpdateList = async () => {
+      if (token) {
+        await fetchData();
+      }
+    };
+    fetchDataAndUpdateList();
     }, [token]);
   return (
     <>
@@ -77,13 +91,16 @@ export default function Dashboard() {
           <div>
             <Link href={'/flex-cards'}>Cards de Revisão</Link>
           </div>
+          <div>
+            <Link href={'settings'}>Configurações</Link>
+          </div>
         </nav>
         <ResponsiveMenu display={display} setDisplay={setDisplay}/>
       </Header>
       <Main>
         <Title>Dashboard</Title>
         <Cards/>
-        <Statistics StudyCycle={StudyCycle} examList={examList}/>
+        <Statistics StudyCycle={StudyCycle} examList={examList} access={access}/>
       </Main>
     </>
   );

@@ -74,7 +74,7 @@ export default function exams() {
               <ResponsiveMenu display={display} setDisplay={setDisplay}/>
             </Header>
             <Main>
-                <Title>Crie exames e estude como quiser.</Title>
+                <Title>Crie exames e estude como quiser</Title>
                 <ListExams formUpdate={formUpdate} setFormUpdate={setFormUpdate} examList={examList} setExamList={setExamList}/>
                 <FormExams formUpdate={formUpdate} setFormUpdate={setFormUpdate} examList={examList}/>
             </Main>
