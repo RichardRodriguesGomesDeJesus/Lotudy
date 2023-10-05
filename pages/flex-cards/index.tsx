@@ -1,11 +1,11 @@
-import Link from "next/link";
-import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles";
-import FlashCardDecks from "../../components/flashcardDecks";
-import { parseCookies } from "nookies";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import axios from "axios";
-import FormDeck from "../../components/formDecks";
+import Link from "next/link"
+import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles"
+import FlashCardDecks from "../../components/flashcardDecks"
+import { parseCookies } from "nookies"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
+import axios from "axios"
+import FormDeck from "../../components/formDecks"
 
 export default function flexCards() {
     const { 'token': token } = parseCookies();

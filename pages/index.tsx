@@ -8,7 +8,7 @@ import ResponsiveMenu, {
 } from '../components/sharedstyles'
 import Cards from '../components/cards'
 import Link from 'next/link'
-import { useState } from 'react';
+import { useState } from 'react'
 
 export default function Home() {
   const [display, setDisplay] = useState('none');

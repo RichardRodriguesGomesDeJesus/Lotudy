@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
-import { connectMongo } from '../../../lib/connectMongo.js';
-import { ExamModel } from "../../../models/user.js";
-import validator from 'validator';
+import mongoose from 'mongoose'
+import jwt from 'jsonwebtoken'
+import { connectMongo } from '../../../lib/connectMongo.js'
+import { ExamModel } from "../../../models/user.js"
+import validator from 'validator'
 
 export default async function setQuestion(req, res) {
   try {

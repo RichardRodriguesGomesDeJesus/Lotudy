@@ -1,8 +1,8 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { colorSegundary } from "./sharedstyles";
-import { time } from "console";
+import axios from "axios"
+import { useEffect, useState } from "react"
+import styled from "styled-components"
+import { colorSegundary } from "./sharedstyles"
+import { time } from "console"
 
 const Timer = styled.div`
   align-items: center;

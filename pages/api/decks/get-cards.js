@@ -1,6 +1,6 @@
-import jwt from 'jsonwebtoken';
-import { connectMongo } from '../../../lib/connectMongo.js';
-import { DeckModel } from "../../../models/user.js";
+import jwt from 'jsonwebtoken'
+import { connectMongo } from '../../../lib/connectMongo.js'
+import { DeckModel } from "../../../models/user.js"
 
 export default async function getCards(req,res) {
   try {

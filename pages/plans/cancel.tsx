@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import ResponsiveMenu, { Header, Main, Title } from "../../components/sharedstyles";
-import Link from "next/link";
-import { parseCookies } from "nookies";
-import { useRouter } from "next/router";
-import axios from "axios";
-import CancelBoard from "../../components/cancelBoard";
+import { useEffect, useState } from "react"
+import ResponsiveMenu, { Header, Main, Title } from "../../components/sharedstyles"
+import Link from "next/link"
+import { parseCookies } from "nookies"
+import { useRouter } from "next/router"
+import axios from "axios"
+import CancelBoard from "../../components/cancelBoard"
 
 export default function cancelPlan() {
   const router = useRouter()

@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { colorSegundary } from "./sharedstyles";
-import { useRef, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { setCookie } from "nookies";
+import styled from "styled-components"
+import { colorSegundary } from "./sharedstyles"
+import { useRef, useState } from "react"
+import axios from "axios"
+import { useRouter } from "next/router"
+import { setCookie } from "nookies"
 
 const Form = styled.form`
     background: ${colorSegundary.white};

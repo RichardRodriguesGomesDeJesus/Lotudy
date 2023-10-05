@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { Button, colorSegundary } from "./sharedstyles";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import axios from "axios";
-import { parseCookies } from "nookies";
+import styled from "styled-components"
+import { Button, colorSegundary } from "./sharedstyles"
+import { useState } from "react"
+import { useRouter } from "next/router"
+import axios from "axios"
+import { parseCookies } from "nookies"
 
 const FlexContainer = styled.div`
   text-align: center;
@@ -176,7 +176,7 @@ export default function FlashCards({ cards, setCard, deckName }) {
           <div>
             <Button
               onClick={() => {
-                cards[index].time = 'Muito Pouco';
+                cards[index].time = 'Muito Pouco'
                 save(cards, token, deckName);
                 nextCard();
               }}
@@ -185,7 +185,7 @@ export default function FlashCards({ cards, setCard, deckName }) {
             </Button>
             <Button
               onClick={() => {
-                cards[index].time = 'Pouco';
+                cards[index].time = 'Pouco'
                 save(cards, token, deckName);
                 nextCard();
               }}
@@ -194,7 +194,7 @@ export default function FlashCards({ cards, setCard, deckName }) {
             </Button>
             <Button
               onClick={() => {
-                cards[index].time = 'Médio';
+                cards[index].time = 'Médio'
                 save(cards, token, deckName);
                 nextCard();
               }}
@@ -203,7 +203,7 @@ export default function FlashCards({ cards, setCard, deckName }) {
             </Button>
             <Button
               onClick={() => {
-                cards[index].time = 'Grande';
+                cards[index].time = 'Grande'
                 save(cards, token, deckName);
                 nextCard();
               }}
@@ -212,7 +212,7 @@ export default function FlashCards({ cards, setCard, deckName }) {
             </Button>
             <Button
               onClick={() => {
-                cards[index].time = 'Muito Grande';
+                cards[index].time = 'Muito Grande'
                 save(cards, token, deckName);
                 nextCard();
               }}

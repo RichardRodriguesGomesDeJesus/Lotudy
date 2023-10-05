@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Card, FlexContainer, colorSegundary } from './sharedstyles';
-import Link from 'next/link';
+import styled from 'styled-components'
+import { Card, FlexContainer, colorSegundary } from './sharedstyles'
+import Link from 'next/link'
 
 
 export default function Cards() {

@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
-import { connectMongo } from '../../../lib/connectMongo.js';
+import mongoose from 'mongoose'
+import jwt from 'jsonwebtoken'
+import { connectMongo } from '../../../lib/connectMongo.js'
 import { UserModel } from "../../../models/user.js"
-import bcrypt from 'bcryptjs';
-import validator from 'validator';
-import { stripe } from '../../../utils/stripe';
+import bcrypt from 'bcryptjs'
+import validator from 'validator'
+import { stripe } from '../../../utils/stripe'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {

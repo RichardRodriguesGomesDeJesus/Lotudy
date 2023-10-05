@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Button, colorSegundary } from "./sharedstyles";
-import { useEffect, useState } from "react";
+import styled from "styled-components"
+import { Button, colorSegundary } from "./sharedstyles"
+import { useEffect, useState } from "react"
 
 const Div = styled.div`
   display: flex;

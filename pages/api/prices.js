@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'
 import {stripe} from '../../utils/stripe'
 export default async function getPrices (req,res) {
   try{
@@ -23,7 +23,6 @@ export default async function getPrices (req,res) {
     })
     res.status(200).json(prices)
   } catch (error) {
-    console.log(error)
     res.status(500).send({ mse: 'Something went wrong'});
   }
 }

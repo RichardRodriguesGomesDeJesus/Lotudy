@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Button, Container, colorSegundary } from "./sharedstyles";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
+import styled from "styled-components"
+import { Button, Container, colorSegundary } from "./sharedstyles"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { useRouter } from "next/router"
 
 const CancelContainer = styled.section`
   background: ${colorSegundary.white};

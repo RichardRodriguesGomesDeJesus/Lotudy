@@ -1,7 +1,7 @@
-import Link from "next/link";
-import ResponsiveMenu, { Footer, Header, Main, Title } from "../components/sharedstyles";
-import FormRegister from "../components/formRegister";
-import { useState } from "react";
+import Link from "next/link"
+import ResponsiveMenu, { Footer, Header, Main, Title } from "../components/sharedstyles"
+import FormRegister from "../components/formRegister"
+import { useState } from "react"
 
 export default function Register (){
     const [display, setDisplay] = useState('none');

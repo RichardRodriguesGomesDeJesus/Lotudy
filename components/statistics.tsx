@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import StudyPieChart from "./StudyPieChart";
-import { Button, IconPremium, colorSegundary } from "./sharedstyles";
-import { useRouter } from "next/router";
-import ExamsBarChart from "./examsBarChat";
+import styled from "styled-components"
+import StudyPieChart from "./StudyPieChart"
+import { Button, IconPremium, colorSegundary } from "./sharedstyles"
+import { useRouter } from "next/router"
+import ExamsBarChart from "./examsBarChat"
 
 const StatisticsContainer = styled.div`
   background: ${colorSegundary.white} ;

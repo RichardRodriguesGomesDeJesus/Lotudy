@@ -1,7 +1,7 @@
-import Link from "next/link";
-import ResponsiveMenu, { Header, Title, Main, Footer  } from "../components/sharedstyles";
-import { FormLogin } from "../components/formLogin";
-import { useState } from "react";
+import Link from "next/link"
+import ResponsiveMenu, { Header, Title, Main, Footer  } from "../components/sharedstyles"
+import { FormLogin } from "../components/formLogin"
+import { useState } from "react"
 
 export default function Login (){
     const [display, setDisplay] = useState('none');
@@ -20,7 +20,7 @@ export default function Login (){
                 <ResponsiveMenu display={display} setDisplay={setDisplay} />
             </Header>
             <Main>
-                <Title>Faça login em sua conta.</Title>
+                <Title>Faça login em sua conta</Title>
                 <FormLogin/>
             </Main>
             <Footer>

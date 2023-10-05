@@ -4,6 +4,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { destroyCookie, parseCookies, setCookie } from 'nookies'
+import Link from 'next/link'
 
 const Form = styled.form`
     background: ${colorSegundary.white};
@@ -182,6 +183,7 @@ export function FormLogin (){
                     }} id='password'/>
                     <span>Senha ou e-mail incorreto.</span>
                 </div>
+                <Link href={'/password'}><p>Esquceu a sua senha ?</p></Link>
                 {errorMessage && <p>{errorMessage}</p>}
                 <ButtonSubmit type="submit" name="submit" value={'Logar'} />
             </Form>

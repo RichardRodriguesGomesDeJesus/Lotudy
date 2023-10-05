@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
-import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles";
-import Link from "next/link";
-import axios from "axios";
-import { parseCookies } from "nookies";
-import { useState, useEffect } from "react";
-import QuestionForm from "../../components/questionForm";
-import Question from "../../components/question";
-import SubjectCards from "../../components/subjectsCards";
-import Questions from "../../components/questions";
+import { useRouter } from "next/router"
+import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles"
+import Link from "next/link"
+import axios from "axios"
+import { parseCookies } from "nookies"
+import { useState, useEffect } from "react"
+import QuestionForm from "../../components/questionForm"
+import Question from "../../components/question"
+import SubjectCards from "../../components/subjectsCards"
+import Questions from "../../components/questions"
 
 export default function ExamPage() {
   const router = useRouter();

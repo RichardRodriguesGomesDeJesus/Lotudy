@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { colorSegundary } from "./sharedstyles";
-import { useState } from "react";
-import studyCycle from "../utils/interfaces";
-import axios from "axios";
+import styled from "styled-components"
+import { colorSegundary } from "./sharedstyles"
+import { useState } from "react"
+import studyCycle from "../utils/interfaces"
+import axios from "axios"
 
 const Form = styled.form`
   display: flex;

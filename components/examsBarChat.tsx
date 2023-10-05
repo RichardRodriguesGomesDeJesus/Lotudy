@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
+import React, { useEffect, useState } from "react"
+import { Bar } from "react-chartjs-2"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,9 +8,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { colorSegundary } from "./sharedstyles";
-import styled from "styled-components";
+} from 'chart.js'
+import { colorSegundary } from "./sharedstyles"
+import styled from "styled-components"
 
 ChartJS.register(
   CategoryScale,

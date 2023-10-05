@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import ResponsiveMenu, { Header, Main, Title } from "../../components/sharedstyles";
-import Link from "next/link";
-import { parseCookies } from "nookies";
-import axios from "axios";
-import PlanCards from "../../components/planCards";
-import { useRouter } from "next/router";
+import { useEffect, useState } from "react"
+import ResponsiveMenu, { Header, Main, Title } from "../../components/sharedstyles"
+import Link from "next/link"
+import { parseCookies } from "nookies"
+import axios from "axios"
+import PlanCards from "../../components/planCards"
+import { useRouter } from "next/router"
 
 export default function PlansPage() {
 

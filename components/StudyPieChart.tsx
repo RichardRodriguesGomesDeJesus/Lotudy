@@ -1,9 +1,9 @@
-import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, elements } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
-import subjects from '../utils/interfaces';
-import { colorSegundary } from './sharedstyles';
-import styled from 'styled-components';
+import React from 'react'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, elements } from 'chart.js'
+import { Pie } from 'react-chartjs-2'
+import subjects from '../utils/interfaces'
+import { colorSegundary } from './sharedstyles'
+import styled from 'styled-components'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 interface StudyPieChartProps {

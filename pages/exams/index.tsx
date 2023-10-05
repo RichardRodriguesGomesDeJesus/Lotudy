@@ -1,11 +1,11 @@
-import Link from "next/link";
-import ResponsiveMenu, { Header, Title, Main } from "../../components/sharedstyles";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { parseCookies } from "nookies";
-import { useState, useEffect } from "react";
-import ListExams from "../../components/listExams";
-import FormExams from "../../components/formExams";
+import Link from "next/link"
+import ResponsiveMenu, { Header, Title, Main } from "../../components/sharedstyles"
+import axios from "axios"
+import { useRouter } from "next/router"
+import { parseCookies } from "nookies"
+import { useState, useEffect } from "react"
+import ListExams from "../../components/listExams"
+import FormExams from "../../components/formExams"
 
 
 export default function exams() {

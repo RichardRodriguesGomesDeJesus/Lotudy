@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { colorSegundary } from "./sharedstyles";
-import flexCards from "../pages/flex-cards";
+import styled from "styled-components"
+import { colorSegundary } from "./sharedstyles"
+import flexCards from "../pages/flex-cards"
 
 const FlexContainer = styled.div`
   display: flex;

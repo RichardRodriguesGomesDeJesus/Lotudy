@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Button, colorSegundary } from "./sharedstyles";
-import { useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
+import styled from "styled-components"
+import { Button, colorSegundary } from "./sharedstyles"
+import { useState } from "react"
+import axios from "axios"
+import { useRouter } from "next/router"
 
 const FlexContainer = styled.div`
   text-align: center;

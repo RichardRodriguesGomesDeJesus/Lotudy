@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
-import { connectMongo } from '../../../lib/connectMongo.js';
+import jwt from 'jsonwebtoken'
+import { connectMongo } from '../../../lib/connectMongo.js'
 import { DeckModel } from "../../../models/user.js"
 import validator from 'validator'
 

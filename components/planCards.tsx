@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { Button, IconPremium, colorSegundary } from "./sharedstyles";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import styled from "styled-components"
+import { Button, IconPremium, colorSegundary } from "./sharedstyles"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import Link from "next/link"
+import { useRouter } from "next/router"
 
 const PlansContainer = styled.section`
   display:grid;

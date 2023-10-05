@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import ResponsiveMenu, { Header, Main, Title } from "../components/sharedstyles";
-import Link from "next/link";
-import { parseCookies } from "nookies";
-import { useRouter } from "next/router";
-import axios from "axios";
-import SettingsBoard from "../components/settingsBoard";
+import { useEffect, useState } from "react"
+import ResponsiveMenu, { Header, Main, Title } from "../components/sharedstyles"
+import Link from "next/link"
+import { parseCookies } from "nookies"
+import { useRouter } from "next/router"
+import axios from "axios"
+import SettingsBoard from "../components/settingsBoard"
 
 
 export default function settings() {

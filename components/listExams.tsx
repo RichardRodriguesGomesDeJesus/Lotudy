@@ -1,9 +1,9 @@
-import axios from "axios";
-import { parseCookies } from "nookies";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { Button, ButtonClose, colorSegundary } from "./sharedstyles";
-import Link from "next/link";
+import axios from "axios"
+import { parseCookies } from "nookies"
+import { useEffect, useState } from "react"
+import styled from "styled-components"
+import { Button, ButtonClose, colorSegundary } from "./sharedstyles"
+import Link from "next/link"
 
 const List = styled.div`
     align-items: center;

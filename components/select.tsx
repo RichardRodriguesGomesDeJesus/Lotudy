@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Button, colorSegundary } from './sharedstyles';
-import validator from 'validator';
-import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { Button, colorSegundary } from './sharedstyles'
+import validator from 'validator'
+import { useRouter } from 'next/router'
 
 const CustomSelectWrapper = styled.div`
   position: relative;

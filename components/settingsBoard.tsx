@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { Button, ButtonClose, ButtonInvalid, colorSegundary } from "./sharedstyles";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { setCookie } from "nookies";
-import { useRouter } from "next/router";
-import Link from "next/link";
+import styled from "styled-components"
+import { Button, ButtonClose, ButtonInvalid, colorSegundary } from "./sharedstyles"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { setCookie } from "nookies"
+import { useRouter } from "next/router"
+import Link from "next/link"
 
 const ContainerPlan = styled.div`
   background: ${colorSegundary.white};

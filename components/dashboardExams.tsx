@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { colorSegundary } from "./sharedstyles";
-import Link from "next/link";
+import styled from "styled-components"
+import { colorSegundary } from "./sharedstyles"
+import Link from "next/link"
 
 const Dashboard = styled.div`
     display: flex;

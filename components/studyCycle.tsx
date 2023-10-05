@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { Button, ButtonClose, Description, colorSegundary } from "./sharedstyles";
-import {  useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import axios from "axios";
-import FormSubject from "./formSubject";
-import StudyPieChart from "./StudyPieChart";
+import styled from "styled-components"
+import { Button, ButtonClose, Description, colorSegundary } from "./sharedstyles"
+import {  useEffect, useState } from "react"
+import { useRouter } from "next/router"
+import axios from "axios"
+import FormSubject from "./formSubject"
+import StudyPieChart from "./StudyPieChart"
 
 const Form = styled.form`
   display: flex;

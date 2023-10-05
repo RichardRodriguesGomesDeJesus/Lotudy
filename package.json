@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.3.0",

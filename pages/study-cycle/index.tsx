@@ -1,12 +1,12 @@
-import Link from "next/link";
-import ResponsiveMenu, { Button, Description, Header, Main, Title } from "../../components/sharedstyles";
-import FormStydyCycle from "../../components/formStudyCycle";
-import { useEffect, useState } from "react";
-import UserStudyCycle from "../../components/studyCycle";
-import { useRouter } from "next/router";
-import { parseCookies } from "nookies";
-import axios from "axios";
-import studyCycle from "../../utils/interfaces";
+import Link from "next/link"
+import ResponsiveMenu, { Button, Description, Header, Main, Title } from "../../components/sharedstyles"
+import FormStydyCycle from "../../components/formStudyCycle"
+import { useEffect, useState } from "react"
+import UserStudyCycle from "../../components/studyCycle"
+import { useRouter } from "next/router"
+import { parseCookies } from "nookies"
+import axios from "axios"
+import studyCycle from "../../utils/interfaces"
 export default function studyCyclePage() {
   const [form, setForm] = useState(false)
   const [StudyCycle , setStudyCycle] = useState<studyCycle[]>([])

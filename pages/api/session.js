@@ -1,5 +1,6 @@
-import { stripe } from "../../utils/stripe";
-import jwt from 'jsonwebtoken';
+import { stripe } from "../../utils/stripe"
+import jwt from 'jsonwebtoken'
+import { connectMongo } from '../../../lib/connectMongo.js'
 import { UserModel } from "../../models/user"
 
 export default async function session (req,res) {
@@ -23,6 +24,9 @@ export default async function session (req,res) {
     if (!decoded.userId) {
       return res.status(401).send({ error: 'Invalid token'});
     }
+    
+    await connectMongo();
+
     const email = decoded.email
     const user = await UserModel.findOne({email: email})
     const session = await stripe.checkout.sessions.create({

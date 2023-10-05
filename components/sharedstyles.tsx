@@ -147,13 +147,10 @@ const Header = styled.header<Props>`
 const Title = styled.h1`
   color: ${colorSegundary.titleColor};
   font-weight: 600;
+  font-size: 2rem;
   text-align:center;
   @media screen and (min-width: 0 ){
-    font-size: 1.25rem;
-  };
-  @media screen and (min-width: 768px ){
     font-size: 1.5rem;
-  
   };
   @media screen and (min-width: 1024px) {
     font-size: 2rem;

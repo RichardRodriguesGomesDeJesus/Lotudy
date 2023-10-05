@@ -1,6 +1,6 @@
-import Link from "next/link";
-import ResponsiveMenu, { Footer, Header, Main } from "../components/sharedstyles";
-import { useState } from "react";
+import Link from "next/link"
+import ResponsiveMenu, { Footer, Header, Main } from "../components/sharedstyles"
+import { useState } from "react"
 
 export default function Custom404() {
   const [display, setDisplay] = useState('none');

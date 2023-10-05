@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Button, ButtonClose, colorSegundary } from "./sharedstyles";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import styled from "styled-components"
+import { Button, ButtonClose, colorSegundary } from "./sharedstyles"
+import Link from "next/link"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 const FlexContainer = styled.div`
   display: flex;

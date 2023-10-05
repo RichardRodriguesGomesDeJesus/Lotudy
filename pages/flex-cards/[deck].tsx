@@ -1,12 +1,12 @@
-import axios from "axios";
-import { useRouter } from "next/router";
-import { parseCookies } from "nookies";
-import { useEffect, useState } from "react";
-import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles";
-import Link from "next/link";
-import FlashCards from "../../components/flashCards";
-import FormCards from "../../components/formCards";
-import EditCard from "../../components/editCards";
+import axios from "axios"
+import { useRouter } from "next/router"
+import { parseCookies } from "nookies"
+import { useEffect, useState } from "react"
+import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles"
+import Link from "next/link"
+import FlashCards from "../../components/flashCards"
+import FormCards from "../../components/formCards"
+import EditCard from "../../components/editCards"
 
 export default function deck() {
     const router = useRouter();
