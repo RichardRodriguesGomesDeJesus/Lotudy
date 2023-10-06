@@ -8,14 +8,14 @@ import axios from "axios"
 import FormDeck from "../../components/formDecks"
 
 export default function flexCards() {
-    const { 'token': token } = parseCookies();
-    const [userAuth, setUserAuth] = useState(true);
-    const router = useRouter();
-    const [display, setDisplay] = useState('none');
+    const { 'token': token } = parseCookies()
+    const [userAuth, setUserAuth] = useState(true)
+    const router = useRouter()
+    const [display, setDisplay] = useState('none')
   
     useEffect(() => {
       if (!token) {
-        setUserAuth(false);
+        setUserAuth(false)
       } else {
         try {
           axios
@@ -23,22 +23,22 @@ export default function flexCards() {
               token,
             })
             .then(() => {
-              setUserAuth(true);
+              setUserAuth(true)
             })
             .catch(() => {
-              setUserAuth(false);
-            });
+              setUserAuth(false)
+            })
         } catch (error) {
-          setUserAuth(false);
+          setUserAuth(false)
         }
       }
-    }, [token]);
+    }, [token])
   
     if (userAuth === false) {
-      router.push("/login");
+      router.push("/login")
     }
   
-    const [formUpdate, setFormUpdate] = useState(false);
+    const [formUpdate, setFormUpdate] = useState(false)
     const [cardList, setCardList] = useState([]) 
     const [edit, setEdit] = useState(false)
 

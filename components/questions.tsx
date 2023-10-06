@@ -47,7 +47,7 @@ const Form = styled.div`
     min-height: 500px;
     width: 800px;
   }
-`;
+`
 
 const Option = styled.button`
   align-items: flex-start;
@@ -92,7 +92,7 @@ const Option = styled.button`
   @media screen and (min-width: 1024px) {
     min-width: 200px;
   }
-`;
+`
 
 export default function Questions({questionList, setEdit, token , examName}) {
   const router = useRouter()
@@ -109,7 +109,7 @@ export default function Questions({questionList, setEdit, token , examName}) {
       })
       .catch((err) => {
         router.push('/login')
-      });
+      })
   }
   return(
    <>

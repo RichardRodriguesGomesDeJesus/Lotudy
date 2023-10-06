@@ -120,7 +120,7 @@ export default function FormRegister() {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const passwordInput = useRef()
-    const router = useRouter();
+    const router = useRouter()
 
     const namePattern = /^[a-zA-Z0-9]+$/
     const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/)
@@ -143,11 +143,11 @@ export default function FormRegister() {
         .catch((err) => {
             let error =''
             if (err && err.response && err.response.data && err.response.data) {
-                error = err.response.data.mse || err.response.data.message || err.response.data;
-                setErrorMessage(error); 
+                error = err.response.data.mse || err.response.data.message || err.response.data
+                setErrorMessage(error) 
             } 
             
-        });        
+        })        
         } else{
             if (namePattern.test(name) == false) {
                 setErrorMessage('O nome deve conter apenas letras e números sem espaços.')

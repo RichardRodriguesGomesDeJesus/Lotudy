@@ -20,7 +20,7 @@ export default function Cards() {
       text: 'Desenvolva o hábito de estudar usando o ciclo de estudos.',
       href: '/study-cycle'
     }
-  ];
+  ]
   return (
     <FlexContainer>
       {cardList.map((element, index) => (
@@ -32,5 +32,5 @@ export default function Cards() {
         </Link>
       ))}
     </FlexContainer>
-  );
+  )
 }

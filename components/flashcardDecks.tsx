@@ -62,26 +62,26 @@ export default function FlashCardDecks ({token,setFormUpdate,formUpdate, cardLis
         token,
       })
       .then((res)=>{
-        setCardList(res.data.list);
+        setCardList(res.data.list)
       })
       .catch((err)=>{
         console.log(err)
       })
       
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const fetchExamsAndUpdateList = async () => {
     if (token) {
-      await fetchExams();
+      await fetchExams()
     }
-  };
+  }
 
-  fetchExamsAndUpdateList();
+  fetchExamsAndUpdateList()
   setFormUpdate(false)
-  }, [token,formUpdate === true]);
+  }, [token,formUpdate === true])
   function Delete(card) {
     axios.put('api/decks/putCard',{
       token,
@@ -123,5 +123,5 @@ export default function FlashCardDecks ({token,setFormUpdate,formUpdate, cardLis
         <p>Você não tem um baralho.</p>
       }
     </FlexContainer>
-  );
+  )
 }

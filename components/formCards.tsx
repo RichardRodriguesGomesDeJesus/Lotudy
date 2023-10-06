@@ -141,7 +141,7 @@ const ButtonSubmit = styled.input`
 export default function FormCards({setForm,  setUpdateCards, deckName}) {
   const [textFront, setTextFront] = useState('')
   const [textBack, setTextBack] = useState('')
-  const { 'token': token } = parseCookies();
+  const { 'token': token } = parseCookies()
   function submit() {
     setForm(false)
     const card = {

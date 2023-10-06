@@ -145,12 +145,12 @@ export default function FormDeck({token,formUpdate, setFormUpdate, cardList}) {
                 token
             })
             .then((res) => {
-                setForm(false);
+                setForm(false)
                 if (formUpdate === false) {
                     setFormUpdate(true)
                }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err))
         } else {
             if (validator.isAlpha(nameDeck,  'pt-PT') == false) {
                 setMseError('Nome do baralho deve conter apenas letras!')

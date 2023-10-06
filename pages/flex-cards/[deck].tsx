@@ -9,22 +9,22 @@ import FormCards from "../../components/formCards"
 import EditCard from "../../components/editCards"
 
 export default function deck() {
-    const router = useRouter();
-    const { asPath } = router;
-    const parts = asPath.split('/');
-    const deckName = decodeURIComponent(parts[parts.length - 1]);
-    const [request, setRequest] = useState(false);
-    const { 'token': token } = parseCookies();
-    const [userAuth, setUserAuth] = useState(true);
-    const [cardList, setCardList] = useState([]);
-    const [updateCards, setUpdateCards] = useState(false);
-    const [display, setDisplay] = useState('none');
-    const [ card, setCard] = useState(false);
+    const router = useRouter()
+    const { asPath } = router
+    const parts = asPath.split('/')
+    const deckName = decodeURIComponent(parts[parts.length - 1])
+    const [request, setRequest] = useState(false)
+    const { 'token': token } = parseCookies()
+    const [userAuth, setUserAuth] = useState(true)
+    const [cardList, setCardList] = useState([])
+    const [updateCards, setUpdateCards] = useState(false)
+    const [display, setDisplay] = useState('none')
+    const [ card, setCard] = useState(false)
     const [edit, setEdit] = useState(false)
   
     useEffect(() => {
       if (!token) {
-        setUserAuth(false);
+        setUserAuth(false)
       } else {
         try {
           axios
@@ -32,19 +32,19 @@ export default function deck() {
               token,
             })
             .then(() => {
-              setUserAuth(true);
+              setUserAuth(true)
             })
             .catch(() => {
-              setUserAuth(false);
-            });
+              setUserAuth(false)
+            })
         } catch (error) {
-          setUserAuth(false);
+          setUserAuth(false)
         }
       }
-    }, [token]);
+    }, [token])
   
     if (userAuth === false) {
-      router.push("/login");
+      router.push("/login")
     }
   
     useEffect(()=>{
@@ -55,18 +55,18 @@ export default function deck() {
             token,
           })
           .then((res) => {
-            setCardList(res.data.deck.cards);
-            setRequest(true);
-            setUpdateCards(false);
+            setCardList(res.data.deck.cards)
+            setRequest(true)
+            setUpdateCards(false)
           })
           .catch((err) => {
-            router.push("/flex-cards");
-            setRequest(true);
-            setUpdateCards(false);
-          });
+            router.push("/flex-cards")
+            setRequest(true)
+            setUpdateCards(false)
+          })
       }
     },[request,deckName,updateCards])
-    const [form, setForm] = useState(false);
+    const [form, setForm] = useState(false)
   
     return (
       <>

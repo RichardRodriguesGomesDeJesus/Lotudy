@@ -3,19 +3,19 @@ import {stripe} from '../../utils/stripe'
 export default async function getPrices (req,res) {
   try{
     if (req.method !== 'POST') {
-      return res.status(405).send({ mse: 'Method Not Allowed' });
+      return res.status(405).send({ mse: 'Method Not Allowed' })
     }
 
-    const { token } = req.body;
+    const { token } = req.body
 
     if (!token) {
-      return res.status(403).send('A token is required');
+      return res.status(403).send('A token is required')
     }
     
-    const decoded = jwt.verify(token, process.env.SECRET);
+    const decoded = jwt.verify(token, process.env.SECRET)
 
     if (!decoded.userId) {
-      return res.status(401).send({ error: 'Invalid token'});
+      return res.status(401).send({ error: 'Invalid token'})
     }
 
     const prices =  await stripe.prices.list({
@@ -23,6 +23,6 @@ export default async function getPrices (req,res) {
     })
     res.status(200).json(prices)
   } catch (error) {
-    res.status(500).send({ mse: 'Something went wrong'});
+    res.status(500).send({ mse: 'Something went wrong'})
   }
 }

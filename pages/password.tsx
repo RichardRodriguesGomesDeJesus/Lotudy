@@ -5,7 +5,7 @@ import Link from "next/link"
 import PasswordForm from "../components/passwordForm"
 
 export default function ChangePassword() {
-  const [display, setDisplay] = useState('none');
+  const [display, setDisplay] = useState('none')
   return (
   <>
     <Header display={display}>

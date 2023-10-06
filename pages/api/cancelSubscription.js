@@ -5,10 +5,10 @@ import { UserModel } from "../../models/user"
 export default async function CancelSubscription(req, res) {
   try{
     if (req.method !== 'POST') {
-      return res.status(405).send({ mse: 'Method Not Allowed' });
+      return res.status(405).send({ mse: 'Method Not Allowed' })
     }
 
-    const { token, subscriptionId } = req.body;
+    const { token, subscriptionId } = req.body
     
     const decoded = jwt.verify(token, process.env.SECRET)
 
@@ -20,11 +20,11 @@ export default async function CancelSubscription(req, res) {
     const user = await UserModel.findOne({email: email})
 
     if (!token) {
-      return res.status(400).send({ mse: 'Token is required' });
+      return res.status(400).send({ mse: 'Token is required' })
     }
 
     if (!subscriptionId) {
-      return res.status(400).send({ mse: 'Subscription ID is missing' });
+      return res.status(400).send({ mse: 'Subscription ID is missing' })
     }
 
 
@@ -45,6 +45,6 @@ export default async function CancelSubscription(req, res) {
 
   } catch (error) {
     console.log(error)
-    res.status(500).send({ mse: 'Something went wrong'});
+    res.status(500).send({ mse: 'Something went wrong'})
   }
 }

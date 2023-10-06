@@ -67,7 +67,7 @@ const Form = styled.form`
     min-height: 500px;
     width: 800px;
   }
-`;
+`
 
 const Option = styled.button`
   align-items: flex-start;
@@ -164,14 +164,14 @@ const MessageForm = styled.div`
   }
 `
 export default function Question({ token, examName, setQuestion, questionList, clickCard, setClickCard}) {
-  const [questionsText, setQuestionsText] = useState([]);
-  const [questionsOptions, setQuestionsOptions] = useState([]);
+  const [questionsText, setQuestionsText] = useState([])
+  const [questionsOptions, setQuestionsOptions] = useState([])
   const [ correctOption, setCorrectOption ] = useState('')
   const [indexQuestion, setIndexQuestion ] = useState(0)
   const [endForm, setEndForm] = useState(false)
   const [error , setError] = useState(false)
-  const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
-  const [request, setRequest] = useState(false);
+  const [answeredCorrectly, setAnsweredCorrectly] = useState(false)
+  const [request, setRequest] = useState(false)
   const [cont, setCont]= useState<number>(0)
   const [active, setActive] = useState(false)
   const [correctAnswers, setCorrectAnswers] = useState(0)
@@ -179,10 +179,10 @@ export default function Question({ token, examName, setQuestion, questionList, c
   const [ questionsUrlImg , setQuestionsUrlImg] = useState([])
 
   if (request === false) {
-    const listText = questionList.map((question) => question.text);
-    setQuestionsText(listText);
-    const listOptions = questionList.map((question) => question.options);
-    setQuestionsOptions(listOptions);
+    const listText = questionList.map((question) => question.text)
+    setQuestionsText(listText)
+    const listOptions = questionList.map((question) => question.options)
+    setQuestionsOptions(listOptions)
     const correct = questionList.map((questions)=> questions.correctOption)
     setCorrectOption(correct)
     const url = questionList.map((questions)=> questions.img)
@@ -215,18 +215,18 @@ export default function Question({ token, examName, setQuestion, questionList, c
     }
   },[endForm])
   useEffect(() => {
-    let intervalId: string | number | NodeJS.Timer;
+    let intervalId: string | number | NodeJS.Timer
     
     if (endForm === false && active === true) {
       intervalId = setInterval(() => {
-        setCont((cont) => cont + 1);
+        setCont((cont) => cont + 1)
       }, 1000)
     } else {
-      clearInterval(intervalId);
+      clearInterval(intervalId)
     }
     return () => {
-      clearInterval(intervalId);
-    };
+      clearInterval(intervalId)
+    }
   }, [active])
 
   const hors = Math.floor( cont / 3600)
@@ -301,7 +301,7 @@ export default function Question({ token, examName, setQuestion, questionList, c
             {questionsOptions[indexQuestion].map((option, index) => (
               <Option
                 onClick={(e) => {
-                  e.preventDefault();
+                  e.preventDefault()
                   if (option == correctOption[indexQuestion]) {
                     setAnsweredCorrectly(true)
                     setCorrectAnswers( correctAnswers + 1)
@@ -319,5 +319,5 @@ export default function Question({ token, examName, setQuestion, questionList, c
           </Form>
         )}
     </>
-  );
+  )
 }

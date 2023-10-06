@@ -33,20 +33,20 @@ const CustomSelectWrapper = styled.div`
         width: 480px;
     }
 }
-`;
+`
 
 const SelectedOption = styled.div`
   padding: 10px;
   background-color: transparent;
   cursor: pointer;
-`;
+`
 
 const OptionsList = styled.ul`
   display: ${({ isOpen }: { isOpen: boolean }) => (isOpen ? 'block' : 'none')};
   list-style-type: none;
   padding: 0;
   margin: 0;
-`;
+`
 
 const OptionItem = styled.li`
   padding: 10px;
@@ -55,11 +55,11 @@ const OptionItem = styled.li`
   &:hover {
     background-color: #ddd;
   }
-`;
+`
 
  interface Option {
-  value: string;
-  label: string;
+  value: string
+  label: string
 }
 
 function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setIsOpen, setMseError, mseError, access}) {
@@ -69,9 +69,9 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
   const router = useRouter()
 
   const handleOptionClick = (option: Option) => {
-    setSelectedOption(option);
-    setIsOpen(false);
-  };
+    setSelectedOption(option)
+    setIsOpen(false)
+  }
   return (
     <CustomSelectWrapper>
       {access === 'Gratuito'&&
@@ -129,7 +129,7 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
         </>
       )}
     </CustomSelectWrapper>
-  );
-};
+  )
+}
 
-export default CustomSelect;
+export default CustomSelect

@@ -6,30 +6,30 @@ import validator from 'validator'
 export default async function createDeck(req, res) {
     try{
         if (req.method !== 'POST') {
-            return res.status(405).send({ mse: 'Method Not Allowed' });
+            return res.status(405).send({ mse: 'Method Not Allowed' })
         }
 
-        const { name, token } = req.body;
+        const { name, token } = req.body
 
         if (!name) {
-            return res.status(422).send('name is required');
+            return res.status(422).send('name is required')
         }
 
         if (!token) {
-            return res.status(403).send('A token is required');
+            return res.status(403).send('A token is required')
         }
 
-        const decoded = jwt.verify(token, process.env.SECRET);
+        const decoded = jwt.verify(token, process.env.SECRET)
 
         if (!decoded.userId) {
-            return res.status(401).send({ error: 'Invalid token'});
+            return res.status(401).send({ error: 'Invalid token'})
         }
 
         if (validator.isAlpha(name,  'pt-PT') == false || name.length > 30) {
             return res.status(422).send('Nome do baralho deve conter apenas letras!')
         }
 
-        await connectMongo();
+        await connectMongo()
 
         const decks = (await DeckModel.find({author:decoded.userId})).map((deck)=> deck.title)
 
@@ -40,15 +40,15 @@ export default async function createDeck(req, res) {
         const deck = {
             author: decoded.userId,
             title: name,
-        };
+        }
 
-        const newDeck = new DeckModel(deck);
+        const newDeck = new DeckModel(deck)
 
         await newDeck.save()
 
-        res.status(201).send({ mse: 'success!' });
+        res.status(201).send({ mse: 'success!' })
         
     }catch (error) {
-        res.status(500).send({ mse: 'Something went wrong'});
+        res.status(500).send({ mse: 'Something went wrong'})
     }
 }

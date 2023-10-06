@@ -19,7 +19,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend
-);
+)
 
 const BarContainer = styled.div`
   margin: auto; 
@@ -44,9 +44,9 @@ export default function ExamsBarChart({examList}) {
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [],
-});
+})
 
-  const [chartOptions, setChartOptions] = useState({});
+  const [chartOptions, setChartOptions] = useState({})
 
   useEffect(() => {
     setChartData({
@@ -88,5 +88,5 @@ export default function ExamsBarChart({examList}) {
         <Bar data={chartData} options={chartOptions} />
       </BarContainer>
     </>
-  );
+  )
 }

@@ -9,11 +9,11 @@ import FormExams from "../../components/formExams"
 
 
 export default function exams() {
-    const { 'token': token } = parseCookies();
-    const [examList, setExamList] = useState([]);
+    const { 'token': token } = parseCookies()
+    const [examList, setExamList] = useState([])
     const [userAuth , setUserAuth] = useState(true)
-    const router = useRouter();
-    const [display, setDisplay] = useState('none');
+    const router = useRouter()
+    const [display, setDisplay] = useState('none')
     useEffect(()=>{
         if (!token) {
         setUserAuth(false)
@@ -30,7 +30,7 @@ export default function exams() {
         }
     },[token])
     if (userAuth === false) {
-        router.push("/login");
+        router.push("/login")
     }
     
     const [ formUpdate, setFormUpdate ] = useState(false)
@@ -40,22 +40,22 @@ export default function exams() {
         try {
           const response = await axios.post('/api/exams/getExams', {
             token,
-          });
-          setExamList(response.data.list);
+          })
+          setExamList(response.data.list)
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
-      };
+      }
     
       const fetchExamsAndUpdateList = async () => {
         if (token) {
-          await fetchExams();
+          await fetchExams()
         }
-      };
+      }
     
-      fetchExamsAndUpdateList();
+      fetchExamsAndUpdateList()
       setFormUpdate(false)
-      }, [token,formUpdate === true]);
+      }, [token,formUpdate === true])
     return(
         <>
             <Header display={display} >

@@ -117,7 +117,7 @@ const Div = styled.div`
       }
     }
   }
-`;
+`
 export default function FormSubject({newSubjectName, setNewSubjectName, newSubjectNumber, setNewSubjectNumber,newSubjectDifficultyLevel, setNewSubjectDifficultyLevel, StudyCycle}) {
   return(
     <Div>

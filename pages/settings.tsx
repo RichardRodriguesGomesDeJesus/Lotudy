@@ -25,7 +25,7 @@ export default function settings() {
      const list = response.data
      setAccess(list)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
     try {
       const response = await axios.post('/api/auth/email_user',{
@@ -42,7 +42,7 @@ export default function settings() {
      const list = response.data.data
      setListPrices(list)
     }  catch (error) {
-     console.log(error);
+     console.log(error)
    }
   }
   useEffect(()=>{
@@ -65,7 +65,7 @@ export default function settings() {
   },[token])
 
   if (userAuth === false) {
-    router.push("/login");
+    router.push("/login")
   }
   return(
     <>

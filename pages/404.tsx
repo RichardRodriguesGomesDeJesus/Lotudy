@@ -3,7 +3,7 @@ import ResponsiveMenu, { Footer, Header, Main } from "../components/sharedstyles
 import { useState } from "react"
 
 export default function Custom404() {
-  const [display, setDisplay] = useState('none');
+  const [display, setDisplay] = useState('none')
     return (
     <>
       <Header display={display} >
@@ -28,5 +28,5 @@ export default function Custom404() {
             <Link href={'/register'}>Crie sua conta</Link>
       </Footer>
     </>
-    );
+    )
   }

@@ -129,7 +129,7 @@ const Form = styled.form`
       }
     }
   }
-`;
+`
 
 const ButtonSubmit = styled.input`
   background: ${colorSegundary.sideColor};
@@ -162,13 +162,13 @@ const ButtonSubmit = styled.input`
   @media screen and (min-width: 1024px) {
     width: 200px;
   }
-`;
+`
 
 const RadioInput = styled.input`
   box-shadow: none;
   color: ${colorSegundary.textColor};
   padding: 0.5rem;
-`;
+`
 
 const ButtonAddOption = styled.button`
   background: ${colorSegundary.sideColor};
@@ -201,64 +201,64 @@ const ButtonAddOption = styled.button`
   @media screen and (min-width: 1024px) {
     width: 200px;
   }
-`;
+`
 
 export default function FormStudyCycle( { token, setForm, setFormUpdate}) {
-    const [subjects, setSubjects] = useState([]);
+    const [subjects, setSubjects] = useState([])
     const [days , setDays] = useState(Number)
     const [hours, setHours] = useState(Number)
     
     const handleSubjectNameChange = (index, event) => {
-      const updatedSubjects = [...subjects];
+      const updatedSubjects = [...subjects]
       updatedSubjects[index] = {
         ...updatedSubjects[index],
         name: event.target.value
-      };
-      setSubjects(updatedSubjects);
-    };
+      }
+      setSubjects(updatedSubjects)
+    }
     
 
     const handleDifficultyLevelChange = (index, event) => {
-      const updatedSubjects = [...subjects];
+      const updatedSubjects = [...subjects]
       updatedSubjects[index] = {
         ...updatedSubjects[index],
         difficultyLevel: event.target.value
-      };
-      setSubjects(updatedSubjects);
-    };
+      }
+      setSubjects(updatedSubjects)
+    }
     
     const addSubject = (event) => {
-      event.preventDefault();
+      event.preventDefault()
       if (subjects.length < 21) {
-        setSubjects([...subjects, { name: "", difficultyLevel: "", levelHours: 0, CompletedHours: 0}]);
+        setSubjects([...subjects, { name: "", difficultyLevel: "", levelHours: 0, CompletedHours: 0}])
       }
-    };
+    }
   
     const submitForm = (event) => {
-      event.preventDefault();
-      const time = days * hours;
+      event.preventDefault()
+      const time = days * hours
       if (subjects.length >= 2 && subjects.length <= 20) {
         const updatedSubjects = subjects.map((element) => {
-          let levelHours = 0;
+          let levelHours = 0
           if (element.difficultyLevel === 'Otimo') {
-            levelHours = 1;
+            levelHours = 1
           } else if (element.difficultyLevel === 'Bom') {
-            levelHours = 2;
+            levelHours = 2
           } else if (element.difficultyLevel === 'Médio') {
-            levelHours = 3;
+            levelHours = 3
           } else if (element.difficultyLevel === 'Ruim') {
-            levelHours = 4;
+            levelHours = 4
           } else if (element.difficultyLevel === 'Péssimo') {
-            levelHours = 5;
+            levelHours = 5
           }
           return  {
             ...element,
             levelHours: levelHours,
           }
-        });
+        })
         let soma  = 0
-        for (let i = 0; i < updatedSubjects.length; i++) {
-          soma += updatedSubjects[i].levelHours;
+        for (let i = 0 ; i < updatedSubjects.length ; i++) {
+          soma += updatedSubjects[i].levelHours
         }
         const total =  time / soma
         let newStudyCycle = updatedSubjects.map((e)=> {
@@ -269,8 +269,8 @@ export default function FormStudyCycle( { token, setForm, setFormUpdate}) {
         })
         setSubjects(newStudyCycle)
         let verify  = 0
-        for (let i = 0; i < newStudyCycle.length; i++) {
-          verify += newStudyCycle[i].levelHours;
+        for (let i = 0 ; i < newStudyCycle.length ; i++) {
+          verify += newStudyCycle[i].levelHours
         }
         if (time !== verify) {
           if (time < verify) {
@@ -296,7 +296,7 @@ export default function FormStudyCycle( { token, setForm, setFormUpdate}) {
             )
             .catch((err)=>{
               console.log(err.response.data)
-              throw new Error("something is wrong");
+              throw new Error("something is wrong")
             })
           }
           if (time > verify) {
@@ -321,7 +321,7 @@ export default function FormStudyCycle( { token, setForm, setFormUpdate}) {
             )
             .catch((err)=>{
               console.log(err.response.data)
-              throw new Error("something is wrong");
+              throw new Error("something is wrong")
             })
           }
 
@@ -340,13 +340,13 @@ export default function FormStudyCycle( { token, setForm, setFormUpdate}) {
           })
           .catch((err)=>{
             console.log(err.response.data)
-            throw new Error("something is wrong");
+            throw new Error("something is wrong")
           })
         }
       } else {
-        throw new Error("something is wrong");
+        throw new Error("something is wrong")
       }
-    };
+    }
   
     return (
       <Form onSubmit={submitForm}>
@@ -434,6 +434,6 @@ export default function FormStudyCycle( { token, setForm, setFormUpdate}) {
           <ButtonSubmit type="submit" name="submit" value="Criar ciclo de estudos" />
         )}
       </Form>
-    );
+    )
   }
   

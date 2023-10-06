@@ -27,7 +27,7 @@ const FlexContainer = styled.div`
   @media (max-width: 768px) {
     height: auto;
   }
-`;
+`
 
 const Card = styled.div`
   box-shadow: 0 4px 20px ${colorSegundary.textColor};
@@ -70,7 +70,7 @@ const Card = styled.div`
     p{
       font-size: .85rem;
     }
-  };
+  }
   @media screen and (min-width: 768px ){
     height:200px;
     width: 300px;
@@ -81,7 +81,7 @@ const Card = styled.div`
     p{
       font-size: 1rem;
     }
-  };
+  }
   @media screen and (min-width: 1024px) {
     height:250px;
     width: 350px;
@@ -90,7 +90,7 @@ const Card = styled.div`
       width: 150px;
     }
   };
-`;
+`
 const CardBack = styled.div`
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -108,7 +108,7 @@ const CardFront = styled.div`
 export default function EditCard ({cardList, setEdit, token , deckName}){
   const router = useRouter()
   const [cardSelect,setCardSelect] = useState(0)
-  const [flip, setFlip] = useState(false);
+  const [flip, setFlip] = useState(false)
   const [update, setUpdate] = useState(false)
 
   function save(cards, token) {
@@ -122,7 +122,7 @@ export default function EditCard ({cardList, setEdit, token , deckName}){
       })
       .catch((err) => {
         router.push('/login')
-      });
+      })
   }
 
   return(

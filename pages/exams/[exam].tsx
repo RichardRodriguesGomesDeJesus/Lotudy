@@ -10,13 +10,13 @@ import SubjectCards from "../../components/subjectsCards"
 import Questions from "../../components/questions"
 
 export default function ExamPage() {
-  const router = useRouter();
-  const { asPath } = router;
-  const parts = asPath.split('/'); 
+  const router = useRouter()
+  const { asPath } = router
+  const parts = asPath.split('/') 
 
-  const examName = parts[parts.length - 1];
-  const { 'token': token } = parseCookies();
-  const [request, setRequest] = useState(false);
+  const examName = parts[parts.length - 1]
+  const { 'token': token } = parseCookies()
+  const [request, setRequest] = useState(false)
   const [userAuth , setUserAuth] = useState(true)
   const [questionList, setList] = useState([])
   const [clickCard, setClickCard] = useState(false)
@@ -24,7 +24,7 @@ export default function ExamPage() {
   const[updateList, setUpdateList] = useState(false)
   const [question, setQuestion] = useState(false)
   const [edit, setEdit] = useState(false)
-  const [display, setDisplay] = useState('none');
+  const [display, setDisplay] = useState('none')
   const [access, setAccess] = useState('Gratuito'||'Premium'||'Anual')
   useEffect(()=>{
     if (!token) {
@@ -42,7 +42,7 @@ export default function ExamPage() {
     }
   },[token])
   if (userAuth === false) {
-    router.push("/login");
+    router.push("/login")
   }
 
   useEffect(()=>{
@@ -54,12 +54,12 @@ export default function ExamPage() {
         })
         .then((res) => {
           setList(res.data.exam.questions)
-          setRequest(true);
+          setRequest(true)
         })
         .catch((err) => {
-          router.push("/exams");
-          setRequest(true);
-        });
+          router.push("/exams")
+          setRequest(true)
+        })
         axios.post('http://localhost:3000/api/subscriptionCheck',{
           token:token
         })
@@ -82,11 +82,11 @@ export default function ExamPage() {
         })
         .then((res) => {
           setList(res.data.exam.questions)
-          setUpdateList(true);
+          setUpdateList(true)
         })
         .catch((err) => {
-          setUpdateList(true);
-        });
+          setUpdateList(true)
+        })
     }
   },[updateList])
   const [form, setForm] = useState(false)

@@ -21,7 +21,7 @@ const FlexContainer = styled.div`
     height: auto;
     width: 800px;
   }
-`;
+`
 
 const Card = styled.div`
   display: flex;
@@ -76,12 +76,12 @@ const Card = styled.div`
       width: 150px;
     }
   };
-`;
+`
 
 export default function SubjectCards({subjects, setQuestion, setClickCard, setQuestionSubjectList}){
   const uniqueSubjects = [...new Set(subjects.filter((e)=>{ if (e.subject) {
     return e
-  }}).map(e => e.subject))];
+  }}).map(e => e.subject))]
   return(
     <FlexContainer>
       {uniqueSubjects.map((subject , index)=>(

@@ -146,12 +146,12 @@ export default function FormExams( { formUpdate, setFormUpdate, examList }) {
                 token
               })
               .then(() => {
-                setForm(false);
+                setForm(false)
                if (formUpdate === false) {
                     setFormUpdate(true)
                }
               })
-              .catch((err) => console.log(err));
+              .catch((err) => console.log(err))
         } else {
             if (validator.isAlpha(nameExame) == false) {
                 setMseError('O nome deve ser conter por apenas letras sem espaços')

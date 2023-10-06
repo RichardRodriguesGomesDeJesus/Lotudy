@@ -116,7 +116,7 @@ const Form = styled.form`
                 width: 420px;
             }
             div {
-                display: flex;
+                display: flex
                 width:100%;
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -223,7 +223,7 @@ const ButtonAddOption = styled.button`
 export default function QuestionForm({examName, token, setForm, setQuestion, question , setUpdateList, questionList, access}) {  
     const [text, setText] = useState('')
     const [options, setOptions] = useState([])
-    const [correctAnswer, setCorrectAnswer] = useState('');
+    const [correctAnswer, setCorrectAnswer] = useState('')
     const [url,setUrl] = useState('')
     const [load, setLoad] = useState<Boolean>()
     const [isOpen, setIsOpen] = useState(false)
@@ -231,16 +231,16 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
     const [mseError, setMseError] = useState('')
     const addOption = () => {
         setOptions([...options, ""])
-    };
+    }
     
     const handleOptionChange = (index, value, isCorrect) => {
-        const updatedOptions = [...options];
-        updatedOptions[index] = value;
-        setOptions(updatedOptions);
+        const updatedOptions = [...options]
+        updatedOptions[index] = value
+        setOptions(updatedOptions)
         if (isCorrect) {
-          setCorrectAnswer(value);
+          setCorrectAnswer(value)
         }
-      };
+      }
     function submit() {
         if (selectedOption && validator.isAlpha(selectedOption,  'pt-PT') == false) {
             setMseError('a categoria deve ter apenas letras!')
@@ -304,7 +304,7 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
                     id={`option-${index}`}
                     value={option}
                     onChange={(e) => {
-                        handleOptionChange(index, e.target.value, false);
+                        handleOptionChange(index, e.target.value, false)
                     }}
                     required
                     />
@@ -316,7 +316,7 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
                         checked={option === correctAnswer}
                         id="radioInput"
                         onChange={() => {
-                            handleOptionChange(index, option, true);
+                            handleOptionChange(index, option, true)
                         }}
                         required
                         />
@@ -339,5 +339,5 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
              }
         </Form>
       </>
-    );
+    )
   }

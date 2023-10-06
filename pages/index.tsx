@@ -11,7 +11,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 export default function Home() {
-  const [display, setDisplay] = useState('none');
+  const [display, setDisplay] = useState('none')
      
   return (
     <>

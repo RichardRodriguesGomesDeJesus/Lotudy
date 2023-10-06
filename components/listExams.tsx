@@ -34,7 +34,7 @@ const List = styled.div`
         border-color: ${colorSegundary.titleColor};
       }
     }
-`;
+`
 
 export default function ListExams({ formUpdate, setFormUpdate, examList, setExamList}) {
   const { 'token': token } = parseCookies();
@@ -91,6 +91,6 @@ export default function ListExams({ formUpdate, setFormUpdate, examList, setExam
           }} >terminar de editar</Button>
         )}
       </>
-    );
+    )
   }
   

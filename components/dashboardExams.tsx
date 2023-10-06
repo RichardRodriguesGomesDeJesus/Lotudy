@@ -63,7 +63,7 @@ const Dashboard = styled.div`
               height: 150px;  
               width: 150px;
             }
-          };
+          }
     }
 
 `

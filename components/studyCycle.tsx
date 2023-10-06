@@ -123,7 +123,7 @@ const Form = styled.form`
       }
     }
   }
-`;
+`
 const ButtonInput = styled.button`
   align-items: center;
   background: ${colorSegundary.sideColor};
@@ -157,7 +157,7 @@ const ButtonInput = styled.button`
     height: 30px;
     width: 30px;
   }
-`;
+`
 const CompletedDiv = styled.p`
   background: ${colorSegundary.principalColor};
   border: none;
@@ -189,12 +189,12 @@ const CompletedDiv = styled.p`
 
 export default function UserStudyCycle({ StudyCycle,token }) {
   const [clickClose ,setClickClose] = useState(false)
-  const [clickIncrementHours, setClickIncrementHours] = useState(false);
-  const [clickDincrementHours, setClickDincrementHours] = useState(false);
-  const [clickIncrementLevelHours, setClickIncrementLevelHours] = useState(false);
-  const [clickDincrementLevelHours, setClickDincrementLevelHours] = useState(false);
-  const [clickStudy, setClickStudy] = useState(false);
-  const [clickReset, setClickReset] = useState(false);
+  const [clickIncrementHours, setClickIncrementHours] = useState(false)
+  const [clickDincrementHours, setClickDincrementHours] = useState(false)
+  const [clickIncrementLevelHours, setClickIncrementLevelHours] = useState(false)
+  const [clickDincrementLevelHours, setClickDincrementLevelHours] = useState(false)
+  const [clickStudy, setClickStudy] = useState(false)
+  const [clickReset, setClickReset] = useState(false)
   const[index, setIndex]= useState<number>()
   const [newSubject , setNewSubject] = useState(false)
   const [newSubjectName, setNewSubjectName] = useState('')
@@ -203,7 +203,7 @@ export default function UserStudyCycle({ StudyCycle,token }) {
   const [ hoursForWeeks , setHoursForWeeks] = useState<number>()
 
   const router = useRouter()
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(false)
   useEffect(()=>{
     if (clickStudy === true) {
       StudyCycle[index].CompletedHours++
@@ -217,7 +217,7 @@ export default function UserStudyCycle({ StudyCycle,token }) {
       })
       .catch(()=>{
         setClickStudy(false)
-        throw new Error("Something went wrong");
+        throw new Error("Something went wrong")
       })
     }
     if (clickDincrementHours === true) {
@@ -237,8 +237,8 @@ export default function UserStudyCycle({ StudyCycle,token }) {
       setClickIncrementLevelHours(false)
     }
     if (clickReset === true) {
-      for (let i = 0; i < StudyCycle.length; i++) {
-        StudyCycle[i].CompletedHours = 0;
+      for (let i = 0 i < StudyCycle.length i++) {
+        StudyCycle[i].CompletedHours = 0
       }
       axios.put('/api/study-cycle/set-subjects',{
         token,
@@ -275,9 +275,9 @@ export default function UserStudyCycle({ StudyCycle,token }) {
           {StudyCycle.map(
             (
               element: {
-                levelHours: number;
-                CompletedHours: number;
-                name: string;
+                levelHours: number
+                CompletedHours: number
+                name: string
               },
               index
             ) => (
@@ -304,7 +304,7 @@ export default function UserStudyCycle({ StudyCycle,token }) {
                       {element.levelHours > element.CompletedHours && (
                         <Button
                           onClick={(e) => {
-                            e.preventDefault();
+                            e.preventDefault()
                             setIndex(index)
                             setClickStudy(true)
                           }}>
@@ -318,7 +318,7 @@ export default function UserStudyCycle({ StudyCycle,token }) {
                       <div>
                         <ButtonInput
                           onClick={(e) => {
-                            e.preventDefault();
+                            e.preventDefault()
                             if (element.CompletedHours > 0) {
                               setIndex(index)
                               setClickDincrementHours(true)
@@ -332,7 +332,7 @@ export default function UserStudyCycle({ StudyCycle,token }) {
 
                         <ButtonInput
                           onClick={(e) => {
-                            e.preventDefault();
+                            e.preventDefault()
                             if (element.levelHours > element.CompletedHours) {
                               setIndex(index)
                               setClickIncrementHours(true)
@@ -346,7 +346,7 @@ export default function UserStudyCycle({ StudyCycle,token }) {
                       <div>
                         <ButtonInput
                           onClick={(e) => {
-                            e.preventDefault();
+                            e.preventDefault()
                             if (
                               element.levelHours > 0 &&
                               element.CompletedHours < element.levelHours
@@ -361,7 +361,7 @@ export default function UserStudyCycle({ StudyCycle,token }) {
                       <p>{element.levelHours}</p>
                       <ButtonInput
                         onClick={(e) => {
-                          e.preventDefault();
+                          e.preventDefault()
                           setIndex(index)
                           setClickIncrementLevelHours(true)
                         }}
@@ -413,8 +413,8 @@ export default function UserStudyCycle({ StudyCycle,token }) {
         {edit === false && (
           <Button
             onClick={(e) => {
-              e.preventDefault();
-              setEdit(true);
+              e.preventDefault()
+              setEdit(true)
             }}
           >
             Editar
@@ -423,7 +423,7 @@ export default function UserStudyCycle({ StudyCycle,token }) {
         {edit === true && (
           <Button
             onClick={(e) => {
-              e.preventDefault();
+              e.preventDefault()
               axios.put('/api/study-cycle/set-subjects',{
                 token,
                 StudyCycle
@@ -456,5 +456,5 @@ export default function UserStudyCycle({ StudyCycle,token }) {
         <p>Um dos benefícios do ciclo de estudos é que ele permite uma maior flexibilidade no seu plano de estudo e adapta-se a imprevistos e a sua rotina. Além disso, ele ajuda a ter uma visão real do tempo disponível de estudo, dá a importância correta de tempo para cada matéria e leva em consideração apenas o tempo líquido de estudo. Isso pode tornar suas horas dedicadas ao aprendizado muito mais produtivas.</p>
       </Description>              
     </>
-  );
+  )
 }

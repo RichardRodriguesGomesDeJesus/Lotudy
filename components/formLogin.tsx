@@ -140,27 +140,27 @@ export function FormLogin (){
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/)
-    const router = useRouter();
+    const router = useRouter()
     function submit() {
         axios.post('/api/auth/login_user', {
               email: email,
               password: password
             })
             .then((res) => {
-              const { 'token': token } = parseCookies();
+              const { 'token': token } = parseCookies()
               if (token) {
-                destroyCookie(undefined, 'token');
+                destroyCookie(undefined, 'token')
               }
               setCookie(undefined, 'token', res.data.token, {
                 maxAge: 172800
-              });
+              })
       
-              router.push('/dashboard');
+              router.push('/dashboard')
             })
             .catch((err) => {
                 const error = err.response.data.mse || err.response.data || err.response.data.message 
-                setErrorMessage(error);
-            });
+                setErrorMessage(error)
+            })
       }
     return(
         <>

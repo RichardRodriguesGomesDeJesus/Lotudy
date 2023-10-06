@@ -17,7 +17,7 @@ export default async function subscriptionId(req,res) {
       return res.status(401).send({ error: 'Invalid token'})
     }
 
-    await connectMongo();
+    await connectMongo()
     
     const email = decoded.email
     const user = await UserModel.findOne({email: email})

@@ -12,7 +12,7 @@ export default function Dashboard() {
   const { 'token': token } = parseCookies()
   const [userAuth , setUserAuth] = useState(true)
   const [StudyCycle , setStudyCycle] = useState<studyCycle[]>([])
-  const [examList, setExamList] = useState([]); 
+  const [examList, setExamList] = useState([]) 
   const [access, setAccess] = useState('Gratuito'||'Premium'||'Anual')
   const router = useRouter()
   const [display, setDisplay] = useState('none')
@@ -32,7 +32,7 @@ export default function Dashboard() {
     }
   },[token])
   if (userAuth === false) {
-    router.push("/login");
+    router.push("/login")
   }
   useEffect(() => {
     const fetchData = async () => {
@@ -47,15 +47,15 @@ export default function Dashboard() {
         }
         
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
       try {
         const response = await axios.post('/api/exams/getExams', {
           token,
-        });
-        setExamList(response.data.listQuestions);
+        })
+        setExamList(response.data.listQuestions)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
       try {
         const response = await axios.post('http://localhost:3000/api/subscriptionCheck',{
@@ -64,16 +64,16 @@ export default function Dashboard() {
         const list = response.data
         setAccess(list)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
+    }
     const fetchDataAndUpdateList = async () => {
       if (token) {
-        await fetchData();
+        await fetchData()
       }
-    };
-    fetchDataAndUpdateList();
-    }, [token]);
+    }
+    fetchDataAndUpdateList()
+    }, [token])
   return (
     <>
       <Header display={display} >
@@ -103,5 +103,5 @@ export default function Dashboard() {
         <Statistics StudyCycle={StudyCycle} examList={examList} access={access}/>
       </Main>
     </>
-  );
+  )
 }

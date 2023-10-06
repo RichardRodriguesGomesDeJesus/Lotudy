@@ -91,7 +91,7 @@ const Card = styled.div`
       width: 150px;
     }
   };
-`;
+`
 const CardBack = styled.div`
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -107,19 +107,19 @@ const CardFront = styled.div`
 `
 
 export default function FlashCards({ cards, setCard, deckName }) {
-  const [cardsEnd, setCardsEnd] = useState(false);
-  const [index, setIndex] = useState(0);
-  const [flip, setFlip] = useState(false);
-  const { 'token': token } = parseCookies();
+  const [cardsEnd, setCardsEnd] = useState(false)
+  const [index, setIndex] = useState(0)
+  const [flip, setFlip] = useState(false)
+  const { 'token': token } = parseCookies()
 
   function nextCard() {
-    console.log(cards);
+    console.log(cards)
     if (index + 1 >= cards.length) {
-      setFlip(false);
-      setCardsEnd(true);
+      setFlip(false)
+      setCardsEnd(true)
     } else {
-      setFlip(false);
-      setIndex(index + 1);
+      setFlip(false)
+      setIndex(index + 1)
     }
   }
 
@@ -131,11 +131,11 @@ export default function FlashCards({ cards, setCard, deckName }) {
         title
       })
       .then((res) => {
-        console.log(res);
+        console.log(res)
       })
       .catch((err) => {
-        console.log(err);
-      });
+        console.log(err)
+      })
   }
 
   return (
@@ -158,7 +158,7 @@ export default function FlashCards({ cards, setCard, deckName }) {
             className={flip === true && 'rotate'}
             onClick={() => {
               if (flip === false) {
-                setFlip(true);
+                setFlip(true)
               }
             }}
           >
@@ -177,8 +177,8 @@ export default function FlashCards({ cards, setCard, deckName }) {
             <Button
               onClick={() => {
                 cards[index].time = 'Muito Pouco'
-                save(cards, token, deckName);
-                nextCard();
+                save(cards, token, deckName)
+                nextCard()
               }}
             >
               Muito Pouco
@@ -186,8 +186,8 @@ export default function FlashCards({ cards, setCard, deckName }) {
             <Button
               onClick={() => {
                 cards[index].time = 'Pouco'
-                save(cards, token, deckName);
-                nextCard();
+                save(cards, token, deckName)
+                nextCard()
               }}
             >
               Pouco
@@ -195,8 +195,8 @@ export default function FlashCards({ cards, setCard, deckName }) {
             <Button
               onClick={() => {
                 cards[index].time = 'Médio'
-                save(cards, token, deckName);
-                nextCard();
+                save(cards, token, deckName)
+                nextCard()
               }}
             >
               Médio
@@ -204,8 +204,8 @@ export default function FlashCards({ cards, setCard, deckName }) {
             <Button
               onClick={() => {
                 cards[index].time = 'Grande'
-                save(cards, token, deckName);
-                nextCard();
+                save(cards, token, deckName)
+                nextCard()
               }}
             >
               Grande
@@ -213,8 +213,8 @@ export default function FlashCards({ cards, setCard, deckName }) {
             <Button
               onClick={() => {
                 cards[index].time = 'Muito Grande'
-                save(cards, token, deckName);
-                nextCard();
+                save(cards, token, deckName)
+                nextCard()
               }}
             >
               Muito Grande
@@ -224,6 +224,6 @@ export default function FlashCards({ cards, setCard, deckName }) {
       )}
       {cards.length === 0 && <p>Você não tem nenhum card.</p>}
     </FlexContainer>
-  );
+  )
 }
 

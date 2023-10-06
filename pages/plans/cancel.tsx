@@ -42,7 +42,7 @@ export default function cancelPlan() {
   },[token])
 
   if (userAuth === false) {
-    router.push("/login");
+    router.push("/login")
   }
 
 

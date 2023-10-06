@@ -4,7 +4,7 @@ import FormRegister from "../components/formRegister"
 import { useState } from "react"
 
 export default function Register (){
-    const [display, setDisplay] = useState('none');
+    const [display, setDisplay] = useState('none')
     
 
     return (

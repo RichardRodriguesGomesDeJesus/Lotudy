@@ -8,13 +8,13 @@ import { stripe } from '../../../utils/stripe'
 export default async  function ChangeEmail(req, res) {
   try {
     if (req.method !== 'POST') {
-      return res.status(405).send({ mse: 'Method Not Allowed' });
+      return res.status(405).send({ mse: 'Method Not Allowed' })
     }
 
     const {token, email}  = req.body
 
     if (!token) {
-      return res.status(403).send('A token is required');
+      return res.status(403).send('A token is required')
     }
     
     if (!email) {
@@ -22,18 +22,18 @@ export default async  function ChangeEmail(req, res) {
     }
     
     if (!validator.isEmail(email)) {
-      return res.status(422).send('O e-mail fornecido é inválido');
+      return res.status(422).send('O e-mail fornecido é inválido')
     }
 
     await connectMongo()
 
-    const emailExist = await UserModel.find({email: email });
+    const emailExist = await UserModel.find({email: email })
 
     if (emailExist.length > 0) {
-      return res.status(409).send('Esse email já foi cadastrado, use outro.');
+      return res.status(409).send('Esse email já foi cadastrado, use outro.')
     }
 
-    const decoded = jwt.verify(token, process.env.SECRET);
+    const decoded = jwt.verify(token, process.env.SECRET)
 
     const user = await UserModel.findOne({ _id: decoded.userId})
     
@@ -44,7 +44,7 @@ export default async  function ChangeEmail(req, res) {
     const customer = await stripe.customers.update(
       user.userStripeId,
       { email: email }
-    );
+    )
 
     customer
 
@@ -61,9 +61,9 @@ export default async  function ChangeEmail(req, res) {
   } catch (error) {
     console.log(error)
     if (error instanceof jwt.TokenExpiredError) {
-      res.status(401).json({ error: 'Token is expired' });
+      res.status(401).json({ error: 'Token is expired' })
     } else {
-        res.status(401).json({ error: 'Token is invalid' });
+        res.status(401).json({ error: 'Token is invalid' })
     }
 
   }

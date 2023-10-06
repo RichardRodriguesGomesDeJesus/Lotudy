@@ -23,7 +23,7 @@ export default function PlansPage() {
      const list = response.data
      setAccess(list)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
     try {
      const response = await axios.post('http://localhost:3000/api/prices',{
@@ -32,7 +32,7 @@ export default function PlansPage() {
      const list = response.data.data
      setListPrices(list)
     }  catch (error) {
-     console.log(error);
+     console.log(error)
    }
   }
 
@@ -56,7 +56,7 @@ export default function PlansPage() {
   },[token])
 
   if (userAuth === false) {
-    router.push("/login");
+    router.push("/login")
   }
 
   return(

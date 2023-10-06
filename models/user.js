@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref:'Deck'
   }]
-});
+})
 
 const examSchema = new mongoose.Schema({
   author: {
@@ -60,7 +60,7 @@ const examSchema = new mongoose.Schema({
     subject: { type: String } ,
     correctOption: { type: String, required: true }
   }],
-});
+})
 
 const studyCycleSchema = new mongoose.Schema({
   author: {
@@ -112,7 +112,7 @@ const deckSchema = new mongoose.Schema({
   }]
 })
 
-export const UserModel = mongoose.models.User || mongoose.model('User', userSchema);
-export const ExamModel = mongoose.models.Exam || mongoose.model('Exam', examSchema);
-export const StudyCycleModel = mongoose.models.StudyCycle || mongoose.model('StudyCycle',studyCycleSchema);
-export const DeckModel = mongoose.models.Deck || mongoose.model('Deck', deckSchema);
+export const UserModel = mongoose.models.User || mongoose.model('User', userSchema)
+export const ExamModel = mongoose.models.Exam || mongoose.model('Exam', examSchema)
+export const StudyCycleModel = mongoose.models.StudyCycle || mongoose.model('StudyCycle',studyCycleSchema)
+export const DeckModel = mongoose.models.Deck || mongoose.model('Deck', deckSchema)

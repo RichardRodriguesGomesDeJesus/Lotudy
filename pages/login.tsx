@@ -4,7 +4,7 @@ import { FormLogin } from "../components/formLogin"
 import { useState } from "react"
 
 export default function Login (){
-    const [display, setDisplay] = useState('none');
+    const [display, setDisplay] = useState('none')
     return (
         <>
             <Header display={display} >

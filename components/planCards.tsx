@@ -121,7 +121,7 @@ export default function PlanCards({token, listPrices, access}) {
   const router = useRouter()
 
   function formatNumber(number, locale = 'pt-BR', minimumFractionDigits = 2, maximumFractionDigits = 2){
-    return number.toLocaleString(locale, { style: 'decimal', minimumFractionDigits, maximumFractionDigits });
+    return number.toLocaleString(locale, { style: 'decimal', minimumFractionDigits, maximumFractionDigits })
   }
 
    const createExpression = async (priceId) => {

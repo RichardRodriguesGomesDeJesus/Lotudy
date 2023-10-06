@@ -5,14 +5,14 @@ import subjects from '../utils/interfaces'
 import { colorSegundary } from './sharedstyles'
 import styled from 'styled-components'
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend)
 interface StudyPieChartProps {
-  StudyCycle: subjects[];
+  StudyCycle: subjects[]
 }
 
 const PieContainer = styled.div`
-  width: 300px;
-  margin: auto;
+  width: 300px
+  margin: auto
 `
 export  default function StudyPieChart({StudyCycle}: StudyPieChartProps) { 
   
@@ -29,7 +29,7 @@ export  default function StudyPieChart({StudyCycle}: StudyPieChartProps) {
         borderWidth: 1,
       },
     ],
-  };
+  }
   return( 
     <PieContainer>
       <Pie data={data} />

@@ -99,5 +99,5 @@ export default function Statistics({ StudyCycle, examList, access}) {
         </>
       )}
     </StatisticsContainer>
-  );
+  )
 }

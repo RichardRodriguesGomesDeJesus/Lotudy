@@ -10,10 +10,10 @@ import studyCycle from "../../utils/interfaces"
 export default function studyCyclePage() {
   const [form, setForm] = useState(false)
   const [StudyCycle , setStudyCycle] = useState<studyCycle[]>([])
-  const { 'token': token } = parseCookies();
+  const { 'token': token } = parseCookies()
   const [userAuth , setUserAuth] = useState(true)
-  const router = useRouter();
-  const [display, setDisplay] = useState('none');
+  const router = useRouter()
+  const [display, setDisplay] = useState('none')
   const [ formUpdate, setFormUpdate ] = useState(false)
   const [access, setAccess] = useState('Gratuito'||'Premium'||'Anual')
   
@@ -29,7 +29,7 @@ export default function studyCyclePage() {
           setStudyCycle(response.data.StudyCycle.subjects)
         }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
       try {
         const response = await axios.post('http://localhost:3000/api/subscriptionCheck',{
@@ -38,20 +38,20 @@ export default function studyCyclePage() {
        const list = response.data
        setAccess(list)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
+    }
   
     const fetchStudyCycleAndUpdateList = async () => {
       if (token) {
-        await fetchStudyCycle();
+        await fetchStudyCycle()
       }
-    };
+    }
   
-    fetchStudyCycleAndUpdateList();
+    fetchStudyCycleAndUpdateList()
     setForm(false)
     setFormUpdate(false)
-    }, [token, formUpdate === true]);
+    }, [token, formUpdate === true])
   useEffect(()=>{
     if (!token) {
       setUserAuth(false)
@@ -68,7 +68,7 @@ export default function studyCyclePage() {
     }
   },[token])
   if (userAuth === false) {
-    router.push("/login");
+    router.push("/login")
   } 
   return(
         <>
