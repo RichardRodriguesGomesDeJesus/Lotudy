@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import jwt from 'jsonwebtoken'
-import { connectMongo } from '../../../lib/connectMongo.js'
+import jwt from "jsonwebtoken"
+import { connectMongo } from "../../../lib/connectMongo"
 import { ExamModel } from "../../../models/user.js"
 
 export default async function getQuestions(req,res) {

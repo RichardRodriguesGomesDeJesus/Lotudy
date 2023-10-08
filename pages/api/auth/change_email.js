@@ -1,6 +1,6 @@
-import validator from 'validator'
-import jwt from 'jsonwebtoken'
-import { connectMongo } from '../../../lib/connectMongo.js'
+import validator from "validator"
+import jwt from "jsonwebtoken"
+import { connectMongo } from "../../../lib/connectMongo"
 import { UserModel } from "../../../models/user.js"
 import { stripe } from '../../../utils/stripe'
 

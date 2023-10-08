@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken"
 import {stripe} from '../../utils/stripe'
 export default async function getPrices (req,res) {
   try{

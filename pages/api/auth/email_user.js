@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken"
 export default async function getEmail(req, res) {
   try {
     if (req.method !== 'POST') {

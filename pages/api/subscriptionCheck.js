@@ -1,5 +1,5 @@
 import { stripe } from "../../utils/stripe"
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken"
 import { UserModel } from "../../models/user"
 
 export default async function subscriptionCheck(req,res) {

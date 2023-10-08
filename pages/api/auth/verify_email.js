@@ -1,7 +1,7 @@
-import { connectMongo } from '../../../lib/connectMongo.js'
+import { connectMongo } from "../../../lib/connectMongo"
 import { UserModel } from "../../../models/user.js"
-import validator from 'validator'
-import jwt from 'jsonwebtoken'
+import validator from "validator"
+import jwt from "jsonwebtoken"
 
 export default async function verifyEmail(req,res) {
   try {

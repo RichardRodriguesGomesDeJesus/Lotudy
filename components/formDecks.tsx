@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Button, colorSegundary } from "./sharedstyles"
 import styled from "styled-components"
 import axios from "axios"
-import validator from 'validator'
+import validator from "validator"
 
 const Form =styled.form`
 display: flex;

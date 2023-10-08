@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken'
-import { connectMongo } from '../../../lib/connectMongo.js'
+import jwt from "jsonwebtoken"
+import { connectMongo } from "../../../lib/connectMongo"
 import { UserModel } from "../../../models/user.js"
 import bcrypt from 'bcryptjs'
-import validator from 'validator'
+import validator from "validator"
 import { stripe } from '../../../utils/stripe'
 
 export default async function handler(req, res) {

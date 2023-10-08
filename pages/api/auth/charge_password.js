@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken'
-import { connectMongo } from '../../../lib/connectMongo.js'
+import jwt from "jsonwebtoken"
+import { connectMongo } from "../../../lib/connectMongo"
 import { UserModel } from "../../../models/user.js"
 import bcrypt from 'bcryptjs'
-import validator from 'validator'
+import validator from "validator"
 
 export default async function verifyTokenEmail(req,res) {
   try{

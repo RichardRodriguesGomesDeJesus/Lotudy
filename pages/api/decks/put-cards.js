@@ -1,6 +1,6 @@
 
-import jwt from 'jsonwebtoken'
-import { connectMongo } from '../../../lib/connectMongo.js'
+import jwt from "jsonwebtoken"
+import { connectMongo } from "../../../lib/connectMongo"
 import { DeckModel } from '../../../models/user.js'
 
 

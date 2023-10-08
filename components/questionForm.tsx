@@ -3,7 +3,7 @@ import { Button, ButtonClose, colorSegundary} from "./sharedstyles"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import CustomSelect from "./select"
-import validator from 'validator'
+import validator from "validator"
 import { useRouter } from "next/router"
 
 const Form = styled.form`

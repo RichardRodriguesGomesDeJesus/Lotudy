@@ -1,5 +1,5 @@
 import { stripe } from "../../utils/stripe"
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken"
 import { connectMongo } from "../../lib/connectMongo"
 import { UserModel } from "../../models/user"
 

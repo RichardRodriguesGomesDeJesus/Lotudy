@@ -3,7 +3,7 @@ import { Button, colorSegundary } from "./sharedstyles"
 import { useState } from "react"
 import axios from "axios"
 import { parseCookies } from "nookies"
-import validator from 'validator'
+import validator from "validator"
 
 const Form =styled.form`
 display: flex;
