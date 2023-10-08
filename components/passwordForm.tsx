@@ -112,19 +112,29 @@ const ButtonSubmit = styled.input`
 
 export default function PasswordForm() {
   const [submit , setSubmit] = useState<boolean>(false)
-  const [email,setEmail] = useState<string>('')
+  const [email,setEmail] = useState<string>("")
   return (
     <Form onSubmit={(e)=>{
         e.preventDefault()
         if (submit === false) {
             setSubmit(true)
         }
-        const templatePrams = {
+        const host = window.location.hostname
+        axios.put("/api/auth/verify_email",{
             email: email,
-            link: "Na casa do caralho"
-          }
-        emailjs.send("service_0vi7m5l","template_nxqc2bp",templatePrams,"UT7iTWo88lxcFBcpL")
-        .then((res)=>console.log(res))
+        })
+        .then((res) =>{
+            if (res.data != "") {
+                const templatePrams = {
+                    email: email,
+                    link: `${(host === "localhost" ? "http" : "https")}://${(host === "localhost" ? `${host}:3000` : host )}/forgot-password/${res.data}`
+                }
+
+                emailjs.send("service_0vi7m5l","template_nxqc2bp",templatePrams,"UT7iTWo88lxcFBcpL")
+                .then((res)=>console.log(res))
+                .catch((err)=>console.log(err))
+            }
+        })
         .catch((err)=>console.log(err))
     }} >
       <Title>Redefinir senha</Title>

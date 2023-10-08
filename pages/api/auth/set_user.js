@@ -1,4 +1,3 @@
-import mongoose from 'mongoose'
 import jwt from 'jsonwebtoken'
 import { connectMongo } from '../../../lib/connectMongo.js'
 import { UserModel } from "../../../models/user.js"
@@ -65,8 +64,6 @@ export default async function handler(req, res) {
           userId: newUser._id,
           email: email
         },secret, { expiresIn: '12h' })
-
-        
 
         res.status(201).send({mse: 'sucesso!',token})
       } catch {

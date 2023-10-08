@@ -237,7 +237,7 @@ export default function UserStudyCycle({ StudyCycle,token }) {
       setClickIncrementLevelHours(false)
     }
     if (clickReset === true) {
-      for (let i = 0 i < StudyCycle.length i++) {
+      for (let i = 0 ; i < StudyCycle.length ; i++) {
         StudyCycle[i].CompletedHours = 0
       }
       axios.put('/api/study-cycle/set-subjects',{

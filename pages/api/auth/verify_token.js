@@ -18,9 +18,9 @@ export default async function handler(req, res){
       res.status(401).json({ error: 'Token is expired'})
     }
     await connectMongo()
-    const user = await UserModel.find({email: decoded.email})
+    const user = await UserModel.findOne({email: decoded.email})
     
-    if (user.length == 0) {
+    if (user === null) {
       return res.status(404).json({ error: 'User not found' })
     } 
     

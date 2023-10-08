@@ -59,7 +59,6 @@ export default async  function ChangeEmail(req, res) {
     process.env.SECRET,{ expiresIn: '12h' })
     return res.status(200).send(newToken)
   } catch (error) {
-    console.log(error)
     if (error instanceof jwt.TokenExpiredError) {
       res.status(401).json({ error: 'Token is expired' })
     } else {

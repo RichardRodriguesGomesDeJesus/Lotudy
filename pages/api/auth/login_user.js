@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         await connectMongo()
         const user = await UserModel.find({email: email })
         if (user.length == 0) {
-          res.status(401).send('Senha ou e-mail incorreto')
+          return res.status(401).send('Senha ou e-mail incorreto')
         } else {
           const passwordMatch = await bcrypt.compare(password, user[0].password)
           if (passwordMatch) {

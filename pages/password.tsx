@@ -4,7 +4,7 @@ import { FormLogin } from "../components/formLogin"
 import Link from "next/link"
 import PasswordForm from "../components/passwordForm"
 
-export default function ChangePassword() {
+export default function ForgotPassword() {
   const [display, setDisplay] = useState('none')
   return (
   <>

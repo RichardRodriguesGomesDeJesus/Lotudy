@@ -1,9 +1,9 @@
 import { connectMongo } from '../../../lib/connectMongo.js'
 import { UserModel } from "../../../models/user.js"
-import bcrypt from 'bcryptjs'
 import validator from 'validator'
+import jwt from 'jsonwebtoken'
 
-export default async function name(req,res) {
+export default async function verifyEmail(req,res) {
   try {
     if (req.method !== 'PUT'){
       return res.status(405).send({ mse: 'Method Not Allowed' })
@@ -19,11 +19,19 @@ export default async function name(req,res) {
 
     const user = await UserModel.findOne({email: email })
 
+    if(user === null){
+      return res.status(401).send("User not found")
+    }
 
+    const secret = process.env.SECRET
 
-
+    const token = jwt.sign({
+      email: email
+    }, secret, {expiresIn: '2h'}) 
+    
+    res.status(200).json(token)
   } catch (error) {
-    return res.status(500).send({ mse: 'Ocorreu um erro ao processar a solicitação'})
+    return res.status(500).send({ mse: 'Something went wrong'})
   }
 
 }

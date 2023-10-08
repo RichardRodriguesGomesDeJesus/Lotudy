@@ -1,10 +1,8 @@
-import styled from 'styled-components'
-import { colorSegundary } from './sharedstyles'
-import { useState } from 'react'
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import { destroyCookie, parseCookies, setCookie } from 'nookies'
-import Link from 'next/link'
+import styled from "styled-components"
+import { Button, colorSegundary } from "./sharedstyles"
+import { useState } from "react"
+import { useRouter } from "next/router"
+import axios from "axios"
 
 const Form = styled.form`
     background: ${colorSegundary.white};
@@ -105,6 +103,7 @@ const Form = styled.form`
         }
     }
 `
+
 const ButtonSubmit = styled.input`
     background: ${colorSegundary.sideColor};
     border: none;
@@ -135,58 +134,60 @@ const ButtonSubmit = styled.input`
 
 `
 
-export function FormLogin (){
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
-    const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/)
-    const router = useRouter()
-    function submit() {
-        axios.post('/api/auth/login_user', {
-              email: email,
-              password: password
-            })
-            .then((res) => {
-              const { 'token': token } = parseCookies()
-              if (token) {
-                destroyCookie(undefined, 'token')
-              }
-              setCookie(undefined, 'token', res.data.token, {
-                maxAge: 172800
-              })
-      
-              router.push('/dashboard')
-            })
-            .catch((err) => {
-                const error = err.response.data.mse || err.response.data || err.response.data.message 
-                setErrorMessage(error)
-            })
+export default function ChangePasswordForm({token}) {
+  const [changePassword, SetChangePassword] = useState(false)
+  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/)
+  const [errorMessage, setErrorMessage] = useState('')
+  async function Submit(email, token, newPassword) {
+    axios.put("/api/auth/charge_password",{
+      email: email,
+      token: token,
+      newPassword: newPassword
+    })
+    .then(()=>SetChangePassword(true))
+    .catch((err)=>{
+      if(err?.response?.data?.mse){
+        setErrorMessage(err.response.data.mse)
       }
-    return(
-        <>
-            <Form onSubmit={ event => {
-                    event.preventDefault() 
-                    submit()
-                }}>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input required type="email"  name='email' placeholder='fulano@gmail.com' autoComplete="email" value={email} onChange={(event)=> setEmail(event.target.value)}  id='email'/>
-                </div>
-                <div>
-                    <label htmlFor="password">Senha</label>
-                    <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Escreva sua senha.' autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)} onBlur={()=>{
-                        if (passwordPattern.test(password) == false) {
-                            setErrorMessage('A senha deve ter entre 8 e 20 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.')
-                        } else {
-                            setErrorMessage('')
-                        }
-                    }} id='password'/>
-                    <span>Senha ou e-mail incorreto.</span>
-                </div>
-                <Link href={'/password'}><p>Esquceu a sua senha ?</p></Link>
-                {errorMessage && <p>{errorMessage}</p>}
-                <ButtonSubmit type="submit" name="submit" value={'Logar'} />
-            </Form>
-        </>
-    )
+      console.log(err)
+    })
+  }
+  return(
+    <Form onSubmit={(e)=>{
+      e.preventDefault()
+      Submit(email,token,password)
+    }}>
+    {changePassword === false &&
+    <>
+      <div>
+        <label htmlFor="email">Email</label>
+        <input required type="email"  name='email' placeholder='fulano@gmail.com' autoComplete="email" value={email} onChange={(event)=> setEmail(event.target.value)}  id='email'/>
+      </div>
+      <div>
+        <label htmlFor="password">Nova Senha</label>
+        <input required type="password" name='password'pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder='Escreva sua senha.' autoComplete="password" value={password} onChange={(event)=>setPassword(event.target.value)} onBlur={()=>{
+            if (passwordPattern.test(password) == false) {
+                setErrorMessage('A senha deve ter entre 8 e 20 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.')
+            } else {
+                setErrorMessage('')
+            }
+        }} id='password'/>
+      </div>
+      {errorMessage && <p>{errorMessage}</p>}
+      <ButtonSubmit type="submit" name="submit" value={'Mudar senha'} />
+    </>
+    }
+    {changePassword === true && 
+      <div>
+        <h3>Você acabou de mudar a sua senha, por favor, clique no botão abaixo para acessar a pagina de login.</h3>
+        <Button type="button" onClick={()=>{
+          router.push("/login")
+        }}>Logar</Button>
+      </div>
+    }
+    </Form>
+  )
 }
