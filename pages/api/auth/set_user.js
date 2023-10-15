@@ -42,8 +42,8 @@ export default async function handler(req, res) {
   try {
     const hashPassword = await bcrypt.hash(password, 10)
     await connectMongo()
-    const user = await UserModel.find({email: email })
-    if (user.length == 0) {
+    const user = await UserModel.findOne({email: email })
+    if (user === null) {
       const costumer = await stripe.customers.create({
         email: email
       },
