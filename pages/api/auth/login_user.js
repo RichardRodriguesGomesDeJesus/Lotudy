@@ -30,14 +30,14 @@ export default async function handler(req, res) {
       }
       try{
         await connectMongo()
-        const user = await UserModel.find({email: email })
-        if (user.length == 0) {
+        const user = await UserModel.findOne({email: email })
+        if (user === null) {
           return res.status(401).send('Senha ou e-mail incorreto')
         } else {
-          const passwordMatch = await bcrypt.compare(password, user[0].password)
+          const passwordMatch = await bcrypt.compare(password, user.password)
           if (passwordMatch) {
             const token = jwt.sign({
-              userId: user[0]._id,
+              userId: user._id,
               email: email
             }, process.env.SECRET, { expiresIn: '12h' })
             res.status(201).send({mse:'successful authentication', token})
