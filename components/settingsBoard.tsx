@@ -61,7 +61,7 @@ const ContainerPlan = styled.div`
     form{
         gap: .5rem;
         label{
-            color: ${colorSegundary.sideColor};
+            color: ${colorSegundary.principalColor};
             font-size:1rem;
             font-weight: 400;
         }
@@ -82,13 +82,13 @@ const ContainerPlan = styled.div`
   @media screen and (min-width: 768px ){
       form{
           label{
-              color: ${colorSegundary.sideColor};
-              font-size:1.2rem;
+              color: ${colorSegundary.principalColor};
+              font-size:1rem;
               font-weight: 600;
           }
           h2{
             color: ${colorSegundary.sideColor};
-            font-size:1.2rem;
+            font-size:1rem;
             font-weight: 600;
           }
           input{
@@ -99,13 +99,13 @@ const ContainerPlan = styled.div`
   @media screen and (min-width: 1024px) {
       form{
           label{
-              color: ${colorSegundary.sideColor};
-              font-size:1.5rem;
+              color: ${colorSegundary.principalColor};
+              font-size:1.2rem;
               font-weight: 600;
           }
           h2{
             color: ${colorSegundary.sideColor};
-            font-size:1.5rem;
+            font-size:1.2rem;
             font-weight: 600;
           }
           input{
@@ -114,78 +114,160 @@ const ContainerPlan = styled.div`
       }
   }
 `
+const ButtonSubmit = styled.input`
+    background: ${colorSegundary.sideColor};
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 0 4px 4px ${colorSegundary.textColor};
+    color: ${colorSegundary.white};
+    margin: 0 auto;
+    padding: .5em;
+    &:hover,
+    :focus,
+    :active {
+        cursor: pointer;
+        color: ${colorSegundary.sideColor};
+        background: ${colorSegundary.white};
+        border: 1px solid ${colorSegundary.sideColor};
+        border-color: ${colorSegundary.sideColor};
+        padding: calc(.5em - 1px);
+    }
+    @media screen and (min-width: 0 ){
+        width: 150px;
+    }
+    @media screen and (min-width: 768px ){
+        width: 175px;
+    }
+    @media screen and (min-width: 1024px){
+        width: 200px;
+    }
 
+`
 export default function SettingsBoard({plan, userEmail, token, prices, setPlan}) {
   const [email, setEmail] = useState<string>(userEmail)
-  const [err,setErr] = useState('')
-  const [subscriptionld, setSubscriptionld] = useState('')
+  const [password, setPassword] = useState("")
+  const [err,setErr] = useState("")
+  const [subscriptionld, setSubscriptionld] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+  const [deletAccount, setDeletAccount] = useState(false)
   const router = useRouter()
   function ChangeEmail(email: string) {
-    if (err !== '') {
-      setErr('')
+    if (err !== "") {
+      setErr("")
     }
-    axios.post('/api/auth/change_email',{
+    axios.post("/api/auth/change_email",{
       email: email,
       token: token
     })
     .then((res)=>{
-      setCookie(undefined,'token',res.data,{
+      setCookie(undefined,"token",res.data,{
         maxAge: 60 * 60 * 24
       })
-      router.push('/dashboard')
+      router.push("/dashboard")
     })
     .catch((err)=>{
-      if (typeof(err.response.data) === 'string') {
+      if (typeof(err.response.data) === "string") {
         setErr(err.response.data)
       }
     })
   }
   useEffect(()=>{
-    axios.post('/api/subscriptionld',{
+    axios.post("/api/subscriptionld",{
       token,
     })
     .then((res)=>setSubscriptionld(res.data))
     .catch((err)=>console.log(err))
-  },[subscriptionld === ''])
+  },[subscriptionld === ""])
   return(
     <ContainerPlan>
-      {userEmail !== '' &&
+      {userEmail !== "" &&
         <form onSubmit={(e)=>{
           e.preventDefault()
-          if (email !== '') {
+          if (email !== "") {
             ChangeEmail(email)
           }
         }}>
           <label>Seu Email atual: <strong>{userEmail}</strong> </label>
           <input type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder={userEmail} value={email}/>
-          {email !== '' &&(
+          {email !== "" &&(
             <Button>Salvar</Button>
           )}
-          {email == '' &&(
+          {email == "" &&(
             <>
               <ButtonInvalid>Salvar</ButtonInvalid>
             </>
           )}
-          {err  !== '' &&(
+          {err  !== "" &&(
             <p>{err}</p>
           )}
         </form>
       }
-      {plan !== ''&& prices.length > 0 && (
+      {plan !== ""&& prices.length > 0 && (
         <form onSubmit={(e)=>{
           e.preventDefault()
         }}>
           <h2>Seu Plano atual: <strong>{plan}</strong> </h2>
-          {plan !== 'Gratuito' && prices.length > 0&& 
+          {plan !== "Gratuito" && prices.length > 0&& 
             <Link href={"/plans/cancel"}><p>Cancelar assinatura atual.</p></Link>
           }
-          {plan === 'Gratuito'&&(
+          {plan === "Gratuito" &&(
             <Button type="button" onClick={()=>{
-              router.push('/plans')
+              router.push("/plans")
              }}>Ver planos</Button>
           )}
         </form>
       )}
+      { deletAccount === false&&(
+        <form onSubmit={(e)=>{
+          e.preventDefault()
+          setDeletAccount(true)
+        }} >
+          <h2>Excluir conta.</h2>
+          <p>A conta será deleta permanentemente. Esta ação é irreversível e não pode ser desfeita.</p>
+          <Button type="submit"  >Excluir conta</Button>
+        </form>
+      )
+      }
+      { deletAccount === true &&(
+        <form onSubmit={(e)=>{
+          e.preventDefault()
+          if (password !== "") {
+            axios.post("/api/auth/delete_user",{
+              token: token,
+              password: password,
+            })
+            .then(()=>{
+              if (errorMessage !== "") {
+                setErrorMessage("")
+              }
+              router.push("/")
+            })
+            .catch((err)=>{
+              if (err?.response?.data?.mse) {
+                setErrorMessage(err.response.data.mse)
+              } else {
+                setErrorMessage("Algo deu errado, tente novamente mais tarde.")
+              }
+              console.log(err.response.data)
+            })
+          }
+        }} >
+          <ButtonClose type="button" onClick={()=>setDeletAccount(false)} ><img src="/icons/close.png" /></ButtonClose>
+          <label htmlFor="password">Para excluir sua conta, você precisa confirmar sua identidade.</label>
+          <input type="password" name="password"pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$" placeholder="Escreva sua senha." autoComplete="password" value={password} onChange={(event)=> setPassword(event.target.value)}  id="password" required />
+          {errorMessage !== "" &&(
+            <p>{errorMessage}</p>
+          )}
+          {password === "" && (
+            <ButtonInvalid>Deletar conta</ButtonInvalid>
+          )}
+          {password !== ""&&(
+            <Button type="submit" >Deletar conta</Button>
+          )}
+        </form>
+      )
+
+      }
     </ContainerPlan>
   )
 }
