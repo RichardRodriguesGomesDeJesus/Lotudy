@@ -1,6 +1,7 @@
 import { useState } from "react"
 import ResponsiveMenu, { Header, Title, Main, Footer  } from "../components/sharedstyles"
 import Link from "next/link"
+import { FormLogin } from "../components/formLogin"
 import PasswordForm from "../components/passwordForm"
 
 export default function ForgotPassword() {
