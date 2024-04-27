@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken"
 import { UserModel, DeckModel, ExamModel, StudyCycleModel } from "../../../models/user.js"
 import validator from "validator"
 import bcrypt from "bcryptjs"
-import { stripe } from '../../../utils/stripe'
 
 export default async function deleteUser(req, res) {
   try{
@@ -56,7 +55,6 @@ export default async function deleteUser(req, res) {
     await StudyCycleModel.deleteMany({author: user._id})
 
     try{
-      await stripe.customers.del(`${user.userStripeId}`)
       await UserModel.deleteMany({_id: user._id})
       return res.status(200).json({msg:"Conta excluida."})
     } catch (err) {

@@ -2,7 +2,6 @@ import validator from "validator"
 import jwt from "jsonwebtoken"
 import { connectMongo } from "../../../lib/connectMongo"
 import { UserModel } from "../../../models/user.js"
-import { stripe } from '../../../utils/stripe'
 
 
 export default async  function ChangeEmail(req, res) {
@@ -40,13 +39,6 @@ export default async  function ChangeEmail(req, res) {
     if (decoded.exp === undefined) {
       res.status(401).json({ error: 'Token is expired'})
     }
-
-    const customer = await stripe.customers.update(
-      user.userStripeId,
-      { email: email }
-    )
-
-    customer
 
     user.email = email
 
