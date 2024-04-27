@@ -7,7 +7,6 @@ import axios from "axios"
 import studyCycle from "../utils/interfaces"
 import Cards from "../components/cards"
 import Statistics from "../components/statistics"
-
 export default function Dashboard() {
   const { 'token': token } = parseCookies()
   const [userAuth , setUserAuth] = useState(true)
