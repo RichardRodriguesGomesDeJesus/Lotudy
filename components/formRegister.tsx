@@ -119,7 +119,6 @@ export default function FormRegister() {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
-    const passwordInput = useRef(null)
     const router = useRouter()
 
     const namePattern = /^[a-zA-Z0-9]+$/
@@ -201,7 +200,7 @@ export default function FormRegister() {
                 </div>
                 <div>
                     <label htmlFor="confirm_password">Confirme sua senha</label>
-                    <input required  ref={passwordInput} type="password" name='confirm_password'  placeholder='Confirme sua nova senha.' autoComplete="new-password" value={confirmPassword} onChange={(event)=>{
+                    <input required type="password" name='confirm_password'  placeholder='Confirme sua nova senha.' autoComplete="new-password" value={confirmPassword} onChange={(event)=>{
                         setConfirmPassword(event.target.value)
                     }}
                     onBlur={()=>{
