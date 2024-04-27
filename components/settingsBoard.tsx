@@ -143,11 +143,10 @@ const ButtonSubmit = styled.input`
     }
 
 `
-export default function SettingsBoard({plan, userEmail, token, prices, setPlan}) {
+export default function SettingsBoard({userEmail, token}) {
   const [email, setEmail] = useState<string>(userEmail)
   const [password, setPassword] = useState("")
   const [err,setErr] = useState("")
-  const [subscriptionld, setSubscriptionld] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [deletAccount, setDeletAccount] = useState(false)
   const router = useRouter()
@@ -171,13 +170,6 @@ export default function SettingsBoard({plan, userEmail, token, prices, setPlan})
       }
     })
   }
-  useEffect(()=>{
-    axios.post("/api/subscriptionld",{
-      token,
-    })
-    .then((res)=>setSubscriptionld(res.data))
-    .catch((err)=>console.log(err))
-  },[subscriptionld === ""])
   return(
     <ContainerPlan>
       {userEmail !== "" &&
@@ -202,21 +194,6 @@ export default function SettingsBoard({plan, userEmail, token, prices, setPlan})
           )}
         </form>
       }
-      {plan !== ""&& prices.length > 0 && (
-        <form onSubmit={(e)=>{
-          e.preventDefault()
-        }}>
-          <h2>Seu Plano atual: <strong>{plan}</strong> </h2>
-          {plan !== "Gratuito" && prices.length > 0&& 
-            <Link href={"/plans/cancel"}><p>Cancelar assinatura atual.</p></Link>
-          }
-          {plan === "Gratuito" &&(
-            <Button type="button" onClick={()=>{
-              router.push("/plans")
-             }}>Ver planos</Button>
-          )}
-        </form>
-      )}
       { deletAccount === false&&(
         <form onSubmit={(e)=>{
           e.preventDefault()

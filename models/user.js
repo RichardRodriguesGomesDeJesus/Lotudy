@@ -12,10 +12,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userStripeId: {
-    type: String,
-    required: true,
-  },
   Exams:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Exam'

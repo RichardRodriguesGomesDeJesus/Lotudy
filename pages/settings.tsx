@@ -13,20 +13,9 @@ export default function settings() {
   const [display, setDisplay] = useState('none')
   const { 'token': token } = parseCookies()
   const [userAuth , setUserAuth] = useState(true)
-  const [listPrices, setListPrices] = useState([])
-  const [access, setAccess] = useState('Gratuito'||'Premium'||'Anual')
   const [userEmail, setUserEmail] = useState('')
 
   const FetchData = async () =>{
-    try {
-      const response = await axios.post('/api/subscriptionCheck',{
-       token:token
-     })
-     const list = response.data
-     setAccess(list)
-    } catch (error) {
-      console.log(error)
-    }
     try {
       const response = await axios.post('/api/auth/email_user',{
         token:token
@@ -35,15 +24,6 @@ export default function settings() {
     } catch (error) {
       console.log(error)
     }
-    try {
-     const response = await axios.post('/api/prices',{
-       token:token
-     })
-     const list = response.data.data
-     setListPrices(list)
-    }  catch (error) {
-     console.log(error)
-   }
   }
   useEffect(()=>{
     if (!token) {
@@ -89,7 +69,7 @@ export default function settings() {
       </Header>
       <Main>
         <Title>Painel de cofigurações</Title>
-        <SettingsBoard plan={access} setPlan={setAccess} userEmail={userEmail} token={token} prices={listPrices}/>
+        <SettingsBoard userEmail={userEmail} token={token} />
       </Main>
     </>
   )

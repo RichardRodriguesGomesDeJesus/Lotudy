@@ -57,7 +57,7 @@ const Form = styled.form`
     }
     @media screen and (min-width: 0 ){
         gap:1rem;
-        height: 250px;
+        min-height: 250px;
         width: 300px;
         div{
             gap: .5rem;
@@ -76,7 +76,7 @@ const Form = styled.form`
         }
       };
     @media screen and (min-width: 768px ){
-        height: 350px;
+        min-height: 350px;
         width: 600px;
         div{
             label{
@@ -90,7 +90,7 @@ const Form = styled.form`
         }
     };
     @media screen and (min-width: 1024px) {
-        height: 400px;
+        min-height: 400px;
         width: 800px;
         div{
             label{

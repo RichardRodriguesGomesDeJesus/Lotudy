@@ -1,6 +1,5 @@
 import { useState } from "react"
 import ResponsiveMenu, { Header, Title, Main, Footer  } from "../components/sharedstyles"
-import { FormLogin } from "../components/formLogin"
 import Link from "next/link"
 import PasswordForm from "../components/passwordForm"
 

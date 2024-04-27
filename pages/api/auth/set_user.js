@@ -3,7 +3,6 @@ import { connectMongo } from "../../../lib/connectMongo"
 import { UserModel } from "../../../models/user.js"
 import bcrypt from 'bcryptjs'
 import validator from "validator"
-import { stripe } from '../../../utils/stripe'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -44,17 +43,10 @@ export default async function handler(req, res) {
     await connectMongo()
     const user = await UserModel.findOne({email: email })
     if (user === null) {
-      const costumer = await stripe.customers.create({
-        email: email
-      },
-      {
-        apiKey: process.env.STRIPE_SECRET
-      })
       const userObject ={
         name: name, 
         email: email,
         password: hashPassword,
-        userStripeId: costumer.id
       }
       const newUser = new UserModel(userObject)
       try {

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import StudyPieChart from "./StudyPieChart"
-import { Button, IconPremium, colorSegundary } from "./sharedstyles"
+import { Button,colorSegundary } from "./sharedstyles"
 import { useRouter } from "next/router"
 import ExamsBarChart from "./examsBarChat"
 
@@ -12,11 +12,13 @@ const StatisticsContainer = styled.div`
   justify-content: center;
   padding:1rem;
   flex-grow: 1;
+  justify-content: center;
   width: 100vw ;
   div{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     div{
       display: flex;
       flex-direction: column;
@@ -38,24 +40,10 @@ const StatisticsContainer = styled.div`
     }
   };
 `
-export default function Statistics({ StudyCycle, examList, access}) {
+export default function Statistics({ StudyCycle, examList}) {
   const router = useRouter()
   return (
     <StatisticsContainer>
-      {access === 'Gratuito' &&(
-        <div>
-          <div>
-            <p>Seu plano atual não permite acesso a este conteúdo exclusivo.</p>
-            <p>Atualize para um plano Premium ou Anual para desbloquear todos os recursos e aproveitar ao máximo sua experiência de aprendizado.</p>
-            <Button  onClick={()=>{
-              router.push('/plans')
-            }} >Ver Planos</Button>
-          </div>
-        </div>
-      )}
-      {(access === 'Premium' || access === 'Anual') && (
-        <>
-          {examList.length > 0&&(
             <div>
               <div>
                 <p>Este gráfico mostra as suas horas estudadas durante o seu ciclo de estudos.</p>
@@ -64,7 +52,6 @@ export default function Statistics({ StudyCycle, examList, access}) {
               </div>
               <ExamsBarChart examList={examList} />
             </div>
-          )}
           {StudyCycle.length > 0 &&
             <div>
               <div>
@@ -96,8 +83,6 @@ export default function Statistics({ StudyCycle, examList, access}) {
               </div>
             </div>
           )}
-        </>
-      )}
     </StatisticsContainer>
   )
 }

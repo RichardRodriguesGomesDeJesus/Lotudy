@@ -265,7 +265,7 @@ const ButtonClose = styled.button`
       padding: calc(.125rem -1px);
   }
   img{
-    height: 100%;
+    height: 40px;
     width: auto;
   }
 `

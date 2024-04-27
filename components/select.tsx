@@ -62,7 +62,7 @@ const OptionItem = styled.li`
   label: string
 }
 
-function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setIsOpen, setMseError, mseError, access}) {
+function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setIsOpen, setMseError, mseError}) {
 
   const [newAddCategory, setNewAddCategory] = useState(false)
   const [newCategory,setNewCategory] = useState('')
@@ -74,15 +74,7 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
   }
   return (
     <CustomSelectWrapper>
-      {access === 'Gratuito'&&
-        <>
-          <label htmlFor="category">Veja outros planos para adicionar uma categoria à pergunta.</label>
-          <Button  onClick={()=>{
-            router.push('/plans')
-          }} >Ver Planos</Button>
-        </>
-      }
-      {newAddCategory === false && (access === 'Premium'|| access === 'Anual')&&(
+      {newAddCategory === false &&(
         <>
           <label htmlFor="category">Adicione uma categoria da lista à pergunta.</label>
           <SelectedOption onClick={() => setIsOpen(!isOpen)}>
@@ -104,7 +96,7 @@ function CustomSelect({ options, selectedOption, setSelectedOption, isOpen, setI
           </OptionsList>
         </>
       )}
-      {newAddCategory === true && (access === 'Premium'|| access === 'Anual')&&(
+      {newAddCategory === true &&(
         <>
           <label htmlFor="newCategory">nova categoria</label>
           <input type="text" value={newCategory} minLength={1} maxLength={30} onChange={(e)=>{

@@ -220,7 +220,7 @@ const ButtonAddOption = styled.button`
     }
 
 `
-export default function QuestionForm({examName, token, setForm, setQuestion, question , setUpdateList, questionList, access}) {  
+export default function QuestionForm({examName, token, setForm, setQuestion, question , setUpdateList, questionList}) {  
     const [text, setText] = useState('')
     const [options, setOptions] = useState([])
     const [correctAnswer, setCorrectAnswer] = useState('')
@@ -293,7 +293,7 @@ export default function QuestionForm({examName, token, setForm, setQuestion, que
                     <p>falha ao renderizar a imagem, use outra url.</p>
                 )}
             </div>
-            <CustomSelect options={questionList} selectedOption={selectedOption} setSelectedOption={setSelectedOption} isOpen={isOpen} setIsOpen={setIsOpen} setMseError={setMseError} mseError={mseError} access={access}/>
+            <CustomSelect options={questionList} selectedOption={selectedOption} setSelectedOption={setSelectedOption} isOpen={isOpen} setIsOpen={setIsOpen} setMseError={setMseError} mseError={mseError}/>
             {options.map((option, index) => (
                 <div key={index}>
                     <label htmlFor={`option-${index}`}>Opção {index + 1}:</label>

@@ -13,7 +13,6 @@ export default function Dashboard() {
   const [userAuth , setUserAuth] = useState(true)
   const [StudyCycle , setStudyCycle] = useState<studyCycle[]>([])
   const [examList, setExamList] = useState([]) 
-  const [access, setAccess] = useState('Gratuito'||'Premium'||'Anual')
   const router = useRouter()
   const [display, setDisplay] = useState('none')
   useEffect(()=>{
@@ -57,15 +56,6 @@ export default function Dashboard() {
       } catch (error) {
         console.log(error)
       }
-      try {
-        const response = await axios.post('/api/subscriptionCheck',{
-          token:token
-        })
-        const list = response.data
-        setAccess(list)
-      } catch (error) {
-        console.log(error)
-      }
     }
     const fetchDataAndUpdateList = async () => {
       if (token) {
@@ -100,7 +90,7 @@ export default function Dashboard() {
       <Main>
         <Title>Dashboard</Title>
         <Cards/>
-        <Statistics StudyCycle={StudyCycle} examList={examList} access={access}/>
+        <Statistics StudyCycle={StudyCycle} examList={examList}/>
       </Main>
     </>
   )
