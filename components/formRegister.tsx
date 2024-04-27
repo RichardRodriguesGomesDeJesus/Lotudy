@@ -119,7 +119,7 @@ export default function FormRegister() {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
-    const passwordInput = useRef()
+    const passwordInput = useRef(null)
     const router = useRouter()
 
     const namePattern = /^[a-zA-Z0-9]+$/
