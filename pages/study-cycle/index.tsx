@@ -32,7 +32,7 @@ export default function studyCyclePage() {
         console.log(error)
       }
       try {
-        const response = await axios.post('http://localhost:3000/api/subscriptionCheck',{
+        const response = await axios.post('/api/subscriptionCheck',{
          token:token
        })
        const list = response.data

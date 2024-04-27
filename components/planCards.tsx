@@ -126,7 +126,7 @@ export default function PlanCards({token, listPrices, access}) {
 
    const createExpression = async (priceId) => {
     if (access === 'Gratuito') {
-      const {data: response} = await axios.post('http://localhost:3000/api/session',{
+      const {data: response} = await axios.post('/api/session',{
         priceId,
         token
       })

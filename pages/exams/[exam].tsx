@@ -60,7 +60,7 @@ export default function ExamPage() {
           router.push("/exams")
           setRequest(true)
         })
-        axios.post('http://localhost:3000/api/subscriptionCheck',{
+        axios.post('/api/subscriptionCheck',{
           token:token
         })
         .then((response)=>{

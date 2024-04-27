@@ -36,8 +36,8 @@ export default async function session (req,res) {
         price: priceId,
         quantity: 1,
       }],
-      success_url: "http://localhost:3000/dashboard",
-      cancel_url: "http://localhost:3000/plans",
+      success_url: "/dashboard",
+      cancel_url: "/plans",
       customer: user.userStripeId
     },
     {

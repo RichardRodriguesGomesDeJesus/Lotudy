@@ -17,7 +17,7 @@ export default function PlansPage() {
   
   const FetchPrices = async () =>{
     try {
-      const response = await axios.post('http://localhost:3000/api/subscriptionCheck',{
+      const response = await axios.post('/api/subscriptionCheck',{
        token:token
      })
      const list = response.data
@@ -26,7 +26,7 @@ export default function PlansPage() {
       console.log(error)
     }
     try {
-     const response = await axios.post('http://localhost:3000/api/prices',{
+     const response = await axios.post('/api/prices',{
        token:token
      })
      const list = response.data.data
