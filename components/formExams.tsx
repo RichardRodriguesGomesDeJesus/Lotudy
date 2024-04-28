@@ -53,7 +53,7 @@ button{
 }
 @media screen and (min-width: 0 ){
     gap:1rem;
-    height: 250px;
+    min-height: 250px;
     width: 300px;
     div{
         gap: .5rem;
@@ -75,7 +75,7 @@ button{
     background: ${colorSegundary.white};
     box-shadow: 0 8px 8px ${colorSegundary.textColor};
     border-radius: 1rem;
-    height: 350px;
+    min-height: 350px;
     width: 600px;
     div{
         label{
@@ -89,7 +89,7 @@ button{
     }
 };
 @media screen and (min-width: 1024px) {
-    height: 400px;
+    min-height: 400px;
     width: 800px;
     div{
         label{
