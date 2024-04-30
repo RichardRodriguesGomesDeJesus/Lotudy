@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useRouter } from "next/router"
-import { parseCookies } from "nookies"
+import { parseCookies, destroyCookie } from "nookies"
 import { useEffect, useState } from "react"
 import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles"
 import Link from "next/link"
@@ -84,6 +84,15 @@ export default function deck() {
             </div>
             <div>
               <Link href={'/study-cycle'}>Ciclo de estudos</Link>
+            </div>
+            <div>
+              <p onClick={()=>{
+                const { 'token': token } = parseCookies()
+                if (token) {
+                  destroyCookie(undefined, 'token')
+                }
+                router.push("/")
+              }}>Terminar sessão</p>
             </div>
           </nav>
           <ResponsiveMenu display={display} setDisplay={setDisplay}/>

@@ -4,7 +4,7 @@ import FormStydyCycle from "../../components/formStudyCycle"
 import { useEffect, useState } from "react"
 import UserStudyCycle from "../../components/studyCycle"
 import { useRouter } from "next/router"
-import { parseCookies } from "nookies"
+import { parseCookies, destroyCookie } from "nookies"
 import axios from "axios"
 import studyCycle from "../../utils/interfaces"
 export default function studyCyclePage() {
@@ -73,6 +73,15 @@ export default function studyCyclePage() {
               </div>
               <div>
                 <Link href={'/flex-cards'}>Cards de Revisão</Link>
+              </div>
+              <div>
+                <p onClick={()=>{
+                  const { 'token': token } = parseCookies()
+                  if (token) {
+                    destroyCookie(undefined, 'token')
+                  }
+                  router.push("/")
+                }}>Terminar sessão</p>
               </div>
           </nav>
           <ResponsiveMenu display={display} setDisplay={setDisplay}/>

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles"
 import FlashCardDecks from "../../components/flashcardDecks"
-import { parseCookies } from "nookies"
+import { parseCookies, destroyCookie } from "nookies"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import axios from "axios"
@@ -56,6 +56,15 @@ export default function flexCards() {
             </div>
             <div>
               <Link href={'/study-cycle'}>Ciclo de estudos</Link>
+            </div>
+            <div>
+              <p onClick={()=>{
+                const { 'token': token } = parseCookies()
+                if (token) {
+                  destroyCookie(undefined, 'token')
+                }
+                router.push("/")
+              }}>Terminar sessão</p>
             </div>
           </nav>
           <ResponsiveMenu display={display} setDisplay={setDisplay}/>

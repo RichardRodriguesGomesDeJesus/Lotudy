@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import ResponsiveMenu, { Button, Header, Main, Title } from "../../components/sharedstyles"
 import Link from "next/link"
 import axios from "axios"
-import { parseCookies } from "nookies"
+import { parseCookies, destroyCookie } from "nookies"
 import { useState, useEffect } from "react"
 import QuestionForm from "../../components/questionForm"
 import Question from "../../components/question"
@@ -95,6 +95,15 @@ export default function ExamPage() {
         </div>
         <div>
           <Link href={'/flex-cards'}>Cards de revisão</Link>
+        </div>
+        <div>
+          <p onClick={()=>{
+            const { 'token': token } = parseCookies()
+            if (token) {
+              destroyCookie(undefined, 'token')
+            }
+            router.push("/")
+          }}>Terminar sessão</p>
         </div>
       </nav>
       <ResponsiveMenu display={display} setDisplay={setDisplay}/>

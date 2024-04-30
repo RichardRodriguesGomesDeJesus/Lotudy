@@ -109,7 +109,7 @@ const Header = styled.header<Props>`
       &:hover,
       :focus,
       :active {
-          a{
+          *{
             cursor: pointer;
             border-bottom: 3px  ${colorSegundary.white} solid;
           }

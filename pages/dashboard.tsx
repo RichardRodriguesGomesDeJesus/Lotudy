@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import ResponsiveMenu, { Header, Main, Title } from "../components/sharedstyles"
-import { parseCookies } from "nookies"
+import { parseCookies , destroyCookie} from "nookies"
 import { useRouter } from "next/router"
 import axios from "axios"
 import studyCycle from "../utils/interfaces"
@@ -82,6 +82,15 @@ export default function Dashboard() {
           </div>
           <div>
             <Link href={'settings'}>Configurações</Link>
+          </div>
+          <div>
+            <p onClick={()=>{
+              const { 'token': token } = parseCookies()
+              if (token) {
+                destroyCookie(undefined, 'token')
+              }
+              router.push("/")
+            }}>Terminar sessão</p>
           </div>
         </nav>
         <ResponsiveMenu display={display} setDisplay={setDisplay}/>
